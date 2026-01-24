@@ -75,7 +75,7 @@ export default function SideBusinessClient() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-12">
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-12">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">
           副業検討者向け 手取り計算
@@ -203,7 +203,7 @@ export default function SideBusinessClient() {
           {/* 計算ボタン */}
           <button
             onClick={handleCalculate}
-            className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
+            className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
           >
             計算する
           </button>
@@ -245,7 +245,7 @@ export default function SideBusinessClient() {
             </div>
 
             {/* 雑所得ケース */}
-            <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+            <div className="mt-4 p-4 bg-white border border-[#e0e0e0] rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-3">雑所得ケース</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -270,7 +270,7 @@ export default function SideBusinessClient() {
             </div>
 
             {/* 青色申告ケース（黄色背景で強調） */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
+            <div className="bg-white border border-[#e0e0e0] rounded-lg p-4 mt-4">
               <h3 className="font-semibold text-gray-900 mb-3">青色申告ケース（65万円控除）</h3>
               <p className="text-sm text-gray-600 mb-3">
                 青色申告をすると65万円の控除が受けられます
@@ -280,7 +280,7 @@ export default function SideBusinessClient() {
                   <span className="text-gray-700">控除額</span>
                   <span className="text-gray-900 font-semibold">65万円</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-yellow-200">
+                <div className="flex justify-between text-sm pt-2 border-t border-[#e0e0e0]">
                   <span className="text-gray-700 font-semibold">節税効果</span>
                   <span className="text-gray-900 font-semibold">
                     約{formatYen(650000 * 0.33)}万円
@@ -308,7 +308,7 @@ export default function SideBusinessClient() {
             </div>
 
             {/* 確定申告の注意 */}
-            <div className="mt-6 p-4 bg-yellow-50 border-2 border-yellow-200 rounded-2xl shadow-lg">
+            <div className="mt-6 p-4 bg-white border-2 border-[#e0e0e0] rounded-2xl shadow-lg">
               <h3 className="font-semibold text-gray-900 mb-2">確定申告の注意</h3>
               <ul className="space-y-1 text-sm text-gray-600">
                 <li>• 副業収入が20万円を超える場合は確定申告が必要です</li>
@@ -382,7 +382,7 @@ export default function SideBusinessClient() {
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
-              <div className="text-3xl font-black text-orange-600 mb-4">
+              <div className="text-3xl font-black text-[#0a57d1] mb-4">
                 日本の上位 {percentile}%
               </div>
               
@@ -405,10 +405,10 @@ export default function SideBusinessClient() {
 
         {/* 訴求テキストセクション */}
         {results.salary && results.withSideBusiness && (
-          <div className="bg-white border-2 border-yellow-200 rounded-2xl p-6 mt-6 shadow-lg">
+          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
-            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-3">
+            <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• 求人倍率: 1.5倍（過去最高水準）</li>
@@ -452,7 +452,7 @@ export default function SideBusinessClient() {
               </ul>
             </div>
             
-            <p className="text-center font-bold text-lg mt-4 text-orange-600">
+            <p className="text-center font-bold text-lg mt-4 text-[#0a57d1]">
               👉 無料相談は今すぐ！
             </p>
           </div>
@@ -523,7 +523,7 @@ export default function SideBusinessClient() {
 
         {/* CTAボタン */}
         {results.salary && results.withSideBusiness && (
-          <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 rounded-full mt-8">
+          <button className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold py-4 rounded-full mt-8">
             副業の始め方を相談する
           </button>
         )}

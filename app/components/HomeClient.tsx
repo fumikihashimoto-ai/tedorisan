@@ -69,7 +69,7 @@ export default function HomeClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFEF9] px-4 pt-6 pb-10 md:py-12">
+    <div className="min-h-screen bg-[#f5f5f5] px-4 pt-6 pb-10 md:py-12">
       <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
         {/* セクション1: ヒーローエリア */}
         <section className="mb-12">
@@ -110,14 +110,14 @@ export default function HomeClient() {
 
           {/* 信頼性バッジ */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 text-sm text-gray-600 mt-2">
-            <span className="text-orange-600 font-medium">📊 2025年度の税率で算出</span>
+            <span className="text-[#0a57d1] font-medium">📊 2025年度の税率で算出</span>
             <span className="hidden md:inline text-gray-300">|</span>
             <span className="text-green-600 font-medium">✅ 個人情報不要・完全無料</span>
           </div>
         </section>
 
         {/* セクション2: 簡単計算（メイン機能） */}
-        <div className="bg-white border-2 border-yellow-200 rounded-2xl shadow-lg p-4 md:p-8">
+        <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl shadow-lg p-4 md:p-8">
           <h2 className="text-xl md:text-3xl font-bold text-center text-gray-900 mb-4 md:mb-8">
             🎯 まずは簡単計算
           </h2>
@@ -192,16 +192,16 @@ export default function HomeClient() {
             {/* 計算ボタン */}
             <button
               onClick={handleCalculate}
-              className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01]"
+              className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01]"
             >
               すぐ計算する
             </button>
 
             {/* 結果表示エリア */}
             {showResults && results && (
-              <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-2xl p-6 shadow-lg animate-fade-in">
+              <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg animate-fade-in">
                 <div className="text-center">
-                  <div className="text-3xl font-black text-orange-600 mb-2">
+                  <div className="text-3xl font-black text-[#0a57d1] mb-2">
                     {formatYen(results.takeHome)}万円
                   </div>
                   <div className="text-xl text-gray-700">
@@ -213,18 +213,18 @@ export default function HomeClient() {
 
             {/* パーセンタイル表示セクション */}
             {showResults && results && percentileData && (
-              <div className="mt-6 bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-orange-300 rounded-2xl p-6 shadow-lg">
+              <div className="mt-6 bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold mb-4">📈 あなたの年収レベル</h3>
                 
                 <div className="text-center mb-4">
                   <p className="text-sm text-gray-600 mb-2">日本の</p>
-                  <p className="text-4xl font-black text-orange-600">上位 {percentileData.percentile}%</p>
+                  <p className="text-4xl font-black text-[#0a57d1]">上位 {percentileData.percentile}%</p>
                 </div>
                 
                 <div className="mb-4">
                   <div className="bg-gray-200 h-4 rounded-full overflow-hidden">
-                    <div 
-                      className="bg-gradient-to-r from-yellow-500 to-orange-500 h-full rounded-full transition-all duration-500"
+                    <div
+                      className="bg-[#0a57d1] h-full rounded-full transition-all duration-500"
                       style={{ width: `${100 - percentileData.percentile}%` }}
                     />
                   </div>
@@ -261,10 +261,10 @@ export default function HomeClient() {
 
             {/* 訴求テキストセクション */}
             {showResults && results && percentileData && (
-              <div className="mt-6 bg-white border-2 border-gray-200 rounded-xl p-6">
+              <div className="mt-6 bg-white border-2 border-[#e0e0e0] rounded-xl p-6">
                 <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
                 
-                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-3">
+                <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
                   <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li>• 求人倍率: 1.5倍（過去最高水準）</li>
@@ -273,7 +273,7 @@ export default function HomeClient() {
                   </ul>
                 </div>
                 
-                <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-3">
+                <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
                   <p className="font-bold mb-2">💰 1年遅れると...</p>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li>• 年収UP機会を逃す: -100万円/年</li>
@@ -282,7 +282,7 @@ export default function HomeClient() {
                   </ul>
                 </div>
                 
-                <div className="bg-green-50 border-l-4 border-green-500 p-4">
+                <div className="bg-white border-l-4 border-[#e0e0e0] p-4">
                   <p className="font-bold mb-2">📊 転職成功者の平均UP額</p>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li>• 20代: +80万円</li>
@@ -308,7 +308,7 @@ export default function HomeClient() {
                   </ul>
                 </div>
                 
-                <p className="text-center font-bold text-lg mt-4 text-orange-600">
+                <p className="text-center font-bold text-lg mt-4 text-[#0a57d1]">
                   👉 無料相談は今すぐ！
                 </p>
               </div>
@@ -384,7 +384,7 @@ export default function HomeClient() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* カード1: 転職検討者向け */}
             <Link href="/job-change">
-              <div className="bg-white border-2 border-yellow-200 hover:border-orange-300 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full">
+              <div className="bg-white border-2 border-[#e0e0e0] hover:border-[#e0e0e0] rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full">
                 <div className="text-4xl mb-4 text-center">💼</div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2 text-center">
                   転職を検討中
@@ -397,7 +397,7 @@ export default function HomeClient() {
 
             {/* カード2: 新卒・就活生向け */}
             <Link href="/fresh-graduate">
-              <div className="bg-white border-2 border-yellow-200 hover:border-orange-300 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full">
+              <div className="bg-white border-2 border-[#e0e0e0] hover:border-[#e0e0e0] rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full">
                 <div className="text-4xl mb-4 text-center">🎓</div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2 text-center">
                   就活中・新卒
@@ -410,7 +410,7 @@ export default function HomeClient() {
 
             {/* カード3: 副業検討者向け */}
             <Link href="/side-business">
-              <div className="bg-white border-2 border-yellow-200 hover:border-orange-300 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full">
+              <div className="bg-white border-2 border-[#e0e0e0] hover:border-[#e0e0e0] rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full">
                 <div className="text-4xl mb-4 text-center">💰</div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2 text-center">
                   副業を検討中
@@ -431,7 +431,7 @@ export default function HomeClient() {
             {/* 年代・年収別 手取り一覧表 */}
             <Link
               href="/comparison/list"
-              className="block bg-white border-2 border-yellow-200 rounded-2xl p-6 hover:border-orange-300 hover:shadow-xl transition-all"
+              className="block bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 hover:border-[#e0e0e0] hover:shadow-xl transition-all"
             >
               <div className="flex items-start mb-3">
                 <span className="text-3xl mr-3">📊</span>
@@ -445,14 +445,14 @@ export default function HomeClient() {
                 </div>
               </div>
               <div className="text-right">
-                <span className="text-orange-600 font-semibold text-sm">一覧表を見る →</span>
+                <span className="text-[#0a57d1] font-semibold text-sm">一覧表を見る →</span>
               </div>
             </Link>
 
             {/* よくある質問（FAQ） */}
             <Link
               href="/faq"
-              className="block bg-white border-2 border-yellow-200 rounded-2xl p-6 hover:border-orange-300 hover:shadow-xl transition-all"
+              className="block bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 hover:border-[#e0e0e0] hover:shadow-xl transition-all"
             >
               <div className="flex items-start mb-3">
                 <span className="text-3xl mr-3">❓</span>
@@ -464,7 +464,7 @@ export default function HomeClient() {
                 </div>
               </div>
               <div className="text-right">
-                <span className="text-orange-600 font-semibold text-sm">FAQを見る →</span>
+                <span className="text-[#0a57d1] font-semibold text-sm">FAQを見る →</span>
               </div>
             </Link>
           </div>

@@ -34,7 +34,7 @@ export default function FreshGraduateClient() {
   const canLiveAlone = surplus >= 0;
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-12">
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-12">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">
           新卒・就活生向け 手取り計算
@@ -90,7 +90,7 @@ export default function FreshGraduateClient() {
           {/* 計算ボタン */}
           <button
             onClick={handleCalculate}
-            className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
+            className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
           >
             計算する
           </button>
@@ -120,7 +120,7 @@ export default function FreshGraduateClient() {
             </div>
 
             {/* 生活費シミュレーション（黄色背景で強調） */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
+            <div className="bg-white border border-[#e0e0e0] rounded-lg p-4 mt-4">
               <h3 className="font-semibold text-gray-900 mb-3">生活費シミュレーション（一人暮らし）</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -147,7 +147,7 @@ export default function FreshGraduateClient() {
                   <span className="text-gray-700">その他</span>
                   <span className="text-gray-900 font-semibold">{formatYen(other)}万円</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-yellow-200">
+                <div className="flex justify-between text-sm pt-2 border-t border-[#e0e0e0]">
                   <span className="text-gray-700 font-semibold">合計</span>
                   <span className="text-gray-900 font-semibold">{formatYen(totalExpenses)}万円</span>
                 </div>
@@ -165,7 +165,7 @@ export default function FreshGraduateClient() {
             </div>
 
             {/* 一人暮らし可否判定 */}
-            <div className="mt-4 p-4 rounded-lg bg-gray-50">
+            <div className="mt-4 p-4 rounded-lg bg-white border border-[#e0e0e0]">
               <div className="flex justify-between items-center">
                 <span className="text-gray-700 font-semibold">一人暮らし可否</span>
                 <span className={`font-bold ${canLiveAlone ? 'text-green-600' : 'text-red-600'}`}>
@@ -265,18 +265,18 @@ export default function FreshGraduateClient() {
           }
           
           return (
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-orange-300 rounded-2xl p-6 mt-6 shadow-lg">
+            <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
-              <div className="text-3xl font-black text-orange-600 mb-4">
+              <div className="text-3xl font-black text-[#0a57d1] mb-4">
                 日本の上位 {percentile}%
               </div>
               
               {/* ビジュアルバー */}
               <div className="bg-gray-200 h-3 rounded-full mb-4">
                 <div
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 h-3 rounded-full transition-all duration-500"
+                  className="bg-[#0a57d1] h-3 rounded-full transition-all duration-500"
                   style={{ width: `${100 - percentile}%` }}
                 />
               </div>
@@ -292,10 +292,10 @@ export default function FreshGraduateClient() {
 
         {/* 訴求テキストセクション */}
         {results && (
-          <div className="bg-white border-2 border-yellow-200 rounded-2xl p-6 mt-6 shadow-lg">
+          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
-            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-3">
+            <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• 求人倍率: 1.5倍（過去最高水準）</li>
@@ -339,7 +339,7 @@ export default function FreshGraduateClient() {
               </ul>
             </div>
             
-            <p className="text-center font-bold text-lg mt-4 text-orange-600">
+            <p className="text-center font-bold text-lg mt-4 text-[#0a57d1]">
               👉 無料相談は今すぐ！
             </p>
           </div>
@@ -410,7 +410,7 @@ export default function FreshGraduateClient() {
 
         {/* CTAボタン */}
         {results && (
-          <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 rounded-full mt-8 transition-all hover:shadow-xl hover:scale-[1.01]">
+          <button className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold py-4 rounded-full mt-8 transition-all hover:shadow-xl hover:scale-[1.01]">
             就活エージェントに相談する
           </button>
         )}

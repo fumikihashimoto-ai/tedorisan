@@ -81,7 +81,7 @@ export default function ComparisonListClient() {
   }, [ageGroup, ctaDismissed, handleScroll, onScroll]);
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-8">
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
       <div className="max-w-7xl mx-auto">
         {/* タイトルセクション */}
         <div className="text-center mb-8">
@@ -110,7 +110,7 @@ export default function ComparisonListClient() {
                 });
               }, 100);
             }}
-            className="w-full border border-gray-300 rounded px-4 py-3"
+            className="w-full border border-[#e0e0e0] rounded px-4 py-3 bg-white"
           >
             <option value="" disabled>
               年代を選択してください
@@ -154,22 +154,22 @@ export default function ComparisonListClient() {
           <>
             {/* 一覧表 */}
             <div id="income-table" ref={tableRef} className="overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300 bg-white">
+            <table className="w-full border-collapse border border-[#e0e0e0] bg-white">
               <thead>
-                <tr className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white">
-                  <th className="border border-gray-300 px-4 py-3">年収</th>
-                  <th className="border border-gray-300 px-4 py-3">手取り年収</th>
-                  <th className="border border-gray-300 px-4 py-3">手取り月収</th>
-                  <th className="border border-gray-300 px-4 py-3 hidden md:table-cell">
+                <tr className="bg-[#0a57d1] text-white">
+                  <th className="border border-[#e0e0e0] px-4 py-3">年収</th>
+                  <th className="border border-[#e0e0e0] px-4 py-3">手取り年収</th>
+                  <th className="border border-[#e0e0e0] px-4 py-3">手取り月収</th>
+                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     所得税
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 hidden md:table-cell">
+                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     住民税
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 hidden md:table-cell">
+                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     社会保険料
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 hidden md:table-cell">
+                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     手取り率
                   </th>
                 </tr>
@@ -189,30 +189,30 @@ export default function ComparisonListClient() {
                   return (
                     <tr
                       key={income}
-                      className={isAverageRow ? 'bg-yellow-50 border-2 border-yellow-400' : ''}
+                      className={isAverageRow ? 'bg-white border-2 border-[#e0e0e0]' : ''}
                     >
-                      <td className="border border-gray-300 px-4 py-2 text-center">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center">
                         {isAverageRow && <span className="mr-2 text-lg">👤</span>}
                         <span className={isAverageRow ? 'font-bold' : ''}>
                           {amountInMan}万円
                         </span>
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center font-semibold">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center font-semibold">
                         {Math.round(result.takeHome / 10000)}万円
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center">
                         {Math.round(result.monthlyTakeHome / 10000)}万円
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
                         {Math.round(result.breakdown.incomeTax / 10000)}万円
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
                         {Math.round(result.breakdown.residentTax / 10000)}万円
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
                         {Math.round(result.breakdown.socialInsurance / 10000)}万円
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center text-sm hidden md:table-cell">
+                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm hidden md:table-cell">
                         {takeHomeRate}%
                       </td>
                     </tr>
@@ -224,7 +224,7 @@ export default function ComparisonListClient() {
 
             {/* スティッキーCTAバナー */}
             {showCTA && (
-              <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-2xl z-50 animate-slide-up">
+              <div className="fixed bottom-0 left-0 right-0 bg-[#ff4f42] text-white shadow-2xl z-50 animate-slide-up">
                 <div className="max-w-7xl mx-auto px-4 py-4">
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
                     <div className="flex-1 text-center sm:text-left">
@@ -237,7 +237,7 @@ export default function ComparisonListClient() {
                     </div>
                     <Link
                       href="/"
-                      className="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-yellow-50 transition-all hover:shadow-lg hover:scale-105 whitespace-nowrap text-sm"
+                      className="bg-white text-[#ff4f42] font-bold px-6 py-3 rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:scale-105 whitespace-nowrap text-sm"
                     >
                       計算する →
                     </Link>
@@ -260,7 +260,7 @@ export default function ComparisonListClient() {
             )}
 
             {/* 注意事項 */}
-            <div className="mt-8 bg-[#FFFEF9] border-2 border-yellow-200 rounded-2xl p-6 shadow-lg">
+            <div className="mt-8 bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
               <h3 className="font-bold mb-3">📌 この表について</h3>
               <ul className="text-sm text-gray-700 space-y-2">
                 <li>• 扶養家族: 0人で計算</li>
@@ -278,7 +278,7 @@ export default function ComparisonListClient() {
               </p>
               <Link
                 href="/"
-                className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+                className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
               >
                 手取り計算ツールを使う
               </Link>

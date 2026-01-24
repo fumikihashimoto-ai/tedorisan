@@ -38,7 +38,7 @@ export default function JobChangeClient() {
   const monthlyIncrease = increase / 12;
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-12">
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-12">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">
           転職検討者向け 手取り計算
@@ -142,7 +142,7 @@ export default function JobChangeClient() {
           {/* 計算ボタン */}
           <button
             onClick={handleCalculate}
-            className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
+            className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
           >
             計算する
           </button>
@@ -190,8 +190,8 @@ export default function JobChangeClient() {
             </div>
 
             {/* 増加額（黄色背景で強調） */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
-              <div className="py-2 border-b border-yellow-200">
+            <div className="bg-white border border-[#e0e0e0] rounded-lg p-4 mt-4">
+              <div className="py-2 border-b border-[#e0e0e0]">
                 <div className="flex justify-between">
                   <span className="text-gray-700">増加額（年間）</span>
                   <span className="text-gray-900 font-semibold text-right">
@@ -295,7 +295,7 @@ export default function JobChangeClient() {
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
-              <div className="text-3xl font-black text-orange-600 mb-4">
+              <div className="text-3xl font-black text-[#0a57d1] mb-4">
                 日本の上位 {percentile}%
               </div>
               
@@ -318,10 +318,10 @@ export default function JobChangeClient() {
 
         {/* 訴求テキストセクション */}
         {results.current && results.new && (
-          <div className="bg-white border-2 border-yellow-200 rounded-2xl p-6 mt-6 shadow-lg">
+          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
-            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-3">
+            <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• 求人倍率: 1.5倍（過去最高水準）</li>
@@ -365,7 +365,7 @@ export default function JobChangeClient() {
               </ul>
             </div>
             
-            <p className="text-center font-bold text-lg mt-4 text-orange-600">
+            <p className="text-center font-bold text-lg mt-4 text-[#0a57d1]">
               👉 無料相談は今すぐ！
             </p>
           </div>
@@ -437,7 +437,7 @@ export default function JobChangeClient() {
 
         {/* CTAボタン */}
         {results.current && results.new && (
-          <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 rounded-full mt-8 transition-all hover:shadow-xl hover:scale-[1.01]">
+          <button className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold py-4 rounded-full mt-8 transition-all hover:shadow-xl hover:scale-[1.01]">
             転職エージェントに相談する
           </button>
         )}
