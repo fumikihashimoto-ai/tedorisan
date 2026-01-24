@@ -68,6 +68,35 @@ export default function FAQClient({ faqData }: Props) {
               );
             })}
           </div>
+
+          {/* A8.net FAQ広告 */}
+          {category.title === '基本編' && (
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+              {/* 左 */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2XZ6GI+4N6C+BZVU9" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www21.a8.net/svt/bgt?aid=260124630178&wid=001&eno=01&mid=s00000021666002015000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4AVDG6+2XZ6GI+4N6C+BZVU9" alt="">
+      `,
+                }}
+              />
+
+              {/* 右 */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www20.a8.net/svt/bgt?aid=260124629608&wid=001&eno=01&mid=s00000021455001004000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" alt="">
+      `,
+                }}
+              />
+            </div>
+          )}
         </div>
       ))}
 

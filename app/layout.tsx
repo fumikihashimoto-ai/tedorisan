@@ -6,6 +6,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const A8_HEADER_BANNER_HTML = `
+  <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+64RJ5" rel="nofollow">
+    <img border="0" width="728" height="90" alt="" src="https://www24.a8.net/svt/bgt?aid=260124629610&wid=001&eno=01&mid=s00000021666001030000&mc=1">
+  </a>
+  <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AVDG5+A36FSI+4N6C+64RJ5" alt="">
+`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,15 +26,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://tedorikun.jp'),
   title: {
-    default: '手取り計算ツール - テドリくん',
-    template: '%s｜テドリくん'
+    default: '手取り計算ツール - テドリさん | 年収から手取り額を自動計算',
+    template: '%s｜テドリさん'
   },
-  description: '手取り計算ツール - テドリくん。転職・新卒・副業の年収シミュレーション。',
-  applicationName: '手取り計算ツール - テドリくん',
+  description:
+    'テドリさんがあなたの手取り額を計算します。年収・扶養人数を入力するだけで、所得税・住民税・社会保険料を自動計算。転職・副業時の手取り比較も簡単！',
+  keywords:
+    '手取り計算, 年収, 給与計算, 所得税, 住民税, 社会保険料, 転職, 副業, テドリさん',
+  applicationName: '手取り計算ツール - テドリさん',
   openGraph: {
+    title: '手取り計算ツール - テドリさん',
+    description: 'テドリさんがあなたの手取り額を計算します',
     type: 'website',
     locale: 'ja_JP',
-    siteName: '手取り計算ツール - テドリくん',
+    siteName: '手取り計算ツール - テドリさん',
   },
   twitter: {
     card: 'summary_large_image',
@@ -98,6 +109,12 @@ export default function RootLayout({
             })
           }}
         />
+
+        {/* A8.net 広告 - ヘッダー上部（PCのみ） */}
+        <div className="hidden md:flex w-full bg-gray-50 py-2 justify-center border-b border-gray-200">
+          <div dangerouslySetInnerHTML={{ __html: A8_HEADER_BANNER_HTML }} />
+        </div>
+
         <Header />
         <main>{children}</main>
         <Footer />

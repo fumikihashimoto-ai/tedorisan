@@ -72,21 +72,49 @@ export default function HomeClient() {
     <div className="min-h-screen bg-[#FFFEF9] px-4 pt-6 pb-10 md:py-12">
       <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
         {/* セクション1: ヒーローエリア */}
-        <div className="text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4">手取り計算ツール</h1>
-          <p className="text-base md:text-xl text-gray-600 mb-2">
-            テドリさんがあなたの手取り額を計算します
-          </p>
-          <p className="text-sm text-gray-500">
-            年収・扶養人数を入力するだけで、所得税・住民税・社会保険料を自動計算
-          </p>
+        <section className="mb-12">
+          {/* 見出し - 中央揃え */}
+          <div className="text-center mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-2">
+              手取り計算ツール
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600">
+              年収から手取り額を自動計算
+            </p>
+          </div>
+
+          {/* テドリさんとテキスト - 横並び（全デバイス共通） */}
+          <div className="flex items-center gap-4 mb-8 px-4 md:px-0">
+            {/* テドリさん画像 - 全デバイスで120x120 */}
+            <div className="flex-shrink-0">
+              <Image
+                src="/images/tedori.png"
+                alt="テドリさん - 手取り計算をサポートする秘書キャラクター"
+                width={120}
+                height={120}
+                className="drop-shadow-lg"
+                priority
+              />
+            </div>
+
+            {/* テキスト - 全デバイスで左寄せ */}
+            <div className="text-left flex-1">
+              <p className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2">
+                テドリさんがあなたの手取り額を計算します
+              </p>
+              <p className="text-sm md:text-base text-gray-700">
+                年収・扶養人数を入力するだけで、所得税・住民税・社会保険料を自動計算
+              </p>
+            </div>
+          </div>
+
           {/* 信頼性バッジ */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 text-sm text-gray-600 mt-2">
             <span className="text-orange-600 font-medium">📊 2025年度の税率で算出</span>
             <span className="hidden md:inline text-gray-300">|</span>
             <span className="text-green-600 font-medium">✅ 個人情報不要・完全無料</span>
           </div>
-        </div>
+        </section>
 
         {/* セクション2: 簡単計算（メイン機能） */}
         <div className="bg-white border-2 border-yellow-200 rounded-2xl shadow-lg p-4 md:p-8">
@@ -94,34 +122,7 @@ export default function HomeClient() {
             🎯 まずは簡単計算
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
-            {/* 左側: テドリさんのイラスト */}
-            <div className="flex justify-center md:justify-end order-2 md:order-1">
-              <div className="relative">
-                <Image
-                  src="/images/tedori.png"
-                  alt="テドリさん - 手取り計算をサポートする秘書キャラクター"
-                  width={300}
-                  height={300}
-                  className="md:w-[400px] md:h-[400px] drop-shadow-2xl"
-                  priority
-                />
-
-                {/* 吹き出し - PCのみ表示 */}
-                <div className="hidden md:block absolute -right-4 top-8 bg-white border-2 border-yellow-400 rounded-2xl px-4 py-3 shadow-lg">
-                  <p className="text-sm font-bold text-gray-800">
-                    手取り額を<br />計算しましょう！
-                  </p>
-                  {/* 三角の矢印（左側） */}
-                  <div className="absolute -left-2 top-6 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-r-[8px] border-r-yellow-400"></div>
-                  <div className="absolute -left-[6px] top-6 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-r-[8px] border-r-white"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* 右側: 計算フォーム */}
-            <div className="order-1 md:order-2">
-              <div className="max-w-md mx-auto space-y-4 md:space-y-6">
+          <div className="max-w-md mx-auto space-y-4 md:space-y-6">
             {/* 年収入力 */}
             <div>
               <label className="block font-semibold text-gray-900 text-base mb-1.5 md:mb-2">
@@ -239,6 +240,22 @@ export default function HomeClient() {
                 <p className="text-center text-sm text-gray-600 mt-2">
                   {percentileData.message}
                 </p>
+
+                {/* A8.net 転職広告 */}
+                {percentileData.message.includes('転職で大きく収入を伸ばせる可能性があります。') && (
+                  <div className="mt-6 flex justify-center">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260124629608&wid=001&eno=01&mid=s00000021455001004000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" alt="">
+      `,
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             )}
 
@@ -352,8 +369,6 @@ export default function HomeClient() {
                 </div>
               </div>
             )}
-              </div>
-            </div>
           </div>
         </div>
 
@@ -453,6 +468,20 @@ export default function HomeClient() {
               </div>
             </Link>
           </div>
+        </div>
+
+        {/* A8.net 副業広告 */}
+        <div className="mt-6 flex justify-center">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+9RV7AQ+3SPO+CEKTFL" rel="nofollow">
+          <img border="0" width="468" height="60" alt="" src="https://www21.a8.net/svt/bgt?aid=260124629591&wid=001&eno=01&mid=s00000017718075008000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AVDG5+9RV7AQ+3SPO+CEKTFL" alt="">
+      `,
+            }}
+          />
         </div>
 
         {/* セクション4: 控除の説明 */}

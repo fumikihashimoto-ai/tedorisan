@@ -230,6 +230,33 @@ export default function JobChangeClient() {
                 )}
               </ul>
             </div>
+
+            {/* A8.net 転職検討者向け広告 */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+              {/* 左 */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+9RV7AQ+3SPO+CEKE01" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www24.a8.net/svt/bgt?aid=260124629591&wid=001&eno=01&mid=s00000017718075006000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AVDG5+9RV7AQ+3SPO+CEKE01" alt="">
+      `,
+                }}
+              />
+
+              {/* 右 */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+631SX" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260124629610&wid=001&eno=01&mid=s00000021666001022000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AVDG5+A36FSI+4N6C+631SX" alt="">
+      `,
+                }}
+              />
+            </div>
           </div>
         )}
 

@@ -204,6 +204,33 @@ export default function FreshGraduateClient() {
                 )}
               </ul>
             </div>
+
+            {/* A8.net 新卒・就活生向け広告 */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+              {/* 左 */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www27.a8.net/svt/bgt?aid=260124630166&wid=001&eno=01&mid=s00000010921001058000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" alt="">
+      `,
+                }}
+              />
+
+              {/* 右 */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=260124630178&wid=001&eno=01&mid=s00000021666002139000&mc=1">
+        </a>
+        <img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" alt="">
+      `,
+                }}
+              />
+            </div>
           </div>
         )}
 
