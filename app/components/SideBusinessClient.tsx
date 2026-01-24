@@ -324,7 +324,7 @@ export default function SideBusinessClient() {
               <div
                 dangerouslySetInnerHTML={{
                   __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" rel="nofollow">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" target="_blank" rel="nofollow noopener noreferrer">
           <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260124629608&wid=001&eno=01&mid=s00000021455001004000&mc=1">
         </a>
         <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" alt="">
@@ -336,7 +336,7 @@ export default function SideBusinessClient() {
               <div
                 dangerouslySetInnerHTML={{
                   __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+631SX" rel="nofollow">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+631SX" target="_blank" rel="nofollow noopener noreferrer">
           <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260124629610&wid=001&eno=01&mid=s00000021666001022000&mc=1">
         </a>
         <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AVDG5+A36FSI+4N6C+631SX" alt="">

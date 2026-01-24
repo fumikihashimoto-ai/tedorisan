@@ -211,7 +211,7 @@ export default function FreshGraduateClient() {
               <div
                 dangerouslySetInnerHTML={{
                   __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" rel="nofollow">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" target="_blank" rel="nofollow noopener noreferrer">
           <img border="0" width="300" height="250" alt="" src="https://www27.a8.net/svt/bgt?aid=260124630166&wid=001&eno=01&mid=s00000010921001058000&mc=1">
         </a>
         <img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" alt="">
@@ -223,7 +223,7 @@ export default function FreshGraduateClient() {
               <div
                 dangerouslySetInnerHTML={{
                   __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" rel="nofollow">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" target="_blank" rel="nofollow noopener noreferrer">
           <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=260124630178&wid=001&eno=01&mid=s00000021666002139000&mc=1">
         </a>
         <img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" alt="">
