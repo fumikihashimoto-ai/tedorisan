@@ -4,6 +4,16 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { calculateTakeHome } from '@/lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '@/lib/ageIncomeData';
+import PcAdSidebar from '../../components/PcAdSidebar';
+import CustomSelect, { type CustomSelectOption } from '../../components/CustomSelect';
+
+const AGE_OPTIONS: CustomSelectOption[] = [
+  { value: '20代', label: '20代' },
+  { value: '30代', label: '30代' },
+  { value: '40代', label: '40代' },
+  { value: '50代', label: '50代' },
+  { value: '60代以上', label: '60代以上' },
+];
 
 type Props = {
   amount: number;
@@ -68,37 +78,41 @@ export default function AnnualIncomePageClient({ amount }: Props) {
   const nextAmount = amount + 200000;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* 即答セクション（詳細内訳を統合） */}
-      <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-          年収{amountInMan}万円の手取りは？
-        </h1>
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
+      <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
+        <div className="md:max-w-[800px] md:w-full">
+          <nav className="breadcrumb mb-3">
+            <Link href="/">ホーム</Link> {'>'} 年収別詳細
+          </nav>
+          <h1 className="page-title">年収{amountInMan}万円の手取りは？</h1>
+
+          {/* 即答セクション（詳細内訳を統合） */}
+          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
 
         {/* 即答 */}
         <div className="bg-white rounded-2xl p-6 mb-6 shadow-sm">
-          <p className="text-sm text-gray-600 mb-2 text-center">年間手取り</p>
-          <p className="text-5xl md:text-6xl font-black text-[#0a57d1] text-center">
+          <p className="text-sm text-gray-600 mb-2 text-center md:text-left">年間手取り</p>
+          <p className="text-5xl md:text-6xl font-black text-[#0a57d1] text-center md:text-left">
             {Math.round(result.yearlyTakeHome / 10000)}万円
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <p className="text-xs text-gray-600 mb-1 text-center">月収（手取り）</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center">
+            <p className="text-xs text-gray-600 mb-1 text-center md:text-left">月収（手取り）</p>
+            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">
               {Math.round(result.monthlyTakeHome / 10000)}万円
             </p>
           </div>
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <p className="text-xs text-gray-600 mb-1 text-center">手取り率</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center">{result.takehomeRate}%</p>
+            <p className="text-xs text-gray-600 mb-1 text-center md:text-left">手取り率</p>
+            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">{result.takehomeRate}%</p>
           </div>
         </div>
 
         {/* 詳細内訳（同じブロック内） */}
         <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold mb-4 text-center">💰 詳細内訳</h2>
+          <h2 className="text-lg font-bold mb-4 text-left">💰 詳細内訳</h2>
 
           <table className="w-full">
             <tbody>
@@ -148,18 +162,15 @@ export default function AnnualIncomePageClient({ amount }: Props) {
 
       {/* 年代選択（パーセンタイルの上） */}
       <div className="mb-8">
-        <label className="block text-center text-sm font-semibold mb-3">年代を選択</label>
-        <select
-          value={ageGroup}
-          onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
-          className="w-full max-w-md mx-auto block border border-[#e0e0e0] bg-white rounded px-4 py-3"
-        >
-          <option value="20代">20代</option>
-          <option value="30代">30代</option>
-          <option value="40代">40代</option>
-          <option value="50代">50代</option>
-          <option value="60代以上">60代以上</option>
-        </select>
+        <label className="block text-left text-sm font-semibold mb-3">年代を選択</label>
+        <div className="w-full max-w-md mx-auto md:mx-0">
+          <CustomSelect
+            options={AGE_OPTIONS}
+            value={ageGroup}
+            onChange={(v) => setAgeGroup(v as AgeGroup)}
+            placeholder="年代を選択"
+          />
+        </div>
       </div>
 
       {/* パーセンタイル表示 */}
@@ -241,6 +252,10 @@ export default function AnnualIncomePageClient({ amount }: Props) {
             手取り計算ツールを使う
           </Link>
         </div>
+      </div>
+        </div>
+
+        <PcAdSidebar />
       </div>
     </div>
   );

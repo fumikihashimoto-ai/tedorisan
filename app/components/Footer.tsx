@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { FOOTER_SECTIONS } from '@/app/lib/navigation';
 
 export default function Footer() {
+  const sections = FOOTER_SECTIONS;
+
   return (
     <footer className="bg-[#2e363b] border-t border-[#e0e0e0] mt-16 text-white">
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -16,47 +19,44 @@ export default function Footer() {
 
         {/* ページリンク */}
         <nav className="mb-6">
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-            <li>
-              <Link href="/" className="text-white hover:text-[#cccccc] transition-colors">
-                手取り計算
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/comparison/list"
-                className="text-white hover:text-[#cccccc] transition-colors"
-              >
-                年代・年収別 手取り一覧表
-              </Link>
-            </li>
-            <li>
-              <Link href="/job-change" className="text-white hover:text-[#cccccc] transition-colors">
-                転職者向け計算
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/fresh-graduate"
-                className="text-white hover:text-[#cccccc] transition-colors"
-              >
-                新卒・就活生向け計算
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/side-business"
-                className="text-white hover:text-[#cccccc] transition-colors"
-              >
-                副業者向け計算
-              </Link>
-            </li>
-            <li>
-              <Link href="/faq" className="text-white hover:text-[#cccccc] transition-colors">
-                よくある質問（FAQ）
-              </Link>
-            </li>
-          </ul>
+          {/* モバイル: 折りたたみ（JS不要） */}
+          <div className="md:hidden space-y-3">
+            {sections.map((section) => (
+              <details key={section.title} className="border-t border-white/20 pt-3">
+                <summary className="cursor-pointer select-none font-bold text-white/90 text-sm list-none flex items-center justify-between">
+                  <span>{section.title}</span>
+                  <span className="text-white/70">＋</span>
+                </summary>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {section.links.map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href} className="text-white hover:text-[#cccccc] transition-colors">
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+
+          {/* PC: 3列 */}
+          <div className="hidden md:grid gap-8 md:grid-cols-3">
+            {sections.map((section) => (
+              <div key={section.title}>
+                <div className="text-sm font-bold mb-3 text-white/90">{section.title}</div>
+                <ul className="space-y-2 text-sm">
+                  {section.links.map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href} className="text-white hover:text-[#cccccc] transition-colors">
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </nav>
 
         {/* コピーライト */}

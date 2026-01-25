@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import AnnualIncomePageClient from './AnnualIncomePageClient';
+import { createPageMetadata } from '@/app/lib/metadata';
 
 type Props = {
   // Next.js 16+ では params が Promise として渡される
@@ -31,21 +32,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const amountInMan = amount / 10000;
   
-  return {
-    title: `年収${amountInMan}万円の手取りはいくら？｜テドリくん`,
+  return createPageMetadata({
+    title: `年収${amountInMan}万円の手取りはいくら？｜テドリさん`,
     description: `年収${amountInMan}万円の手取り額を自動計算。月収、所得税、住民税、社会保険料の詳細内訳も表示。年代別の位置づけや同年代との比較も。完全無料。`,
     keywords: [`年収${amountInMan}万 手取り`, `年収${amountInMan}万円`, `手取り計算`, `年収 手取り`],
-    openGraph: {
-      title: `年収${amountInMan}万円の手取りはいくら？`,
-      description: `年収${amountInMan}万円の手取り額を詳しく解説`,
-      type: 'website',
-      locale: 'ja_JP',
-      siteName: '手取り計算ツール - テドリくん',
-    },
-    alternates: {
-      canonical: `https://tedorikun.jp/annual-income/${amount}`,
-    },
-  };
+    canonicalPath: `/annual-income/${amount}`,
+    openGraphTitle: `年収${amountInMan}万円の手取りはいくら？`,
+    openGraphDescription: `年収${amountInMan}万円の手取り額を詳しく解説`,
+    openGraphType: 'website',
+  });
 }
 
 export default async function AnnualIncomePage({ params }: Props) {

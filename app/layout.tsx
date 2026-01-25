@@ -1,27 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import HeaderAd from "./components/HeaderAd";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
-const A8_HEADER_BANNER_HTML = `
-  <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+64RJ5" target="_blank" rel="nofollow noopener noreferrer">
-    <img border="0" width="728" height="90" alt="" src="https://www24.a8.net/svt/bgt?aid=260124629610&wid=001&eno=01&mid=s00000021666001030000&mc=1">
-  </a>
-  <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AVDG5+A36FSI+4N6C+64RJ5" alt="">
-`;
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tedorikun.jp'),
@@ -49,7 +33,7 @@ export const metadata: Metadata = {
     initialScale: 1,
   },
   verification: {
-    google: 'あとで設定',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 
@@ -75,7 +59,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#f5f5f5]`}
+        className="antialiased bg-[#f5f5f5]"
       >
         {/* Google Tag Manager (noscript) */}
         {GTM_ID && (
@@ -112,11 +96,11 @@ export default function RootLayout({
 
         {/* A8.net 広告 - ヘッダー上部（PCのみ） */}
         <div className="hidden md:flex w-full bg-gray-50 py-2 justify-center border-b border-gray-200">
-          <div dangerouslySetInnerHTML={{ __html: A8_HEADER_BANNER_HTML }} />
+          <HeaderAd />
         </div>
 
         <Header />
-        <main>{children}</main>
+        <main className="w-full">{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import FAQClient, { type FAQCategory } from './FAQClient';
+import { createPageMetadata } from '@/app/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'よくある質問（FAQ）- 手取り計算｜テドリさん',
   description:
     '手取り計算に関するよくある質問。手取りとは？計算方法は？所得税・住民税・社会保険料の仕組みを解説。転職・新卒・副業の疑問も解決。',
@@ -14,17 +15,11 @@ export const metadata: Metadata = {
     '副業 税金',
     'FAQ',
   ],
-  openGraph: {
-    title: 'よくある質問（FAQ）- 手取り計算',
-    description: '手取り計算に関するよくある質問',
-    type: 'website',
-    locale: 'ja_JP',
-    siteName: '手取り計算ツール - テドリさん',
-  },
-  alternates: {
-    canonical: 'https://tedorikun.jp/faq',
-  },
-};
+  canonicalPath: '/faq',
+  openGraphTitle: 'よくある質問（FAQ）- 手取り計算',
+  openGraphDescription: '手取り計算に関するよくある質問',
+  openGraphType: 'website',
+});
 
 const faqData: FAQCategory[] = [
   {

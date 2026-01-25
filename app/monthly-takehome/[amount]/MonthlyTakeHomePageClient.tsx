@@ -4,6 +4,16 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { calculateRequiredAnnualIncome } from '@/lib/reverseSalaryCalculator';
 import { averageIncomeByAge, type AgeGroup } from '@/lib/ageIncomeData';
+import PcAdSidebar from '../../components/PcAdSidebar';
+import CustomSelect, { type CustomSelectOption } from '../../components/CustomSelect';
+
+const AGE_OPTIONS: CustomSelectOption[] = [
+  { value: '20代', label: '20代' },
+  { value: '30代', label: '30代' },
+  { value: '40代', label: '40代' },
+  { value: '50代', label: '50代' },
+  { value: '60代以上', label: '60代以上' },
+];
 
 type Props = {
   amount: number; // 手取り月収（円）
@@ -22,34 +32,38 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
   const ageEntries = useMemo(() => Object.entries(averageIncomeByAge) as [AgeGroup, number][], []);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* 即答セクション */}
-      <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-          手取り{amountInMan}万円に必要な年収は？
-        </h1>
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
+      <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
+        <div className="md:max-w-[800px] md:w-full">
+          <nav className="breadcrumb mb-3">
+            <Link href="/">ホーム</Link> {'>'} 手取り月収から逆算
+          </nav>
+          <h1 className="page-title">手取り{amountInMan}万円に必要な年収は？</h1>
+
+          {/* 即答セクション */}
+          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
 
         <div className="bg-white rounded-2xl p-6 mb-6 shadow-sm">
-          <p className="text-sm text-gray-600 mb-2 text-center">必要な年収</p>
-          <p className="text-5xl md:text-6xl font-black text-[#0a57d1] text-center">
+          <p className="text-sm text-gray-600 mb-2 text-center md:text-left">必要な年収</p>
+          <p className="text-5xl md:text-6xl font-black text-[#0a57d1] text-center md:text-left">
             {requiredAnnualInMan}万円
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <p className="text-xs text-gray-600 mb-1 text-center">月収（額面）</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center">{monthlyGrossInMan}万円</p>
+            <p className="text-xs text-gray-600 mb-1 text-center md:text-left">月収（額面）</p>
+            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">{monthlyGrossInMan}万円</p>
           </div>
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <p className="text-xs text-gray-600 mb-1 text-center">手取り率</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center">{result.takehomeRate}%</p>
+            <p className="text-xs text-gray-600 mb-1 text-center md:text-left">手取り率</p>
+            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">{result.takehomeRate}%</p>
           </div>
         </div>
 
         {/* 詳細内訳（同じブロック内） */}
         <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold mb-4 text-center">💰 詳細内訳</h2>
+          <h2 className="text-lg font-bold mb-4 text-left">💰 詳細内訳</h2>
 
           <table className="w-full">
             <tbody>
@@ -97,18 +111,15 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
 
       {/* 年代選択 */}
       <div className="mb-8">
-        <label className="block text-center text-sm font-semibold mb-3">年代を選択</label>
-        <select
-          value={ageGroup}
-          onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
-          className="w-full max-w-md mx-auto block border border-[#e0e0e0] bg-white rounded px-4 py-3"
-        >
-          <option value="20代">20代</option>
-          <option value="30代">30代</option>
-          <option value="40代">40代</option>
-          <option value="50代">50代</option>
-          <option value="60代以上">60代以上</option>
-        </select>
+        <label className="block text-left text-sm font-semibold mb-3">年代を選択</label>
+        <div className="w-full max-w-md mx-auto md:mx-0">
+          <CustomSelect
+            options={AGE_OPTIONS}
+            value={ageGroup}
+            onChange={(v) => setAgeGroup(v as AgeGroup)}
+            placeholder="年代を選択"
+          />
+        </div>
       </div>
 
       {/* 年代別の達成難易度 */}
@@ -206,9 +217,9 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
 
       {/* CTAセクション */}
       <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
-        <h3 className="text-xl font-bold mb-3 text-center">💡 あなたの正確な手取り額を計算</h3>
-        <p className="text-sm text-gray-700 text-center mb-4">扶養家族の人数を考慮した詳細計算</p>
-        <div className="text-center">
+        <h3 className="text-xl font-bold mb-3 text-left">💡 あなたの正確な手取り額を計算</h3>
+        <p className="text-sm text-gray-700 text-left mb-4">扶養家族の人数を考慮した詳細計算</p>
+        <div className="text-left">
           <Link
             href="/"
             className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
@@ -216,6 +227,10 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
             手取り計算ツールを使う
           </Link>
         </div>
+      </div>
+        </div>
+
+        <PcAdSidebar />
       </div>
     </div>
   );

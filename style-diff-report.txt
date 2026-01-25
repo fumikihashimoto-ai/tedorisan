@@ -1,0 +1,114 @@
+各ページスタイル調査レポート（差異まとめ）
+
+対象ファイル
+- app/components/HomeClient.tsx
+- app/components/JobChangeClient.tsx（app/job-change/page.tsxはラッパー）
+- app/components/FreshGraduateClient.tsx（app/fresh-graduate/page.tsxはラッパー）
+- app/components/SideBusinessClient.tsx（app/side-business/page.tsxはラッパー）
+- app/faq/page.tsx（実体は app/faq/FAQClient.tsx）
+- app/comparison/list/page.tsx（実体は app/components/ComparisonListClient.tsx）
+- app/industry/pharmacist/page.tsx
+
+前提
+- Tailwindクラス（bg/border/rounded/shadow/p/mt/mb/text 等）と app/globals.css の定義から読み取れる範囲で比較。
+- “設定値”は主に className 文字列として抽出（CSSの最終計算値までは算出していない）。
+
+--------------------------------------------------------------------------------
+1. カード（白枠）スタイル（background-color / border / radius / padding / shadow）
+--------------------------------------------------------------------------------
+
+| ページ | 主なカードパターン（抜粋） | 差異ポイント |
+|---|---|---|
+| TOP（HomeClient） | bg-white border-2 border-blue-200 rounded-2xl shadow-lg p-4 md:p-8（フォーム/結果/年収レベル/理由） / bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg（ツール誘導カード等） | 青枠（border-blue-200）+ shadow-lg + rounded-2xl が強い統一。 |
+| 転職（JobChangeClient） | フォーム: bg-white rounded-lg shadow-sm p-6 mb-6（borderなし） / 結果: bg-white rounded-xl shadow p-6 mb-6（borderなし） / 理由: bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg | フォーム/結果が border無し（Homeと差）。影が shadow-sm / shadow / shadow-lg で混在。 |
+| 新卒（FreshGraduateClient） | フォーム: bg-white rounded-lg shadow-sm p-6 mb-6（borderなし） / 結果: bg-white rounded-xl shadow p-6 mb-6（borderなし） / 生活費目安: bg-white border border-[#e0e0e0] rounded-lg p-4 | JobChangeと同系。内側カードに border(1) + rounded-lg が混在。 |
+| 副業（SideBusinessClient） | フォーム: bg-white rounded-lg shadow-sm p-6 mb-6（borderなし） / 結果: bg-white rounded-xl shadow p-6 mb-6（borderなし） / 内側カード: bg-white border border-[#e0e0e0] rounded-lg p-4 | JobChange/Freshと同系。 |
+| FAQ（FAQClient） | QAカード: bg-white border-2 border-[#e0e0e0] rounded-2xl overflow-hidden shadow-sm | border-2 + shadow-sm（薄影）で統一。 |
+| 一覧表（ComparisonListClient） | 注意事項: bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg / テーブル: border border-[#e0e0e0] bg-white | “カード”はグレー枠 + shadow-lg。Homeの青枠とは差。 |
+| 薬剤師（industry/pharmacist） | 多くのセクション: bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg / 内側カード: bg-white border border-[#e0e0e0] rounded-xl p-4 | グレー枠 + shadow-lg + rounded-2xl が基本。Homeの青枠ではない。 |
+
+--------------------------------------------------------------------------------
+2. 見出しスタイル（h1 / h2）
+--------------------------------------------------------------------------------
+
+■ h1（共通: .page-title）
+app/globals.css より（全ページで className="page-title" を利用）
+- PC: font-size 56px / font-weight 700 / line-height 78px / color #333333 / margin-top 40px / margin-bottom 32px
+- SP(<=768px): font-size 28px / line-height 40px / margin-top 24px / margin-bottom 20px
+
+| ページ | h1指定 | 差異 |
+|---|---|---|
+| TOP / 転職 / 新卒 / 副業 / FAQ / 一覧表 / 薬剤師 | h1.page-title | h1は全ページ同一（globals.css由来）。 |
+
+■ h2（ページごとにTailwindで差）
+| ページ | h2の主指定（抜粋） | 差異ポイント |
+|---|---|---|
+| TOP（Home） | text-xl md:text-3xl font-bold text-left text-gray-900 mb-4 md:mb-8 / text-2xl md:text-3xl font-bold ... | mdで3xl、mbがレスポンシブ可変。 |
+| 転職（JobChange） | ほぼh2無し（h3中心） | セクション見出しをh3で表現。 |
+| 新卒（Fresh） | ほぼh2無し（h3中心） | 同上。 |
+| 副業（Side） | ほぼh2無し（h3中心） | 同上。 |
+| FAQ | text-2xl font-bold mb-6 pb-2 border-b-2 border-[#e0e0e0]（カテゴリ見出し） | 下線（border-b-2）付き。 |
+| 一覧表（List） | ほぼh2無し（h3中心） | h2未使用。 |
+| 薬剤師 | text-xl font-bold mb-4 text-[#1a1a1a] | 固定でtext-xl、色を#1a1a1aで明示。 |
+
+--------------------------------------------------------------------------------
+3. 本文テキスト（font-size / color / line-height）
+--------------------------------------------------------------------------------
+
+| ページ | 本文の主指定（抜粋） | 差異ポイント |
+|---|---|---|
+| TOP（Home） | text-sm md:text-base text-gray-700 / text-sm text-gray-600 | mdでサイズ切替が多い。line-height指定は少ない。 |
+| 転職（JobChange） | text-sm text-gray-600（説明）/ text-gray-700（結果内） | 標準的。 |
+| 新卒（Fresh） | text-sm text-gray-600 / text-sm text-gray-700 | 標準的。 |
+| 副業（Side） | text-sm text-gray-600 / text-sm text-gray-700 | 標準的。 |
+| FAQ | text-gray-700 leading-relaxed whitespace-pre-line | line-height明示（leading-relaxed）。 |
+| 一覧表（List） | 注意事項: text-sm text-gray-700 space-y-2 / 表セル: text-sm text-gray-600 | 表中心でtext-sm多用。 |
+| 薬剤師 | text-sm text-[#666666] / text-[#333333] / 見出し色 #1a1a1a | gray系をhexで固定する箇所が多い。 |
+
+--------------------------------------------------------------------------------
+4. ボタンスタイル（background-color / hover / padding / radius）
+--------------------------------------------------------------------------------
+
+| ページ | 主CTAボタン（抜粋） | 差異ポイント |
+|---|---|---|
+| TOP（Home） | w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] | font-bold + text-lg（他より強め）。 |
+| 転職/新卒/副業 | w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6 | Homeよりfont-weightが弱い（semibold）。 |
+| FAQ | w-full text-left px-6 py-4 bg-white hover:bg-black/5 ... transition-all（開閉ボタン） | CTAではなくUIボタン。 |
+| 一覧表 | inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105 | w-fullではなくinline、hover拡大がscale-105。 |
+| 薬剤師 | w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg ... mt-6 | 転職/新卒/副業と同系。 |
+
+--------------------------------------------------------------------------------
+5. 入力フォーム（border / padding / focus状態）
+--------------------------------------------------------------------------------
+
+| ページ | input/select主指定（抜粋） | 差異ポイント |
+|---|---|---|
+| TOP（Home） | border border-gray-300 rounded px-4 py-3 text-base（input/select） | focusクラス明示なし。 |
+| 転職/新卒/副業 | border border-gray-300 rounded px-4 py-3 text-base | Homeと同一。 |
+| FAQ | 入力フォームなし | - |
+| 一覧表 | select: w-full border border-[#e0e0e0] rounded px-4 py-3 bg-white | border色が#e0e0e0、text-base指定なし。 |
+| 薬剤師 | border border-gray-300 rounded px-4 py-3 text-base | 転職/新卒/副業と同一。 |
+
+--------------------------------------------------------------------------------
+6. 余白（セクション間margin / コンテナpadding）
+--------------------------------------------------------------------------------
+
+| ページ | 外枠（container） | セクション間余白 | 差異ポイント |
+|---|---|---|---|
+| TOP（Home） | px-4 pt-6 pb-10 md:py-12 / 左カラム space-y-8 md:space-y-12 | ヒーロー mb-12、結果 mt-6 | pt/pbが個別指定、縦のリズムが強い。 |
+| 転職/新卒/副業 | px-4 py-12 | フォーム mb-6、結果/各セクション mt-6 | 3ページでほぼ同一。 |
+| FAQ | px-4 py-8 | カテゴリ mb-12、QA space-y-4 | 他より縦余白が小さめ（py-8）。 |
+| 一覧表 | px-4 py-8 | 年代選択 mb-6 max-w-md、注意事項 mt-8、CTA mt-8 | max-w-mdが残存（Homeは削除済み）。 |
+| 薬剤師 | px-4 py-8 / 左カラム space-y-10 | 各カードp-6が多い | space-y-10でセクション間が広め。 |
+
+--------------------------------------------------------------------------------
+重要な差異まとめ（要点）
+--------------------------------------------------------------------------------
+- カード枠色の系統が複数
+  - TOP: 青枠（border-blue-200）
+  - 多くの下層: グレー枠（border-[#e0e0e0]）
+  - 転職/新卒/副業のフォーム・結果: border無し + shadow（Homeと差）
+- h1は完全共通（globals.cssの .page-title）
+- FAQだけ本文line-height明示（leading-relaxed）
+- 一覧表だけ max-w-md が残っている（年代選択ブロック）
+

@@ -4,21 +4,42 @@ import { useState } from 'react';
 import { calculateTakeHome } from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
 import Link from 'next/link';
+import PcAdSidebar from './PcAdSidebar';
+import { Card, InputField, PrimaryButton, ResultAmount, ResultRow } from './ui';
+import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+
+const AGE_OPTIONS: CustomSelectOption[] = [
+  { value: '20代', label: '20代' },
+  { value: '30代', label: '30代' },
+  { value: '40代', label: '40代' },
+  { value: '50代', label: '50代' },
+  { value: '60代以上', label: '60代以上' },
+];
 
 export default function FreshGraduateClient() {
   const [salary, setSalary] = useState('');
   const [ageGroup, setAgeGroup] = useState<AgeGroup>('20代');
   const [results, setResults] = useState<ReturnType<typeof calculateTakeHome> | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleCalculate = () => {
     const salaryValue = parseFloat(salary);
     if (salaryValue) {
       setResults(calculateTakeHome(salaryValue * 10000, 0));
+
+      // 計算結果へスムーズスクロール
+      setTimeout(() => {
+        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+      }, 0);
     }
   };
 
   const formatYen = (value: number): string => {
     return (value / 10000).toFixed(1);
+  };
+
+  const formatJPY = (value: number): string => {
+    return Math.round(value).toLocaleString('ja-JP');
   };
 
   // 生活費シミュレーション
@@ -34,30 +55,33 @@ export default function FreshGraduateClient() {
   const canLiveAlone = surplus >= 0;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-12">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">
-          新卒・就活生向け 手取り計算
-        </h1>
+    <div className="min-h-screen bg-[#f5f5f5] container-main">
+      <div className="max-w-7xl mx-auto">
+        <div className="md:flex md:items-start md:gap-8">
+          <div className="md:max-w-[800px] md:w-full">
+            <nav className="breadcrumb mb-3">
+              <Link href="/">ホーム</Link> {'>'} 新卒・就活生向け
+            </nav>
+            <h1 className="page-title">新卒・就活生向け 手取り計算</h1>
 
         {/* 入力フォーム */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <Card as="div" className="mb-6">
           {/* 内定先の年収 */}
           <div className="mb-6">
             <label className="block font-semibold text-gray-900 text-base mb-2">
               内定先の年収
             </label>
-            <p className="text-sm text-gray-600 mb-2">
+            <p className="text-caption mb-2">
               内定先から提示された年収を入力してください
             </p>
             <div className="relative">
-              <input
+              <InputField
                 type="tel"
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded px-4 py-3 text-base pr-12"
+                className="pr-12"
                 placeholder="300"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
@@ -71,57 +95,151 @@ export default function FreshGraduateClient() {
             <label className="block font-semibold text-gray-900 text-base mb-2">
               あなたの年代
             </label>
-            <p className="text-sm text-gray-600 mb-2">
+            <p className="text-caption mb-2">
               年代別の正確な比較をお見せします
             </p>
-            <select
+            <CustomSelect
+              options={AGE_OPTIONS}
               value={ageGroup}
-              onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
-              className="w-full bg-white border border-gray-300 rounded px-4 py-3 text-base"
-            >
-              <option value="20代">20代</option>
-              <option value="30代">30代</option>
-              <option value="40代">40代</option>
-              <option value="50代">50代</option>
-              <option value="60代以上">60代以上</option>
-            </select>
+              onChange={(v) => setAgeGroup(v as AgeGroup)}
+              placeholder="年代を選択"
+            />
           </div>
 
           {/* 計算ボタン */}
-          <button
-            onClick={handleCalculate}
-            className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
-          >
+          <PrimaryButton onClick={handleCalculate} className="mt-6">
             計算する
-          </button>
-        </div>
+          </PrimaryButton>
+        </Card>
 
         {/* 計算結果 */}
         {results && (
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">計算結果</h2>
-
-            {/* 手取り */}
-            <div className="py-2 border-b border-gray-200">
-              <div className="flex justify-between">
-                <span className="text-gray-700">手取り（年間）</span>
-                <span className="text-gray-900 font-semibold text-right">
-                  {formatYen(results.takeHome)}万円
-                </span>
-              </div>
-            </div>
-            <div className="py-2 border-b border-gray-200">
-              <div className="flex justify-between">
-                <span className="text-gray-700">手取り（月額）</span>
-                <span className="text-gray-900 font-semibold text-right">
-                  {formatYen(results.monthlyTakeHome)}万円
-                </span>
-              </div>
+          <Card as="div" id="results" className="mb-6">
+            {/* 結果ヘッダー */}
+            <div className="text-center">
+              <div className="result-label">あなたの手取り月収（目安）は…</div>
+              <ResultAmount className="mt-2">
+                約 {formatJPY(results.monthlyTakeHome)}
+                <span className="text-base font-normal ml-1">円</span>
+              </ResultAmount>
             </div>
 
-            {/* 生活費シミュレーション（黄色背景で強調） */}
-            <div className="bg-white border border-[#e0e0e0] rounded-lg p-4 mt-4">
-              <h3 className="font-semibold text-gray-900 mb-3">生活費シミュレーション（一人暮らし）</h3>
+            {/* トグル */}
+            <div
+              className="text-center text-blue-600 cursor-pointer py-2 mt-4"
+              onClick={() => setShowDetails(!showDetails)}
+            >
+              {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
+            </div>
+
+            {/* 内訳テーブル */}
+            {showDetails && (() => {
+              const annualYen = Math.round((parseFloat(salary) || 0) * 10000);
+              const monthlyGross = Math.round(annualYen / 12);
+
+              // 社会保険（年収×15%）を内訳に分割（表示用の概算）
+              const health = Math.round((annualYen * 0.05) / 12);
+              const pension = Math.round((annualYen * 0.09) / 12);
+              const employment = Math.round((annualYen * 0.006) / 12);
+              const nursing = Math.max(0, Math.round((annualYen * 0.004) / 12));
+
+              const incomeTax = Math.round((results.breakdown?.incomeTax ?? 0) / 12);
+              const residentTax = Math.round((results.breakdown?.residentTax ?? 0) / 12);
+              const deductionTotal = Math.max(0, monthlyGross - results.monthlyTakeHome);
+
+              return (
+                <div className="mt-4 space-y-0">
+                  <ResultRow
+                    label="額面月収"
+                    value={
+                      <>
+                        {formatJPY(monthlyGross)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+
+                  <ResultRow
+                    label="健康保険料"
+                    value={
+                      <>
+                        - {formatJPY(health)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+                  <ResultRow
+                    label="厚生年金保険料"
+                    value={
+                      <>
+                        - {formatJPY(pension)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+                  <ResultRow
+                    label="雇用保険料"
+                    value={
+                      <>
+                        - {formatJPY(employment)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+                  <ResultRow
+                    label="介護保険料"
+                    value={
+                      <>
+                        - {formatJPY(nursing)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+                  <ResultRow
+                    label="所得税"
+                    value={
+                      <>
+                        - {formatJPY(incomeTax)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+                  <ResultRow
+                    label="住民税"
+                    value={
+                      <>
+                        - {formatJPY(residentTax)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    valueClassName="text-right"
+                  />
+
+                  <ResultRow
+                    label="控除合計額"
+                    value={
+                      <>
+                        - {formatJPY(deductionTotal)}
+                        <span className="ml-1 font-normal">円</span>
+                      </>
+                    }
+                    className="font-bold border-t-2 border-[#e0e0e0]"
+                    valueClassName="text-right"
+                  />
+                </div>
+              );
+            })()}
+
+            {/* 一人暮らしの支出の目安 */}
+            <div className="pt-4 mt-4 border-t border-gray-200">
+              <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-4">
+              <h3 className="font-semibold text-gray-900 mb-3">一人暮らしの支出の目安</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-700">家賃</span>
@@ -151,33 +269,22 @@ export default function FreshGraduateClient() {
                   <span className="text-gray-700 font-semibold">合計</span>
                   <span className="text-gray-900 font-semibold">{formatYen(totalExpenses)}万円</span>
                 </div>
+                <div className="flex justify-between text-sm pt-2 border-t border-[#e0e0e0]">
+                  <span className="text-gray-700 font-semibold">月の余剰金の目安</span>
+                  <span className={`font-semibold text-right ${surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {formatYen(surplus)}万円
+                  </span>
+                </div>
               </div>
+            </div>
             </div>
 
-            {/* 月の余剰金 */}
-            <div className="py-2 border-b border-gray-200 mt-4">
-              <div className="flex justify-between">
-                <span className="text-gray-700">月の余剰金</span>
-                <span className={`font-semibold text-right ${surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {formatYen(surplus)}万円
-                </span>
-              </div>
-            </div>
-
-            {/* 一人暮らし可否判定 */}
-            <div className="mt-4 p-4 rounded-lg bg-white border border-[#e0e0e0]">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-700 font-semibold">一人暮らし可否</span>
-                <span className={`font-bold ${canLiveAlone ? 'text-green-600' : 'text-red-600'}`}>
-                  {canLiveAlone ? '✓ 可能' : '✗ 難しい'}
-                </span>
-              </div>
-            </div>
+            {/* 一人暮らし可否判定（削除） */}
 
             {/* おすすめの使い道 */}
-            <div className="mt-6">
+            <div className="pt-4 mt-4 border-t border-gray-200">
               <h3 className="font-semibold text-gray-900 mb-3">おすすめの使い道</h3>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <ul className="space-y-2 text-caption">
                 {surplus >= 3 && (
                   <>
                     <li>• 月3万円の投資信託で資産形成を始める</li>
@@ -206,32 +313,18 @@ export default function FreshGraduateClient() {
             </div>
 
             {/* A8.net 新卒・就活生向け広告 */}
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
-              {/* 左 */}
+            <div className="mt-8 flex justify-center">
               <div
                 dangerouslySetInnerHTML={{
                   __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www27.a8.net/svt/bgt?aid=260124630166&wid=001&eno=01&mid=s00000010921001058000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4AVDG6+2QTZ76+2C9M+6ARKX" alt="">
-      `,
-                }}
-              />
-
-              {/* 右 */}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=260124630178&wid=001&eno=01&mid=s00000021666002139000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4AVDG6+2XZ6GI+4N6C+CQGMP" alt="">
-      `,
+<a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+5CB16A+1WP2+6GRMP" target="_blank" rel="nofollow noopener noreferrer">
+<img border="0" width="480" height="220" alt="" src="https://www28.a8.net/svt/bgt?aid=260124629323&wid=001&eno=01&mid=s00000008903001086000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AVDG5+5CB16A+1WP2+6GRMP" alt="">
+`,
                 }}
               />
             </div>
-          </div>
+          </Card>
         )}
 
         {/* パーセンタイル表示セクション */}
@@ -265,7 +358,7 @@ export default function FreshGraduateClient() {
           }
           
           return (
-            <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
+            <div className="card-base mt-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
@@ -285,19 +378,19 @@ export default function FreshGraduateClient() {
                 {ageGroup}の平均より {Math.abs(averageDiff)}万円{' '}
                 {averageDiff >= 0 ? '高い' : '低い'}
               </div>
-              <div className="text-gray-700 mt-2">{message}</div>
+              <div className="text-body mt-2">{message}</div>
             </div>
           );
         })()}
 
         {/* 訴求テキストセクション */}
         {results && (
-          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
+          <div className="card-base mt-6">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
             <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
-              <ul className="text-sm text-gray-700 space-y-1">
+              <ul className="text-body space-y-1">
                 <li>• 求人倍率: 1.5倍（過去最高水準）</li>
                 <li>• 人手不足で企業が高待遇提示</li>
                 <li>• 2025年は転職好機</li>
@@ -306,7 +399,7 @@ export default function FreshGraduateClient() {
             
             <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-3">
               <p className="font-bold mb-2">💰 1年遅れると...</p>
-              <ul className="text-sm text-gray-700 space-y-1">
+              <ul className="text-body space-y-1">
                 <li>• 年収UP機会を逃す: -100万円/年</li>
                 <li>• 生涯年収の損失: -1000万円以上</li>
                 <li>• スキルアップの機会も逃す</li>
@@ -315,7 +408,7 @@ export default function FreshGraduateClient() {
             
             <div className="bg-green-50 border-l-4 border-green-500 p-4">
               <p className="font-bold mb-2">📊 転職成功者の平均UP額</p>
-              <ul className="text-sm text-gray-700 space-y-1">
+              <ul className="text-body space-y-1">
                 <li className={ageGroup === '20代' ? 'font-bold text-green-700' : ''}>
                   • 20代: +80万円 {ageGroup === '20代' && '← あなたの年代'}
                 </li>
@@ -339,81 +432,13 @@ export default function FreshGraduateClient() {
               </ul>
             </div>
             
-            <p className="text-center font-bold text-lg mt-4 text-[#0a57d1]">
-              👉 無料相談は今すぐ！
-            </p>
           </div>
         )}
 
-        {/* アフィリエイトバナーセクション */}
-        {results && (
-          <div className="mt-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              🎯 新社会人の第一歩
-            </h3>
-
-            {/* バナー1: 楽天カード */}
-            <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-300 rounded-xl p-6 mb-4">
-              <div className="text-lg font-bold text-gray-900 mb-2">
-                💳 楽天カード
-              </div>
-              <div className="text-sm text-gray-700 space-y-1">
-                <div>✓ 年会費永久無料</div>
-                <div>✓ 楽天ポイントが貯まる</div>
-                <div>✓ 新社会人におすすめ</div>
-              </div>
-              <a
-                href="#"
-                className="block bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg w-full mt-4 text-center transition-colors"
-              >
-                無料で申し込む &gt;
-              </a>
-            </div>
-
-            {/* バナー2: 三井住友カード */}
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-2xl p-6 mb-4 shadow-lg">
-              <div className="text-lg font-bold text-gray-900 mb-2">
-                💳 三井住友カード
-              </div>
-              <div className="text-sm text-gray-700 space-y-1">
-                <div>✓ 年会費無料（条件あり）</div>
-                <div>✓ 国際ブランド対応</div>
-                <div>✓ 信頼性の高いカード</div>
-              </div>
-              <a
-                href="#"
-                className="block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg w-full mt-4 text-center transition-all hover:shadow-xl hover:scale-[1.01]"
-              >
-                詳しく見る &gt;
-              </a>
-            </div>
-
-            {/* バナー3: OfferBox */}
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-6">
-              <div className="text-lg font-bold text-gray-900 mb-2">
-                🎓 OfferBox
-              </div>
-              <div className="text-sm text-gray-700 space-y-1">
-                <div>✓ 就活エージェント</div>
-                <div>✓ 内定獲得まで徹底サポート</div>
-                <div>✓ 完全無料</div>
-              </div>
-              <a
-                href="#"
-                className="block bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-lg w-full mt-4 text-center transition-colors"
-              >
-                無料で登録する &gt;
-              </a>
-            </div>
           </div>
-        )}
 
-        {/* CTAボタン */}
-        {results && (
-          <button className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold py-4 rounded-full mt-8 transition-all hover:shadow-xl hover:scale-[1.01]">
-            就活エージェントに相談する
-          </button>
-        )}
+          <PcAdSidebar />
+        </div>
       </div>
     </div>
   );

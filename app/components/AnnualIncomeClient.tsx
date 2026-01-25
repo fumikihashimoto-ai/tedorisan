@@ -4,6 +4,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { calculateTakeHome } from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
+import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+
+const AGE_OPTIONS: CustomSelectOption[] = [
+  { value: '20代', label: '20代' },
+  { value: '30代', label: '30代' },
+  { value: '40代', label: '40代' },
+  { value: '50代', label: '50代' },
+  { value: '60代以上', label: '60代以上' },
+];
 
 type Props = {
   amount: number;
@@ -101,17 +110,12 @@ export default function AnnualIncomeClient({ amount }: Props) {
           <label className="block text-sm font-semibold mb-2">
             年代を選択
           </label>
-          <select
+          <CustomSelect
+            options={AGE_OPTIONS}
             value={ageGroup}
-            onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
-            className="w-full border border-[#e0e0e0] bg-white rounded px-4 py-3"
-          >
-            <option value="20代">20代</option>
-            <option value="30代">30代</option>
-            <option value="40代">40代</option>
-            <option value="50代">50代</option>
-            <option value="60代以上">60代以上</option>
-          </select>
+            onChange={(v) => setAgeGroup(v as AgeGroup)}
+            placeholder="年代を選択"
+          />
         </div>
 
         {/* 詳細内訳表 */}

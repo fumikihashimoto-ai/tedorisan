@@ -1,108 +1,89 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { calculateTakeHome } from '@/lib/salaryCalculator';
 import { averageIncomeByAge } from '@/lib/ageIncomeData';
+import PcAdSidebar from './PcAdSidebar';
+import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+
+const AGE_OPTIONS: CustomSelectOption[] = [
+  { value: '20代', label: '20代' },
+  { value: '30代', label: '30代' },
+  { value: '40代', label: '40代' },
+  { value: '50代', label: '50代' },
+  { value: '60代以上', label: '60代以上' },
+];
+
+type TakeHomeRow = {
+  income: number;
+  amountInMan: number;
+  takeHomeMan: number;
+  monthlyTakeHomeMan: number;
+  incomeTaxMan: number;
+  residentTaxMan: number;
+  socialInsuranceMan: number;
+  takeHomeRate: string;
+};
+
+// 手取り率を計算（%）
+function calculateTakeHomeRate(annualSalary: number, takeHome: number): string {
+  if (annualSalary === 0) return '0.0';
+  return ((takeHome / annualSalary) * 100).toFixed(1);
+}
 
 export default function ComparisonListClient() {
   const [ageGroup, setAgeGroup] = useState<string>('');
-  const [showCTA, setShowCTA] = useState(false);
-  const [ctaDismissed, setCtaDismissed] = useState(false);
   const tableRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
 
   // 年収200万円から1000万円まで20万円刻み（円）
-  const incomeList: number[] = [];
-  for (let i = 200; i <= 1000; i += 20) {
-    incomeList.push(i * 10000);
-  }
+  const incomeList = useMemo(() => {
+    const list: number[] = [];
+    for (let i = 200; i <= 1000; i += 20) {
+      list.push(i * 10000);
+    }
+    return list;
+  }, []);
 
   const averageIncome =
     ageGroup ? averageIncomeByAge[ageGroup as keyof typeof averageIncomeByAge] : null;
 
-  // 数値をフォーマット（万円単位、小数点以下1桁）
-  const formatManYen = (value: number): string => {
-    return (value / 10000).toFixed(1);
-  };
-
-  // 手取り率を計算（%）
-  const calculateTakeHomeRate = (annualSalary: number, takeHome: number): string => {
-    if (annualSalary === 0) return '0.0';
-    return ((takeHome / annualSalary) * 100).toFixed(1);
-  };
-
-  const handleScroll = useCallback(() => {
-    if (!ageGroup || ctaDismissed) {
-      setShowCTA(false);
-      return;
-    }
-    if (!tableRef.current) {
-      setShowCTA(false);
-      return;
-    }
-
-    const rect = tableRef.current.getBoundingClientRect();
-    const scrolled = window.scrollY > 200;
-    const tableVisible = rect.top < window.innerHeight;
-
-    setShowCTA(scrolled && tableVisible);
-  }, [ageGroup, ctaDismissed]);
-
-  const onScroll = useCallback(() => {
-    // rAFで軽いthrottle
-    if (rafRef.current !== null) return;
-    rafRef.current = window.requestAnimationFrame(() => {
-      rafRef.current = null;
-      handleScroll();
+  // 重い計算（所得税/住民税/社保の内訳含む）は一度だけ作ってキャッシュ
+  const takeHomeRows: TakeHomeRow[] = useMemo(() => {
+    return incomeList.map((income) => {
+      const result = calculateTakeHome(income, 0); // 扶養人数0人
+      const amountInMan = income / 10000;
+      return {
+        income,
+        amountInMan,
+        takeHomeMan: Math.round(result.takeHome / 10000),
+        monthlyTakeHomeMan: Math.round(result.monthlyTakeHome / 10000),
+        incomeTaxMan: Math.round(result.breakdown.incomeTax / 10000),
+        residentTaxMan: Math.round(result.breakdown.residentTax / 10000),
+        socialInsuranceMan: Math.round(result.breakdown.socialInsurance / 10000),
+        takeHomeRate: calculateTakeHomeRate(income, result.takeHome),
+      };
     });
-  }, [handleScroll]);
-
-  useEffect(() => {
-    if (!ageGroup) {
-      setShowCTA(false);
-      return;
-    }
-    if (ctaDismissed) {
-      setShowCTA(false);
-      return;
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    handleScroll(); // 初回チェック
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
-    };
-  }, [ageGroup, ctaDismissed, handleScroll, onScroll]);
+  }, [incomeList]);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
+    <div className="min-h-screen bg-[#f5f5f5] container-main">
       <div className="max-w-7xl mx-auto">
-        {/* タイトルセクション */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-4">
-            年代・年収別 手取り一覧表
-          </h1>
-          <p className="text-gray-600">
-            年収200万円〜1000万円の手取り額を確認できます
-          </p>
-        </div>
+        <div className="md:flex md:items-start md:gap-8">
+          <div className="md:max-w-[800px] md:w-full">
+            <nav className="breadcrumb mb-3">
+              <Link href="/">ホーム</Link> {'>'} 一覧表
+            </nav>
+            <h1 className="page-title">年代・年収別 手取り一覧表</h1>
 
         {/* 年代選択 */}
-        <div className="mb-6 max-w-md mx-auto">
-          <label className="block text-sm font-semibold mb-2">
-            年代を選択
-          </label>
-          <select
+            <div className="mb-6">
+              <label className="block text-sm font-semibold mb-2 text-left">年代を選択</label>
+          <CustomSelect
+            options={AGE_OPTIONS}
             value={ageGroup}
-            onChange={(e) => {
-              setAgeGroup(e.target.value);
-              setShowCTA(false); // リセット
+            onChange={(value) => {
+              setAgeGroup(value);
               setTimeout(() => {
                 tableRef.current?.scrollIntoView({
                   behavior: 'smooth',
@@ -110,110 +91,72 @@ export default function ComparisonListClient() {
                 });
               }, 100);
             }}
-            className="w-full border border-[#e0e0e0] rounded px-4 py-3 bg-white"
-          >
-            <option value="" disabled>
-              年代を選択してください
-            </option>
-            <option value="20代">20代</option>
-            <option value="30代">30代</option>
-            <option value="40代">40代</option>
-            <option value="50代">50代</option>
-            <option value="60代以上">60代以上</option>
-          </select>
-        </div>
-
-        {/* A8.net 年代別一覧広告 */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
-          {/* 左 */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+9RV7AQ+3SPO+CEKE01" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www24.a8.net/svt/bgt?aid=260124629591&wid=001&eno=01&mid=s00000017718075006000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AVDG5+9RV7AQ+3SPO+CEKE01" alt="">
-      `,
-            }}
+            placeholder="年代を選択してください"
           />
-
-          {/* 右 */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+631SX" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260124629610&wid=001&eno=01&mid=s00000021666001022000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AVDG5+A36FSI+4N6C+631SX" alt="">
-      `,
-            }}
-          />
-        </div>
+            </div>
 
         {ageGroup && (
           <>
             {/* 一覧表 */}
+            <div className="md:hidden text-small mb-3">
+              ※ 表は横にスクロールできます（左右にスワイプ）
+            </div>
             <div id="income-table" ref={tableRef} className="overflow-x-auto">
-            <table className="w-full border-collapse border border-[#e0e0e0] bg-white">
+            <table className="w-full border-collapse border-2 border-[#e0e0e0] bg-white table-zebra">
               <thead>
                 <tr className="bg-[#0a57d1] text-white">
-                  <th className="border border-[#e0e0e0] px-4 py-3">年収</th>
-                  <th className="border border-[#e0e0e0] px-4 py-3">手取り年収</th>
-                  <th className="border border-[#e0e0e0] px-4 py-3">手取り月収</th>
-                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3">年収</th>
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3">手取り年収</th>
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3">手取り月収</th>
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     所得税
                   </th>
-                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     住民税
                   </th>
-                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     社会保険料
                   </th>
-                  <th className="border border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
                     手取り率
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {incomeList.map((income) => {
-                  const amountInMan = income / 10000;
-                  const result = calculateTakeHome(income, 0); // 扶養人数0人
-
+                {takeHomeRows.map((row) => {
                   // 年代平均との比較（±10万円の範囲）
                   const isAverageRow =
                     averageIncome !== null &&
-                    Math.abs(income - averageIncome * 10000) < 100000;
-
-                  const takeHomeRate = calculateTakeHomeRate(income, result.takeHome);
+                    Math.abs(row.income - averageIncome * 10000) < 100000;
 
                   return (
                     <tr
-                      key={income}
+                      key={row.income}
                       className={isAverageRow ? 'bg-white border-2 border-[#e0e0e0]' : ''}
                     >
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center">
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center">
                         {isAverageRow && <span className="mr-2 text-lg">👤</span>}
                         <span className={isAverageRow ? 'font-bold' : ''}>
-                          {amountInMan}万円
+                          {row.amountInMan}万円
                         </span>
                       </td>
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center font-semibold">
-                        {Math.round(result.takeHome / 10000)}万円
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center font-semibold">
+                        {row.takeHomeMan}万円
                       </td>
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center">
-                        {Math.round(result.monthlyTakeHome / 10000)}万円
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center">
+                        {row.monthlyTakeHomeMan}万円
                       </td>
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
-                        {Math.round(result.breakdown.incomeTax / 10000)}万円
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                        {row.incomeTaxMan}万円
                       </td>
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
-                        {Math.round(result.breakdown.residentTax / 10000)}万円
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                        {row.residentTaxMan}万円
                       </td>
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm text-gray-600 hidden md:table-cell">
-                        {Math.round(result.breakdown.socialInsurance / 10000)}万円
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                        {row.socialInsuranceMan}万円
                       </td>
-                      <td className="border border-[#e0e0e0] px-4 py-2 text-center text-sm hidden md:table-cell">
-                        {takeHomeRate}%
+                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                        {row.takeHomeRate}%
                       </td>
                     </tr>
                   );
@@ -222,47 +165,10 @@ export default function ComparisonListClient() {
             </table>
           </div>
 
-            {/* スティッキーCTAバナー */}
-            {showCTA && (
-              <div className="fixed bottom-0 left-0 right-0 bg-[#ff4f42] text-white shadow-2xl z-50 animate-slide-up">
-                <div className="max-w-7xl mx-auto px-4 py-4">
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-                    <div className="flex-1 text-center sm:text-left">
-                      <p className="text-sm sm:text-base font-semibold mb-1">
-                        💡 あなたの詳細な手取り額を計算
-                      </p>
-                      <p className="text-xs opacity-90 hidden sm:block">
-                        扶養人数を考慮した正確な計算
-                      </p>
-                    </div>
-                    <Link
-                      href="/"
-                      className="bg-white text-[#ff4f42] font-bold px-6 py-3 rounded-xl hover:bg-white/90 transition-all hover:shadow-lg hover:scale-105 whitespace-nowrap text-sm"
-                    >
-                      計算する →
-                    </Link>
-                  </div>
-                </div>
-
-                {/* 閉じるボタン */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowCTA(false);
-                    setCtaDismissed(true);
-                  }}
-                  className="absolute top-2 right-2 text-white hover:text-gray-200 text-xl"
-                  aria-label="閉じる"
-                >
-                  ×
-                </button>
-              </div>
-            )}
-
             {/* 注意事項 */}
             <div className="mt-8 bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
               <h3 className="font-bold mb-3">📌 この表について</h3>
-              <ul className="text-sm text-gray-700 space-y-2">
+              <ul className="text-body space-y-2">
                 <li>• 扶養家族: 0人で計算</li>
                 <li>• 2025年度の税率・保険料率を使用</li>
                 <li>• 👤マークは選択した年代の平均年収</li>
@@ -278,13 +184,17 @@ export default function ComparisonListClient() {
               </p>
               <Link
                 href="/"
-                className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+                className="btn-primary-inline"
               >
                 手取り計算ツールを使う
               </Link>
             </div>
           </>
         )}
+          </div>
+
+          <PcAdSidebar />
+        </div>
       </div>
     </div>
   );

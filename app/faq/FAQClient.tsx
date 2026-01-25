@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import PcAdSidebar from '../components/PcAdSidebar';
+import { BodyText, H2Underline } from '../components/ui';
 
 export type FAQItem = {
   id: string;
@@ -27,19 +29,20 @@ export default function FAQClient({ faqData }: Props) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* タイトルセクション */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold mb-4">よくある質問（FAQ）</h1>
-        <p className="text-gray-600">手取り計算に関する疑問を解決します</p>
-      </div>
+    <div className="min-h-screen bg-[#f5f5f5] container-main">
+      <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
+        <div className="md:max-w-[800px] md:w-full">
+          <nav className="breadcrumb mb-3">
+            <Link href="/">ホーム</Link> {'>'} FAQ
+          </nav>
+          <h1 className="page-title">よくある質問（FAQ）</h1>
 
       {/* FAQ カテゴリ */}
       {faqData.map((category, categoryIndex) => (
         <div key={categoryIndex} className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 pb-2 border-b-2 border-[#e0e0e0]">
+          <H2Underline>
             {category.icon} {category.title}
-          </h2>
+          </H2Underline>
 
           <div className="space-y-4">
             {category.items.map((item) => {
@@ -47,11 +50,11 @@ export default function FAQClient({ faqData }: Props) {
               const panelId = `${item.id}-panel`;
 
               return (
-                <div key={item.id} className="border-2 border-[#e0e0e0] rounded-2xl overflow-hidden shadow-sm bg-white">
+                <div key={item.id} className="border-2 border-[#e0e0e0] rounded-2xl overflow-hidden shadow-lg bg-white">
                   <button
                     type="button"
                     onClick={() => toggleFaq(item.id)}
-                    className="w-full text-left px-6 py-4 bg-white hover:bg-black/5 flex justify-between items-center transition-all"
+                    className="w-full text-left px-6 py-4 bg-white hover:bg-gray-100 flex justify-between items-center transition-all"
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                   >
@@ -61,7 +64,7 @@ export default function FAQClient({ faqData }: Props) {
 
                   {isOpen && (
                     <div id={panelId} className="px-6 py-4 bg-white border-t border-[#e0e0e0]">
-                      <p className="text-gray-700 leading-relaxed whitespace-pre-line">A. {item.answer}</p>
+                      <BodyText className="leading-relaxed whitespace-pre-line">A. {item.answer}</BodyText>
                     </div>
                   )}
                 </div>
@@ -69,46 +72,11 @@ export default function FAQClient({ faqData }: Props) {
             })}
           </div>
 
-          {/* A8.net FAQ広告 */}
-          {category.title === '基本編' && (
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
-              {/* 左 */}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG6+2XZ6GI+4N6C+BZVU9" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www21.a8.net/svt/bgt?aid=260124630178&wid=001&eno=01&mid=s00000021666002015000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4AVDG6+2XZ6GI+4N6C+BZVU9" alt="">
-      `,
-                }}
-              />
-
-              {/* 右 */}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www20.a8.net/svt/bgt?aid=260124629608&wid=001&eno=01&mid=s00000021455001004000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4AVDG5+A1ZKKY+4LJQ+5Z6WX" alt="">
-      `,
-                }}
-              />
-            </div>
-          )}
         </div>
       ))}
+        </div>
 
-      {/* CTAセクション */}
-      <div className="mt-12 bg-white border-2 border-[#e0e0e0] rounded-2xl p-8 text-center shadow-lg">
-        <h3 className="text-xl font-bold mb-4">💡 あなたの手取り額を計算してみませんか？</h3>
-        <Link
-          href="/"
-          className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
-        >
-          手取り計算ツールを使う
-        </Link>
+        <PcAdSidebar />
       </div>
     </div>
   );

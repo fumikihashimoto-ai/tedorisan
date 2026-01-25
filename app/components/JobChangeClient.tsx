@@ -4,6 +4,17 @@ import { useState } from 'react';
 import { calculateTakeHome } from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
 import Link from 'next/link';
+import PcAdSidebar from './PcAdSidebar';
+import { Card, InputField, PrimaryButton, ResultAmount, ResultRow } from './ui';
+import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+
+const AGE_OPTIONS: CustomSelectOption[] = [
+  { value: '20代', label: '20代' },
+  { value: '30代', label: '30代' },
+  { value: '40代', label: '40代' },
+  { value: '50代', label: '50代' },
+  { value: '60代以上', label: '60代以上' },
+];
 
 export default function JobChangeClient() {
   const [currentSalary, setCurrentSalary] = useState('');
@@ -14,6 +25,7 @@ export default function JobChangeClient() {
     current: ReturnType<typeof calculateTakeHome> | null;
     new: ReturnType<typeof calculateTakeHome> | null;
   }>({ current: null, new: null });
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleCalculate = () => {
     const current = parseFloat(currentSalary);
@@ -25,11 +37,20 @@ export default function JobChangeClient() {
         current: calculateTakeHome(current * 10000, dependentsValue),
         new: calculateTakeHome(newSalaryValue * 10000, dependentsValue),
       });
+
+      // 計算結果へスムーズスクロール
+      setTimeout(() => {
+        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+      }, 0);
     }
   };
 
   const formatYen = (value: number): string => {
     return (value / 10000).toFixed(1);
+  };
+
+  const formatJPY = (value: number): string => {
+    return Math.round(value).toLocaleString('ja-JP');
   };
 
   const increase = results.current && results.new
@@ -38,14 +59,17 @@ export default function JobChangeClient() {
   const monthlyIncrease = increase / 12;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-12">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">
-          転職検討者向け 手取り計算
-        </h1>
+    <div className="min-h-screen bg-[#f5f5f5] container-main">
+      <div className="max-w-7xl mx-auto">
+        <div className="md:flex md:items-start md:gap-8">
+          <div className="md:max-w-[800px] md:w-full">
+            <nav className="breadcrumb mb-3">
+              <Link href="/">ホーム</Link> {'>'} 転職検討者向け
+            </nav>
+            <h1 className="page-title">転職検討者向け 手取り計算</h1>
 
         {/* 入力フォーム */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <Card as="div" className="mb-6">
           {/* 現在の年収 */}
           <div className="mb-6">
             <label className="block font-semibold text-gray-900 text-base mb-2">
@@ -55,13 +79,13 @@ export default function JobChangeClient() {
               現在の年収を入力してください
             </p>
             <div className="relative">
-              <input
+              <InputField
                 type="tel"
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={currentSalary}
                 onChange={(e) => setCurrentSalary(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded px-4 py-3 text-base pr-12"
+                className="pr-12"
                 placeholder="400"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
@@ -79,13 +103,13 @@ export default function JobChangeClient() {
               転職先の年収を入力してください
             </p>
             <div className="relative">
-              <input
+              <InputField
                 type="tel"
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={newSalary}
                 onChange={(e) => setNewSalary(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded px-4 py-3 text-base pr-12"
+                className="pr-12"
                 placeholder="500"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
@@ -102,17 +126,12 @@ export default function JobChangeClient() {
             <p className="text-sm text-gray-600 mb-2">
               年代別の正確な比較をお見せします
             </p>
-            <select
+            <CustomSelect
+              options={AGE_OPTIONS}
               value={ageGroup}
-              onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
-              className="w-full bg-white border border-gray-300 rounded px-4 py-3 text-base"
-            >
-              <option value="20代">20代</option>
-              <option value="30代">30代</option>
-              <option value="40代">40代</option>
-              <option value="50代">50代</option>
-              <option value="60代以上">60代以上</option>
-            </select>
+              onChange={(v) => setAgeGroup(v as AgeGroup)}
+              placeholder="年代を選択"
+            />
           </div>
 
           {/* 扶養人数 */}
@@ -124,13 +143,13 @@ export default function JobChangeClient() {
               扶養している家族の人数を入力してください
             </p>
             <div className="relative">
-              <input
+              <InputField
                 type="tel"
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={dependents}
                 onChange={(e) => setDependents(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded px-4 py-3 text-base pr-12"
+                className="pr-12"
                 placeholder="0"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
@@ -140,124 +159,102 @@ export default function JobChangeClient() {
           </div>
 
           {/* 計算ボタン */}
-          <button
-            onClick={handleCalculate}
-            className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-semibold py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-[1.01] mt-6"
-          >
+          <PrimaryButton onClick={handleCalculate} className="mt-6">
             計算する
-          </button>
-        </div>
+          </PrimaryButton>
+        </Card>
 
         {/* 計算結果 */}
         {results.current && results.new && (
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">計算結果</h2>
-
-            {/* 現在の手取り */}
-            <div className="py-2 border-b border-gray-200">
-              <div className="flex justify-between">
-                <span className="text-gray-700">現在の手取り（年間）</span>
-                <span className="text-gray-900 font-semibold text-right">
-                  {formatYen(results.current.takeHome)}万円
-                </span>
-              </div>
-            </div>
-            <div className="py-2 border-b border-gray-200">
-              <div className="flex justify-between">
-                <span className="text-gray-700">現在の手取り（月額）</span>
-                <span className="text-gray-900 font-semibold text-right">
-                  {formatYen(results.current.monthlyTakeHome)}万円
-                </span>
-              </div>
+          <Card as="div" id="results" className="mb-6">
+            {/* 結果ヘッダー */}
+            <div className="text-center">
+              <div className="text-gray-600">転職後の年間手取り増加額は…</div>
+              <ResultAmount tone={increase >= 0 ? 'positive' : 'negative'} className="mt-2">
+                約 {increase >= 0 ? '+' : ''}
+                {Math.round(increase / 10000)}
+                <span className="text-base font-normal ml-1">万円</span>
+              </ResultAmount>
             </div>
 
-            {/* 転職後の手取り */}
-            <div className="py-2 border-b border-gray-200">
-              <div className="flex justify-between">
-                <span className="text-gray-700">転職後の手取り（年間）</span>
-                <span className="text-gray-900 font-semibold text-right">
-                  {formatYen(results.new.takeHome)}万円
-                </span>
-              </div>
-            </div>
-            <div className="py-2 border-b border-gray-200">
-              <div className="flex justify-between">
-                <span className="text-gray-700">転職後の手取り（月額）</span>
-                <span className="text-gray-900 font-semibold text-right">
-                  {formatYen(results.new.monthlyTakeHome)}万円
-                </span>
-              </div>
+            {/* トグル */}
+            <div
+              className="text-center text-blue-600 cursor-pointer py-2 mt-4"
+              onClick={() => setShowDetails(!showDetails)}
+            >
+              {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
             </div>
 
-            {/* 増加額（黄色背景で強調） */}
-            <div className="bg-white border border-[#e0e0e0] rounded-lg p-4 mt-4">
-              <div className="py-2 border-b border-[#e0e0e0]">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">増加額（年間）</span>
-                  <span className="text-gray-900 font-semibold text-right">
-                    {formatYen(increase)}万円
-                  </span>
-                </div>
+            {/* 内訳テーブル */}
+            {showDetails && (
+              <div className="mt-4 space-y-0">
+                <ResultRow
+                  label="現在の年収"
+                  value={
+                    <>
+                      {formatJPY((parseFloat(currentSalary) || 0) * 10000)}
+                      <span className="ml-1 font-normal">円</span>
+                    </>
+                  }
+                  valueClassName="text-right"
+                />
+                <ResultRow
+                  label="現在の手取り"
+                  value={
+                    <>
+                      {formatJPY(results.current.takeHome)}
+                      <span className="ml-1 font-normal">円</span>
+                    </>
+                  }
+                  valueClassName="text-right"
+                />
+                <ResultRow
+                  label="転職後の年収"
+                  value={
+                    <>
+                      {formatJPY((parseFloat(newSalary) || 0) * 10000)}
+                      <span className="ml-1 font-normal">円</span>
+                    </>
+                  }
+                  valueClassName="text-right"
+                />
+                <ResultRow
+                  label="転職後の手取り"
+                  value={
+                    <>
+                      {formatJPY(results.new.takeHome)}
+                      <span className="ml-1 font-normal">円</span>
+                    </>
+                  }
+                  valueClassName="text-right"
+                />
+                <ResultRow
+                  label="年間増加額"
+                  value={
+                    <>
+                      {increase >= 0 ? '+' : '-'} {formatJPY(Math.abs(increase))}
+                      <span className="ml-1 font-normal">円</span>
+                    </>
+                  }
+                  className="font-bold border-t-2 border-[#e0e0e0]"
+                  valueClassName="text-right"
+                />
               </div>
-              <div className="py-2">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">増加額（月額）</span>
-                  <span className="text-gray-900 font-semibold text-right">
-                    {formatYen(monthlyIncrease)}万円
-                  </span>
-                </div>
-              </div>
-            </div>
+            )}
 
             {/* できることリスト */}
-            <div className="mt-6">
+            <div className="pt-4 mt-4 border-t border-gray-200">
               <h3 className="font-semibold text-gray-900 mb-3">この増加額でできること</h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                {monthlyIncrease >= 5 && (
-                  <li>• 毎月5万円の投資信託を始められる</li>
-                )}
-                {monthlyIncrease >= 3 && (
-                  <li>• 月3万円の習い事や自己投資ができる</li>
-                )}
-                {monthlyIncrease >= 2 && (
-                  <li>• 月2万円の外食やレジャー費に回せる</li>
-                )}
-                {monthlyIncrease >= 1 && (
-                  <li>• 月1万円の貯蓄が増える</li>
-                )}
-                {monthlyIncrease < 1 && (
-                  <li>• 少しずつでも生活の余裕が生まれる</li>
-                )}
+                {monthlyIncrease >= 5 && <li>• 毎月5万円の投資信託を始められる</li>}
+                {monthlyIncrease >= 3 && <li>• 月3万円の習い事や自己投資ができる</li>}
+                {monthlyIncrease >= 2 && <li>• 月2万円の外食やレジャー費に回せる</li>}
+                {monthlyIncrease >= 1 && <li>• 月1万円の貯蓄が増える</li>}
+                {monthlyIncrease < 1 && <li>• 少しずつでも生活の余裕が生まれる</li>}
               </ul>
             </div>
 
-            {/* A8.net 転職検討者向け広告 */}
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
-              {/* 左 */}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+9RV7AQ+3SPO+CEKE01" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www24.a8.net/svt/bgt?aid=260124629591&wid=001&eno=01&mid=s00000017718075006000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4AVDG5+9RV7AQ+3SPO+CEKE01" alt="">
-      `,
-                }}
-              />
-
-              {/* 右 */}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVDG5+A36FSI+4N6C+631SX" target="_blank" rel="nofollow noopener noreferrer">
-          <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260124629610&wid=001&eno=01&mid=s00000021666001022000&mc=1">
-        </a>
-        <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AVDG5+A36FSI+4N6C+631SX" alt="">
-      `,
-                }}
-              />
-            </div>
-          </div>
+          </Card>
         )}
 
         {/* パーセンタイル表示セクション */}
@@ -291,10 +288,8 @@ export default function JobChangeClient() {
           }
           
           return (
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-orange-300 rounded-2xl p-6 mt-6 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                📈 あなたの年収レベル
-              </h3>
+            <div className="card-base mt-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">📈 あなたの年収レベル</h3>
               <div className="text-3xl font-black text-[#0a57d1] mb-4">
                 日本の上位 {percentile}%
               </div>
@@ -318,7 +313,7 @@ export default function JobChangeClient() {
 
         {/* 訴求テキストセクション */}
         {results.current && results.new && (
-          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mt-6 shadow-lg">
+          <div className="card-base mt-6">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
             <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
@@ -365,82 +360,13 @@ export default function JobChangeClient() {
               </ul>
             </div>
             
-            <p className="text-center font-bold text-lg mt-4 text-[#0a57d1]">
-              👉 無料相談は今すぐ！
-            </p>
           </div>
         )}
 
-        {/* アフィリエイトバナーセクション */}
-        {results.current && results.new && (
-          <div className="mt-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              🎯 年収UPの第一歩
-            </h3>
-
-            {/* バナー1: リクルートエージェント */}
-            <div className="bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-300 rounded-xl p-6 mb-4">
-              <div className="text-lg font-bold text-gray-900 mb-2">
-                💼 リクルートエージェント
-              </div>
-              <div className="text-sm text-gray-700 mt-2 space-y-1">
-                <div>✓ 非公開求人10万件以上</div>
-                <div>✓ 年収交渉を徹底サポート</div>
-                <div>✓ 完全無料・登録3分</div>
-              </div>
-              <a
-                href="#"
-                className="block bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg w-full mt-4 text-center transition-colors"
-              >
-                無料で求人を見る &gt;
-              </a>
-            </div>
-
-            {/* バナー2: ビズリーチ */}
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400 rounded-2xl p-6 mb-4 shadow-lg">
-              <div className="text-lg font-bold text-gray-900 mb-1">
-                💼 ビズリーチ
-              </div>
-              <div className="text-sm text-gray-600 mb-2">ハイクラス転職</div>
-              <div className="text-sm text-gray-700 space-y-1">
-                <div>✓ 年収1000万円以上の求人多数</div>
-                <div>✓ 優良企業からスカウト</div>
-                <div>✓ 登録無料</div>
-              </div>
-              <a
-                href="#"
-                className="block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg w-full mt-4 text-center transition-all hover:shadow-xl hover:scale-[1.01]"
-              >
-                無料登録する &gt;
-              </a>
-            </div>
-
-            {/* バナー3: doda */}
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-6">
-              <div className="text-lg font-bold text-gray-900 mb-2">
-                💼 doda
-              </div>
-              <div className="text-sm text-gray-700 space-y-1">
-                <div>✓ 求人数20万件以上</div>
-                <div>✓ 転職のプロが徹底サポート</div>
-                <div>✓ 書類・面接対策も万全</div>
-              </div>
-              <a
-                href="#"
-                className="block bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-lg w-full mt-4 text-center transition-colors"
-              >
-                無料で相談する &gt;
-              </a>
-            </div>
           </div>
-        )}
 
-        {/* CTAボタン */}
-        {results.current && results.new && (
-          <button className="w-full bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold py-4 rounded-full mt-8 transition-all hover:shadow-xl hover:scale-[1.01]">
-            転職エージェントに相談する
-          </button>
-        )}
+          <PcAdSidebar />
+        </div>
       </div>
     </div>
   );
