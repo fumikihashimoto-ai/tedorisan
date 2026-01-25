@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_URL = 'https://tedorikun.jp' as const;
+export const SITE_URL = 'https://tedorisan.jp' as const;
 export const SITE_NAME = '手取り計算ツール - テドリさん' as const;
 
 type CommonMetadataInput = {
