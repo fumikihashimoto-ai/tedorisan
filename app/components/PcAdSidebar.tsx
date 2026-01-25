@@ -56,16 +56,24 @@ export default function PcAdSidebar() {
           <div key={ad.href}>
             <a href={ad.href} rel="nofollow">
               <img
-                border={0}
                 width={300}
                 height={250}
                 alt=""
                 src={ad.imgSrc}
                 loading="lazy"
                 decoding="async"
+                style={{ border: 'none' }}
               />
             </a>
-            <img border={0} width={1} height={1} alt="" src={ad.pixelSrc} loading="lazy" decoding="async" />
+            <img
+              width={1}
+              height={1}
+              alt=""
+              src={ad.pixelSrc}
+              loading="lazy"
+              decoding="async"
+              style={{ border: 'none' }}
+            />
           </div>
         ))}
       </div>

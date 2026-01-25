@@ -36,24 +36,23 @@ export default function HeaderAd() {
     <>
       <a href={ad.href} rel="nofollow">
         <img
-          border={0}
           width={728}
           height={90}
           alt=""
           src={ad.imgSrc}
           loading="lazy"
           decoding="async"
-          style={{ maxWidth: '100%', height: 'auto' }}
+          style={{ maxWidth: '100%', height: 'auto', border: 'none' }}
         />
       </a>
       <img
-        border={0}
         width={1}
         height={1}
         alt=""
         src={ad.pixelSrc}
         loading="lazy"
         decoding="async"
+        style={{ border: 'none' }}
       />
     </>
   );

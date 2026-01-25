@@ -50,7 +50,7 @@ export default function RakutenWidgetAd({ className }: Props) {
   return (
     <div className={className}>
       <div ref={containerRef} data-rakuten-widget={id} />
-      <img border={0} width={1} height={1} src={A8_PIXEL_SRC} alt="" />
+      <img width={1} height={1} src={A8_PIXEL_SRC} alt="" style={{ border: 'none' }} />
     </div>
   );
 }
