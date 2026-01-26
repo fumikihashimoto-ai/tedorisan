@@ -100,7 +100,7 @@ export default function HomeClient() {
             {/* セクション1: ヒーローエリア */}
             <section className="mb-12">
               {/* 広告2: ヘッダーに表示（パンくずの上部） */}
-              <div className="my-4 flex justify-center">
+              <div className="mt-0 mb-4 flex justify-center">
                 <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I2I7L" rel="nofollow">
                   <img
                     width={728}

@@ -101,7 +101,7 @@ export default function ItEngineerClient() {
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
           {/* 広告2: ヘッダーに表示（パンくずの上部） */}
-          <div className="my-4 flex justify-center">
+          <div className="mt-0 mb-4 flex justify-center">
             <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I2I7L" rel="nofollow">
               <img
                 width={728}

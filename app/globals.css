@@ -230,13 +230,13 @@ h6 {
 .container-main {
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-top: 3rem;
+  padding-top: 0.5rem;
   padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
   .container-main {
-    padding-top: 3rem;
+    padding-top: 0.5rem;
     padding-bottom: 3rem;
   }
 }
