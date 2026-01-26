@@ -97,9 +97,29 @@ export default function ItEngineerClient() {
   const increase = results.current && results.new ? results.new.takeHome - results.current.takeHome : 0;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main">
+    <div className="min-h-screen bg-[#f5f5f5] container-main pb-20">
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
+          {/* 広告2: ヘッダーに表示（パンくずの上部） */}
+          <div className="my-4 flex justify-center">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I2I7L" rel="nofollow">
+              <img
+                width={728}
+                height={90}
+                alt=""
+                src="https://www23.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003035000&mc=1"
+                className="border-0 max-w-full h-auto"
+              />
+            </a>
+            <img
+              width={1}
+              height={1}
+              src="https://www19.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I2I7L"
+              alt=""
+              className="border-0"
+            />
+          </div>
+
           <nav className="breadcrumb mb-3">
             <Link href="/">ホーム</Link> {'>'} 業種別 {'>'} ITエンジニア
           </nav>
@@ -262,6 +282,26 @@ export default function ItEngineerClient() {
             <p className="text-small mt-3">※ 表の手取りは概算の目安です。</p>
           </section>
 
+          {/* 広告1: あなたの年収レベルの最下部に表示（年代別年収テーブルの下部） */}
+          <div className="my-4 flex justify-center">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" rel="nofollow">
+              <img
+                width={300}
+                height={250}
+                alt=""
+                src="https://www27.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003031000&mc=1"
+                className="border-0"
+              />
+            </a>
+            <img
+              width={1}
+              height={1}
+              src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH"
+              alt=""
+              className="border-0"
+            />
+          </div>
+
           {/* 勤務先タイプ別 年収比較 */}
           <section className="space-y-4">
             <H2>🏷️ 勤務先タイプ別 年収比較</H2>
@@ -293,6 +333,26 @@ export default function ItEngineerClient() {
         </div>
 
         <PcAdSidebar />
+      </div>
+
+      {/* 広告3: ページ下部に固定表示 */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I0SHD" rel="nofollow">
+          <img
+            width={468}
+            height={60}
+            alt=""
+            src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003027000&mc=1"
+            className="border-0 max-w-full h-auto"
+          />
+        </a>
+        <img
+          width={1}
+          height={1}
+          src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I0SHD"
+          alt=""
+          className="border-0"
+        />
       </div>
     </div>
   );

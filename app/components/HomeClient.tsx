@@ -93,12 +93,32 @@ export default function HomeClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main">
+    <div className="min-h-screen bg-[#f5f5f5] container-main pb-20">
       <div className="max-w-7xl mx-auto">
         <div className="md:flex md:items-start md:gap-8">
           <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
             {/* セクション1: ヒーローエリア */}
             <section className="mb-12">
+              {/* 広告2: ヘッダーに表示（パンくずの上部） */}
+              <div className="my-4 flex justify-center">
+                <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I2I7L" rel="nofollow">
+                  <img
+                    width={728}
+                    height={90}
+                    alt=""
+                    src="https://www26.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003035000&mc=1"
+                    className="border-0 max-w-full h-auto"
+                  />
+                </a>
+                <img
+                  width={1}
+                  height={1}
+                  src="https://www12.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I2I7L"
+                  alt=""
+                  className="border-0"
+                />
+              </div>
+
               <nav className="breadcrumb">
                 <Link href="/">ホーム</Link> {'>'} 手取り計算
               </nav>
@@ -341,6 +361,26 @@ export default function HomeClient() {
             </p>
 
             <p className="text-left text-sm text-gray-600 mt-2">{percentileData.message}</p>
+
+            {/* 広告1: あなたの年収レベルの最下部に表示 */}
+            <div className="my-4 flex justify-center">
+              <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" rel="nofollow">
+                <img
+                  width={300}
+                  height={250}
+                  alt=""
+                  src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003031000&mc=1"
+                  className="border-0"
+                />
+              </a>
+              <img
+                width={1}
+                height={1}
+                src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH"
+                alt=""
+                className="border-0"
+              />
+            </div>
           </Card>
         )}
 
@@ -524,6 +564,26 @@ export default function HomeClient() {
           animation: fade-in 0.3s ease-out;
         }
       `}</style>
+
+      {/* 広告3: ページ下部に固定表示 */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I0SHD" rel="nofollow">
+          <img
+            width={468}
+            height={60}
+            alt=""
+            src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003027000&mc=1"
+            className="border-0 max-w-full h-auto"
+          />
+        </a>
+        <img
+          width={1}
+          height={1}
+          src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I0SHD"
+          alt=""
+          className="border-0"
+        />
+      </div>
     </div>
   );
 }

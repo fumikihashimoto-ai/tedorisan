@@ -80,7 +80,7 @@ export default function SideBusinessClient() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main">
+    <div className="min-h-screen bg-[#f5f5f5] container-main pb-24 md:pb-0">
       <div className="max-w-7xl mx-auto">
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">
@@ -229,6 +229,26 @@ export default function SideBusinessClient() {
               {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
             </div>
 
+            {/* 広告1: PC・スマホ両方に表示（詳細を見るの下） */}
+            <div className="my-4 flex justify-center">
+              <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8LMIP" rel="nofollow">
+                <img
+                  width={468}
+                  height={60}
+                  alt=""
+                  src="https://www20.a8.net/svt/bgt?aid=260126641297&wid=001&eno=01&mid=s00000017718074004000&mc=1"
+                  className="border-0 max-w-full h-auto mx-auto"
+                />
+              </a>
+              <img
+                width={1}
+                height={1}
+                src="https://www17.a8.net/0.gif?a8mat=4AVF01+4WTRG2+3SPO+C8LMIP"
+                alt=""
+                className="border-0"
+              />
+            </div>
+
             {showDetails && (
               <div className="mt-4">
                 {/* 入力内容サマリー */}
@@ -360,6 +380,48 @@ export default function SideBusinessClient() {
                 {averageDiff >= 0 ? '高い' : '低い'}
               </div>
               <div className="text-body mt-2">{message}</div>
+
+              {/* 広告2: スマホのみ表示（転職で大きく収入を伸ばせる可能性があります。の下） */}
+              {message === "転職で大きく収入を伸ばせる可能性があります。" && (
+                <div className="block md:hidden my-4">
+                  <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT" rel="nofollow">
+                    <img
+                      width={300}
+                      height={250}
+                      alt=""
+                      src="https://www28.a8.net/svt/bgt?aid=260126641297&wid=001&eno=01&mid=s00000017718074008000&mc=1"
+                      className="border-0 mx-auto"
+                    />
+                  </a>
+                  <img
+                    width={1}
+                    height={1}
+                    src="https://www15.a8.net/0.gif?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT"
+                    alt=""
+                    className="border-0"
+                  />
+                </div>
+              )}
+
+              {/* 広告: スマホのみ表示（あなたの年収レベルブロックの下部） */}
+              <div className="block md:hidden my-4">
+                <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4V1GMQ+3SPO+9FFFOX" rel="nofollow">
+                  <img
+                    width={300}
+                    height={250}
+                    alt=""
+                    src="https://www21.a8.net/svt/bgt?aid=260126641294&wid=001&eno=01&mid=s00000017718057011000&mc=1"
+                    className="border-0 mx-auto"
+                  />
+                </a>
+                <img
+                  width={1}
+                  height={1}
+                  src="https://www10.a8.net/0.gif?a8mat=4AVF01+4V1GMQ+3SPO+9FFFOX"
+                  alt=""
+                  className="border-0"
+                />
+              </div>
             </div>
           );
         })()}
@@ -420,6 +482,26 @@ export default function SideBusinessClient() {
 
           <PcAdSidebar />
         </div>
+      </div>
+
+      {/* 固定広告: スマホのみ・ページ下部固定表示 */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)] md:hidden">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4V1GMQ+3SPO+9FIFPT" rel="nofollow">
+          <img
+            width={350}
+            height={80}
+            alt=""
+            src="https://www22.a8.net/svt/bgt?aid=260126641294&wid=001&eno=01&mid=s00000017718057025000&mc=1"
+            className="border-0"
+          />
+        </a>
+        <img
+          width={1}
+          height={1}
+          src="https://www11.a8.net/0.gif?a8mat=4AVF01+4V1GMQ+3SPO+9FIFPT"
+          alt=""
+          className="border-0"
+        />
       </div>
     </div>
   );

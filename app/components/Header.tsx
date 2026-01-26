@@ -77,15 +77,14 @@ export default function Header() {
                   item.type === 'dropdown' ? (
                     <div
                       key={item.id}
-                      className={`nav-dropdown ${
-                        item.id === 'tools'
+                      className={`nav-dropdown ${item.id === 'tools'
                           ? pathname === '/' || pathname.startsWith(item.activePrefix)
                             ? 'nav-active'
                             : ''
                           : pathname.startsWith(item.activePrefix)
-                          ? 'nav-active'
-                          : ''
-                      }`}
+                            ? 'nav-active'
+                            : ''
+                        }`}
                     >
                       <span className="nav-dropdown-trigger">{item.label}</span>
                       <div className="nav-dropdown-menu">
