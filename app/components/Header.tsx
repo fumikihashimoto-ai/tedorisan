@@ -12,7 +12,7 @@ function isActiveHref(pathname: string, href: string) {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openSection, setOpenSection] = useState<'industry' | 'career' | null>(null);
+  const [openSection, setOpenSection] = useState<'tools' | 'data' | 'career' | null>(null);
   const pathname = usePathname();
 
   const closeMenu = () => {
@@ -78,7 +78,13 @@ export default function Header() {
                     <div
                       key={item.id}
                       className={`nav-dropdown ${
-                        pathname.startsWith(item.activePrefix) ? 'nav-active' : ''
+                        item.id === 'tools'
+                          ? pathname === '/' || pathname.startsWith(item.activePrefix)
+                            ? 'nav-active'
+                            : ''
+                          : pathname.startsWith(item.activePrefix)
+                          ? 'nav-active'
+                          : ''
                       }`}
                     >
                       <span className="nav-dropdown-trigger">{item.label}</span>

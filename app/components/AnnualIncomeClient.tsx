@@ -196,7 +196,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
             {/* 20万円少ない */}
             {canShowPrev ? (
               <Link 
-                href={`/annual-income/${prevAmount}`}
+                href={`/tables/annual-income/${prevAmount}`}
                 className="bg-gray-100 hover:bg-gray-200 border border-gray-300 text-center py-3 rounded-lg transition-colors"
               >
                 年収{amountInMan - 20}万円
@@ -215,7 +215,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
             {/* 20万円多い */}
             {canShowNext ? (
               <Link 
-                href={`/annual-income/${nextAmount}`}
+                href={`/tables/annual-income/${nextAmount}`}
                 className="bg-gray-100 hover:bg-gray-200 border border-gray-300 text-center py-3 rounded-lg transition-colors"
               >
                 年収{amountInMan + 20}万円
@@ -229,7 +229,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
           
           <div className="mt-4 text-center">
             <Link 
-              href="/comparison/list"
+              href="/tables"
               className="text-[#0a57d1] hover:underline text-sm"
             >
               → 全年収の一覧表を見る

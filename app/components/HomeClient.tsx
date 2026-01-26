@@ -9,6 +9,8 @@ import PcAdSidebar from './PcAdSidebar';
 import { Card, H2, InputField, PrimaryButton, ResultAmount, ResultRow } from './ui';
 import CustomSelect, { type CustomSelectOption } from './CustomSelect';
 import RakutenWidgetAd from './RakutenWidgetAd';
+import SalaryAssessmentCta from './SalaryAssessmentCta';
+import CtaSection from './CtaSection';
 
 const AGE_OPTIONS: CustomSelectOption[] = [
   { value: '20代', label: '20代' },
@@ -300,6 +302,12 @@ export default function HomeClient() {
           </Card>
         )}
 
+        {/* === 年収査定CTAブロック（一時的にコメントアウト） === */}
+        {/*
+        {showResults && results && <SalaryAssessmentCta />}
+        */}
+        {/* === /年収査定CTAブロック === */}
+
         {/* 計算後に表示される広告（スマホのみ） */}
         {showResults && results && (
           <div className="md:hidden flex justify-center">
@@ -388,13 +396,19 @@ export default function HomeClient() {
           </Card>
         )}
 
+        {/* === 「手取りを増やすための次のステップ」セクション（一時的にコメントアウト） === */}
+        {/*
+        {showResults && results && <CtaSection />}
+        */}
+        {/* === /「手取りを増やすための次のステップ」セクション === */}
+
         {/* セクション3: 詳細計算へのリンク */}
         <div>
           <H2>あなたに合った詳細計算ツールを選ぼう</H2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* カード1: 転職検討者向け */}
-            <Link href="/job-change" className="block h-full">
+            <Link href="/tools/job-change" className="block h-full">
               <Card
                 as="div"
                 className="transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full"
@@ -410,7 +424,7 @@ export default function HomeClient() {
             </Link>
 
             {/* カード2: 新卒・就活生向け */}
-            <Link href="/fresh-graduate" className="block h-full">
+            <Link href="/tools/fresh-graduate" className="block h-full">
               <Card
                 as="div"
                 className="transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full"
@@ -426,7 +440,7 @@ export default function HomeClient() {
             </Link>
 
             {/* カード3: 副業検討者向け */}
-            <Link href="/side-business" className="block h-full">
+            <Link href="/tools/side-business" className="block h-full">
               <Card
                 as="div"
                 className="transition-all duration-300 hover:shadow-xl hover:scale-[1.01] cursor-pointer h-full"
@@ -449,7 +463,7 @@ export default function HomeClient() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* 年代・年収別 手取り一覧表 */}
-            <Link href="/comparison/list" className="block">
+            <Link href="/tables" className="block">
               <Card as="div" className="hover:shadow-xl transition-all">
                 <div className="flex items-start mb-3">
                   <span className="text-3xl mr-3">📊</span>

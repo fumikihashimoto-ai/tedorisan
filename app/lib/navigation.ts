@@ -14,21 +14,28 @@ export type NavItem =
     }
   | {
       type: 'dropdown';
-      id: 'industry' | 'career';
+      id: 'tools' | 'data' | 'career';
       label: string;
       items: NavMenuItem[];
       activePrefix: string;
       mobileLabel?: string;
     };
 
-export const INDUSTRY_MENU_ITEMS: NavMenuItem[] = [
-  { label: 'ITエンジニア', href: '/industry/it-engineer', footerLabel: 'ITエンジニアの年収・手取り' },
-  { label: '保育士', href: '/industry/nursery', footerLabel: '保育士の年収・手取り' },
-  { label: '営業職', href: '/industry/sales', footerLabel: '営業職の年収・手取り' },
-  { label: '薬剤師', href: '/industry/pharmacist', footerLabel: '薬剤師の年収・手取り' },
-  { label: '医療技術職', href: '/industry/medical-tech', footerLabel: '医療技術職の年収・手取り' },
-  { label: '不動産業界', href: '/industry/real-estate', footerLabel: '不動産業界の年収・手取り' },
-  { label: '建設業界', href: '/industry/construction', footerLabel: '建設業界の年収・手取り' },
+export const TOOLS_MENU_ITEMS: NavMenuItem[] = [
+  { label: '手取り計算（TOP）', href: '/' },
+  { label: '新卒向け手取り計算', href: '/tools/fresh-graduate' },
+  { label: '転職向け手取り計算', href: '/tools/job-change' },
+  { label: '副業向け手取り計算', href: '/tools/side-business' },
+];
+
+export const DATA_MENU_ITEMS: NavMenuItem[] = [
+  { label: 'ITエンジニア', href: '/data/industry/it-engineer', footerLabel: 'ITエンジニアの年収・手取り' },
+  { label: '保育士', href: '/data/industry/nursery', footerLabel: '保育士の年収・手取り' },
+  { label: '営業職', href: '/data/industry/sales', footerLabel: '営業職の年収・手取り' },
+  { label: '薬剤師', href: '/data/industry/pharmacist', footerLabel: '薬剤師の年収・手取り' },
+  { label: '医療技術職', href: '/data/industry/medical-tech', footerLabel: '医療技術職の年収・手取り' },
+  { label: '不動産業界', href: '/data/industry/real-estate', footerLabel: '不動産業界の年収・手取り' },
+  { label: '建設業界', href: '/data/industry/construction', footerLabel: '建設業界の年収・手取り' },
 ];
 
 export const CAREER_MENU_ITEMS: NavMenuItem[] = [
@@ -39,55 +46,59 @@ export const CAREER_MENU_ITEMS: NavMenuItem[] = [
 
 // PC/モバイルの表示順はこの配列に統一
 export const NAV_ITEMS: NavItem[] = [
-  { type: 'link', label: 'TOP', href: '/', mobileLabel: '手取り計算（TOP）' },
-  { type: 'link', label: '新卒', href: '/fresh-graduate', mobileLabel: '新卒・就活生向け 手取り計算' },
-  { type: 'link', label: '転職', href: '/job-change', mobileLabel: '転職検討者向け 手取り計算' },
-  { type: 'link', label: '副業', href: '/side-business', mobileLabel: '副業検討者向け 手取り計算' },
   {
     type: 'dropdown',
-    id: 'industry',
-    label: '業種別',
-    items: INDUSTRY_MENU_ITEMS,
-    activePrefix: '/industry',
+    id: 'tools',
+    label: '計算ツール',
+    items: TOOLS_MENU_ITEMS,
+    activePrefix: '/tools',
+    mobileLabel: '計算ツール',
+  },
+  {
+    type: 'dropdown',
+    id: 'data',
+    label: '職種・年齢別 年収',
+    items: DATA_MENU_ITEMS,
+    activePrefix: '/data/industry',
+    mobileLabel: '職種・年齢別 年収',
   },
   {
     type: 'dropdown',
     id: 'career',
-    label: 'キャリアステージ別',
+    label: 'キャリア',
     items: CAREER_MENU_ITEMS,
     activePrefix: '/career',
+    mobileLabel: 'キャリア',
   },
   {
     type: 'link',
-    label: '年代別年収一覧',
-    href: '/comparison/list',
-    mobileLabel: '年代・年収別 手取り一覧表',
+    label: '早見表',
+    href: '/tables/',
+    mobileLabel: '早見表',
   },
   { type: 'link', label: 'FAQ', href: '/faq', mobileLabel: 'よくあるご質問', footerLabel: 'よくある質問（FAQ）' },
 ];
 
 export const FOOTER_SECTIONS = [
   {
-    title: '主要ツール',
-    links: [
-      { href: '/', label: '手取り計算（TOP）' },
-      { href: '/fresh-graduate', label: '新卒・就活生向け計算' },
-      { href: '/job-change', label: '転職者向け計算' },
-      { href: '/side-business', label: '副業者向け計算' },
-      { href: '/comparison/list', label: '年代・年収別 手取り一覧表' },
-    ],
-  },
-  {
-    title: '業種別',
-    links: INDUSTRY_MENU_ITEMS.map((i) => ({
+    title: '計算ツール',
+    links: TOOLS_MENU_ITEMS.map((i) => ({
       href: i.href,
       label: i.footerLabel ?? i.label,
     })),
   },
   {
-    title: 'キャリアステージ別',
+    title: '職種・年齢別 年収',
+    links: DATA_MENU_ITEMS.map((i) => ({
+      href: i.href,
+      label: i.footerLabel ?? i.label,
+    })),
+  },
+  {
+    title: 'キャリア・その他',
     links: [
       ...CAREER_MENU_ITEMS.map((i) => ({ href: i.href, label: i.footerLabel ?? i.label })),
+      { href: '/tables/', label: '早見表' },
       { href: '/faq', label: 'よくある質問（FAQ）' },
     ],
   },
