@@ -54,11 +54,11 @@ export default function SidebarCTA() {
 
         {/* トラッキングピクセル */}
         <img
-          border="0"
           width={1}
           height={1}
           src="https://www18.a8.net/0.gif?a8mat=4AVF01+4FK6WI+3Y6M+631SY"
           alt=""
+          style={{ border: 0 }}
         />
 
         {/* サービス名 */}
