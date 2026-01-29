@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { calculateTakeHome } from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
 import { Card, H2, InputField, PrimaryButton, ResultAmount, ResultRow } from './ui';
@@ -10,7 +9,6 @@ import CustomSelect, { type CustomSelectOption } from './CustomSelect';
 import RakutenWidgetAd from './RakutenWidgetAd';
 import SalaryAssessmentCta from './SalaryAssessmentCta';
 import CtaSection from './CtaSection';
-import InlineCTA from './InlineCTA';
 
 const AGE_OPTIONS: CustomSelectOption[] = [
   { value: '20代', label: '20代' },
@@ -95,41 +93,6 @@ export default function HomeClient() {
   return (
     <div className="container-main pb-20">
       <div className="space-y-8 md:space-y-12">
-        {/* セクション1: ヒーローエリア */}
-        <section className="mb-12 pb-8 border-b border-gray-100">
-          {/* 見出し */}
-          <div>
-            <h1 className="page-title">手取り計算シミュレーション</h1>
-          </div>
-
-          {/* テドリさんとテキスト - 横並び（全デバイス共通） */}
-          <div className="flex items-center gap-4 mt-6 mb-8">
-            {/* テドリさん画像 - 全デバイスで120x120 */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/images/tedori.png"
-                alt="テドリさん - 手取り計算をサポートする秘書キャラクター"
-                width={120}
-                height={120}
-                className=""
-                priority
-              />
-            </div>
-
-            {/* テキスト - 全デバイスで左寄せ */}
-            <div className="text-left flex-1">
-              <p className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2">
-                テドリさんがあなたの手取り額を計算します
-              </p>
-              <p className="text-sm md:text-base text-gray-700">
-                年収・扶養人数を入力するだけで、所得税・住民税・社会保険料を自動計算
-              </p>
-            </div>
-          </div>
-
-          {/* 信頼性バッジ（削除） */}
-        </section>
-
         {/* リード文セクション */}
         <section className="py-8 mb-8">
           <p className="text-base leading-[1.8] text-gray-700 mb-8">
@@ -369,9 +332,6 @@ export default function HomeClient() {
           </ul>
         </section>
 
-        {/* CTA - 第二新卒エージェントneo（中間） */}
-        <InlineCTA />
-
         {/* セクション5 */}
         <section id="section-5" className="py-6 mb-8 scroll-mt-6">
           <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mb-6 flex items-center gap-3 leading-tight">
@@ -548,9 +508,6 @@ export default function HomeClient() {
             現在の職場で年収アップが見込めない場合は、転職も有力な選択肢です。特に、<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">成長産業や需要の高い職種への転職</mark></strong>は、大幅な年収アップに繋がりやすい傾向があります。
           </p>
         </section>
-
-        {/* CTA - 第二新卒エージェントneo（下部） */}
-        <InlineCTA />
 
         {/* セクション7 */}
         <section id="section-7" className="py-6 mb-8 scroll-mt-6">
