@@ -9,6 +9,7 @@ import CustomSelect, { type CustomSelectOption } from './CustomSelect';
 import RakutenWidgetAd from './RakutenWidgetAd';
 import SalaryAssessmentCta from './SalaryAssessmentCta';
 import CtaSection from './CtaSection';
+import InlineAd from './InlineAd';
 
 const AGE_OPTIONS: CustomSelectOption[] = [
   { value: '20代', label: '20代' },
@@ -129,6 +130,7 @@ export default function HomeClient() {
             このような疑問を持つ方は多いでしょう。本記事は、そうしたあなたの疑問を解消し、年収の手取り額の計算方法や仕組みを、初心者の方にも分かりやすく解説することを目的としています。
           </p>
         </section>
+        <InlineAd />
 
         {/* セクション2 */}
         <section id="section-2" className="py-6 mb-8 scroll-mt-6">
@@ -182,6 +184,7 @@ export default function HomeClient() {
             これらの控除項目は、法律によって定められており、原則としてすべての人に適用されます。特に社会保険料と税金は、年収が高くなるほどその負担も大きくなる傾向があります。<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">手取り額を正確に把握することは、毎月の生活費や貯蓄計画を立てる上で不可欠</mark></strong>です。
           </p>
         </section>
+        <InlineAd />
 
         {/* セクション3 */}
         <section id="section-3" className="py-6 mb-8 scroll-mt-6">
@@ -237,6 +240,7 @@ export default function HomeClient() {
             介護保険料は、<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">40歳以上の健康保険加入者に義務付けられており</mark></strong>、健康保険料と一体で徴収されます。
           </p>
         </section>
+        <InlineAd />
 
         {/* セクション4 */}
         <section id="section-4" className="py-6 mb-8 scroll-mt-6">
@@ -331,6 +335,7 @@ export default function HomeClient() {
             <li><strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">iDeCo（個人型確定拠出年金）の掛金</mark></strong>：全額が所得控除の対象</li>
           </ul>
         </section>
+        <InlineAd />
 
         {/* セクション5 */}
         <section id="section-5" className="py-6 mb-8 scroll-mt-6">
@@ -443,6 +448,7 @@ export default function HomeClient() {
             </p>
           </div>
         </section>
+        <InlineAd />
 
         {/* セクション6 */}
         <section id="section-6" className="py-6 mb-8 scroll-mt-6">
@@ -508,6 +514,7 @@ export default function HomeClient() {
             現在の職場で年収アップが見込めない場合は、転職も有力な選択肢です。特に、<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">成長産業や需要の高い職種への転職</mark></strong>は、大幅な年収アップに繋がりやすい傾向があります。
           </p>
         </section>
+        <InlineAd />
 
         {/* セクション7 */}
         <section id="section-7" className="py-6 mb-8 scroll-mt-6">
@@ -532,6 +539,7 @@ export default function HomeClient() {
             さらに、控除の最大限の活用やiDeCo、NISAといった制度の利用、あるいはキャリアアップを通じて年収そのものを増やすことで、手取り額を増やすことは十分に可能です。この知識を活かし、より豊かな生活設計を実現するための一歩を踏み出しましょう。
           </p>
         </section>
+        <InlineAd />
 
         {/* 計算シミュレーションセクション */}
         <section id="calculator" className="scroll-mt-6 py-12">

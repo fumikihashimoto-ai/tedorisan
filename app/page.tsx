@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import HomeClient from './components/HomeClient';
 import StructuredData from './components/StructuredData';
-import TableOfContents from './components/TableOfContents';
 import MobileTOC from './components/MobileTOC';
 
 export const metadata: Metadata = {
@@ -135,17 +134,17 @@ export default function Home() {
         <MobileTOC />
 
         {/* 2カラムレイアウト（PC: 1024px以上） */}
-        <div className="lg:flex lg:gap-10 xl:gap-12">
+        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px]">
+          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <HomeClient />
           </main>
 
-          {/* 右カラム：サイドバー（スマホ非表示） */}
-          <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0">
-            <div className="sticky top-6">
-              {/* サイドバー広告 */}
-              <div className="mb-6">
+          {/* 右カラム：サイドバー（スマホ非表示） - 広告のみsticky固定 */}
+          <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
+            <div className="space-y-4">
+              {/* サイドバー広告1 */}
+              <div>
                 <a
                   href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4QVFEA+5P1E+5YZ75"
                   rel="nofollow"
@@ -165,7 +164,7 @@ export default function Home() {
                 />
               </div>
               {/* サイドバー広告2 */}
-              <div className="mb-6">
+              <div>
                 <a
                   href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4FK6WI+3Y6M+66H9D"
                   rel="nofollow"
@@ -184,7 +183,6 @@ export default function Home() {
                   alt=""
                 />
               </div>
-              <TableOfContents />
             </div>
           </aside>
         </div>

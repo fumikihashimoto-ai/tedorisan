@@ -74,7 +74,7 @@ export default function RootLayout({
         )}
 
         <Header />
-        <main className="w-full">{children}</main>
+        <main className="w-full overflow-visible">{children}</main>
         <Footer />
         <ScrollToTopButton />
       </body>
