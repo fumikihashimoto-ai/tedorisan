@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import HeaderAd from "./components/HeaderAd";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
@@ -59,7 +59,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className="antialiased bg-[#f5f5f5]"
+        className="antialiased bg-white"
       >
         {/* Google Tag Manager (noscript) */}
         {GTM_ID && (
@@ -73,35 +73,10 @@ export default function RootLayout({
           </noscript>
         )}
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "手取り計算ツール - テドリさん",
-              "description": "転職・新卒・副業の年収・手取りシミュレーション",
-              "url": "https://tedorikun.jp",
-              "applicationCategory": "FinanceApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "JPY"
-              },
-              "operatingSystem": "Any",
-              "browserRequirements": "Requires JavaScript"
-            })
-          }}
-        />
-
-        {/* A8.net 広告 - ヘッダー上部（PCのみ） */}
-        <div className="hidden md:flex w-full bg-gray-50 py-2 justify-center border-b border-gray-200">
-          <HeaderAd />
-        </div>
-
         <Header />
         <main className="w-full">{children}</main>
         <Footer />
+        <ScrollToTopButton />
       </body>
     </html>
   );

@@ -2,14 +2,94 @@
 
 @layer base {
   :root {
-    /* ニュートラル（全体背景 / カード / ボーダー） */
-    --background: 0 0% 96%; /* #f5f5f5 */
-    --card: 0 0% 100%; /* #ffffff */
-    --border: 0 0% 88%; /* #e0e0e0 */
+    /* ベースカラー（UI改善） */
+    --bg-base: 0 0% 100%;
+    /* #ffffff - メイン背景：白 */
+    --bg-subtle: 0 0% 98%;
+    /* #f9fafb - セクション区切り用：ごく薄いグレー */
+
+    /* テキスト */
+    --text-primary: 0 0% 18%;
+    /* #1f2937 - 本文：ダークグレー */
+    --text-secondary: 0 0% 43%;
+    /* #6b7280 - 補足：ミディアムグレー */
+    --text-muted: 0 0% 61%;
+    /* #9ca3af - 注釈：ライトグレー */
+
+    /* アクセント */
+    --accent-primary: 217 91% 60%;
+    /* #2563eb - 青：CTA、リンク */
+    --accent-secondary: 38 92% 50%;
+    /* #f59e0b - オレンジ：強調 */
+
+    /* ボーダー（最小限使用） */
+    --border-light: 0 0% 90%;
+    /* #e5e7eb - 薄いボーダー（テーブルのみ） */
+
+    /* シャドウ（控えめ） */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    /* ニュートラル（全体背景 / カード / ボーダー） - 後方互換性のため維持 */
+    --background: 0 0% 100%;
+    /* #ffffff - 白に変更 */
+    --card: 0 0% 100%;
+    /* #ffffff */
+    --border: 0 0% 90%;
+    /* #e5e7eb - 薄く変更 */
 
     /* テキスト（視認性重視） */
-    --foreground: 0 0% 20%; /* #333333 */
-    --muted: 0 0% 40%; /* #666666 */
+    --foreground: 0 0% 18%;
+    /* #1f2937 - ダークグレーに変更 */
+    --muted: 0 0% 43%;
+    /* #6b7280 - ミディアムグレーに変更 */
+
+    /* ========================================
+       フォントサイズ変数（rem基準）
+       html: 16px = 1rem
+    ======================================== */
+    --font-size-base: 1rem;
+    /* 16px */
+    --font-size-sm: 0.875rem;
+    /* 14px - キャプション・補足 */
+    --font-size-xs: 0.75rem;
+    /* 12px - 最小サイズ（注釈等） */
+
+    /* 見出し（PC） */
+    --font-size-h1: 1.875rem;
+    /* 30px */
+    --font-size-h2: 1.5rem;
+    /* 24px */
+    --font-size-h3: 1.25rem;
+    /* 20px */
+    --font-size-h4: 1.125rem;
+    /* 18px */
+
+    /* 特殊用途 */
+    --font-size-button: 1rem;
+    /* 16px */
+    --font-size-button-mobile: 1.125rem;
+    /* 18px - SP */
+    --font-size-label: 0.875rem;
+    /* 14px */
+    --font-size-hero: 2rem;
+    /* 32px - ヒーローセクション */
+    --font-size-hero-mobile: 1.5rem;
+    /* 24px - SP */
+
+    /* 見出し（SP用・ユーティリティ用） */
+    --font-size-h1-mobile: 1.5rem;
+    --font-size-h2-mobile: 1.25rem;
+    --font-size-h3-mobile: 1.125rem;
+    --font-size-h4-mobile: 1rem;
+
+    /* 行間・文字間 */
+    --line-height-tight: 1.4;
+    --line-height-base: 1.8;
+    --line-height-relaxed: 2;
+    --letter-spacing-tight: -0.01em;
+    --letter-spacing-base: 0.02em;
+    --letter-spacing-wide: 0.05em;
   }
 }
 
@@ -22,6 +102,27 @@
     sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+
+  /* フォントサイズ（Tailwind utilities用） */
+  --font-size-h1: 1.875rem;
+  --font-size-h1-mobile: 1.5rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h2-mobile: 1.25rem;
+  --font-size-h3: 1.25rem;
+  --font-size-h3-mobile: 1.125rem;
+  --font-size-h4: 1.125rem;
+  --font-size-h4-mobile: 1rem;
+  --font-size-hero: 2rem;
+  --font-size-hero-mobile: 1.5rem;
+  --font-size-button: 1rem;
+  --font-size-button-mobile: 1.125rem;
+
+  --line-height-tight: 1.4;
+  --line-height-base: 1.8;
+  --line-height-relaxed: 2;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-base: 0.02em;
+  --letter-spacing-wide: 0.05em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,10 +132,23 @@
   }
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background: hsl(var(--bg-base));
+  color: hsl(var(--text-primary));
   font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  letter-spacing: var(--letter-spacing-base);
+}
+
+@media (max-width: 640px) {
+  body {
+    line-height: var(--line-height-relaxed);
+  }
 }
 
 h1,
@@ -44,33 +158,64 @@ h4,
 h5,
 h6 {
   color: #1a1a1a;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  font-weight: 700;
 }
 
-/* h1共通スタイル */
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --font-size-h1: 1.5rem;
+    --font-size-h2: 1.25rem;
+    --font-size-h3: 1.125rem;
+    --font-size-h4: 1rem;
+    --font-size-hero: 1.5rem;
+    --font-size-button: 1.125rem;
+  }
+}
+
+/* h1共通スタイル（ページタイトル） */
 .page-title {
   font-family: var(--font-sans);
-  font-size: 56px;
+  font-size: var(--font-size-h1);
   font-weight: 700;
-  line-height: 1.4;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
   color: #333333;
   text-align: left;
   margin-top: 40px;
   margin-bottom: 32px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .page-title {
-    font-size: 28px;
-    line-height: 1.4;
+    font-size: 1.5rem;
     margin-top: 24px;
     margin-bottom: 20px;
   }
 }
 
-/* パンくずリスト */
+/* パンくずリスト（キャプション・14px） */
 .breadcrumb {
-  font-size: 0.8125rem; /* 13px */
+  font-size: var(--font-size-sm);
   color: #999999;
+  margin-top: 20px;
 }
 
 .breadcrumb a:hover {
@@ -82,6 +227,7 @@ h6 {
     transform: translateY(100%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -100,13 +246,13 @@ h6 {
    - 縦余白: py-12（= 3rem）
 ----------------------------------------------------------------------------- */
 
-/* 1. カード（白枠） */
+/* 1. カード（枠線なし、シャドウ控えめ） */
 .card-base {
   background-color: #ffffff;
-  border: 2px solid #e0e0e0;
-  border-radius: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   padding: 1.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 @media (min-width: 768px) {
@@ -118,69 +264,59 @@ h6 {
 /* 枠なしカード（結果表示等で使用） */
 .card-no-border {
   background-color: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 /* 2. 見出し（h2統一） */
 .heading-h2 {
   font-family: var(--font-sans);
-  font-size: 1.5rem;
+  font-size: var(--font-size-h2);
   font-weight: 700;
+  line-height: var(--line-height-tight);
   color: #1a1a1a;
   margin-bottom: 1.5rem;
   text-align: left;
 }
 
-@media (min-width: 768px) {
-  .heading-h2 {
-    font-size: 1.875rem;
-  }
-}
-
 /* FAQ用（下線付き） */
 .heading-h2-underline {
   font-family: var(--font-sans);
-  font-size: 1.5rem;
+  font-size: var(--font-size-h2);
   font-weight: 700;
+  line-height: var(--line-height-tight);
   color: #1a1a1a;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #e0e0e0;
 }
 
-/* 3. 本文テキスト */
+/* 3. 本文テキスト（16px以上） */
 .text-body {
-  font-size: 0.875rem;
+  font-size: var(--font-size-base);
   color: #333333;
-  line-height: 1.75;
-}
-
-@media (min-width: 768px) {
-  .text-body {
-    font-size: 1rem;
-  }
+  line-height: var(--line-height-base);
 }
 
 .text-caption {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   color: #666666;
   line-height: 1.5;
 }
 
 .text-small {
-  font-size: 0.8125rem; /* 13px */
+  font-size: var(--font-size-xs);
   color: #999999;
 }
 
-/* 4. ボタン */
+/* 4. ボタン（PC 16px / SP 18px） */
 .btn-primary {
   width: 100%;
   background-color: #ff4f42;
   color: #ffffff;
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: var(--font-size-button);
   padding: 1rem 2rem;
   border-radius: 0.75rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -199,6 +335,7 @@ h6 {
   background-color: #ff4f42;
   color: #ffffff;
   font-weight: 700;
+  font-size: var(--font-size-button);
   padding: 1rem 2rem;
   border-radius: 0.75rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -232,6 +369,7 @@ h6 {
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 3rem;
+  background-color: hsl(var(--bg-base));
 }
 
 @media (min-width: 768px) {
@@ -561,6 +699,7 @@ h6 {
 
 /* モバイルメニュー（統一スタイル） */
 @media (max-width: 767px) {
+
   /* 親メニュー項目（共通） */
   .mobile-menu-item {
     display: flex;
@@ -601,7 +740,8 @@ h6 {
   /* 子メニュー（第2階層） */
   .mobile-submenu-item {
     display: block;
-    padding: 12px 20px 12px 40px; /* 左にインデント */
+    padding: 12px 20px 12px 40px;
+    /* 左にインデント */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.9);
