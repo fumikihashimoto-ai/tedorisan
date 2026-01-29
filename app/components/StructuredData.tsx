@@ -1,5 +1,5 @@
 // 構造化データコンポーネント
-export default function StructuredData(): JSX.Element {
+export default function StructuredData() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
