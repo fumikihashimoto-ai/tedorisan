@@ -1,41 +1,55 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import { calculateTakeHome } from '../../lib/salaryCalculator';
+import {
+  calculateTakeHomeDetailed,
+  type TakeHomeDetailedResult,
+} from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
-import { Card, H2, InputField, PrimaryButton, ResultAmount, ResultRow } from './ui';
-import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+import { Card, H2 } from './ui';
 import RakutenWidgetAd from './RakutenWidgetAd';
-import SalaryAssessmentCta from './SalaryAssessmentCta';
-import CtaSection from './CtaSection';
 import InlineAd from './InlineAd';
 
-const AGE_OPTIONS: CustomSelectOption[] = [
-  { value: '20代', label: '20代' },
-  { value: '30代', label: '30代' },
-  { value: '40代', label: '40代' },
-  { value: '50代', label: '50代' },
-  { value: '60代以上', label: '60代以上' },
+const PREFECTURES = [
+  '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+  '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+  '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県',
+  '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県',
+  '奈良県', '和歌山県', '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+  '徳島県', '香川県', '愛媛県', '高知県', '福岡県', '佐賀県', '長崎県',
+  '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県',
 ];
 
+const FISCAL_YEARS = [
+  { value: '2025', label: '令和7年度' },
+  { value: '2024', label: '令和6年度' },
+];
+
+function ageToAgeGroup(age: number): AgeGroup {
+  if (age < 30) return '20代';
+  if (age < 40) return '30代';
+  if (age < 50) return '40代';
+  if (age < 60) return '50代';
+  return '60代以上';
+}
+
 export default function HomeClient() {
-  const [annualSalary, setAnnualSalary] = useState('');
-  const [dependents, setDependents] = useState('');
-  const [ageGroup, setAgeGroup] = useState<AgeGroup>('30代');
-  const [results, setResults] = useState<ReturnType<typeof calculateTakeHome> | null>(null);
+  const [prefecture, setPrefecture] = useState('東京都');
+  const [age, setAge] = useState(30);
+  const [monthlySalary, setMonthlySalary] = useState('30');
+  const [fiscalYear, setFiscalYear] = useState('2025');
+  const [results, setResults] = useState<TakeHomeDetailedResult | null>(null);
   const [showResults, setShowResults] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
   const [percentileData, setPercentileData] = useState<{
     percentile: number;
     averageDiff: number;
     message: string;
   } | null>(null);
 
-  const calculatePercentile = (income: number, age: AgeGroup) => {
+  const calculatePercentile = (income: number, ageGroup: AgeGroup) => {
     const incomeManEn = income / 10000; // 万円に変換
-    const percentiles = percentileByAge[age];
-    const average = averageIncomeByAge[age];
+    const percentiles = percentileByAge[ageGroup];
+    const average = averageIncomeByAge[ageGroup];
 
     let percentile = 50;
     let averageDiff = Math.round(incomeManEn - average);
@@ -65,26 +79,20 @@ export default function HomeClient() {
   };
 
   const handleCalculate = () => {
-    const salaryValue = parseFloat(annualSalary);
-    const dependentsValue = parseInt(dependents) || 0;
-
-    if (salaryValue) {
-      const yearlyIncome = salaryValue * 10000;
-      const calculated = calculateTakeHome(yearlyIncome, dependentsValue);
+    const monthlyValue = parseFloat(String(monthlySalary).replace(/,/g, ''));
+    if (!isNaN(monthlyValue) && monthlyValue > 0) {
+      const yearlyIncome = monthlyValue * 12 * 10000; // 月収(万円) × 12
+      const calculated = calculateTakeHomeDetailed(yearlyIncome, age, 0);
+      const ageGroup = ageToAgeGroup(age);
       const pData = calculatePercentile(yearlyIncome, ageGroup);
       setResults(calculated);
       setPercentileData(pData);
       setShowResults(true);
 
-      // 結果表示後にスクロール
       setTimeout(() => {
         document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
-  };
-
-  const formatYen = (value: number): string => {
-    return (value / 10000).toFixed(1);
   };
 
   const formatJPY = (value: number): string => {
@@ -99,14 +107,186 @@ export default function HomeClient() {
           <p className="text-base leading-[1.8] text-gray-700 mb-8">
             「年収は高いはずなのに、手取りが少ないのはなぜ？」その疑問、この記事で解決します。あなたの年収から手取り額がいくらになるか、シミュレーションで最速チェック。額面と手取りの違いから、社会保険料（健康保険、厚生年金など）や税金（所得税、住民税など）がどのように差し引かれるのかを初心者にも分かりやすく徹底解説します。年収300万円から700万円の具体的なシミュレーション例で仕組みを理解し、さらに手取り額を増やすための具体的な方法までご紹介。この記事を読めば、手取りの全貌が明らかになり、賢い家計管理の第一歩を踏み出せます。
           </p>
-          <div className="text-center">
-            <p className="text-sm text-gray-500 mb-3">今すぐ手取り額を計算したい方はこちら</p>
-            <a
-              href="#calculator"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-[length:var(--font-size-button-mobile)] sm:text-[length:var(--font-size-button)] hover:bg-blue-700 transition-colors"
-            >
-              ▼ 手取り計算シミュレーションを使う
-            </a>
+        </section>
+
+        {/* 計算シミュレーションセクション */}
+        <section id="calculator" className="pt-4 pb-6 mb-8 scroll-mt-6 -mt-4 md:-mt-6">
+          <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mb-6 flex items-center gap-3 leading-tight">
+            <span className="w-1 h-6 bg-amber-500 rounded-full" />
+            手取り計算シミュレーション
+          </h2>
+          <div className="py-4 w-full">
+
+            <Card variant="flat">
+              <H2>🎯 まずは簡単計算</H2>
+
+              <div className="flex flex-wrap md:flex-nowrap gap-4 items-end">
+                {/* 都道府県 */}
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">都道府県</label>
+                  <select
+                    value={prefecture}
+                    onChange={(e) => setPrefecture(e.target.value)}
+                    className="border border-gray-300 rounded px-3 h-12 w-32 text-base bg-white"
+                  >
+                    {PREFECTURES.map((p) => (
+                      <option key={p} value={p}>
+                        {p}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* 年齢 */}
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">年齢（歳）</label>
+                  <input
+                    type="number"
+                    min={18}
+                    max={100}
+                    value={age}
+                    onChange={(e) => setAge(parseInt(e.target.value) || 30)}
+                    className="border border-gray-300 rounded px-3 h-12 w-20 text-base"
+                  />
+                </div>
+
+                {/* 月収 */}
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">月収（万円）</label>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    value={monthlySalary}
+                    onChange={(e) => setMonthlySalary(e.target.value)}
+                    placeholder="33"
+                    className="border border-gray-300 rounded px-3 h-12 w-24 text-base"
+                  />
+                </div>
+
+                {/* 年度 */}
+                <div>
+                  <label className="block text-sm text-gray-600 mb-1">年度</label>
+                  <select
+                    value={fiscalYear}
+                    onChange={(e) => setFiscalYear(e.target.value)}
+                    className="border border-gray-300 rounded px-3 h-12 w-36 text-base bg-white"
+                  >
+                    {FISCAL_YEARS.map((y) => (
+                      <option key={y.value} value={y.value}>
+                        {y.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* 計算ボタン */}
+                <button
+                  type="button"
+                  onClick={handleCalculate}
+                  className="bg-gray-700 text-white px-8 h-12 rounded hover:bg-gray-800 text-base font-medium transition-colors"
+                >
+                  計算
+                </button>
+              </div>
+            </Card>
+
+            {showResults && results && (
+              <Card id="results" variant="flat" className="section-gap animate-fade-in mt-6">
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse text-sm sm:text-base">
+                    <thead>
+                      <tr className="bg-gray-100">
+                        <th className="border border-gray-300 px-4 py-2 text-center">項目</th>
+                        <th className="border border-gray-300 px-4 py-2 text-center">年収</th>
+                        <th className="border border-gray-300 px-4 py-2 text-center">月収</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">額面収入</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.annualSalary)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.monthlySalary)}円</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">所得税</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.incomeTax.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.incomeTax.monthly)}円</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">住民税</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.residentTax.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.residentTax.monthly)}円</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">健康保険</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.healthInsurance.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.healthInsurance.monthly)}円</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">厚生年金</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.pension.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.pension.monthly)}円</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">介護保険</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.nursingCare.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.nursingCare.monthly)}円</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2 text-center">雇用保険</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.employmentInsurance.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.employmentInsurance.monthly)}円</td>
+                      </tr>
+                      <tr className="font-bold bg-amber-50">
+                        <td className="border border-gray-300 px-4 py-2 text-center">手取り額</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.takeHome.annual)}円</td>
+                        <td className="border border-gray-300 px-4 py-2 text-right">{formatJPY(results.takeHome.monthly)}円</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* あなたの年収レベル（計算結果テーブル直下） */}
+                {percentileData && (
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold mb-3 leading-tight">あなたの年収レベル</h3>
+                    <p className="text-2xl font-black text-[#0a57d1] mb-3">日本の上位 {percentileData.percentile}%</p>
+                    <p className="text-base text-gray-700 mb-3">
+                      {percentileData.averageDiff > 0
+                        ? `${ageToAgeGroup(age)}の平均より ${percentileData.averageDiff}万円 高い収入です。${percentileData.message}`
+                        : `${ageToAgeGroup(age)}の平均より ${Math.abs(percentileData.averageDiff)}万円 低い収入です。${percentileData.message}`}
+                    </p>
+                    {/* 年代別比較 */}
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-bold">{ageToAgeGroup(age)}:</span>
+                      <span className={`text-lg font-bold ${percentileData.averageDiff >= 0 ? 'text-blue-600' : 'text-red-500'}`}>
+                        {percentileData.averageDiff >= 0 ? '+' : ''}{percentileData.averageDiff}万円
+                      </span>
+                      <span className="text-sm text-gray-400">← あなたの年代</span>
+                    </div>
+                    <div className="mt-4 flex justify-center">
+                      <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" rel="nofollow">
+                        <img
+                          width={300}
+                          height={250}
+                          alt=""
+                          src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003031000&mc=1"
+                          className="border-0"
+                        />
+                      </a>
+                      <img width={1} height={1} src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" alt="" className="border-0" />
+                    </div>
+                  </div>
+                )}
+              </Card>
+            )}
+
+            {showResults && results && (
+              <div className="md:hidden flex justify-center mt-6">
+                <RakutenWidgetAd />
+              </div>
+            )}
+
           </div>
         </section>
 
@@ -442,11 +622,6 @@ export default function HomeClient() {
               </tbody>
             </table>
           </div>
-          <div className="bg-gray-50 border-l-2 border-blue-400 p-5 mt-6">
-            <p className="m-0 text-base leading-[1.8]">
-              これらのシミュレーションはあくまで一例です。ご自身の正確な手取り額を知りたい場合は、ページ下部の<a href="#calculator" className="text-blue-600 underline hover:text-blue-800">手取り計算シミュレーション</a>をご活用ください。
-            </p>
-          </div>
         </section>
         <InlineAd />
 
@@ -541,324 +716,11 @@ export default function HomeClient() {
         </section>
         <InlineAd />
 
-        {/* 計算シミュレーションセクション */}
-        <section id="calculator" className="scroll-mt-6 py-12">
-          <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mb-6 flex items-center gap-3 leading-tight">
-            <span className="w-1 h-6 bg-amber-500 rounded-full" />
-            手取り計算シミュレーション
-          </h2>
-          <div className="bg-gray-50 rounded-xl p-6">
-
-            <Card>
-              <H2>🎯 まずは簡単計算</H2>
-
-              <div className="space-y-4 md:space-y-6">
-                <div>
-                  <label className="block font-semibold text-gray-900 text-base leading-[1.5] mb-1.5 md:mb-2">
-                    あなたの年収
-                  </label>
-                  <p className="text-sm leading-[1.5] text-gray-600 mb-2 hidden md:block">
-                    額面の年収を入力してください
-                  </p>
-                  <div className="relative">
-                    <InputField
-                      type="tel"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      value={annualSalary}
-                      onChange={(e) => setAnnualSalary(e.target.value)}
-                      className="pr-12"
-                      placeholder="400"
-                    />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
-                      万円
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-gray-900 text-base leading-[1.5] mb-1.5 md:mb-2">
-                    あなたの年代
-                  </label>
-                  <p className="text-sm leading-[1.5] text-gray-600 mb-2 hidden md:block">
-                    年代別の正確な比較をお見せします
-                  </p>
-                  <CustomSelect
-                    options={AGE_OPTIONS}
-                    value={ageGroup}
-                    onChange={(v) => setAgeGroup(v as AgeGroup)}
-                    placeholder="年代を選択"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-gray-900 text-base leading-[1.5] mb-1.5 md:mb-2">
-                    扶養している家族の人数
-                  </label>
-                  <div className="relative">
-                    <InputField
-                      type="tel"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      value={dependents}
-                      onChange={(e) => setDependents(e.target.value)}
-                      className="pr-12"
-                      placeholder="0"
-                    />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
-                      人
-                    </span>
-                  </div>
-                </div>
-
-                <PrimaryButton onClick={handleCalculate}>すぐ計算する</PrimaryButton>
-              </div>
-            </Card>
-
-            {showResults && results && (
-              <Card id="results" className="section-gap animate-fade-in mt-6">
-                <div className="text-center">
-                  <div className="text-gray-600">あなたの年間手取り額は…</div>
-                  <ResultAmount>
-                    約 {formatYen(results.takeHome)}
-                    <span className="text-base font-normal ml-1">万円</span>
-                  </ResultAmount>
-                </div>
-                <div
-                  className="text-center text-blue-600 cursor-pointer py-2 mt-4"
-                  onClick={() => setShowDetails(!showDetails)}
-                >
-                  {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
-                </div>
-                {showDetails && (
-                  <div className="mt-4 space-y-0">
-                    {(() => {
-                      const annualSalaryYen = Math.round((parseFloat(annualSalary) || 0) * 10000);
-                      const incomeTax = results.breakdown?.incomeTax ?? 0;
-                      const residentTax = results.breakdown?.residentTax ?? 0;
-                      const socialInsurance = results.breakdown?.socialInsurance ?? 0;
-                      const deductionTotal = incomeTax + residentTax + socialInsurance;
-                      return (
-                        <>
-                          <ResultRow
-                            label="年収（額面）"
-                            value={<>{formatJPY(annualSalaryYen)}<span className="ml-1 font-normal">円</span></>}
-                            valueClassName="text-right"
-                          />
-                          <ResultRow
-                            label="所得税"
-                            value={<>- {formatJPY(incomeTax)}<span className="ml-1 font-normal">円</span></>}
-                            valueClassName="text-right"
-                          />
-                          <ResultRow
-                            label="住民税"
-                            value={<>- {formatJPY(residentTax)}<span className="ml-1 font-normal">円</span></>}
-                            valueClassName="text-right"
-                          />
-                          <ResultRow
-                            label="社会保険料"
-                            value={<>- {formatJPY(socialInsurance)}<span className="ml-1 font-normal">円</span></>}
-                            valueClassName="text-right"
-                          />
-                          <ResultRow
-                            label="控除合計額"
-                            value={<>- {formatJPY(deductionTotal)}<span className="ml-1 font-normal">円</span></>}
-                            className="font-bold border-t-2 border-[#e0e0e0]"
-                            valueClassName="text-right"
-                          />
-                        </>
-                      );
-                    })()}
-                  </div>
-                )}
-              </Card>
-            )}
-
-            {showResults && results && (
-              <div className="md:hidden flex justify-center mt-6">
-                <RakutenWidgetAd />
-              </div>
-            )}
-
-            {showResults && results && percentileData && (
-              <Card className="section-gap mt-6">
-                <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold mb-4 leading-tight">あなたの年収レベル</h3>
-                <div className="text-left mb-4">
-                  <p className="text-sm text-gray-600 mb-2">日本の</p>
-                  <p className="text-4xl font-black text-[#0a57d1]">上位 {percentileData.percentile}%</p>
-                </div>
-                <div className="mb-4">
-                  <div className="bg-gray-200 h-4 rounded-full overflow-hidden">
-                    <div
-                      className="bg-[#0a57d1] h-full rounded-full transition-all duration-500"
-                      style={{ width: `${100 - percentileData.percentile}%` }}
-                    />
-                  </div>
-                </div>
-                <p className="text-left text-gray-700">
-                  {percentileData.averageDiff > 0
-                    ? `${ageGroup}の平均より ${percentileData.averageDiff}万円 高い収入です`
-                    : `${ageGroup}の平均より ${Math.abs(percentileData.averageDiff)}万円 低い収入です`}
-                </p>
-                <p className="text-left text-sm text-gray-600 mt-2">{percentileData.message}</p>
-                <div className="my-4 flex justify-center">
-                  <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" rel="nofollow">
-                    <img
-                      width={300}
-                      height={250}
-                      alt=""
-                      src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003031000&mc=1"
-                      className="border-0"
-                    />
-                  </a>
-                  <img width={1} height={1} src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" alt="" className="border-0" />
-                </div>
-              </Card>
-            )}
-
-            {showResults && results && percentileData && (
-              <Card className="section-gap mt-6">
-                <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold mb-4 leading-tight">今すぐ行動すべき理由</h3>
-                <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
-                  <p className="font-bold mb-2">転職市場は今がチャンス</p>
-                  <ul className="text-sm sm:text-base leading-[1.6] text-gray-700 space-y-1">
-                    <li>• 求人倍率: 1.5倍（過去最高水準）</li>
-                    <li>• 人手不足で企業が高待遇提示</li>
-                    <li>• 2025年は転職好機</li>
-                  </ul>
-                </div>
-                <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
-                  <p className="font-bold mb-2">1年遅れると...</p>
-                  <ul className="text-sm sm:text-base leading-[1.6] text-gray-700 space-y-1">
-                    <li>• 年収UP機会を逃す: -100万円/年</li>
-                    <li>• 生涯年収の損失: -1000万円以上</li>
-                    <li>• スキルアップの機会も逃す</li>
-                  </ul>
-                </div>
-                <div className="bg-white border-l-4 border-[#e0e0e0] p-4">
-                  <p className="font-bold mb-2">転職成功者の平均UP額</p>
-                  <ul className="text-sm sm:text-base leading-[1.6] text-gray-700 space-y-1">
-                    <li>• 20代: +80万円</li>
-                    <li className={ageGroup === '30代' ? 'font-bold text-green-700' : ''}>• 30代: +120万円 {ageGroup === '30代' && '← あなたの年代'}</li>
-                    <li className={ageGroup === '40代' ? 'font-bold text-green-700' : ''}>• 40代: +150万円 {ageGroup === '40代' && '← あなたの年代'}</li>
-                    <li className={ageGroup === '50代' ? 'font-bold text-green-700' : ''}>• 50代: +100万円 {ageGroup === '50代' && '← あなたの年代'}</li>
-                    {ageGroup === '20代' && <li className="font-bold text-green-700">• 20代: +80万円 ← あなたの年代</li>}
-                    {ageGroup === '60代以上' && <li className="font-bold text-green-700">• 60代以上: +80万円 ← あなたの年代</li>}
-                  </ul>
-                </div>
-                <div className="md:hidden mt-6 flex justify-center">
-                  <RakutenWidgetAd />
-                </div>
-              </Card>
-            )}
-          </div>
-        </section>
-
         {/* === 「手取りを増やすための次のステップ」セクション（一時的にコメントアウト） === */}
         {/*
         {showResults && results && <CtaSection />}
         */}
         {/* === /「手取りを増やすための次のステップ」セクション === */}
-
-        {/* セクション3: 詳細計算へのリンク */}
-        <div>
-          <H2>あなたに合った詳細計算ツールを選ぼう</H2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* カード1: 転職検討者向け */}
-            <Link href="/tools/job-change" className="block h-full">
-              <Card
-                as="div"
-                className="transition-all duration-300 hover:shadow-sm hover:scale-[1.01] cursor-pointer h-full"
-              >
-                <div className="text-4xl mb-4 text-center">💼</div>
-                <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-900 mb-2 text-center leading-tight">
-                  転職を検討中
-                </h3>
-                <p className="text-sm sm:text-base leading-[1.6] text-gray-600 text-center">
-                  現在の年収と転職先の年収を比較。増加額が一目でわかります。
-                </p>
-              </Card>
-            </Link>
-
-            {/* カード2: 新卒・就活生向け */}
-            <Link href="/tools/fresh-graduate" className="block h-full">
-              <Card
-                as="div"
-                className="transition-all duration-300 hover:shadow-sm hover:scale-[1.01] cursor-pointer h-full"
-              >
-                <div className="text-4xl mb-4 text-center">🎓</div>
-                <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-900 mb-2 text-center leading-tight">
-                  就活中・新卒
-                </h3>
-                <p className="text-sm sm:text-base leading-[1.6] text-gray-600 text-center">
-                  内定先の年収から手取りを計算。生活費シミュレーション付き。
-                </p>
-              </Card>
-            </Link>
-
-            {/* カード3: 副業検討者向け */}
-            <Link href="/tools/side-business" className="block h-full">
-              <Card
-                as="div"
-                className="transition-all duration-300 hover:shadow-sm hover:scale-[1.01] cursor-pointer h-full"
-              >
-                <div className="text-4xl mb-4 text-center">💰</div>
-                <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-900 mb-2 text-center leading-tight">
-                  副業を検討中
-                </h3>
-                <p className="text-sm sm:text-base leading-[1.6] text-gray-600 text-center">
-                  本業と副業の合計から手取りを計算。確定申告の注意点もチェック。
-                </p>
-              </Card>
-            </Link>
-          </div>
-        </div>
-
-        {/* 新規追加: その他の便利なツール */}
-        <div className="mb-16 mt-16">
-          <H2>その他の便利なツール</H2>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* 年代・年収別 手取り一覧表 */}
-            <Link href="/tables" className="block">
-              <Card as="div" className="hover:shadow-sm transition-all">
-                <div className="flex items-start mb-3">
-                  <span className="text-3xl mr-3">📊</span>
-                  <div>
-                    <h3 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mb-2 leading-tight">
-                      年代・年収別 手取り一覧表
-                    </h3>
-                    <p className="text-sm sm:text-base leading-[1.6] text-gray-600">
-                      年収200万〜1000万円の手取り額を一覧で確認。年代別の平均年収もチェックできます。
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-[#0a57d1] font-semibold text-sm">一覧表を見る →</span>
-                </div>
-              </Card>
-            </Link>
-
-            {/* よくある質問（FAQ） */}
-            <Link href="/faq" className="block">
-              <Card as="div" className="hover:shadow-sm transition-all">
-                <div className="flex items-start mb-3">
-                  <span className="text-3xl mr-3">❓</span>
-                  <div>
-                    <h3 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mb-2 leading-tight">よくある質問（FAQ）</h3>
-                    <p className="text-sm sm:text-base leading-[1.6] text-gray-600">
-                      手取り計算の疑問を解決。税金・社会保険・転職・副業に関する質問に回答します。
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-[#0a57d1] font-semibold text-sm">FAQを見る →</span>
-                </div>
-              </Card>
-            </Link>
-          </div>
-        </div>
 
       </div>
 

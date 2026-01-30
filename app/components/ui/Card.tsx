@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
 import { cn } from './cn';
 
-type CardVariant = 'base' | 'noBorder';
+type CardVariant = 'base' | 'noBorder' | 'flat';
 
 type Props<T extends ElementType> = {
   as?: T;
@@ -18,7 +18,12 @@ export function Card<T extends ElementType = 'section'>({
   ...props
 }: Props<T>) {
   const Comp = (as ?? 'section') as ElementType;
-  const baseClass = variant === 'noBorder' ? 'card-no-border' : 'card-base';
+  const baseClass =
+    variant === 'flat'
+      ? 'card-flat'
+      : variant === 'noBorder'
+        ? 'card-no-border'
+        : 'card-base';
 
   return (
     <Comp className={cn(baseClass, className)} {...props}>

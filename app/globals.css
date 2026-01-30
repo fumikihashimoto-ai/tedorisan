@@ -269,6 +269,15 @@ h4 {
   box-shadow: none;
 }
 
+/* フラットカード（枠線・背景・シャドウなし、計算ツール等で使用） */
+.card-flat {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem 0;
+  box-shadow: none;
+}
+
 /* 2. 見出し（h2統一） */
 .heading-h2 {
   font-family: var(--font-sans);

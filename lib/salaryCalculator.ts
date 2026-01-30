@@ -156,3 +156,93 @@ export function calculateTakeHome(
     effectiveTaxRate: `${effectiveTaxRate}%`,
   };
 }
+
+/**
+ * 社会保険料の内訳（概算率）
+ */
+const HEALTH_INSURANCE_RATE = 0.05; // 健康保険 約5%
+const PENSION_RATE = 0.0915; // 厚生年金 約9.15%
+const NURSING_CARE_RATE = 0.009; // 介護保険 約0.9%（40歳以上のみ）
+const EMPLOYMENT_INSURANCE_RATE = 0.006; // 雇用保険 約0.6%
+
+/**
+ * 手取り計算の詳細内訳（年収・月収両方）
+ * @param annualSalary 年収（円）
+ * @param age 年齢（介護保険の有無に使用）
+ * @param dependents 扶養人数（デフォルト: 0）
+ */
+export interface TakeHomeDetailedResult {
+  annualSalary: number;
+  monthlySalary: number;
+  incomeTax: { annual: number; monthly: number };
+  residentTax: { annual: number; monthly: number };
+  healthInsurance: { annual: number; monthly: number };
+  pension: { annual: number; monthly: number };
+  nursingCare: { annual: number; monthly: number };
+  employmentInsurance: { annual: number; monthly: number };
+  takeHome: { annual: number; monthly: number };
+}
+
+export function calculateTakeHomeDetailed(
+  annualSalary: number,
+  age: number,
+  dependents: number = 0
+): TakeHomeDetailedResult {
+  const baseResult = calculateTakeHome(annualSalary, dependents);
+  const incomeTaxAnnual = baseResult.breakdown.incomeTax;
+  const residentTaxAnnual = baseResult.breakdown.residentTax;
+
+  // 社会保険料の内訳（概算）
+  const healthInsuranceAnnual = Math.round(annualSalary * HEALTH_INSURANCE_RATE);
+  const pensionAnnual = Math.round(annualSalary * PENSION_RATE);
+  const nursingCareAnnual =
+    age >= 40 ? Math.round(annualSalary * NURSING_CARE_RATE) : 0;
+  const employmentInsuranceAnnual = Math.round(
+    annualSalary * EMPLOYMENT_INSURANCE_RATE
+  );
+
+  const totalDeductions =
+    incomeTaxAnnual +
+    residentTaxAnnual +
+    healthInsuranceAnnual +
+    pensionAnnual +
+    nursingCareAnnual +
+    employmentInsuranceAnnual;
+  const takeHomeAnnual = Math.max(0, annualSalary - totalDeductions);
+  const takeHomeMonthly = Math.round(takeHomeAnnual / 12);
+
+  const toMonthly = (annual: number) => Math.round(annual / 12);
+
+  return {
+    annualSalary,
+    monthlySalary: Math.round(annualSalary / 12),
+    incomeTax: {
+      annual: incomeTaxAnnual,
+      monthly: toMonthly(incomeTaxAnnual),
+    },
+    residentTax: {
+      annual: residentTaxAnnual,
+      monthly: toMonthly(residentTaxAnnual),
+    },
+    healthInsurance: {
+      annual: healthInsuranceAnnual,
+      monthly: toMonthly(healthInsuranceAnnual),
+    },
+    pension: {
+      annual: pensionAnnual,
+      monthly: toMonthly(pensionAnnual),
+    },
+    nursingCare: {
+      annual: nursingCareAnnual,
+      monthly: toMonthly(nursingCareAnnual),
+    },
+    employmentInsurance: {
+      annual: employmentInsuranceAnnual,
+      monthly: toMonthly(employmentInsuranceAnnual),
+    },
+    takeHome: {
+      annual: takeHomeAnnual,
+      monthly: takeHomeMonthly,
+    },
+  };
+}
