@@ -133,6 +133,9 @@ export default function Home() {
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+              年収の手取りを最速で計算！シミュレーション付きで初心者も安心
+            </h1>
             <HomeClient />
           </main>
 

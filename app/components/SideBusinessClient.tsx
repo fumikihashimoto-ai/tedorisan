@@ -5,18 +5,15 @@ import { calculateTakeHome } from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
 import Link from 'next/link';
 import PcAdSidebar from './PcAdSidebar';
-import { Card, InputField, PrimaryButton, ResultAmount, ResultRow } from './ui';
-import CustomSelect, { type CustomSelectOption } from './CustomSelect';
+import { ResultAmount } from './ui';
 
-const AGE_OPTIONS: CustomSelectOption[] = [
-  { value: '20代', label: '20代' },
-  { value: '30代', label: '30代' },
-  { value: '40代', label: '40代' },
-  { value: '50代', label: '50代' },
-  { value: '60代以上', label: '60代以上' },
-];
+const AGE_OPTIONS: AgeGroup[] = ['20代', '30代', '40代', '50代', '60代以上'];
 
-export default function SideBusinessClient() {
+type SideBusinessClientProps = {
+  embedded?: boolean;
+};
+
+export default function SideBusinessClient({ embedded = false }: SideBusinessClientProps) {
   const [salary, setSalary] = useState('');
   const [sideIncome, setSideIncome] = useState('');
   const [sideExpenses, setSideExpenses] = useState('');
@@ -79,158 +76,150 @@ export default function SideBusinessClient() {
     ? results.withSideBusiness.takeHome - results.salary.takeHome
     : 0;
 
-  return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main pb-24 md:pb-0">
-      <div className="max-w-7xl mx-auto">
-        <div className="md:flex md:items-start md:gap-8">
-          <div className="md:max-w-[800px] md:w-full">
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} 副業検討者向け
-            </nav>
-            <h1 className="page-title">副業検討者向け 手取り計算</h1>
+  const calculatorSection = (
+    <section id="calculator" className="pt-4 pb-6 mb-0 scroll-mt-6 -mt-4 md:-mt-6">
+      <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+        手取り計算シミュレーション
+      </h2>
 
         {/* 入力フォーム */}
-        <Card as="div" className="mb-6">
-          {/* 会社員としての収入 */}
-          <div className="mb-6">
-            <label className="block font-semibold text-gray-900 text-base mb-2">
-              会社員としての収入
-            </label>
-            <p className="text-caption mb-2">
-              本業の年収を入力してください
-            </p>
-            <div className="relative">
-              <InputField
-                type="tel"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
-                className="pr-12"
-                placeholder="400"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
-                万円
-              </span>
+        <div className="w-full mb-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* 会社員としての収入 */}
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">
+                  会社員としての収入
+                </label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={salary}
+                    onChange={(e) => setSalary(e.target.value)}
+                    placeholder="400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-12"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 text-sm">
+                    万円
+                  </span>
+                </div>
+              </div>
+
+              {/* 副業としての収入 */}
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">
+                  副業としての収入
+                </label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={sideIncome}
+                    onChange={(e) => setSideIncome(e.target.value)}
+                    placeholder="50"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-12"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 text-sm">
+                    万円
+                  </span>
+                </div>
+              </div>
+
+              {/* 副業の費用/経費 */}
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">
+                  副業の費用/経費
+                </label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={sideExpenses}
+                    onChange={(e) => setSideExpenses(e.target.value)}
+                    placeholder="10"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-12"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 text-sm">
+                    万円
+                  </span>
+                </div>
+              </div>
+
+              {/* 年代選択 */}
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">
+                  あなたの年代
+                </label>
+                <select
+                  value={ageGroup}
+                  onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                >
+                  {AGE_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* 扶養人数 */}
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">
+                  扶養人数
+                </label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={dependents}
+                    onChange={(e) => setDependents(e.target.value)}
+                    placeholder="0"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-12"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 text-sm">
+                    人
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* 副業としての収入 */}
-          <div className="mb-6">
-            <label className="block font-semibold text-gray-900 text-base mb-2">
-              副業としての収入
-            </label>
-            <p className="text-caption mb-2">
-              副業の年間収入を入力してください
-            </p>
-            <div className="relative">
-              <InputField
-                type="tel"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={sideIncome}
-                onChange={(e) => setSideIncome(e.target.value)}
-                className="pr-12"
-                placeholder="50"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
-                万円
-              </span>
-            </div>
-          </div>
-
-          {/* 副業の費用/経費 */}
-          <div className="mb-6">
-            <label className="block font-semibold text-gray-900 text-base mb-2">
-              副業の費用/経費
-            </label>
-            <p className="text-caption mb-2">
-              副業にかかる経費を入力してください
-            </p>
-            <div className="relative">
-              <InputField
-                type="tel"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={sideExpenses}
-                onChange={(e) => setSideExpenses(e.target.value)}
-                className="pr-12"
-                placeholder="10"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
-                万円
-              </span>
-            </div>
-          </div>
-
-          {/* 年代選択 */}
-          <div className="mb-6">
-            <label className="block font-semibold text-gray-900 text-base mb-2">
-              あなたの年代
-            </label>
-            <p className="text-caption mb-2">
-              年代別の正確な比較をお見せします
-            </p>
-            <CustomSelect
-              options={AGE_OPTIONS}
-              value={ageGroup}
-              onChange={(v) => setAgeGroup(v as AgeGroup)}
-              placeholder="年代を選択"
-            />
-          </div>
-
-          {/* 扶養人数 */}
-          <div className="mb-6">
-            <label className="block font-semibold text-gray-900 text-base mb-2">
-              扶養人数
-            </label>
-            <p className="text-caption mb-2">
-              扶養している家族の人数を入力してください
-            </p>
-            <div className="relative">
-              <InputField
-                type="tel"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={dependents}
-                onChange={(e) => setDependents(e.target.value)}
-                className="pr-12"
-                placeholder="0"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600">
-                人
-              </span>
-            </div>
-          </div>
-
-          {/* 計算ボタン */}
-          <PrimaryButton onClick={handleCalculate} className="mt-6">
-            計算する
-          </PrimaryButton>
-        </Card>
+            {/* 計算ボタン */}
+            <button
+              type="button"
+              onClick={handleCalculate}
+              className="w-full bg-gray-700 hover:bg-gray-800 text-white font-bold px-6 py-3 rounded transition-colors"
+            >
+              計算
+            </button>
+        </div>
 
         {/* 計算結果 */}
         {results.salary && results.withSideBusiness && (
-          <Card as="div" id="results" className="mb-6">
-            {/* 結果ヘッダー（このページは既存構成を保つため、ヘッダー＋トグルのみ追加） */}
-            <div className="text-center">
-              <div className="result-label">青色申告で年間お得になる額は…</div>
-              <ResultAmount tone={difference >= 0 ? 'positive' : 'negative'} className="mt-2">
-                約 {difference >= 0 ? '+' : ''}
-                {Math.round(difference / 10000)}
-                <span className="text-base font-normal ml-1">万円</span>
-              </ResultAmount>
-            </div>
+          <div id="results" className="bg-white rounded-lg shadow-sm p-6 mb-6">
+              {/* 結果ヘッダー */}
+              <div className="text-center">
+                <div className="text-sm text-gray-600">青色申告で年間お得になる額は…</div>
+                <ResultAmount tone={difference >= 0 ? 'positive' : 'negative'} className="mt-2">
+                  約 {difference >= 0 ? '+' : ''}
+                  {Math.round(difference / 10000)}
+                  <span className="text-base font-normal ml-1">万円</span>
+                </ResultAmount>
+              </div>
 
-            <div
-              className="text-center text-blue-600 cursor-pointer py-2 mt-4"
-              onClick={() => setShowDetails(!showDetails)}
-            >
-              {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
-            </div>
+              <div
+                className="text-center text-blue-600 cursor-pointer py-2 mt-4"
+                onClick={() => setShowDetails(!showDetails)}
+              >
+                {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
+              </div>
 
-            {/* 広告1: PC・スマホ両方に表示（詳細を見るの下） */}
-            <div className="my-4 flex justify-center">
+              {/* 広告1: PC・スマホ両方に表示（詳細を見るの下） */}
+              <div className="my-4 flex justify-center">
               <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8LMIP" rel="nofollow">
                 <img
                   width={468}
@@ -250,82 +239,97 @@ export default function SideBusinessClient() {
             </div>
 
             {showDetails && (
-              <div className="mt-4">
+              <div className="mt-4 space-y-4">
                 {/* 入力内容サマリー */}
-                <div className="mb-4 bg-white border-2 border-[#e0e0e0] rounded-2xl p-4">
-                  <div className="text-body space-y-1">
-                    <ResultRow
-                      label="本業年収"
-                      value={Number.isFinite(parseFloat(salary)) ? `${parseFloat(salary)}万円` : '-'}
-                      valueClassName="text-right"
-                    />
-                    <ResultRow
-                      label="副業収入"
-                      value={Number.isFinite(parseFloat(sideIncome)) ? `${parseFloat(sideIncome)}万円` : '0万円'}
-                      valueClassName="text-right"
-                    />
-                    <ResultRow
-                      label="合計年収（本業+副業）"
-                      value={
-                        Number.isFinite(parseFloat(salary))
-                          ? `${(parseFloat(salary) + (parseFloat(sideIncome) || 0)).toFixed(1)}万円`
-                          : '-'
-                      }
-                      className="pt-2 border-t border-[#e0e0e0]"
-                      labelClassName="font-semibold text-[#333333]"
-                      valueClassName="text-right font-semibold text-[#333333]"
-                    />
-                  </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse text-sm sm:text-base">
+                    <thead>
+                      <tr>
+                        <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
+                        <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="p-3 border-b border-gray-100">本業年収</td>
+                        <td className="p-3 border-b border-gray-100 text-right tabular-nums">{Number.isFinite(parseFloat(salary)) ? `${parseFloat(salary)}万円` : '-'}</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 border-b border-gray-100">副業収入</td>
+                        <td className="p-3 border-b border-gray-100 text-right tabular-nums">{Number.isFinite(parseFloat(sideIncome)) ? `${parseFloat(sideIncome)}万円` : '0万円'}</td>
+                      </tr>
+                      <tr className="bg-amber-50 font-bold">
+                        <td className="p-3 border-b border-gray-100">合計年収（本業+副業）</td>
+                        <td className="p-3 border-b border-gray-100 text-right tabular-nums">
+                          {Number.isFinite(parseFloat(salary))
+                            ? `${(parseFloat(salary) + (parseFloat(sideIncome) || 0)).toFixed(1)}万円`
+                            : '-'}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
                 {/* 雑所得ケース */}
-                <div className="mt-4 p-4 bg-white border-2 border-[#e0e0e0] rounded-2xl">
+                <div>
                   <h3 className="font-semibold text-gray-900 mb-3">雑所得ケース</h3>
-                  <div className="space-y-2">
-                    <ResultRow
-                      label="所得税"
-                      value={`${formatYen(results.withSideBusiness.incomeTax)}万円`}
-                    />
-                    <ResultRow
-                      label="住民税"
-                      value={`${formatYen(results.withSideBusiness.residentTax)}万円`}
-                    />
-                    <ResultRow
-                      label="可処分所得"
-                      value={`${formatYen(results.withSideBusiness.takeHome)}万円`}
-                      className="pt-2 border-t border-[#e0e0e0]"
-                      labelClassName="font-semibold text-[#333333]"
-                      valueClassName="font-semibold text-[#333333]"
-                    />
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse text-sm sm:text-base">
+                      <thead>
+                        <tr>
+                          <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
+                          <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="p-3 border-b border-gray-100">所得税</td>
+                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.incomeTax)}万円</td>
+                        </tr>
+                        <tr>
+                          <td className="p-3 border-b border-gray-100">住民税</td>
+                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.residentTax)}万円</td>
+                        </tr>
+                        <tr className="bg-amber-50 font-bold">
+                          <td className="p-3 border-b border-gray-100">可処分所得</td>
+                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.takeHome)}万円</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
                 {/* 青色申告ケース */}
-                <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-4 mt-4">
+                <div>
                   <h3 className="font-semibold text-gray-900 mb-3">青色申告ケース（65万円控除）</h3>
-                  <div className="space-y-2">
-                    <ResultRow label="控除額" value="65万円" />
-                    <ResultRow
-                      label="節税効果"
-                      value={`約${formatYen(650000 * 0.33)}万円`}
-                      className="pt-2 border-t border-[#e0e0e0]"
-                      labelClassName="font-semibold text-[#333333]"
-                      valueClassName="font-semibold text-[#333333]"
-                    />
-                    <ResultRow
-                      label="可処分所得"
-                      value={`${formatYen(results.withSideBusiness.takeHome)}万円`}
-                      className="pt-2 border-t border-[#e0e0e0]"
-                      labelClassName="font-semibold text-[#333333]"
-                      valueClassName="font-semibold text-[#333333]"
-                    />
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse text-sm sm:text-base">
+                      <thead>
+                        <tr>
+                          <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
+                          <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="p-3 border-b border-gray-100">控除額</td>
+                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">65万円</td>
+                        </tr>
+                        <tr>
+                          <td className="p-3 border-b border-gray-100">節税効果</td>
+                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">約{formatYen(650000 * 0.33)}万円</td>
+                        </tr>
+                        <tr className="bg-amber-50 font-bold">
+                          <td className="p-3 border-b border-gray-100">可処分所得</td>
+                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.takeHome)}万円</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-
-                {/* 可処分所得の差（削除） */}
               </div>
             )}
-          </Card>
+          </div>
         )}
 
         {/* パーセンタイル表示セクション */}
@@ -359,7 +363,7 @@ export default function SideBusinessClient() {
           }
           
           return (
-            <div className="card-base mt-6">
+            <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
@@ -478,8 +482,24 @@ export default function SideBusinessClient() {
           </div>
         )}
 
-          </div>
+    </section>
+  );
 
+  if (embedded) {
+    return calculatorSection;
+  }
+
+  return (
+    <div className="min-h-screen bg-[#f5f5f5] container-main pb-24 md:pb-0">
+      <div className="max-w-7xl mx-auto">
+        <div className="md:flex md:items-start md:gap-8">
+          <div className="md:max-w-[800px] md:w-full">
+            <nav className="breadcrumb mb-3">
+              <Link href="/">ホーム</Link> {'>'} 副業検討者向け
+            </nav>
+            <h1 className="page-title">副業検討者向け 手取り計算</h1>
+            {calculatorSection}
+          </div>
           <PcAdSidebar />
         </div>
       </div>
