@@ -5,9 +5,11 @@ import { calculateTakeHome } from '../../lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
 import Link from 'next/link';
 import PcAdSidebar from './PcAdSidebar';
+import AnimatedSelect, { type AnimatedSelectOption } from './AnimatedSelect';
 import { ResultAmount } from './ui';
 
 const AGE_OPTIONS: AgeGroup[] = ['20代', '30代', '40代', '50代', '60代以上'];
+const AGE_SELECT_OPTIONS: AnimatedSelectOption[] = AGE_OPTIONS.map((v) => ({ value: v, label: v }));
 
 type SideBusinessClientProps = {
   embedded?: boolean;
@@ -153,17 +155,12 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
                 <label className="block text-sm text-gray-600 mb-1">
                   あなたの年代
                 </label>
-                <select
+                <AnimatedSelect
+                  options={AGE_SELECT_OPTIONS}
                   value={ageGroup}
-                  onChange={(e) => setAgeGroup(e.target.value as AgeGroup)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-                >
-                  {AGE_OPTIONS.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(v) => setAgeGroup(v as AgeGroup)}
+                  placeholder="年代を選択"
+                />
               </div>
 
               {/* 扶養人数 */}

@@ -539,6 +539,51 @@ h4 {
   transform: translateY(0);
 }
 
+/* AnimatedSelect - ふわっとしたドロップダウンアニメーション */
+.animated-select-dropdown {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  overflow: hidden;
+  animation: animatedSelectFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes animatedSelectFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animated-select-option {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #333333;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.animated-select-option:last-child {
+  border-bottom: none;
+}
+
+.animated-select-option:hover {
+  background-color: #f9fafb;
+}
+
+.animated-select-option.selected {
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: 500;
+}
+
 .custom-option {
   position: relative;
   display: block;
