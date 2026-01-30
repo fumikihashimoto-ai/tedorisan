@@ -5,9 +5,9 @@ import JobChangeArticle from './JobChangeArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | テドリさん',
+  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
   description:
-    '2026年の転職市場で年収アップを確実にするロードマップ。市場価値の把握、職務経歴書の書き方、面接・年収交渉のコツ、転職エージェントの活用法まで徹底解説。転職前後の手取り比較シミュレーター付き。',
+    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
   keywords: [
     '転職 年収',
     '転職 年収アップ',
@@ -18,9 +18,9 @@ export const metadata: Metadata = createPageMetadata({
     '年収 手取り 比較',
   ],
   canonicalPath: '/tools/job-change',
-  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ',
+  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '2026年の転職市場で年収アップを確実にするロードマップ。市場価値の把握、職務経歴書の書き方、面接・年収交渉のコツまで徹底解説。',
+    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
   openGraphType: 'article',
 });
 

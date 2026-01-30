@@ -5,9 +5,9 @@ import FreshGraduateArticle from './FreshGraduateArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較 | テドリさん',
+  title: '新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較 | 手取り計算シミュレーションツール テドリさん',
   description:
-    '新卒の手取り平均を大卒・高卒・専門卒別に徹底解説。大卒は約17.8万〜20.2万円、高卒は約14.8万〜16.8万円、専門卒は約16.7万〜18.9万円が目安。額面から手取りの計算方法や、手取りを増やす具体的な方法も紹介。',
+    '新卒の手取り平均はいくら？大卒・高卒・専門卒別にリアルな手取り平均額を徹底解説。初任給から引かれる税金や社会保険、手取りを増やす方法まで、新卒が知るべき情報を網羅。',
   keywords: [
     '新卒 手取り',
     '新卒 手取り 平均',
@@ -18,9 +18,9 @@ export const metadata: Metadata = createPageMetadata({
     '新卒 年収',
   ],
   canonicalPath: '/tools/fresh-graduate',
-  openGraphTitle: '新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較',
+  openGraphTitle: '新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較 | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '新卒の手取り平均を大卒・高卒・専門卒別に徹底解説。額面から手取りの計算方法や、手取りを増やす具体的な方法も紹介。',
+    '新卒の手取り平均はいくら？大卒・高卒・専門卒別にリアルな手取り平均額を徹底解説。初任給から引かれる税金や社会保険、手取りを増やす方法まで、新卒が知るべき情報を網羅。',
   openGraphType: 'article',
 });
 

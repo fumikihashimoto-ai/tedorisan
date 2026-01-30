@@ -5,9 +5,9 @@ import SideBusinessArticle from './SideBusinessArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | テドリさん',
+  title: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | 手取り計算シミュレーションツール テドリさん',
   description:
-    '副業の確定申告に必要な基礎知識から、所得の種類、経費、控除、書類作成、提出方法まで網羅的に解説。青色申告の活用法、住民税対策、会社バレを防ぐ方法も紹介。20万円以下の収入や複数の副業があるケースにも対応。',
+    '副業の確定申告、これで安心！必要条件から青色申告、経費、会社バレ対策まで、副業収入がある方が知るべき確定申告のすべてをわかりやすく解説。e-Taxでの提出方法も網羅した完全マニュアル。',
   keywords: [
     '副業 確定申告',
     '副業 税金',
@@ -18,9 +18,9 @@ export const metadata: Metadata = createPageMetadata({
     '確定申告 マニュアル',
   ],
   canonicalPath: '/tools/side-business',
-  openGraphTitle: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル',
+  openGraphTitle: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '副業の確定申告に必要な基礎知識から、所得の種類、経費、控除、書類作成、提出方法まで網羅的に解説。青色申告、住民税対策、会社バレ対策も紹介。',
+    '副業の確定申告、これで安心！必要条件から青色申告、経費、会社バレ対策まで、副業収入がある方が知るべき確定申告のすべてをわかりやすく解説。e-Taxでの提出方法も網羅した完全マニュアル。',
   openGraphType: 'article',
 });
 
