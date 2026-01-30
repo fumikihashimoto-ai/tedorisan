@@ -10,21 +10,6 @@ import { Card, H2 } from './ui';
 import RakutenWidgetAd from './RakutenWidgetAd';
 import InlineAd from './InlineAd';
 
-const PREFECTURES = [
-  '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
-  '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
-  '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県',
-  '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県',
-  '奈良県', '和歌山県', '鳥取県', '島根県', '岡山県', '広島県', '山口県',
-  '徳島県', '香川県', '愛媛県', '高知県', '福岡県', '佐賀県', '長崎県',
-  '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県',
-];
-
-const FISCAL_YEARS = [
-  { value: '2025', label: '令和7年度' },
-  { value: '2024', label: '令和6年度' },
-];
-
 function ageToAgeGroup(age: number): AgeGroup {
   if (age < 30) return '20代';
   if (age < 40) return '30代';
@@ -34,10 +19,8 @@ function ageToAgeGroup(age: number): AgeGroup {
 }
 
 export default function HomeClient() {
-  const [prefecture, setPrefecture] = useState('東京都');
-  const [age, setAge] = useState(30);
+  const [age, setAge] = useState('30');
   const [monthlySalary, setMonthlySalary] = useState('30');
-  const [fiscalYear, setFiscalYear] = useState('2025');
   const [results, setResults] = useState<TakeHomeDetailedResult | null>(null);
   const [showResults, setShowResults] = useState(false);
   const [percentileData, setPercentileData] = useState<{
@@ -81,9 +64,10 @@ export default function HomeClient() {
   const handleCalculate = () => {
     const monthlyValue = parseFloat(String(monthlySalary).replace(/,/g, ''));
     if (!isNaN(monthlyValue) && monthlyValue > 0) {
+      const ageNum = parseInt(String(age), 10) || 30;
       const yearlyIncome = monthlyValue * 12 * 10000; // 月収(万円) × 12
-      const calculated = calculateTakeHomeDetailed(yearlyIncome, age, 0);
-      const ageGroup = ageToAgeGroup(age);
+      const calculated = calculateTakeHomeDetailed(yearlyIncome, ageNum, 0);
+      const ageGroup = ageToAgeGroup(ageNum);
       const pData = calculatePercentile(yearlyIncome, ageGroup);
       setResults(calculated);
       setPercentileData(pData);
@@ -103,40 +87,24 @@ export default function HomeClient() {
     <div className="container-main pb-20">
       <div className="space-y-8 md:space-y-12">
         {/* リード文セクション */}
-        <section className="py-8 mb-8">
-          <p className="text-base leading-[1.8] text-gray-700 mb-8">
+        <section className="pt-0 pb-8 mb-0">
+          <p className="text-base leading-[1.8] text-gray-700 mb-0">
             「年収は高いはずなのに、手取りが少ないのはなぜ？」その疑問、この記事で解決します。あなたの年収から手取り額がいくらになるか、シミュレーションで最速チェック。額面と手取りの違いから、社会保険料（健康保険、厚生年金など）や税金（所得税、住民税など）がどのように差し引かれるのかを初心者にも分かりやすく徹底解説します。年収300万円から700万円の具体的なシミュレーション例で仕組みを理解し、さらに手取り額を増やすための具体的な方法までご紹介。この記事を読めば、手取りの全貌が明らかになり、賢い家計管理の第一歩を踏み出せます。
           </p>
         </section>
 
         {/* 計算シミュレーションセクション */}
-        <section id="calculator" className="pt-4 pb-6 mb-8 scroll-mt-6 -mt-4 md:-mt-6">
+        <section id="calculator" className="pt-4 pb-6 mb-0 scroll-mt-6 -mt-4 md:-mt-6">
           <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mb-6 flex items-center gap-3 leading-tight">
             <span className="w-1 h-6 bg-amber-500 rounded-full" />
             手取り計算シミュレーション
           </h2>
-          <div className="py-4 w-full">
+          <div className="pt-0 pb-4 w-full">
 
             <Card variant="flat">
               <H2>🎯 まずは簡単計算</H2>
 
               <div className="flex flex-wrap md:flex-nowrap gap-4 items-end">
-                {/* 都道府県 */}
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">都道府県</label>
-                  <select
-                    value={prefecture}
-                    onChange={(e) => setPrefecture(e.target.value)}
-                    className="border border-gray-300 rounded px-3 h-12 w-32 text-base bg-white"
-                  >
-                    {PREFECTURES.map((p) => (
-                      <option key={p} value={p}>
-                        {p}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
                 {/* 年齢 */}
                 <div>
                   <label className="block text-sm text-gray-600 mb-1">年齢（歳）</label>
@@ -145,7 +113,7 @@ export default function HomeClient() {
                     min={18}
                     max={100}
                     value={age}
-                    onChange={(e) => setAge(parseInt(e.target.value) || 30)}
+                    onChange={(e) => setAge(e.target.value)}
                     className="border border-gray-300 rounded px-3 h-12 w-20 text-base"
                   />
                 </div>
@@ -161,22 +129,6 @@ export default function HomeClient() {
                     placeholder="33"
                     className="border border-gray-300 rounded px-3 h-12 w-24 text-base"
                   />
-                </div>
-
-                {/* 年度 */}
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">年度</label>
-                  <select
-                    value={fiscalYear}
-                    onChange={(e) => setFiscalYear(e.target.value)}
-                    className="border border-gray-300 rounded px-3 h-12 w-36 text-base bg-white"
-                  >
-                    {FISCAL_YEARS.map((y) => (
-                      <option key={y.value} value={y.value}>
-                        {y.label}
-                      </option>
-                    ))}
-                  </select>
                 </div>
 
                 {/* 計算ボタン */}
@@ -253,12 +205,12 @@ export default function HomeClient() {
                     <p className="text-2xl font-black text-[#0a57d1] mb-3">日本の上位 {percentileData.percentile}%</p>
                     <p className="text-base text-gray-700 mb-3">
                       {percentileData.averageDiff > 0
-                        ? `${ageToAgeGroup(age)}の平均より ${percentileData.averageDiff}万円 高い収入です。${percentileData.message}`
-                        : `${ageToAgeGroup(age)}の平均より ${Math.abs(percentileData.averageDiff)}万円 低い収入です。${percentileData.message}`}
+                        ? `${ageToAgeGroup(parseInt(String(age), 10) || 30)}の平均より ${percentileData.averageDiff}万円 高い収入です。${percentileData.message}`
+                        : `${ageToAgeGroup(parseInt(String(age), 10) || 30)}の平均より ${Math.abs(percentileData.averageDiff)}万円 低い収入です。${percentileData.message}`}
                     </p>
                     {/* 年代別比較 */}
                     <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold">{ageToAgeGroup(age)}:</span>
+                      <span className="text-lg font-bold">{ageToAgeGroup(parseInt(String(age), 10) || 30)}:</span>
                       <span className={`text-lg font-bold ${percentileData.averageDiff >= 0 ? 'text-blue-600' : 'text-red-500'}`}>
                         {percentileData.averageDiff >= 0 ? '+' : ''}{percentileData.averageDiff}万円
                       </span>

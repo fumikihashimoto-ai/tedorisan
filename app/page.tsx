@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import HomeClient from './components/HomeClient';
 import StructuredData from './components/StructuredData';
-import MobileTOC from './components/MobileTOC';
 
 export const metadata: Metadata = {
   // ========================================
@@ -130,9 +129,6 @@ export default function Home() {
 
       {/* メインコンテンツ */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        {/* スマートフォン用目次（PC非表示） */}
-        <MobileTOC />
-
         {/* 2カラムレイアウト（PC: 1024px以上） */}
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
