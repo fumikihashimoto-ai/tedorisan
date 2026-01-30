@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { calculateTakeHome } from '@/lib/salaryCalculator';
 import { averageIncomeByAge, percentileByAge, type AgeGroup } from '@/lib/ageIncomeData';
 import PcAdSidebar from '../../../components/PcAdSidebar';
+import ResultTable from '../../../components/ResultTable';
 import CustomSelect, { type CustomSelectOption } from '../../../components/CustomSelect';
 
 const AGE_OPTIONS: CustomSelectOption[] = [
@@ -114,49 +115,17 @@ export default function AnnualIncomePageClient({ amount }: Props) {
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <h2 className="text-lg font-bold mb-4 text-left">💰 詳細内訳</h2>
 
-          <table className="w-full">
-            <tbody>
-              <tr className="border-b">
-                <td className="py-3 font-semibold">年収</td>
-                <td className="py-3 text-right pr-4">{amountInMan}万円</td>
-              </tr>
-              <tr className="border-b bg-white">
-                <td className="py-3 pl-6 text-sm">
-                  <span className="mr-2">-</span>所得税
-                </td>
-                <td className="py-3 text-right text-[#333333] pr-4">
-                  {Math.round(result.incomeTax / 10000)}万円
-                </td>
-              </tr>
-              <tr className="border-b bg-white">
-                <td className="py-3 pl-6 text-sm">
-                  <span className="mr-2">-</span>住民税
-                </td>
-                <td className="py-3 text-right text-[#333333] pr-4">
-                  {Math.round(result.residentTax / 10000)}万円
-                </td>
-              </tr>
-              <tr className="border-b bg-white">
-                <td className="py-3 pl-6 text-sm">
-                  <span className="mr-2">-</span>社会保険料
-                </td>
-                <td className="py-3 text-right text-[#333333] pr-4">
-                  {Math.round(result.socialInsurance / 10000)}万円
-                </td>
-              </tr>
-              <tr className="bg-white">
-                <td className="py-3" />
-                <td className="py-3 text-right pr-4">
-                  <span className="font-bold text-gray-800 text-base">
-                    = 手取り
-                    <span className="ml-3 text-[#0a57d1] text-xl">
-                      {Math.round(result.yearlyTakeHome / 10000)}万円
-                    </span>
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <ResultTable
+            variant="breakdown"
+            hideHeader
+            items={[
+              { label: '年収', value: `${amountInMan}万円` },
+              { label: '所得税', value: `${Math.round(result.incomeTax / 10000)}万円`, labelPrefix: '-' },
+              { label: '住民税', value: `${Math.round(result.residentTax / 10000)}万円`, labelPrefix: '-' },
+              { label: '社会保険料', value: `${Math.round(result.socialInsurance / 10000)}万円`, labelPrefix: '-' },
+              { label: '', value: `${Math.round(result.yearlyTakeHome / 10000)}万円`, isTotalRow: true },
+            ]}
+          />
         </div>
       </div>
 

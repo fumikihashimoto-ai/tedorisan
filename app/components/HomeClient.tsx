@@ -9,6 +9,8 @@ import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ag
 import { Card, H2 } from './ui';
 import RakutenWidgetAd from './RakutenWidgetAd';
 import InlineAd from './InlineAd';
+import ResultTable from './ResultTable';
+import ResultTableAnnualMonthly from './ResultTableAnnualMonthly';
 
 function ageToAgeGroup(age: number): AgeGroup {
   if (age < 30) return '20代';
@@ -144,59 +146,18 @@ export default function HomeClient() {
 
             {showResults && results && (
               <Card id="results" variant="flat" className="section-gap animate-fade-in mt-6">
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse text-sm sm:text-base">
-                    <thead>
-                      <tr className="bg-gray-100">
-                        <th className="w-[35%] border border-gray-300 px-4 py-2 text-center">項目</th>
-                        <th className="border border-gray-300 px-4 py-2 text-center">年収</th>
-                        <th className="border border-gray-300 px-4 py-2 text-center">月収</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">額面収入</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.annualSalary)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.monthlySalary)}円</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">所得税</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.incomeTax.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.incomeTax.monthly)}円</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">住民税</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.residentTax.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.residentTax.monthly)}円</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">健康保険</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.healthInsurance.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.healthInsurance.monthly)}円</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">厚生年金</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.pension.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.pension.monthly)}円</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">介護保険</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.nursingCare.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.nursingCare.monthly)}円</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 px-4 py-2 text-center">雇用保険</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.employmentInsurance.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.employmentInsurance.monthly)}円</td>
-                      </tr>
-                      <tr className="font-bold bg-amber-50">
-                        <td className="border border-gray-300 px-4 py-2 text-center">手取り額</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.takeHome.annual)}円</td>
-                        <td className="tabular-nums border border-gray-300 px-4 py-2 text-right">{formatJPY(results.takeHome.monthly)}円</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <ResultTableAnnualMonthly
+                  items={[
+                    { label: '額面収入', annual: `${formatJPY(results.annualSalary)}円`, monthly: `${formatJPY(results.monthlySalary)}円` },
+                    { label: '所得税', annual: `${formatJPY(results.incomeTax.annual)}円`, monthly: `${formatJPY(results.incomeTax.monthly)}円` },
+                    { label: '住民税', annual: `${formatJPY(results.residentTax.annual)}円`, monthly: `${formatJPY(results.residentTax.monthly)}円` },
+                    { label: '健康保険', annual: `${formatJPY(results.healthInsurance.annual)}円`, monthly: `${formatJPY(results.healthInsurance.monthly)}円` },
+                    { label: '厚生年金', annual: `${formatJPY(results.pension.annual)}円`, monthly: `${formatJPY(results.pension.monthly)}円` },
+                    { label: '介護保険', annual: `${formatJPY(results.nursingCare.annual)}円`, monthly: `${formatJPY(results.nursingCare.monthly)}円` },
+                    { label: '雇用保険', annual: `${formatJPY(results.employmentInsurance.annual)}円`, monthly: `${formatJPY(results.employmentInsurance.monthly)}円` },
+                    { label: '手取り額', annual: `${formatJPY(results.takeHome.annual)}円`, monthly: `${formatJPY(results.takeHome.monthly)}円`, highlight: true },
+                  ]}
+                />
 
                 {/* あなたの年収レベル（計算結果テーブル直下） */}
                 {percentileData && (
@@ -486,94 +447,34 @@ export default function HomeClient() {
           </ul>
           <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400 leading-tight">年収300万円の場合の手取り額</h3>
           <p className="text-base leading-[1.8] mb-4">年収300万円の手取り額は、<mark className="bg-amber-100 px-1 rounded font-bold">年収の約78%〜82%程度</mark>になることが多いです。</p>
-          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <table className="w-full border-collapse my-5 text-sm sm:text-base leading-[1.5]">
-              <thead>
-                <tr>
-                  <th className="w-[45%] bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                  <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額（年間概算）</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">年収（額面）</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">3,000,000円</td>
-                </tr>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">社会保険料合計</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">約442,200円</td>
-                </tr>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">税金合計</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">約176,000円</td>
-                </tr>
-                <tr className="bg-amber-100">
-                  <td className="p-3 border-b border-gray-100 font-bold">手取り額（概算）</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-bold text-gray-900">約2,381,800円</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <ResultTable
+            items={[
+              { label: '年収（額面）', value: '3,000,000円' },
+              { label: '社会保険料合計', value: '約442,200円' },
+              { label: '税金合計', value: '約176,000円' },
+              { label: '手取り額（概算）', value: '約2,381,800円', highlight: true },
+            ]}
+          />
           <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400 leading-tight">年収500万円の場合の手取り額</h3>
           <p className="text-base leading-[1.8] mb-4">年収500万円の手取り額は、<mark className="bg-amber-100 px-1 rounded font-bold">年収の約75%〜79%程度</mark>が目安となります。</p>
-          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <table className="w-full border-collapse my-5 text-sm sm:text-base leading-[1.5]">
-              <thead>
-                <tr>
-                  <th className="w-[45%] bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                  <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額（年間概算）</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">年収（額面）</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">5,000,000円</td>
-                </tr>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">社会保険料合計</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">約737,000円</td>
-                </tr>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">税金合計</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">約475,000円</td>
-                </tr>
-                <tr className="bg-amber-100">
-                  <td className="p-3 border-b border-gray-100 font-bold">手取り額（概算）</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-bold text-gray-900">約3,788,000円</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <ResultTable
+            items={[
+              { label: '年収（額面）', value: '5,000,000円' },
+              { label: '社会保険料合計', value: '約737,000円' },
+              { label: '税金合計', value: '約475,000円' },
+              { label: '手取り額（概算）', value: '約3,788,000円', highlight: true },
+            ]}
+          />
           <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400 leading-tight">年収700万円の場合の手取り額</h3>
           <p className="text-base leading-[1.8] mb-4">年収700万円の手取り額は、<mark className="bg-amber-100 px-1 rounded font-bold">年収の約70%〜74%程度</mark>が目安となります。</p>
-          <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <table className="w-full border-collapse my-5 text-sm sm:text-base leading-[1.5]">
-              <thead>
-                <tr>
-                  <th className="w-[45%] bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                  <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額（年間概算）</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">年収（額面）</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">7,000,000円</td>
-                </tr>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">社会保険料合計</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">約1,049,300円</td>
-                </tr>
-                <tr className="even:bg-gray-50">
-                  <td className="p-3 border-b border-gray-100">税金合計</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-medium text-gray-900">約880,000円</td>
-                </tr>
-                <tr className="bg-amber-100">
-                  <td className="p-3 border-b border-gray-100 font-bold">手取り額（概算）</td>
-                  <td className="tabular-nums p-3 border-b border-gray-100 text-right font-bold text-gray-900">約5,070,700円</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <ResultTable
+            items={[
+              { label: '年収（額面）', value: '7,000,000円' },
+              { label: '社会保険料合計', value: '約1,049,300円' },
+              { label: '税金合計', value: '約880,000円' },
+              { label: '手取り額（概算）', value: '約5,070,700円', highlight: true },
+            ]}
+          />
         </section>
         <InlineAd />
 
