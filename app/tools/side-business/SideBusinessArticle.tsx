@@ -1,3 +1,5 @@
+import SideBusinessClient from '../../components/SideBusinessClient';
+
 export default function SideBusinessArticle() {
   return (
     <article className="pb-20">
@@ -5,6 +7,9 @@ export default function SideBusinessArticle() {
       <p className="text-base leading-[1.8] mb-4">
         副業で収入を得ている皆さん、確定申告に不安はありませんか？「何から手をつければいいのか分からない」「税金で損したくない」「会社にバレたくない」といった悩みは尽きないものです。本記事では、副業の確定申告に必要な基礎知識から、所得の種類、経費、控除、書類作成、提出方法まで、網羅的に解説します。さらに、税金を大幅に減らせる青色申告の活用法、住民税対策、会社バレを防ぐための具体的な方法もご紹介。20万円以下の収入や複数の副業があるケース、よくある疑問にもお答えし、あなたの副業確定申告を完全にサポートします。これを読めば、もう税金で悩むことはありません。安心して副業に専念できるでしょう。
       </p>
+
+      {/* 計算ツール（セクション1の上に配置） */}
+      <SideBusinessClient embedded />
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">

@@ -1,3 +1,5 @@
+import FreshGraduateClient from '../../components/FreshGraduateClient';
+
 export default function FreshGraduateArticle() {
   return (
     <article className="pb-20">
@@ -5,6 +7,9 @@ export default function FreshGraduateArticle() {
       <p className="text-base leading-[1.8] mb-4">
         新卒の皆さんが気になる「手取り平均」について、大卒・高卒・専門卒それぞれのリアルな金額を徹底解説します。この記事を読めば、あなたの学歴や状況に応じた手取りの目安が分かり、額面給与から手取り額がどう算出されるか、なぜ約2割が引かれるのか、そして手取りを増やす具体的な方法まで理解できます。新社会人としての生活設計や、今後のキャリアを考える上で役立つ情報が満載です。結論として、新卒の手取り平均は全体で約17万円〜20万円程度が目安で、額面給与から税金や社会保険料が控除されるため、大卒は約20万円前後、高卒は約16万円前後、専門卒は約18万円前後が一般的です。
       </p>
+
+      {/* 計算ツール（セクション1の上に配置） */}
+      <FreshGraduateClient embedded />
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">

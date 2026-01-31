@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import SideBusinessClient from '../../components/SideBusinessClient';
 import SideBusinessArticle from './SideBusinessArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
@@ -38,9 +37,6 @@ export default function SideBusinessPage() {
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
               これで安心！副業の確定申告をわかりやすく解説する完全マニュアル
             </h1>
-
-            {/* 計算ツール（記事の上に配置） */}
-            <SideBusinessClient embedded />
 
             <SideBusinessArticle />
           </main>

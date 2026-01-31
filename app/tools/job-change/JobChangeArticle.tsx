@@ -1,3 +1,5 @@
+import JobChangeClient from '../../components/JobChangeClient';
+
 export default function JobChangeArticle() {
   return (
     <article className="pb-20">
@@ -5,6 +7,9 @@ export default function JobChangeArticle() {
       <p className="text-base leading-[1.8] mb-4">
         「転職で年収アップしたい」と願うあなたへ。2026年の転職市場で確実に年収を上げるための秘訣を、このロードマップで徹底解説します。自身の市場価値を正確に把握し、効果的なキャリアプランを立てる方法から、年収アップに直結する企業選び、職務経歴書・面接でのアピール術、そして希望年収を勝ち取る交渉術まで、失敗しないための全てがここに。この記事を読めば、あなたの年収アップはもはや夢ではありません。戦略的な転職活動で、理想のキャリアと高年収を掴み取りましょう。
       </p>
+
+      {/* 計算ツール（セクション1の上に配置） */}
+      <JobChangeClient embedded />
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">

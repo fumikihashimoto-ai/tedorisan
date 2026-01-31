@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import FreshGraduateClient from '../../components/FreshGraduateClient';
 import FreshGraduateArticle from './FreshGraduateArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
@@ -38,9 +37,6 @@ export default function FreshGraduatePage() {
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
               新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較
             </h1>
-
-            {/* 計算ツール（記事の上に配置） */}
-            <FreshGraduateClient embedded />
 
             <FreshGraduateArticle />
           </main>

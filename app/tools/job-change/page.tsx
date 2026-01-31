@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import JobChangeClient from '../../components/JobChangeClient';
 import JobChangeArticle from './JobChangeArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
@@ -38,9 +37,6 @@ export default function JobChangePage() {
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
               【2026年版】年収アップ確実！失敗しない転職ロードマップ
             </h1>
-
-            {/* 計算ツール（記事の上に配置） */}
-            <JobChangeClient embedded />
 
             <JobChangeArticle />
           </main>
