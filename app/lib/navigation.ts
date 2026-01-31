@@ -42,6 +42,9 @@ export const CAREER_MENU_ITEMS: NavMenuItem[] = [
   { label: '20代未経験者の転職', href: '/career/inexperienced' },
   { label: '20代女性未経験者の転職', href: '/career/inexperienced-women' },
   { label: '30代未経験者の転職', href: '/career/inexperienced-30s' },
+  { label: '30代女性未経験者の転職', href: '/career/inexperienced-30s-women' },
+  { label: '40代未経験者の転職', href: '/career/inexperienced-40s' },
+  { label: '40代女性未経験者の転職', href: '/career/inexperienced-40s-women' },
 ];
 
 // PC/モバイルの表示順はこの配列に統一
