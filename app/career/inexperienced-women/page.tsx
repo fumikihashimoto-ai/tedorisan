@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import InexperiencedArticle from './InexperiencedArticle';
+import InexperiencedWomenArticle from './InexperiencedWomenArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '転職したい20代未経験者必見！ゼロから始める理想のキャリアパス | 手取り計算シミュレーションツール テドリさん',
+  title: '20代女性の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
   description:
-    '20代の未経験転職は大きなチャンス。なぜ今が有利なのか、自己分析から求人探し、履歴書・職務経歴書の書き方、面接対策まで、成功に必要なノウハウを徹底解説。転職エージェントの活用術や企業が求める人物像も紹介。',
-  keywords: ['未経験', '転職', '20代', 'キャリア', '第二新卒', '転職エージェント', '履歴書', '面接対策'],
-  canonicalPath: '/career/inexperienced',
-  openGraphTitle: '転職したい20代未経験者必見！ゼロから始める理想のキャリアパス | 手取り計算シミュレーションツール テドリさん',
+    '20代女性の未経験転職の現状、女性に人気の業界・職種、ワークライフバランスを重視した転職のコツを解説。スキルなしと悩む方へ、後悔しないキャリアチェンジ術を紹介。',
+  keywords: ['女性', '未経験', '転職', '20代', 'キャリアチェンジ', 'ワークライフバランス'],
+  canonicalPath: '/career/inexperienced-women',
+  openGraphTitle: '20代女性の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '20代の未経験転職は大きなチャンス。なぜ今が有利なのか、自己分析から求人探し、履歴書・職務経歴書の書き方、面接対策まで、成功に必要なノウハウを徹底解説。',
+    '20代女性の未経験転職の現状、女性に人気の業界・職種、ワークライフバランスを重視した転職のコツを解説。',
   openGraphType: 'article',
 });
 
@@ -23,14 +23,14 @@ export default function Page() {
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/career/inexperienced">未経験者の転職</Link> {'>'} 20代未経験者の転職
+              <Link href="/">ホーム</Link> {'>'} <Link href="/career/inexperienced">未経験者の転職</Link> {'>'} 20代女性未経験者の転職
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
-              転職したい20代未経験者必見！ゼロから始める理想のキャリアパス
+              「転職」したい「20代女性」へ。「スキルなし」でも叶う！後悔しないキャリアチェンジ術
             </h1>
 
-            <InexperiencedArticle />
+            <InexperiencedWomenArticle />
           </main>
 
           {/* 右カラム：サイドバー */}

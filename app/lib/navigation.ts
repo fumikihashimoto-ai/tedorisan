@@ -33,15 +33,14 @@ export const DATA_MENU_ITEMS: NavMenuItem[] = [
   { label: '保育士', href: '/data/industry/nursery', footerLabel: '保育士の年収・手取り' },
   { label: '営業職', href: '/data/industry/sales', footerLabel: '営業職の年収・手取り' },
   { label: '薬剤師', href: '/data/industry/pharmacist', footerLabel: '薬剤師の年収・手取り' },
-  { label: '医療技術職', href: '/data/industry/medical-tech', footerLabel: '医療技術職の年収・手取り' },
+  { label: '臨床検査技師', href: '/data/industry/medical-tech', footerLabel: '臨床検査技師の年収・手取り' },
   { label: '不動産業界', href: '/data/industry/real-estate', footerLabel: '不動産業界の年収・手取り' },
   { label: '建設業界', href: '/data/industry/construction', footerLabel: '建設業界の年収・手取り' },
 ];
 
 export const CAREER_MENU_ITEMS: NavMenuItem[] = [
-  { label: '未経験転職の年収目安', href: '/career/inexperienced' },
-  { label: '20代転職の年収相場', href: '/career/career-change-20s' },
-  { label: '年収1000万超えの手取り', href: '/career/high-income' },
+  { label: '20代未経験者の転職', href: '/career/inexperienced' },
+  { label: '20代女性未経験者の転職', href: '/career/inexperienced-women' },
 ];
 
 // PC/モバイルの表示順はこの配列に統一
@@ -65,10 +64,10 @@ export const NAV_ITEMS: NavItem[] = [
   {
     type: 'dropdown',
     id: 'career',
-    label: 'キャリア',
+    label: '未経験者の転職',
     items: CAREER_MENU_ITEMS,
     activePrefix: '/career',
-    mobileLabel: 'キャリア',
+    mobileLabel: '未経験者の転職',
   },
   {
     type: 'link',
