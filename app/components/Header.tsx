@@ -26,7 +26,7 @@ function isActiveHref(pathname: string, href: string) {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openSection, setOpenSection] = useState<'tools' | 'magazine' | null>(null);
+  const [openSection, setOpenSection] = useState<'tools' | 'magazine' | 'qualifications' | null>(null);
   const pathname = usePathname();
 
   const closeMenu = () => {
@@ -64,9 +64,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-[#0a57d1] shadow-sm border-b border-white/10">
+      <header className="shadow-sm border-b border-white/10" style={{ background: 'linear-gradient(135deg, #ed2445 0%, #fc462d 100%)' }}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="h-16 flex items-center">
+          <div className="h-12 flex items-center">
             {/* PC: 2カラム全体幅（左800 + gap32 + 右300 = 1132px）に合わせる */}
             <div className="relative w-full md:w-[1132px] md:flex md:items-center md:justify-between">
               {/* PC: 左寄せロゴ */}
@@ -97,6 +97,10 @@ export default function Header() {
                             : ''
                           : item.id === 'magazine'
                             ? pathname.startsWith('/magazine')
+                              ? 'nav-active'
+                              : ''
+                          : item.id === 'qualifications'
+                            ? pathname.startsWith('/qualifications')
                               ? 'nav-active'
                               : ''
                           : pathname.startsWith(item.activePrefix)
@@ -160,9 +164,9 @@ export default function Header() {
           <div className="absolute inset-0 bg-black/40" onClick={closeMenu} />
 
           {/* メニュー本体（画面全体） */}
-          <div className="absolute inset-0 bg-[#0a57d1] text-white">
+          <div className="absolute inset-0 text-white" style={{ background: 'linear-gradient(135deg, #ed2445 0%, #fc462d 100%)' }}>
             {/* 上部バー */}
-            <div className="h-16 px-4 flex items-center justify-between border-b border-white/20">
+            <div className="h-12 px-4 flex items-center justify-between border-b border-white/20">
               <div className="font-bold text-white">メニュー</div>
               <button
                 type="button"
@@ -175,7 +179,7 @@ export default function Header() {
             </div>
 
             {/* リンク（左寄せ・シンプル） */}
-            <nav className="px-6 py-6 overflow-y-auto h-[calc(100%-4rem)]">
+            <nav className="px-6 py-6 overflow-y-auto h-[calc(100%-3rem)]">
               <div className="text-left">
                 {NAV_ITEMS.map((item) =>
                   item.type === 'dropdown' ? (

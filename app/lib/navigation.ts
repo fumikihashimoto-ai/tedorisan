@@ -16,7 +16,7 @@ export type NavItem =
     }
   | {
       type: 'dropdown';
-      id: 'tools' | 'magazine';
+      id: 'tools' | 'magazine' | 'qualifications';
       label: string;
       items: NavMenuItem[];
       activePrefix: string;
@@ -60,6 +60,11 @@ export const MAGAZINE_MENU_ITEMS: NavMenuItem[] = [
 /** マガジンメニューのグループ表示順 */
 export const MAGAZINE_GROUP_ORDER = ['職種別年収', '未経験者の就職・転職'] as const;
 
+export const QUALIFICATION_MENU_ITEMS: NavMenuItem[] = [
+  { label: '資格一覧', href: '/qualifications' },
+  { label: 'アラフォー未経験からのエンジニア転職', href: '/qualifications/araforty-engineer' },
+];
+
 // PC/モバイルの表示順はこの配列に統一
 export const NAV_ITEMS: NavItem[] = [
   {
@@ -77,6 +82,14 @@ export const NAV_ITEMS: NavItem[] = [
     items: MAGAZINE_MENU_ITEMS,
     activePrefix: '/magazine',
     mobileLabel: 'マガジン',
+  },
+  {
+    type: 'dropdown',
+    id: 'qualifications',
+    label: '資格',
+    items: QUALIFICATION_MENU_ITEMS,
+    activePrefix: '/qualifications',
+    mobileLabel: '資格',
   },
   {
     type: 'link',
@@ -103,6 +116,13 @@ export const FOOTER_SECTIONS: { title: string; links: FooterLink[] }[] = [
       href: i.href,
       label: i.footerLabel ?? i.label,
       group: i.group,
+    })),
+  },
+  {
+    title: '資格',
+    links: QUALIFICATION_MENU_ITEMS.map((i) => ({
+      href: i.href,
+      label: i.footerLabel ?? i.label,
     })),
   },
   {

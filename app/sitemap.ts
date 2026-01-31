@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/app/lib/metadata';
-import { MAGAZINE_MENU_ITEMS, TOOLS_MENU_ITEMS } from '@/app/lib/navigation';
+import { MAGAZINE_MENU_ITEMS, QUALIFICATION_MENU_ITEMS, TOOLS_MENU_ITEMS } from '@/app/lib/navigation';
 
 /**
  * サイトマップ - Google Search Console 提出用
@@ -64,6 +64,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
+  // 資格（QUALIFICATION_MENU_ITEMSから生成）
+  const qualificationsPages: MetadataRoute.Sitemap = QUALIFICATION_MENU_ITEMS.map((i) => ({
+    url: `${SITE_URL}${i.href}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: i.href === '/qualifications' ? 0.6 : 0.5,
+  }));
+
   // キャリア（オーファンページ・メニュー非表示だがサイトマップに含める）
   const careerPages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/career/career-change-20s`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
@@ -74,6 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...topPage,
     ...toolsPages,
     ...magazinePages,
+    ...qualificationsPages,
     ...tablesTopPage,
     ...annualIncomePages,
     ...monthlyTakeHomePages,
