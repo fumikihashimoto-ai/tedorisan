@@ -172,7 +172,7 @@ export default function ComparisonListClient() {
                 <li>• 扶養家族: 0人で計算</li>
                 <li>• 2025年度の税率・保険料率を使用</li>
                 <li>• 👤マークは選択した年代の平均年収</li>
-                <li className="md:hidden">• 詳細な内訳は手取り計算ツールで確認できます</li>
+                <li className="md:hidden">• 詳細な内訳は手取り計算シミュレーションツールで確認できます</li>
                 <li className="hidden md:block">• 実際の手取り額は扶養人数等により変動します</li>
               </ul>
             </div>
@@ -186,7 +186,7 @@ export default function ComparisonListClient() {
                 href="/"
                 className="btn-primary-inline"
               >
-                手取り計算ツールを使う
+                手取り計算シミュレーションツールを使う
               </Link>
             </div>
           </>

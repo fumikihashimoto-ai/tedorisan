@@ -30,6 +30,14 @@ export default function FreshGraduatePage() {
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+            {/* ヒーロー画像 */}
+            <div className="mb-4">
+              <img
+                src="/images/hero_fresh-graduate.png"
+                alt="年収と手取りのギャップを説明する図"
+                className="w-full max-w-full h-auto rounded-lg"
+              />
+            </div>
             <nav className="breadcrumb mb-3">
               <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 新卒向け手取り計算
             </nav>

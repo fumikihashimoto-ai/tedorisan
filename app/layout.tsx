@@ -10,20 +10,20 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 export const metadata: Metadata = {
   metadataBase: new URL('https://tedorisan.jp'),
   title: {
-    default: '手取り計算ツール - テドリさん | 年収から手取り額を自動計算',
+    default: '手取り計算シミュレーションツール テドリさん | 年収から手取り額を自動計算',
     template: '%s｜テドリさん'
   },
   description:
     'テドリさんがあなたの手取り額を計算します。年収・扶養人数を入力するだけで、所得税・住民税・社会保険料を自動計算。転職・副業時の手取り比較も簡単！',
   keywords:
     '手取り計算, 年収, 給与計算, 所得税, 住民税, 社会保険料, 転職, 副業, テドリさん',
-  applicationName: '手取り計算ツール - テドリさん',
+  applicationName: '手取り計算シミュレーションツール テドリさん',
   openGraph: {
-    title: '手取り計算ツール - テドリさん',
+    title: '手取り計算シミュレーションツール テドリさん',
     description: 'テドリさんがあなたの手取り額を計算します',
     type: 'website',
     locale: 'ja_JP',
-    siteName: '手取り計算ツール - テドリさん',
+    siteName: '手取り計算シミュレーションツール テドリさん',
   },
   twitter: {
     card: 'summary_large_image',

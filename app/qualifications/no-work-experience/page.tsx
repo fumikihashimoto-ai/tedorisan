@@ -27,6 +27,14 @@ export default function Page() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+            {/* ヒーロー画像 */}
+            <div className="mb-4">
+              <img
+                src="/images/hero_no-work-experience.png"
+                alt=""
+                className="w-full max-w-full h-auto rounded-lg"
+              />
+            </div>
             <nav className="breadcrumb mb-3">
               <Link href="/">ホーム</Link> {'>'} <Link href="/qualifications">資格</Link> {'>'} 実務経験なしで取れる国家資格
             </nav>

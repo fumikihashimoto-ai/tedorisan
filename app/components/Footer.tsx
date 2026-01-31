@@ -29,7 +29,7 @@ export default function Footer() {
             href="/"
             className="text-xl font-bold text-white hover:text-[#cccccc] transition-colors"
           >
-            手取り計算ツール - テドリさん
+            手取り計算シミュレーションツール テドリさん
           </Link>
         </div>
 
@@ -121,7 +121,7 @@ export default function Footer() {
 
         {/* コピーライト */}
         <div className="text-center text-sm text-[#cccccc]">
-          <p>© {new Date().getFullYear()} 手取り計算ツール - テドリさん All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} 手取り計算シミュレーションツール テドリさん All Rights Reserved.</p>
         </div>
       </div>
     </footer>

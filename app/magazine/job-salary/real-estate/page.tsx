@@ -37,6 +37,14 @@ export default function Page() {
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+            {/* ヒーロー画像 */}
+            <div className="mb-4">
+              <img
+                src="/images/hero_real-estate.png"
+                alt=""
+                className="w-full max-w-full h-auto rounded-lg"
+              />
+            </div>
             <nav className="breadcrumb mb-3">
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 不動産業界
             </nav>

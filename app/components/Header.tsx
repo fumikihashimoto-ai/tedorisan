@@ -74,7 +74,7 @@ export default function Header() {
                 href="/"
                 className="hidden md:inline font-bold text-xl text-white hover:text-white/90 transition-colors whitespace-nowrap"
               >
-                手取り計算ツール - テドリさん
+                手取り計算シミュレーションツール テドリさん
               </Link>
 
               {/* スマホ: 中央ロゴ（従来どおり） */}
@@ -82,7 +82,7 @@ export default function Header() {
                 href="/"
                 className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-sm text-white hover:text-white/90 transition-colors whitespace-nowrap"
               >
-                手取り計算ツール - テドリさん
+                手取り計算シミュレーションツール テドリさん
               </Link>
 
               {/* PC: ヘッダー内メニュー表示（2カラム全体幅の右端に揃える） */}
