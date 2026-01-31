@@ -63,6 +63,9 @@ export const MAGAZINE_GROUP_ORDER = ['職種別年収', '未経験者の就職�
 export const QUALIFICATION_MENU_ITEMS: NavMenuItem[] = [
   { label: '資格一覧', href: '/qualifications' },
   { label: 'アラフォー未経験からのエンジニア転職', href: '/qualifications/araforty-engineer' },
+  { label: '40代女性が人生をやり直すためにおすすめな資格', href: '/qualifications/40s-women-restart' },
+  { label: '食いっぱぐれない資格', href: '/qualifications/stable-career' },
+  { label: '高収入が期待できる資格', href: '/qualifications/high-income' },
 ];
 
 // PC/モバイルの表示順はこの配列に統一

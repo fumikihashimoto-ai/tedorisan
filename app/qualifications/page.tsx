@@ -35,6 +35,33 @@ export default function Page() {
               40代から未経験でエンジニアを目指す方へ。成功のポイントとおすすめの資格・学習方法を解説。
             </p>
           </Link>
+          <Link
+            href="/qualifications/40s-women-restart"
+            className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <h2 className="font-bold text-gray-800 mb-1">40代女性が人生をやり直すためにおすすめな資格</h2>
+            <p className="text-sm text-gray-600">
+              在宅・高収入も夢じゃない。Webデザイナー、プログラマー、オンライン秘書、医療事務、FPなどおすすめ資格5選を徹底解説。
+            </p>
+          </Link>
+          <Link
+            href="/qualifications/stable-career"
+            className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <h2 className="font-bold text-gray-800 mb-1">食いっぱぐれない資格</h2>
+            <p className="text-sm text-gray-600">
+              もう仕事に困らない。医療介護、IT、法律会計、建設不動産など、一生涯活躍できる食いっぱぐれない資格を徹底解説。
+            </p>
+          </Link>
+          <Link
+            href="/qualifications/high-income"
+            className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <h2 className="font-bold text-gray-800 mb-1">高収入が期待できる資格</h2>
+            <p className="text-sm text-gray-600">
+              年収1000万円も夢じゃない。ITストラテジスト、社労士、USCPAなど、本当に稼げる資格の選び方と成功事例を徹底解説。
+            </p>
+          </Link>
         </div>
       </div>
     </div>
