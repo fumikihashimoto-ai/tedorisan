@@ -1,47 +1,56 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import JobChangeArticle from './JobChangeArticle';
+import ArticleStructuredData from '@/app/components/ArticleStructuredData';
+import PharmacistArticle from './PharmacistArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  title: '薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法 | 手取り計算シミュレーションツール テドリさん',
   description:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '薬剤師の平均年収や年代別・施設別の給与実態、年収1000万円を達成する薬剤師の特徴と割合、専門性の向上・管理職・企業薬剤師・独立開業といった具体的なキャリア戦略を解説。',
   keywords: [
-    '転職 年収',
-    '転職 年収アップ',
-    '転職 ロードマップ',
-    '転職 年収交渉',
-    '年収比較',
-    '転職シミュレーション',
-    '年収 手取り 比較',
+    '薬剤師',
+    '年収',
+    '年収1000万円',
+    '転職',
+    '調剤薬局',
+    'ドラッグストア',
+    '病院',
+    '製薬会社',
+    '管理薬剤師',
+    '企業薬剤師',
   ],
-  canonicalPath: '/tools/job-change',
-  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  canonicalPath: '/magazine/job-salary/pharmacist',
+  openGraphTitle: '薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法 | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '薬剤師の平均年収や年代別・施設別の給与実態、年収1000万円を達成する薬剤師の特徴と割合、専門性の向上・管理職・企業薬剤師・独立開業といった具体的なキャリア戦略を解説。',
   openGraphType: 'article',
 });
 
-export default function JobChangePage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-white">
+      <ArticleStructuredData
+        headline="薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法"
+        description="薬剤師の平均年収や年代別・施設別の給与実態、年収1000万円を達成する薬剤師の特徴と割合、専門性の向上・管理職・企業薬剤師・独立開業といった具体的なキャリア戦略を解説。"
+        url="/magazine/job-salary/pharmacist"
+      />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
+              <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 薬剤師
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
-              【2026年版】年収アップ確実！失敗しない転職ロードマップ
+              薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法
             </h1>
 
-            <JobChangeArticle />
+            <PharmacistArticle />
           </main>
 
-          {/* 右カラム：サイドバー */}
+          {/* 右カラム：サイドバー（fresh-graduate と同じ固定バナー2つ） */}
           <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
             <div className="space-y-4">
               <div>

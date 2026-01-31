@@ -1,44 +1,40 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import JobChangeArticle from './JobChangeArticle';
-import { createPageMetadata } from '@/app/lib/metadata';
+import ArticleStructuredData from '@/app/components/ArticleStructuredData';
+import NurseryArticle from './NurseryArticle';
+import { createArticleMetadata } from '@/app/lib/metadata';
 
-export const metadata: Metadata = createPageMetadata({
-  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+export const metadata: Metadata = createArticleMetadata({
+  title: '「保育士 年収」を上げたい！今すぐできる給料アップ術と賢い転職先選び | 手取り計算シミュレーションツール テドリさん',
   description:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
-  keywords: [
-    '転職 年収',
-    '転職 年収アップ',
-    '転職 ロードマップ',
-    '転職 年収交渉',
-    '年収比較',
-    '転職シミュレーション',
-    '年収 手取り 比較',
-  ],
-  canonicalPath: '/tools/job-change',
-  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+    '保育士の年収を徹底解説。全国平均から地域別・経験年数別・施設形態別の実態、資格手当・処遇改善手当・副業などの給料アップ術、高年収が期待できる保育施設の選び方、転職エージェントの活用法まで網羅。',
+  keywords: ['保育士', '年収', '手取り', '転職', '公立保育園', '私立保育園', '処遇改善', '借り上げ社宅'],
+  canonicalPath: '/magazine/job-salary/nursery',
   openGraphDescription:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
-  openGraphType: 'article',
+    '保育士の年収を徹底解説。給料アップ術、高年収が期待できる保育施設の選び方、転職のポイントまで網羅。',
 });
 
-export default function JobChangePage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-white">
+      <ArticleStructuredData
+        headline="保育士 年収を上げたい！今すぐできる給料アップ術と賢い転職先選び"
+        description="保育士の年収を徹底解説。全国平均から地域別・経験年数別・施設形態別の実態、資格手当・処遇改善手当・副業などの給料アップ術、高年収が期待できる保育施設の選び方、転職エージェントの活用法まで網羅。"
+        url="/magazine/job-salary/nursery"
+      />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
+              <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 保育士の年収・手取り
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
-              【2026年版】年収アップ確実！失敗しない転職ロードマップ
+              「保育士 年収」を上げたい！今すぐできる給料アップ術と賢い転職先選び
             </h1>
 
-            <JobChangeArticle />
+            <NurseryArticle />
           </main>
 
           {/* 右カラム：サイドバー */}

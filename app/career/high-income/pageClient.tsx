@@ -120,7 +120,7 @@ export default function HighIncomeClient() {
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link> {'>'} キャリアステージ別 {'>'} 年収1000万超えの手取り
+            <Link href="/">ホーム</Link> {'>'} <Link href="/career/career-change-20s">キャリア</Link> {'>'} 年収1000万超えの手取り
           </nav>
           <h1 className="page-title">年収1000万超えの手取り計算</h1>
 

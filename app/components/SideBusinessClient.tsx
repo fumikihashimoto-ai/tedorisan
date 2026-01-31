@@ -492,7 +492,7 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} 副業検討者向け
+              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 副業向け手取り計算
             </nav>
             <h1 className="page-title">副業検討者向け 手取り計算</h1>
             {calculatorSection}

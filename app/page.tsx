@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
 import HomeClient from './components/HomeClient';
 import StructuredData from './components/StructuredData';
@@ -101,26 +101,19 @@ export const metadata: Metadata = {
   },
 
   // ========================================
-  // テーマカラー
+  // カテゴリ
   // ========================================
+  category: 'finance',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#2563eb' },
     { media: '(prefers-color-scheme: dark)', color: '#1e40af' },
   ],
-
-  // ========================================
-  // ビューポート設定
-  // ========================================
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
-
-  // ========================================
-  // カテゴリ
-  // ========================================
-  category: 'finance',
 };
 
 export default function Home() {

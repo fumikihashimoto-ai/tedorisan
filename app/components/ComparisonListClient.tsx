@@ -72,7 +72,7 @@ export default function ComparisonListClient() {
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} 一覧表
+              <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 一覧表
             </nav>
             <h1 className="page-title">年代・年収別 手取り一覧表</h1>
 

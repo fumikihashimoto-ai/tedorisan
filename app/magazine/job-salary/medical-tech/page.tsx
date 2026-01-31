@@ -1,47 +1,54 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import JobChangeArticle from './JobChangeArticle';
+import ArticleStructuredData from '@/app/components/ArticleStructuredData';
+import MedicalTechArticle from './MedicalTechArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  title: '臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略 | 手取り計算シミュレーションツール テドリさん',
   description:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '臨床検査技師の平均年収を年代別・勤務先別・地域別に徹底解説。経験年数、保有資格、役職が年収に与える影響と、資格取得・転職・管理職・副業による年収アップの具体的な方法を紹介。',
   keywords: [
-    '転職 年収',
-    '転職 年収アップ',
-    '転職 ロードマップ',
-    '転職 年収交渉',
-    '年収比較',
-    '転職シミュレーション',
-    '年収 手取り 比較',
+    '臨床検査技師',
+    '年収',
+    '給料',
+    '転職',
+    '細胞検査士',
+    '超音波検査士',
+    '認定臨床検査技師',
+    '医療技術職',
   ],
-  canonicalPath: '/tools/job-change',
-  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  canonicalPath: '/magazine/job-salary/medical-tech',
+  openGraphTitle: '臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略 | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '臨床検査技師の平均年収を年代別・勤務先別・地域別に徹底解説。経験年数、保有資格、役職が年収に与える影響と、資格取得・転職・管理職・副業による年収アップの具体的な方法を紹介。',
   openGraphType: 'article',
 });
 
-export default function JobChangePage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-white">
+      <ArticleStructuredData
+        headline="臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略"
+        description="臨床検査技師の平均年収を年代別・勤務先別・地域別に徹底解説。経験年数、保有資格、役職が年収に与える影響と、資格取得・転職・管理職・副業による年収アップの具体的な方法を紹介。"
+        url="/magazine/job-salary/medical-tech"
+      />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
+              <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 臨床検査技師
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
-              【2026年版】年収アップ確実！失敗しない転職ロードマップ
+              臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略
             </h1>
 
-            <JobChangeArticle />
+            <MedicalTechArticle />
           </main>
 
-          {/* 右カラム：サイドバー */}
+          {/* 右カラム：サイドバー（fresh-graduate と同じ固定バナー2つ） */}
           <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
             <div className="space-y-4">
               <div>

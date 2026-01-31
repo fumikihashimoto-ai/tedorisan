@@ -135,7 +135,7 @@ export default function CareerChange20sClient() {
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link> {'>'} キャリアステージ別 {'>'} 20代転職の年収相場
+            <Link href="/">ホーム</Link> {'>'} <Link href="/career/career-change-20s">キャリア</Link> {'>'} 20代転職の年収相場
           </nav>
           <h1 className="page-title">20代転職の年収相場と手取り計算</h1>
 

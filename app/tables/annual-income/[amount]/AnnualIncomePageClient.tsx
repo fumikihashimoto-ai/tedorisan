@@ -83,7 +83,7 @@ export default function AnnualIncomePageClient({ amount }: Props) {
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link> {'>'} 年収別詳細
+            <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 年収別詳細
           </nav>
           <h1 className="page-title">年収{amountInMan}万円の手取りは？</h1>
 

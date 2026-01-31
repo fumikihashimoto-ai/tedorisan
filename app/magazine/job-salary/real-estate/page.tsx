@@ -1,47 +1,54 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import JobChangeArticle from './JobChangeArticle';
+import ArticleStructuredData from '@/app/components/ArticleStructuredData';
+import RealEstateArticle from './RealEstateArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  title: '未経験から不動産営業で年収2000万！最短で稼ぐための全知識 | 手取り計算シミュレーションツール テドリさん',
   description:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '未経験から不動産営業で年収2000万を達成するためのロードマップを徹底解説。年収構造、必須スキル、稼げる会社選び、顧客開拓・クロージング術、成功事例まで網羅。',
   keywords: [
-    '転職 年収',
-    '転職 年収アップ',
-    '転職 ロードマップ',
-    '転職 年収交渉',
-    '年収比較',
-    '転職シミュレーション',
-    '年収 手取り 比較',
+    '不動産営業',
+    '年収2000万',
+    '未経験',
+    '不動産業界',
+    '宅建',
+    '売買仲介',
+    '投資用不動産',
+    'インセンティブ',
   ],
-  canonicalPath: '/tools/job-change',
-  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  canonicalPath: '/magazine/job-salary/real-estate',
+  openGraphTitle: '未経験から不動産営業で年収2000万！最短で稼ぐための全知識 | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '未経験から不動産営業で年収2000万を達成するためのロードマップを徹底解説。年収構造、必須スキル、稼げる会社選び、顧客開拓・クロージング術、成功事例まで網羅。',
   openGraphType: 'article',
 });
 
-export default function JobChangePage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-white">
+      <ArticleStructuredData
+        headline="未経験から不動産営業で年収2000万！最短で稼ぐための全知識"
+        description="未経験から不動産営業で年収2000万を達成するためのロードマップを徹底解説。年収構造、必須スキル、稼げる会社選び、顧客開拓・クロージング術、成功事例まで網羅。"
+        url="/magazine/job-salary/real-estate"
+      />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
+              <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 不動産業界
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
-              【2026年版】年収アップ確実！失敗しない転職ロードマップ
+              未経験から不動産営業で年収2000万！最短で稼ぐための全知識
             </h1>
 
-            <JobChangeArticle />
+            <RealEstateArticle />
           </main>
 
-          {/* 右カラム：サイドバー */}
+          {/* 右カラム：サイドバー（fresh-graduate と同じ固定バナー2つ） */}
           <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
             <div className="space-y-4">
               <div>

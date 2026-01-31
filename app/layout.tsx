@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
@@ -8,7 +8,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tedorikun.jp'),
+  metadataBase: new URL('https://tedorisan.jp'),
   title: {
     default: '手取り計算ツール - テドリさん | 年収から手取り額を自動計算',
     template: '%s｜テドリさん'
@@ -28,13 +28,14 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({

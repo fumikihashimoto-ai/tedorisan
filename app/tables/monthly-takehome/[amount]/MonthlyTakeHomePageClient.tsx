@@ -37,7 +37,7 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link> {'>'} 手取り月収から逆算
+            <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 手取り月収から逆算
           </nav>
           <h1 className="page-title">手取り{amountInMan}万円に必要な年収は？</h1>
 

@@ -1,44 +1,42 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import JobChangeArticle from './JobChangeArticle';
+import ArticleStructuredData from '@/app/components/ArticleStructuredData';
+import Inexperienced40sWomenArticle from './Inexperienced40sWomenArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+  title: '40代女性の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
   description:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
-  keywords: [
-    '転職 年収',
-    '転職 年収アップ',
-    '転職 ロードマップ',
-    '転職 年収交渉',
-    '年収比較',
-    '転職シミュレーション',
-    '年収 手取り 比較',
-  ],
-  canonicalPath: '/tools/job-change',
-  openGraphTitle: '【2026年版】年収アップ確実！失敗しない転職ロードマップ | 手取り計算シミュレーションツール テドリさん',
+    '40代女性の未経験転職の現状、ワークライフバランスを重視した転職のコツ、ポータブルスキルの活かし方を解説。',
+  keywords: ['40代', '女性', '未経験', '転職', 'キャリアチェンジ', 'ワークライフバランス', 'ポータブルスキル', 'ミドルキャリア'],
+  canonicalPath: '/magazine/inexperienced/40s-women',
+  openGraphTitle: '40代女性の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
   openGraphDescription:
-    '2026年版！転職で年収アップを確実に実現するロードマップ。市場価値の把握から企業選び、面接・年収交渉術まで、失敗しない転職戦略であなたの年収をアップさせる方法を徹底解説。',
+    '40代女性の未経験転職の現状、ワークライフバランスを重視した転職のコツ、ポータブルスキルの活かし方を解説。',
   openGraphType: 'article',
 });
 
-export default function JobChangePage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-white">
+      <ArticleStructuredData
+        headline="40代未経験女性の転職を徹底サポート！新しいキャリアを掴む方法"
+        description="40代女性の未経験転職の現状、ワークライフバランスを重視した転職のコツ、ポータブルスキルの活かし方を解説。"
+        url="/magazine/inexperienced/40s-women"
+      />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
+              <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/inexperienced/20s">マガジン</Link> {'>'} 未経験者の就職・転職 {'>'} 40代女性未経験者の転職
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
-              【2026年版】年収アップ確実！失敗しない転職ロードマップ
+              40代未経験女性の転職を徹底サポート！新しいキャリアを掴む方法
             </h1>
 
-            <JobChangeArticle />
+            <Inexperienced40sWomenArticle />
           </main>
 
           {/* 右カラム：サイドバー */}

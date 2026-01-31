@@ -1,7 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/app/lib/metadata';
-import { CAREER_MENU_ITEMS, DATA_MENU_ITEMS, TOOLS_MENU_ITEMS } from '@/app/lib/navigation';
+import { MAGAZINE_MENU_ITEMS, TOOLS_MENU_ITEMS } from '@/app/lib/navigation';
 
+/**
+ * サイトマップ - Google Search Console 提出用
+ * 提出先: Search Console > サイトマップ > https://tedorisan.jp/sitemap.xml
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -18,16 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // 業種別ページ（DATA_MENU_ITEMSから生成）
-  const industryPages: MetadataRoute.Sitemap = DATA_MENU_ITEMS.map((i) => ({
-    url: `${SITE_URL}${i.href}`,
-    lastModified: now,
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  }));
-
-  // キャリアステージ別ページ（CAREER_MENU_ITEMSから生成）
-  const careerPages: MetadataRoute.Sitemap = CAREER_MENU_ITEMS.map((i) => ({
+  // マガジンページ（MAGAZINE_MENU_ITEMSから生成：職種別年収 + 未経験者の転職 + 高卒・高校中退の就職）
+  const magazinePages: MetadataRoute.Sitemap = MAGAZINE_MENU_ITEMS.map((i) => ({
     url: `${SITE_URL}${i.href}`,
     lastModified: now,
     changeFrequency: 'weekly',
@@ -68,14 +64,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
+  // キャリア（オーファンページ・メニュー非表示だがサイトマップに含める）
+  const careerPages: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/career/career-change-20s`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${SITE_URL}/career/high-income`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
+  ];
+
   return [
     ...topPage,
     ...toolsPages,
-    ...industryPages,
-    ...careerPages,
+    ...magazinePages,
     ...tablesTopPage,
     ...annualIncomePages,
     ...monthlyTakeHomePages,
     ...faqPage,
+    ...careerPages,
   ];
 }

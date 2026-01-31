@@ -329,7 +329,7 @@ export default function JobChangeClient({ embedded = false }: JobChangeClientPro
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} 転職検討者向け
+              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
             </nav>
             <h1 className="page-title">転職検討者向け 手取り計算</h1>
             {calculatorSection}

@@ -31,7 +31,7 @@ export default function FreshGraduatePage() {
           {/* 左カラム：メインコンテンツ */}
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} 新卒・就活生向け
+              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 新卒向け手取り計算
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">

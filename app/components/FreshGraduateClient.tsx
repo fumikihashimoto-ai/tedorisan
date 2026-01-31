@@ -384,7 +384,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} 新卒・就活生向け
+              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 新卒向け手取り計算
             </nav>
             <h1 className="page-title">新卒・就活生向け 手取り計算</h1>
             {calculatorSection}
