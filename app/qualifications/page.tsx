@@ -62,6 +62,24 @@ export default function Page() {
               年収1000万円も夢じゃない。ITストラテジスト、社労士、USCPAなど、本当に稼げる資格の選び方と成功事例を徹底解説。
             </p>
           </Link>
+          <Link
+            href="/qualifications/no-entry-requirement"
+            className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <h2 className="font-bold text-gray-800 mb-1">受験資格なしで取れる国家資格</h2>
+            <p className="text-sm text-gray-600">
+              学歴・実務経験不問。行政書士、宅建士、ITパスポートなど、未経験から挑戦できる国家資格で人生を変える方法を徹底解説。
+            </p>
+          </Link>
+          <Link
+            href="/qualifications/no-work-experience"
+            className="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <h2 className="font-bold text-gray-800 mb-1">実務経験なしで取れる国家資格</h2>
+            <p className="text-sm text-gray-600">
+              文系・理系・IT・医療福祉など分野別に厳選。行政書士、宅建士、FP、ITパスポート、登録販売者など未経験からキャリアを切り拓く方法を徹底解説。
+            </p>
+          </Link>
         </div>
       </div>
     </div>

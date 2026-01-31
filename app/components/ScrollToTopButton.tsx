@@ -41,13 +41,14 @@ export default function ScrollToTopButton() {
           className={`
             ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}
             w-12 h-12 
-            bg-blue-600 hover:bg-blue-700 
             text-white 
             rounded-full 
             shadow-lg hover:shadow-xl
             flex items-center justify-center
             transition-shadow duration-200
+            hover:brightness-110
           `}
+          style={{ background: 'linear-gradient(135deg, #ed2445, #fc462d)' }}
           aria-label="ページの先頭に戻る"
         >
           {/* 上矢印アイコン */}

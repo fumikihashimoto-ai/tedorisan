@@ -66,6 +66,8 @@ export const QUALIFICATION_MENU_ITEMS: NavMenuItem[] = [
   { label: '40代女性が人生をやり直すためにおすすめな資格', href: '/qualifications/40s-women-restart' },
   { label: '食いっぱぐれない資格', href: '/qualifications/stable-career' },
   { label: '高収入が期待できる資格', href: '/qualifications/high-income' },
+  { label: '受験資格なしで取れる国家資格', href: '/qualifications/no-entry-requirement' },
+  { label: '実務経験なしで取れる国家資格', href: '/qualifications/no-work-experience' },
 ];
 
 // PC/モバイルの表示順はこの配列に統一
