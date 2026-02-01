@@ -67,10 +67,10 @@ export default function ComparisonListClient() {
   }, [incomeList]);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main">
-      <div className="max-w-7xl mx-auto">
-        <div className="md:flex md:items-start md:gap-8">
-          <div className="md:max-w-[800px] md:w-full">
+    <div className="min-h-screen bg-[#F8FAFC] container-main">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
+          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
               <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 一覧表
             </nav>
@@ -102,22 +102,22 @@ export default function ComparisonListClient() {
               ※ 表は横にスクロールできます（左右にスワイプ）
             </div>
             <div id="income-table" ref={tableRef} className="overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-[#e0e0e0] bg-white table-zebra">
+            <table className="w-full border-collapse border-2 border-[#E2E8F0] bg-white table-zebra">
               <thead>
-                <tr className="bg-[#0a57d1] text-white">
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3">年収</th>
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3">手取り年収</th>
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3">手取り月収</th>
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                <tr className="bg-[#2563EB] text-white">
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3">年収</th>
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3">手取り年収</th>
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3">手取り月収</th>
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3 hidden md:table-cell">
                     所得税
                   </th>
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3 hidden md:table-cell">
                     住民税
                   </th>
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3 hidden md:table-cell">
                     社会保険料
                   </th>
-                  <th className="border-2 border-[#e0e0e0] px-4 py-3 hidden md:table-cell">
+                  <th className="border-2 border-[#E2E8F0] px-4 py-3 hidden md:table-cell">
                     手取り率
                   </th>
                 </tr>
@@ -132,30 +132,30 @@ export default function ComparisonListClient() {
                   return (
                     <tr
                       key={row.income}
-                      className={isAverageRow ? 'bg-white border-2 border-[#e0e0e0]' : ''}
+                      className={isAverageRow ? 'bg-white border-2 border-[#E2E8F0]' : ''}
                     >
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center">
                         {isAverageRow && <span className="mr-2 text-lg">👤</span>}
                         <span className={isAverageRow ? 'font-bold' : ''}>
                           {row.amountInMan}万円
                         </span>
                       </td>
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center font-semibold">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center font-semibold">
                         {row.takeHomeMan}万円
                       </td>
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center">
                         {row.monthlyTakeHomeMan}万円
                       </td>
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center text-caption hidden md:table-cell">
                         {row.incomeTaxMan}万円
                       </td>
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center text-caption hidden md:table-cell">
                         {row.residentTaxMan}万円
                       </td>
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center text-caption hidden md:table-cell">
                         {row.socialInsuranceMan}万円
                       </td>
-                      <td className="border-2 border-[#e0e0e0] px-4 py-2 text-center text-caption hidden md:table-cell">
+                      <td className="border-2 border-[#E2E8F0] px-4 py-2 text-center text-caption hidden md:table-cell">
                         {row.takeHomeRate}%
                       </td>
                     </tr>
@@ -166,7 +166,7 @@ export default function ComparisonListClient() {
           </div>
 
             {/* 注意事項 */}
-            <div className="mt-8 bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+            <div className="mt-8 bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
               <h3 className="font-bold mb-3">📌 この表について</h3>
               <ul className="text-body space-y-2">
                 <li>• 扶養家族: 0人で計算</li>
@@ -191,7 +191,7 @@ export default function ComparisonListClient() {
             </div>
           </>
         )}
-          </div>
+          </main>
 
           <PcAdSidebar />
         </div>

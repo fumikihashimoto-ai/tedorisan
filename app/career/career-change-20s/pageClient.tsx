@@ -131,7 +131,7 @@ export default function CareerChange20sClient() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main">
+    <div className="min-h-screen bg-[#F8FAFC] container-main">
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
@@ -148,23 +148,23 @@ export default function CareerChange20sClient() {
           </Card>
 
           {/* 20代の平均年収データ */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>📊 20代の平均年収データ（2025年版）</H2>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#e0e0e0] bg-white table-zebra">
+              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
                 <thead>
-                  <tr className="bg-[#0a57d1] text-white">
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-left">区分</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">平均年収</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">中央値</th>
+                  <tr className="bg-[#2563EB] text-white">
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">区分</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">平均年収</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">中央値</th>
                   </tr>
                 </thead>
                 <tbody>
                   {AVG_INCOME_TABLE.map((row) => (
-                    <tr key={row.label} className="border-b border-[#e0e0e0]">
-                      <td className="px-4 py-3 text-[#333333]">{row.label}</td>
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.average}</td>
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.median}</td>
+                    <tr key={row.label} className="border-b border-[#E2E8F0]">
+                      <td className="px-4 py-3 text-[#1E293B]">{row.label}</td>
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.average}</td>
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.median}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -173,7 +173,7 @@ export default function CareerChange20sClient() {
           </section>
 
           {/* シミュレーター */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 md:p-8 shadow-lg">
             <H2>🧮 転職前後の手取り比較シミュレーター</H2>
 
             <Card as="div" className="mb-6">
@@ -243,23 +243,23 @@ export default function CareerChange20sClient() {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-3 mt-6">
-                  <div className="border-2 border-[#e0e0e0] rounded-2xl p-4 bg-[#f5f5f5]">
+                  <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-[#F8FAFC]">
                     <div className="text-small">転職前（年間手取り）</div>
-                    <div className="mt-1 font-black text-[#333333] text-2xl">{currentMan}万円</div>
+                    <div className="mt-1 font-black text-[#1E293B] text-2xl">{currentMan}万円</div>
                     <div className="text-small mt-1">月 {currentMonthlyMan}万円</div>
                   </div>
-                  <div className="border-2 border-[#e0e0e0] rounded-2xl p-4 bg-[#e8f0fe]">
+                  <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-[#e8f0fe]">
                     <div className="text-small">転職後（年間手取り）</div>
-                    <div className="mt-1 font-black text-[#0a57d1] text-2xl">{nextMan}万円</div>
+                    <div className="mt-1 font-black text-[#2563EB] text-2xl">{nextMan}万円</div>
                     <div className="text-small mt-1">月 {nextMonthlyMan}万円</div>
                   </div>
                   <div
-                    className={`border-2 border-[#e0e0e0] rounded-2xl p-4 ${
+                    className={`border-2 border-[#E2E8F0] rounded-2xl p-4 ${
                       diffMan >= 0 ? 'bg-[#ecfdf5]' : 'bg-[#fef2f2]'
                     }`}
                   >
                     <div className="text-small">差額（年間）</div>
-                    <div className={`mt-1 font-black text-2xl ${diffMan >= 0 ? 'text-[#0a57d1]' : 'text-[#dc2626]'}`}>
+                    <div className={`mt-1 font-black text-2xl ${diffMan >= 0 ? 'text-[#2563EB]' : 'text-[#dc2626]'}`}>
                       {diffMan >= 0 ? '+' : ''}
                       {diffMan}万円
                     </div>
@@ -313,25 +313,25 @@ export default function CareerChange20sClient() {
           </section>
 
           {/* 年齢別早見表 */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>📊 20代 年齢別の平均年収・手取り早見表</H2>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#e0e0e0] bg-white table-zebra">
+              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
                 <thead>
-                  <tr className="bg-[#0a57d1] text-white">
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">年齢</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">平均年収</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">手取り目安</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">月収手取り</th>
+                  <tr className="bg-[#2563EB] text-white">
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">年齢</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">平均年収</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">手取り目安</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">月収手取り</th>
                   </tr>
                 </thead>
                 <tbody>
                   {AGE_QUICK_TABLE.map((row) => (
-                    <tr key={row.age} className="border-b border-[#e0e0e0]">
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.age}歳</td>
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.salary}万円</td>
-                      <td className="px-4 py-3 text-right font-semibold text-[#333333]">約{row.takeHome}万円</td>
-                      <td className="px-4 py-3 text-right text-[#333333]">約{row.monthly}万円</td>
+                    <tr key={row.age} className="border-b border-[#E2E8F0]">
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.age}歳</td>
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.salary}万円</td>
+                      <td className="px-4 py-3 text-right font-semibold text-[#1E293B]">約{row.takeHome}万円</td>
+                      <td className="px-4 py-3 text-right text-[#1E293B]">約{row.monthly}万円</td>
                     </tr>
                   ))}
                 </tbody>
@@ -341,21 +341,21 @@ export default function CareerChange20sClient() {
           </section>
 
           {/* 年収変化データ */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>📈 20代転職者の年収変化データ</H2>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#e0e0e0] bg-white table-zebra">
+              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
                 <thead>
-                  <tr className="bg-[#0a57d1] text-white">
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-left">項目</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">数値</th>
+                  <tr className="bg-[#2563EB] text-white">
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">項目</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">数値</th>
                   </tr>
                 </thead>
                 <tbody>
                   {CHANGE_TABLE.map((row) => (
-                    <tr key={row.label} className="border-b border-[#e0e0e0]">
-                      <td className="px-4 py-3 text-[#333333]">{row.label}</td>
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.value}</td>
+                    <tr key={row.label} className="border-b border-[#E2E8F0]">
+                      <td className="px-4 py-3 text-[#1E293B]">{row.label}</td>
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.value}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -365,23 +365,23 @@ export default function CareerChange20sClient() {
           </section>
 
           {/* 業界ランキング */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>🏆 20代で年収が高い業界 TOP10</H2>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#e0e0e0] bg-white table-zebra">
+              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
                 <thead>
-                  <tr className="bg-[#0a57d1] text-white">
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">順位</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-left">業界</th>
-                    <th className="border border-[#e0e0e0] px-4 py-3 text-right">20代平均年収</th>
+                  <tr className="bg-[#2563EB] text-white">
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">順位</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">業界</th>
+                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">20代平均年収</th>
                   </tr>
                 </thead>
                 <tbody>
                   {TOP_INDUSTRY_TABLE.map((row) => (
-                    <tr key={row.rank} className="border-b border-[#e0e0e0]">
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.rank}</td>
-                      <td className="px-4 py-3 text-[#333333]">{row.name}</td>
-                      <td className="px-4 py-3 text-right text-[#333333]">{row.salary}</td>
+                    <tr key={row.rank} className="border-b border-[#E2E8F0]">
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.rank}</td>
+                      <td className="px-4 py-3 text-[#1E293B]">{row.name}</td>
+                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.salary}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -390,30 +390,30 @@ export default function CareerChange20sClient() {
           </section>
 
           {/* 転職パターン */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>🧭 20代で年収アップしやすい転職パターン</H2>
             <div className="space-y-3">
-              <div className="border-2 border-[#e0e0e0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1a1a1a] mb-2">同業界×同職種（組織チェンジ）</p>
+              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+                <p className="font-semibold text-[#1E293B] mb-2">同業界×同職種（組織チェンジ）</p>
                 <p className="text-body leading-relaxed">経験・スキルをそのまま活かしやすく、年収アップ率が最も高い傾向です。大手企業や成長企業への転職が狙い目です。</p>
               </div>
-              <div className="border-2 border-[#e0e0e0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1a1a1a] mb-2">同職種×異業界（業種チェンジ）</p>
+              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+                <p className="font-semibold text-[#1E293B] mb-2">同職種×異業界（業種チェンジ）</p>
                 <p className="text-body leading-relaxed">スキルを活かしつつ、年収水準の高い業界へ移る形です。例：小売営業→IT営業、事務→金融事務。</p>
               </div>
-              <div className="border-2 border-[#e0e0e0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1a1a1a] mb-2">異職種×同業界（職種チェンジ）</p>
+              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+                <p className="font-semibold text-[#1E293B] mb-2">異職種×同業界（職種チェンジ）</p>
                 <p className="text-body leading-relaxed">業界知識を活かしながらキャリアチェンジ。例：営業→マーケティング、SE→PM。</p>
               </div>
-              <div className="border-2 border-[#e0e0e0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1a1a1a] mb-2">異職種×異業界（フルチェンジ）</p>
+              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+                <p className="font-semibold text-[#1E293B] mb-2">異職種×異業界（フルチェンジ）</p>
                 <p className="text-body leading-relaxed">将来性を見据えた挑戦。短期的に年収が下がることもありますが、成長産業への未経験転職で伸びしろを狙えます。</p>
               </div>
             </div>
           </section>
 
           {/* 交渉ポイント */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>💬 20代転職の年収交渉ポイント</H2>
             <ol className="list-decimal pl-5 space-y-2 text-body">
               <li>市場相場を把握する（同年代・同職種の相場を調査し、自分の市場価値を確認）</li>
@@ -424,7 +424,7 @@ export default function CareerChange20sClient() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
             <H2>❓ よくある質問（FAQ）</H2>
             <FaqAccordion items={FAQ_DATA} />
           </section>

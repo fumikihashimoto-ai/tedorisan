@@ -118,7 +118,7 @@ export const viewport: Viewport = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <StructuredData />
 
       {/* メインコンテンツ */}
@@ -138,7 +138,7 @@ export default function Home() {
             <nav className="breadcrumb mb-3">
               <Link href="/">ホーム</Link>
             </nav>
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               年収の手取りを最速で計算！シミュレーション付きで初心者も安心
             </h1>
             <HomeClient />

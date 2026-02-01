@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import RelatedLinks from "./components/RelatedLinks";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
@@ -60,7 +61,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className="antialiased bg-white"
+        className="antialiased bg-[#F8FAFC]"
       >
         {/* Google Tag Manager (noscript) */}
         {GTM_ID && (
@@ -76,6 +77,7 @@ export default function RootLayout({
 
         <Header />
         <main className="w-full overflow-visible">{children}</main>
+        <RelatedLinks />
         <Footer />
         <ScrollToTopButton />
       </body>

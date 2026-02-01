@@ -12,7 +12,7 @@ interface CtaCardProps {
 export default function CtaCard({ title, adWidth = 300, adHeight = 250, children }: CtaCardProps) {
   return (
     <div className="mb-6">
-      <div className="font-bold text-gray-800 text-base mb-3">{title}</div>
+      <div className="font-bold text-[#1E293B] text-base mb-3">{title}</div>
       <div className="mx-auto w-fit">
         {children ?? <AdPlaceholder width={adWidth} height={adHeight} />}
       </div>

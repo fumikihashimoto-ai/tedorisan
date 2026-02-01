@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Noto_Sans_JP } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { MAGAZINE_GROUP_ORDER, NAV_ITEMS, type NavMenuItem } from '@/app/lib/navigation';
+
+const notoSansJPBlack = Noto_Sans_JP({ weight: '900' });
 
 /** マガジンメニュー項目をグループごとに分割 */
 function groupMagazineItems(items: NavMenuItem[]) {
@@ -64,28 +67,41 @@ export default function Header() {
 
   return (
     <>
-      <header className="shadow-sm border-b border-white/10" style={{ background: 'linear-gradient(135deg, #ed2445 0%, #fc462d 100%)' }}>
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="h-12 flex items-center">
-            {/* PC: 2カラム全体幅（左800 + gap32 + 右300 = 1132px）に合わせる */}
-            <div className="relative w-full md:w-[1132px] md:flex md:items-center md:justify-between">
-              {/* PC: 左寄せロゴ */}
+      <header className="shadow-sm border-b border-[#E2E8F0] bg-white">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="h-14 md:h-16 flex items-center">
+            {/* PC: 2カラム全体幅（記事+gap+サイドバー）に合わせ、ロゴは左端・ナビは右カラム右端に配置 */}
+            <div className="relative w-full md:flex md:items-center md:justify-between lg:max-w-[1128px] xl:max-w-[1268px]">
+              {/* PC: 左寄せロゴテキスト + キャッチコピー */}
+              <div className="hidden md:flex md:items-center md:gap-4">
+                <Link
+                  href="/"
+                  className={`py-1.5 hover:opacity-90 transition-opacity text-2xl ${notoSansJPBlack.className}`}
+                  style={{ color: '#3589fb' }}
+                  aria-label="手取り計算シミュレーションツール テドリさん"
+                >
+                  手取りのミカタ
+                </Link>
+                <span className="text-[12px] text-[#64748B] whitespace-nowrap font-semibold">
+                  手取り計算・年収シミュレーション・転職の無料ツール
+                </span>
+              </div>
+
+              {/* スマホ: 中央ロゴテキスト + キャッチコピー（縦並び） */}
               <Link
                 href="/"
-                className="hidden md:inline font-bold text-xl text-white hover:text-white/90 transition-colors whitespace-nowrap"
+                className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0.5 py-1 hover:opacity-90 transition-opacity"
+                aria-label="手取り計算シミュレーションツール テドリさん"
               >
-                手取り計算シミュレーションツール テドリさん
+                <span className={`text-xl ${notoSansJPBlack.className}`} style={{ color: '#3589fb' }}>
+                  手取りのミカタ
+                </span>
+                <span className="text-[11px] text-[#64748B] font-semibold whitespace-nowrap">
+                  手取り計算・年収シミュレーション・転職の無料ツール
+                </span>
               </Link>
 
-              {/* スマホ: 中央ロゴ（従来どおり） */}
-              <Link
-                href="/"
-                className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-sm text-white hover:text-white/90 transition-colors whitespace-nowrap"
-              >
-                手取り計算シミュレーションツール テドリさん
-              </Link>
-
-              {/* PC: ヘッダー内メニュー表示（2カラム全体幅の右端に揃える） */}
+              {/* PC: ヘッダー内メニュー表示（右カラムの右端に揃える） */}
               <nav className="hidden md:flex items-center">
                 {NAV_ITEMS.map((item) =>
                   item.type === 'dropdown' ? (
@@ -144,13 +160,27 @@ export default function Header() {
                 )}
               </nav>
 
-              {/* スマホ: メニューボタン */}
+              {/* スマホ: メニューボタン（シンプル・お洒落） */}
               <button
                 onClick={() => setIsMenuOpen(true)}
-                className="md:hidden ml-auto w-10 h-10 rounded-full bg-white/10 border border-white/20 shadow-sm flex items-center justify-center text-2xl text-white hover:bg-white/20 transition-colors z-10"
+                className="md:hidden ml-auto p-2 flex items-center justify-center text-[#1E293B] hover:opacity-80 transition-opacity z-10"
                 aria-label="メニューを開く"
               >
-                ☰
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                </svg>
               </button>
             </div>
           </div>
@@ -164,17 +194,30 @@ export default function Header() {
           <div className="absolute inset-0 bg-black/40" onClick={closeMenu} />
 
           {/* メニュー本体（画面全体） */}
-          <div className="absolute inset-0 text-white" style={{ background: 'linear-gradient(135deg, #ed2445 0%, #fc462d 100%)' }}>
+          <div className="absolute inset-0 text-white bg-[#2563EB]">
             {/* 上部バー */}
             <div className="h-12 px-4 flex items-center justify-between border-b border-white/20">
               <div className="font-bold text-white">メニュー</div>
               <button
                 type="button"
                 onClick={closeMenu}
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 shadow-sm flex items-center justify-center text-2xl text-white hover:bg-white/20 transition-colors"
+                className="p-2 flex items-center justify-center text-white hover:opacity-80 transition-opacity"
                 aria-label="メニューを閉じる"
               >
-                ×
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
               </button>
             </div>
 

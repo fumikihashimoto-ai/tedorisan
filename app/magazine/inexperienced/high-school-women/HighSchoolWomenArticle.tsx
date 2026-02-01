@@ -495,7 +495,7 @@ export default function HighSchoolWomenArticle() {
             href="https://koukou.gakusei.hellowork.mhlw.go.jp/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#0a57d1] underline hover:no-underline"
+            className="text-[#2563EB] underline hover:no-underline"
           >
             高卒向け求人情報サイト
           </a>
@@ -504,7 +504,7 @@ export default function HighSchoolWomenArticle() {
             href="https://koukou.gakusei.hellowork.mhlw.go.jp/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#0a57d1] underline hover:no-underline"
+            className="text-[#2563EB] underline hover:no-underline"
           >
             厚生労働省の高卒就職情報WEB提供サービス
           </a>
@@ -609,15 +609,15 @@ export default function HighSchoolWomenArticle() {
         </p>
         <p className="text-base leading-[1.8] mb-4">
           関連記事：
-          <Link href="/magazine/high-school" className="text-[#0a57d1] underline hover:no-underline">
+          <Link href="/magazine/high-school" className="text-[#2563EB] underline hover:no-underline">
             高卒・高校中退の就職
           </Link>
           、
-          <Link href="/magazine/inexperienced/20s-women" className="text-[#0a57d1] underline hover:no-underline">
+          <Link href="/magazine/inexperienced/20s-women" className="text-[#2563EB] underline hover:no-underline">
             20代女性未経験者の転職
           </Link>
           、
-          <Link href="/magazine/inexperienced/30s-women" className="text-[#0a57d1] underline hover:no-underline">
+          <Link href="/magazine/inexperienced/30s-women" className="text-[#2563EB] underline hover:no-underline">
             30代女性未経験者の転職
           </Link>
         </p>

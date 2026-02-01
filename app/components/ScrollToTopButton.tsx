@@ -48,7 +48,7 @@ export default function ScrollToTopButton() {
             transition-shadow duration-200
             hover:brightness-110
           `}
-          style={{ background: 'linear-gradient(135deg, #ed2445, #fc462d)' }}
+          style={{ background: '#2563EB' }}
           aria-label="ページの先頭に戻る"
         >
           {/* 上矢印アイコン */}

@@ -20,17 +20,17 @@ export function FaqAccordion({ items, defaultOpenIndex = 0 }: Props) {
       {items.map((item, idx) => {
         const isOpen = openIndex === idx;
         return (
-          <div key={item.question} className="border-2 border-[#e0e0e0] rounded-2xl bg-white overflow-hidden">
+          <div key={item.question} className="border-2 border-[#E2E8F0] rounded-2xl bg-white overflow-hidden">
             <button
               type="button"
               className="w-full text-left px-4 py-4 flex items-center justify-between"
               onClick={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
               aria-expanded={isOpen}
             >
-              <span className="font-semibold text-[#1a1a1a]">
+              <span className="font-semibold text-[#1E293B]">
                 Q{idx + 1}. {item.question}
               </span>
-              <span className="text-[#0a57d1] font-bold">{isOpen ? '−' : '+'}</span>
+              <span className="text-[#2563EB] font-bold">{isOpen ? '−' : '+'}</span>
             </button>
             {isOpen && (
               <div className="px-4 pb-4">

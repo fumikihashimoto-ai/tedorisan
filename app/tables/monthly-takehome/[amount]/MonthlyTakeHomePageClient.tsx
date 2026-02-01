@@ -33,7 +33,7 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
   const ageEntries = useMemo(() => Object.entries(averageIncomeByAge) as [AgeGroup, number][], []);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
+    <div className="min-h-screen bg-[#F8FAFC] px-4 py-8">
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
@@ -42,11 +42,11 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
           <h1 className="page-title">手取り{amountInMan}万円に必要な年収は？</h1>
 
           {/* 即答セクション */}
-          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
+          <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
 
         <div className="bg-white rounded-2xl p-6 mb-6 shadow-sm">
           <p className="text-sm text-gray-600 mb-2 text-center md:text-left">必要な年収</p>
-          <p className="text-5xl md:text-6xl font-black text-[#0a57d1] text-center md:text-left">
+          <p className="text-5xl md:text-6xl font-black text-[#2563EB] text-center md:text-left">
             {requiredAnnualInMan}万円
           </p>
         </div>
@@ -54,11 +54,11 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-white rounded-2xl p-4 shadow-sm">
             <p className="text-xs text-gray-600 mb-1 text-center md:text-left">月収（額面）</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">{monthlyGrossInMan}万円</p>
+            <p className="text-2xl font-black text-[#2563EB] text-center md:text-left">{monthlyGrossInMan}万円</p>
           </div>
           <div className="bg-white rounded-2xl p-4 shadow-sm">
             <p className="text-xs text-gray-600 mb-1 text-center md:text-left">手取り率</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">{result.takehomeRate}%</p>
+            <p className="text-2xl font-black text-[#2563EB] text-center md:text-left">{result.takehomeRate}%</p>
           </div>
         </div>
 
@@ -94,7 +94,7 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
       </div>
 
       {/* 年代別の達成難易度 */}
-      <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mb-8 shadow-lg">
+      <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 mb-8 shadow-lg">
         <h2 className="text-xl font-bold mb-4">📊 年代別の達成難易度</h2>
 
         <div className="space-y-4">
@@ -108,19 +108,19 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
 
             if (ratio < 80) {
               difficulty = '達成しやすい';
-              difficultyColor = 'text-[#0a57d1]';
+              difficultyColor = 'text-[#2563EB]';
               barColor = 'bg-green-500';
             } else if (ratio < 120) {
               difficulty = '達成可能';
-              difficultyColor = 'text-[#0a57d1]';
+              difficultyColor = 'text-[#2563EB]';
               barColor = 'bg-yellow-500';
             } else if (ratio < 150) {
               difficulty = 'やや難しい';
-              difficultyColor = 'text-[#666666]';
+              difficultyColor = 'text-[#64748B]';
               barColor = 'bg-yellow-500';
             } else {
               difficulty = '難しい';
-              difficultyColor = 'text-[#ff4f42]';
+              difficultyColor = 'text-[#dc2626]';
               barColor = 'bg-red-500';
             }
 
@@ -160,7 +160,7 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
             <div className="bg-gray-100 border border-gray-300 text-center py-3 rounded-lg text-gray-400">-</div>
           )}
 
-          <div className="bg-white border-2 border-[#e0e0e0] text-center py-3 rounded-2xl font-bold shadow-sm text-[#0a57d1]">
+          <div className="bg-white border-2 border-[#E2E8F0] text-center py-3 rounded-2xl font-bold shadow-sm text-[#2563EB]">
             手取り{amountInMan}万円
           </div>
 
@@ -179,7 +179,7 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
         <div className="mt-6 text-center">
           <Link
             href="/tables"
-            className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+            className="inline-block bg-[#F59E0B] hover:bg-[#d97706] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
           >
             年代・年収別 手取り一覧表を見る
           </Link>
@@ -187,13 +187,13 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
       </div>
 
       {/* CTAセクション */}
-      <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 shadow-lg">
+      <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
         <h3 className="text-xl font-bold mb-3 text-left">💡 あなたの正確な手取り額を計算</h3>
         <p className="text-sm text-gray-700 text-left mb-4">扶養家族の人数を考慮した詳細計算</p>
         <div className="text-left">
           <Link
             href="/"
-            className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+            className="inline-block bg-[#F59E0B] hover:bg-[#d97706] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
           >
             手取り計算シミュレーションツールを使う
           </Link>

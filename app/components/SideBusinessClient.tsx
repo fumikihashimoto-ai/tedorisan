@@ -364,7 +364,7 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
-              <div className="text-3xl font-black text-[#0a57d1] mb-4">
+              <div className="text-3xl font-black text-[#2563EB] mb-4">
                 日本の上位 {percentile}%
               </div>
               
@@ -432,7 +432,7 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
           <div className="card-base mt-6">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
-            <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
+            <div className="bg-white border-l-4 border-[#E2E8F0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
               <ul className="text-body space-y-1">
                 <li>• 求人倍率: 1.5倍（過去最高水準）</li>
@@ -487,7 +487,7 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main pb-24 md:pb-0">
+    <div className="min-h-screen bg-[#F8FAFC] container-main pb-24 md:pb-0">
       <div className="max-w-7xl mx-auto">
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">

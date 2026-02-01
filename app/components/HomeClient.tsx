@@ -163,7 +163,7 @@ export default function HomeClient() {
                 {percentileData && (
                   <div className="mt-6 pt-6 border-t border-gray-200">
                     <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold mb-3 leading-tight">あなたの年収レベル</h3>
-                    <p className="text-2xl font-black text-[#0a57d1] mb-3">日本の上位 {percentileData.percentile}%</p>
+                    <p className="text-2xl font-black text-[#2563EB] mb-3">日本の上位 {percentileData.percentile}%</p>
                     <p className="text-base text-gray-700 mb-3">
                       {percentileData.averageDiff > 0
                         ? `${ageToAgeGroup(parseInt(String(age), 10) || 30)}の平均より ${percentileData.averageDiff}万円 高い収入です。${percentileData.message}`

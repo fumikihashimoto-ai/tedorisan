@@ -59,7 +59,7 @@ export default function ResultTable({
                   <td className="py-3 text-right pr-4">
                     <span className="font-bold text-gray-800 text-base">
                       = 手取り
-                      <span className="ml-3 text-[#0a57d1] text-xl">
+                      <span className="ml-3 text-[#2563EB] text-xl">
                         {item.value}
                       </span>
                     </span>
@@ -91,7 +91,7 @@ export default function ResultTable({
                 <td
                   className={`tabular-nums text-right font-medium text-gray-900 ${
                     isBreakdown
-                      ? 'py-3 text-[#333333] pr-4'
+                      ? 'py-3 text-[#1E293B] pr-4'
                       : 'p-3 border-b border-gray-100'
                   } ${item.highlight ? 'font-bold' : ''}`}
                 >

@@ -74,17 +74,17 @@ export default function AnnualIncomeClient({ amount }: Props) {
   const canShowNext = nextAmount <= 10000000;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
+    <div className="min-h-screen bg-[#F8FAFC] px-4 py-8">
       <div className="max-w-4xl mx-auto">
         {/* 即答セクション（最重要） */}
-        <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-8 text-center mb-8 shadow-lg">
+        <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-8 text-center mb-8 shadow-lg">
           <h1 className="text-2xl md:text-3xl font-bold mb-6">
             年収{amountInMan}万円の手取りは？
           </h1>
           
           <div className="bg-white rounded-2xl p-6 mb-4 shadow-sm">
             <p className="text-sm text-gray-600 mb-2">年間手取り</p>
-            <p className="text-5xl md:text-6xl font-black text-[#0a57d1]">
+            <p className="text-5xl md:text-6xl font-black text-[#2563EB]">
               {formatManYen(result.takeHome)}万円
             </p>
           </div>
@@ -92,13 +92,13 @@ export default function AnnualIncomeClient({ amount }: Props) {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-white rounded-2xl p-4 shadow-sm">
               <p className="text-xs text-gray-600 mb-1">月収（手取り）</p>
-              <p className="text-2xl font-black text-[#0a57d1]">
+              <p className="text-2xl font-black text-[#2563EB]">
                 {formatManYen(result.monthlyTakeHome)}万円
               </p>
             </div>
             <div className="bg-white rounded-2xl p-4 shadow-sm">
               <p className="text-xs text-gray-600 mb-1">手取り率</p>
-              <p className="text-2xl font-black text-[#0a57d1]">
+              <p className="text-2xl font-black text-[#2563EB]">
                 {takeHomeRate}%
               </p>
             </div>
@@ -119,7 +119,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
         </div>
 
         {/* 詳細内訳表 */}
-        <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mb-8 shadow-lg">
+        <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 mb-8 shadow-lg">
           <h2 className="text-xl font-bold mb-4">💰 詳細内訳</h2>
           
           <table className="w-full">
@@ -132,26 +132,26 @@ export default function AnnualIncomeClient({ amount }: Props) {
                 <td className="py-3 pl-6 text-sm">
                   <span className="mr-2">-</span>所得税
                 </td>
-                <td className="py-3 text-right text-[#333333] pr-4">{formatManYen(result.breakdown.incomeTax)}万円</td>
+                <td className="py-3 text-right text-[#1E293B] pr-4">{formatManYen(result.breakdown.incomeTax)}万円</td>
               </tr>
               <tr className="border-b bg-white">
                 <td className="py-3 pl-6 text-sm">
                   <span className="mr-2">-</span>住民税
                 </td>
-                <td className="py-3 text-right text-[#333333] pr-4">{formatManYen(result.breakdown.residentTax)}万円</td>
+                <td className="py-3 text-right text-[#1E293B] pr-4">{formatManYen(result.breakdown.residentTax)}万円</td>
               </tr>
               <tr className="border-b bg-white">
                 <td className="py-3 pl-6 text-sm">
                   <span className="mr-2">-</span>社会保険料
                 </td>
-                <td className="py-3 text-right text-[#333333] pr-4">{formatManYen(result.breakdown.socialInsurance)}万円</td>
+                <td className="py-3 text-right text-[#1E293B] pr-4">{formatManYen(result.breakdown.socialInsurance)}万円</td>
               </tr>
               <tr className="bg-white">
                 <td className="py-3" />
                 <td className="py-3 text-right pr-4">
                   <span className="font-bold text-gray-800 text-base">
                     = 手取り
-                    <span className="ml-3 text-[#0a57d1] text-xl">{formatManYen(result.takeHome)}万円</span>
+                    <span className="ml-3 text-[#2563EB] text-xl">{formatManYen(result.takeHome)}万円</span>
                   </span>
                 </td>
               </tr>
@@ -160,18 +160,18 @@ export default function AnnualIncomeClient({ amount }: Props) {
         </div>
 
         {/* パーセンタイル表示 */}
-        <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mb-8 shadow-lg">
+        <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 mb-8 shadow-lg">
           <h3 className="text-xl font-bold mb-4">📈 あなたの年収レベル</h3>
           
           <div className="text-center mb-4">
             <p className="text-sm text-gray-600 mb-2">{ageGroup}の</p>
-            <p className="text-4xl font-black text-[#0a57d1]">上位 {percentileData.percentile}%</p>
+            <p className="text-4xl font-black text-[#2563EB]">上位 {percentileData.percentile}%</p>
           </div>
           
           <div className="mb-4">
             <div className="bg-gray-200 h-4 rounded-full overflow-hidden">
               <div 
-                className="bg-[#0a57d1] h-full rounded-full transition-all duration-500"
+                className="bg-[#2563EB] h-full rounded-full transition-all duration-500"
                 style={{ width: `${percentileData.percentile}%` }}
               />
             </div>
@@ -208,7 +208,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
             )}
             
             {/* 現在（無効化） */}
-            <div className="bg-white border-2 border-[#e0e0e0] text-center py-3 rounded-2xl font-bold shadow-sm text-[#0a57d1]">
+            <div className="bg-white border-2 border-[#E2E8F0] text-center py-3 rounded-2xl font-bold shadow-sm text-[#2563EB]">
               年収{amountInMan}万円
             </div>
             
@@ -230,7 +230,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
           <div className="mt-4 text-center">
             <Link 
               href="/tables"
-              className="text-[#0a57d1] hover:underline text-sm"
+              className="text-[#2563EB] hover:underline text-sm"
             >
               → 全年収の一覧表を見る
             </Link>
@@ -238,7 +238,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
         </div>
 
         {/* CTAセクション */}
-        <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mb-6 shadow-lg">
+        <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 mb-6 shadow-lg">
           <h3 className="text-xl font-bold mb-3 text-center">
             💡 あなたの正確な手取り額を計算
           </h3>
@@ -248,7 +248,7 @@ export default function AnnualIncomeClient({ amount }: Props) {
           <div className="text-center">
             <Link 
               href="/"
-              className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+              className="inline-block bg-[#F59E0B] hover:bg-[#d97706] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
             >
               手取り計算シミュレーションツールを使う
             </Link>

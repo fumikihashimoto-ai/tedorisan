@@ -2,47 +2,65 @@
 
 @layer base {
   :root {
-    /* ベースカラー（UI改善） */
-    --bg-base: 0 0% 100%;
-    /* #ffffff - メイン背景：白 */
-    --bg-subtle: 0 0% 98%;
-    /* #f9fafb - セクション区切り用：ごく薄いグレー */
+    /* ========================================
+       手取りのミカタ ブランドカラー（リブランディング）
+    ======================================== */
+    /* プライマリ（ブルー） */
+    --color-primary: #2563EB;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-light: #dbeafe;
+    --color-primary-dark: #1e40af;
+
+    /* アクセント（アンバー） */
+    --color-accent: #F59E0B;
+    --color-accent-hover: #d97706;
+    --color-accent-light: #fef3c7;
+
+    /* サブ（グリーン） */
+    --color-success: #10B981;
+    --color-success-hover: #059669;
+    --color-success-light: #d1fae5;
+
+    /* ベース・背景 */
+    --color-background: #F8FAFC;
+    --color-surface: #FFFFFF;
+    --color-border: #E2E8F0;
+    --color-border-light: #f1f5f9;
 
     /* テキスト */
-    --text-primary: 0 0% 18%;
-    /* #1f2937 - 本文：ダークグレー */
-    --text-secondary: 0 0% 43%;
-    /* #6b7280 - 補足：ミディアムグレー */
-    --text-muted: 0 0% 61%;
-    /* #9ca3af - 注釈：ライトグレー */
+    --color-text-primary: #1E293B;
+    --color-text-secondary: #64748B;
+    --color-text-muted: #94a3b8;
 
-    /* アクセント */
+    /* セマンティック */
+    --color-error: #dc2626;
+    --color-warning: #F59E0B;
+    --color-info: #2563EB;
+
+    /* 後方互換用（HSL形式） */
+    --bg-base: 210 40% 98%;
+    /* #F8FAFC */
+    --bg-subtle: 210 40% 98%;
+    --text-primary: 222 47% 11%;
+    /* #1E293B */
+    --text-secondary: 215 16% 47%;
+    /* #64748B */
+    --text-muted: 215 20% 65%;
+    /* #94a3b8 */
     --accent-primary: 217 91% 60%;
-    /* #2563eb - 青：CTA、リンク */
+    /* #2563EB */
     --accent-secondary: 38 92% 50%;
-    /* #f59e0b - オレンジ：強調 */
-
-    /* ボーダー（最小限使用） */
-    --border-light: 0 0% 90%;
-    /* #e5e7eb - 薄いボーダー（テーブルのみ） */
+    /* #F59E0B */
+    --border-light: 214 32% 91%;
+    /* #E2E8F0 */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --muted: 215 16% 47%;
+    --border: 214 32% 91%;
 
     /* シャドウ（控えめ） */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
-
-    /* ニュートラル（全体背景 / カード / ボーダー） - 後方互換性のため維持 */
-    --background: 0 0% 100%;
-    /* #ffffff - 白に変更 */
-    --card: 0 0% 100%;
-    /* #ffffff */
-    --border: 0 0% 90%;
-    /* #e5e7eb - 薄く変更 */
-
-    /* テキスト（視認性重視） */
-    --foreground: 0 0% 18%;
-    /* #1f2937 - ダークグレーに変更 */
-    --muted: 0 0% 43%;
-    /* #6b7280 - ミディアムグレーに変更 */
 
     /* ========================================
        フォントサイズ変数（rem基準）
@@ -94,8 +112,23 @@
 }
 
 @theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  /* 手取りのミカタ ブランドカラー（Tailwind utilities用） */
+  --color-primary: #2563EB;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-light: #dbeafe;
+  --color-accent: #F59E0B;
+  --color-accent-hover: #d97706;
+  --color-success: #10B981;
+  --color-success-hover: #059669;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-border-light: #f1f5f9;
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94a3b8;
+  --color-error: #dc2626;
+  --color-background: #F8FAFC;
+  --color-foreground: #1E293B;
   /* 外部フォント依存を避けたシステムフォントスタック（表示速度/安定性を優先） */
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "Noto Sans JP", Arial,
@@ -137,8 +170,8 @@ html {
 }
 
 body {
-  background: hsl(var(--bg-base));
-  color: hsl(var(--text-primary));
+  background: var(--color-background);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
@@ -157,7 +190,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
   font-weight: 700;
@@ -197,7 +230,7 @@ h4 {
   font-weight: 700;
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
-  color: #333333;
+  color: var(--color-text-primary);
   text-align: left;
   margin-top: 40px;
   margin-bottom: 32px;
@@ -214,12 +247,12 @@ h4 {
 /* パンくずリスト（キャプション・14px） */
 .breadcrumb {
   font-size: var(--font-size-sm);
-  color: #999999;
+  color: var(--color-text-secondary);
   margin-top: 20px;
 }
 
 .breadcrumb a:hover {
-  color: #0a57d1;
+  color: var(--color-primary-hover);
 }
 
 @keyframes slideUp {
@@ -240,15 +273,12 @@ h4 {
 
 /* -----------------------------------------------------------------------------
    共通スタイル（全ページで統一して使用）
-   方針:
-   - カード枠: グレー枠（#e0e0e0）
-   - ボタン: font-bold
-   - 縦余白: py-12（= 3rem）
+   手取りのミカタ ブランドカラー適用
 ----------------------------------------------------------------------------- */
 
 /* 1. カード（枠線なし、シャドウ控えめ） */
 .card-base {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   border: none;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -263,7 +293,7 @@ h4 {
 
 /* 枠なしカード（結果表示等で使用） */
 .card-no-border {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   border-radius: 0.5rem;
   padding: 1.5rem;
   box-shadow: none;
@@ -284,7 +314,7 @@ h4 {
   font-size: var(--font-size-h2);
   font-weight: 700;
   line-height: var(--line-height-tight);
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
   text-align: left;
 }
@@ -295,34 +325,35 @@ h4 {
   font-size: var(--font-size-h2);
   font-weight: 700;
   line-height: var(--line-height-tight);
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--color-border);
 }
 
 /* 3. 本文テキスト（16px以上） */
 .text-body {
   font-size: var(--font-size-base);
-  color: #333333;
+  color: var(--color-text-primary);
   line-height: var(--line-height-base);
 }
 
 .text-caption {
   font-size: var(--font-size-sm);
-  color: #666666;
+  color: var(--color-text-secondary);
   line-height: 1.5;
 }
 
 .text-small {
   font-size: var(--font-size-xs);
-  color: #999999;
+  color: var(--color-text-muted);
 }
 
 /* 4. ボタン（PC 16px / SP 18px） */
+/* プライマリCTA（転職系）: アンバー */
 .btn-primary {
   width: 100%;
-  background-color: #ff4f42;
+  background-color: var(--color-accent);
   color: #ffffff;
   font-weight: 700;
   font-size: var(--font-size-button);
@@ -333,7 +364,7 @@ h4 {
 }
 
 .btn-primary:hover {
-  background-color: #e5463b;
+  background-color: var(--color-accent-hover);
   transform: scale(1.01);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
@@ -341,7 +372,7 @@ h4 {
 /* インラインボタン（一覧表等で使用） */
 .btn-primary-inline {
   display: inline-block;
-  background-color: #ff4f42;
+  background-color: var(--color-accent);
   color: #ffffff;
   font-weight: 700;
   font-size: var(--font-size-button);
@@ -352,15 +383,15 @@ h4 {
 }
 
 .btn-primary-inline:hover {
-  background-color: #e5463b;
+  background-color: var(--color-accent-hover);
   transform: scale(1.05);
 }
 
 /* 5. 入力フォーム */
 .input-field {
   width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 0.375rem;
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -368,8 +399,8 @@ h4 {
 
 .input-field:focus {
   outline: none;
-  border-color: #0a57d1;
-  box-shadow: 0 0 0 2px rgba(10, 87, 209, 0.2);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
 /* 6. コンテナ・余白 */
@@ -378,7 +409,7 @@ h4 {
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 3rem;
-  background-color: hsl(var(--bg-base));
+  background-color: var(--color-background);
 }
 
 @media (min-width: 768px) {
@@ -402,7 +433,7 @@ h4 {
 .result-amount {
   font-size: 2rem;
   font-weight: 800;
-  color: #0a57d1;
+  color: var(--color-primary);
   text-align: center;
 }
 
@@ -413,16 +444,16 @@ h4 {
 }
 
 .result-amount-positive {
-  color: #0a57d1;
+  color: var(--color-success);
 }
 
 .result-amount-negative {
-  color: #dc2626;
+  color: var(--color-error);
 }
 
 .result-label {
   font-size: 0.875rem;
-  color: #666666;
+  color: var(--color-text-secondary);
   text-align: center;
   margin-bottom: 0.25rem;
 }
@@ -431,7 +462,7 @@ h4 {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .result-row:last-child {
@@ -439,7 +470,7 @@ h4 {
 }
 
 .result-row-label {
-  color: #666666;
+  color: var(--color-text-secondary);
 }
 
 .result-row-value {
@@ -448,13 +479,14 @@ h4 {
 
 /* 8. トグル */
 .toggle-link {
-  color: #0a57d1;
+  color: var(--color-primary);
   cursor: pointer;
   text-align: center;
   padding: 0.5rem 0;
 }
 
 .toggle-link:hover {
+  color: var(--color-primary-hover);
   text-decoration: underline;
 }
 
@@ -473,17 +505,17 @@ h4 {
   padding: 0.75rem 3rem 0.75rem 1rem;
   font-size: 1rem;
   font-weight: 400;
-  color: #333333;
+  color: var(--color-text-primary);
   line-height: 1.5;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 0.375rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 .custom-select-trigger:hover {
-  border-color: #0a57d1;
+  border-color: var(--color-primary);
 }
 
 .custom-select-trigger:after {
@@ -495,16 +527,16 @@ h4 {
   top: 50%;
   right: 1rem;
   margin-top: -2px;
-  border-bottom: 2px solid #666666;
-  border-right: 2px solid #666666;
+  border-bottom: 2px solid var(--color-text-secondary);
+  border-right: 2px solid var(--color-text-secondary);
   transform: rotate(45deg) translateY(-50%);
   transition: all 0.3s ease-in-out;
   transform-origin: 50% 0;
 }
 
 .custom-select-wrapper.opened .custom-select-trigger {
-  border-color: #0a57d1;
-  box-shadow: 0 0 0 2px rgba(10, 87, 209, 0.2);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
 .custom-select-wrapper.opened .custom-select-trigger:after {
@@ -520,10 +552,10 @@ h4 {
   right: 0;
   min-width: 100%;
   margin-top: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-border);
   border-radius: 0.375rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: #ffffff;
+  background: var(--color-surface);
   z-index: 100;
   opacity: 0;
   visibility: hidden;
@@ -541,10 +573,10 @@ h4 {
 
 /* AnimatedSelect - ふわっとしたドロップダウンアニメーション */
 .animated-select-dropdown {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 0.375rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  background: #ffffff;
+  background: var(--color-surface);
   overflow: hidden;
   animation: animatedSelectFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   transform-origin: top center;
@@ -564,10 +596,10 @@ h4 {
 .animated-select-option {
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  color: #333333;
+  color: var(--color-text-primary);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .animated-select-option:last-child {
@@ -575,12 +607,12 @@ h4 {
 }
 
 .animated-select-option:hover {
-  background-color: #f9fafb;
+  background-color: var(--color-border-light);
 }
 
 .animated-select-option.selected {
-  background-color: #eff6ff;
-  color: #2563eb;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -589,10 +621,10 @@ h4 {
   display: block;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  color: #333333;
+  color: var(--color-text-primary);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .custom-option:last-of-type {
@@ -600,12 +632,12 @@ h4 {
 }
 
 .custom-option:hover {
-  background: #f5f5f5;
+  background: var(--color-border-light);
 }
 
 .custom-option.selected {
-  background: #e8f0fe;
-  color: #0a57d1;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -621,8 +653,8 @@ h4 {
 .nav-item {
   position: relative;
   padding: 0.5rem 1rem;
-  color: #ffffff;
-  font-weight: 500;
+  color: var(--color-text-primary);
+  font-weight: 600;
   font-size: 0.875rem;
   text-decoration: none;
   transition: opacity 0.2s;
@@ -632,15 +664,9 @@ h4 {
   opacity: 0.8;
 }
 
-/* アクティブ状態（現在のページ） */
+/* アクティブ状態（現在のページ） - 青いラインは非表示 */
 .nav-item.nav-active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
-  right: 1rem;
-  height: 2px;
-  background-color: #ffffff;
+  display: none;
 }
 
 /* ドロップダウンメニュー */
@@ -653,8 +679,8 @@ h4 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem 1rem;
-  color: #ffffff;
-  font-weight: 500;
+  color: var(--color-text-primary);
+  font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -687,8 +713,8 @@ h4 {
   top: 100%;
   left: 0;
   min-width: 200px;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   opacity: 0;
@@ -707,11 +733,11 @@ h4 {
 .nav-dropdown-item {
   display: block;
   padding: 0.75rem 1rem;
-  color: #333333;
+  color: var(--color-text-primary);
   font-size: 0.875rem;
   text-decoration: none;
   transition: all 0.2s;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .nav-dropdown-item:last-child {
@@ -719,8 +745,8 @@ h4 {
 }
 
 .nav-dropdown-item:hover {
-  background: #f5f5f5;
-  color: #0a57d1;
+  background: var(--color-border-light);
+  color: var(--color-primary);
 }
 
 .nav-dropdown-item:first-child {
@@ -736,19 +762,14 @@ h4 {
   /* 必要に応じて矢印の色変更などを追加可能 */
 }
 
+/* アクティブ時の青いラインは非表示 */
 .nav-dropdown.nav-active::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
-  right: 1rem;
-  height: 2px;
-  background-color: #ffffff;
+  display: none;
 }
 
 /* テーブル（偶数行に薄いグレー背景） */
 .table-zebra tbody tr:nth-child(even) {
-  background: #f5f5f5;
+  background: var(--color-border-light);
 }
 
 /* モバイルメニュー（統一スタイル） */
@@ -771,7 +792,7 @@ h4 {
   }
 
   .mobile-menu-item:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   /* アコーディオン展開ボタン */
@@ -803,6 +824,6 @@ h4 {
   }
 
   .mobile-submenu-item:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
   }
 }

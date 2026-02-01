@@ -19,15 +19,15 @@ export default function SalaryAssessmentCta({ href = '/job-change' }: Props) {
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
               <span className="text-green-600">✓</span>
-              <span className="text-gray-600">3分で完了</span>
+              <span className="text-[#64748B]">3分で完了</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-600">✓</span>
-              <span className="text-gray-600">完全無料</span>
+              <span className="text-[#64748B]">完全無料</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-600">✓</span>
-              <span className="text-gray-600">あなたの市場価値がわかる</span>
+              <span className="text-[#64748B]">あなたの市場価値がわかる</span>
             </div>
           </div>
 

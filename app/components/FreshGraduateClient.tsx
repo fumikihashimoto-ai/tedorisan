@@ -172,7 +172,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
 
             {/* 一人暮らしの支出の目安 */}
             <div className="pt-4 mt-4 border-t border-gray-200">
-              <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-4">
+              <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-4">
               <h3 className="font-semibold text-gray-900 mb-3">一人暮らしの支出の目安</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -199,11 +199,11 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
                   <span className="text-gray-700">その他</span>
                   <span className="text-gray-900 font-semibold">{formatYen(other)}万円</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-[#e0e0e0]">
+                <div className="flex justify-between text-sm pt-2 border-t border-[#E2E8F0]">
                   <span className="text-gray-700 font-semibold">合計</span>
                   <span className="text-gray-900 font-semibold">{formatYen(totalExpenses)}万円</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-[#e0e0e0]">
+                <div className="flex justify-between text-sm pt-2 border-t border-[#E2E8F0]">
                   <span className="text-gray-700 font-semibold">月の余剰金の目安</span>
                   <span className={`font-semibold text-right ${surplus >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                     {formatYen(surplus)}万円
@@ -298,14 +298,14 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 📈 あなたの年収レベル
               </h3>
-              <div className="text-3xl font-black text-[#0a57d1] mb-4">
+              <div className="text-3xl font-black text-[#2563EB] mb-4">
                 日本の上位 {percentile}%
               </div>
               
               {/* ビジュアルバー */}
               <div className="bg-gray-200 h-3 rounded-full mb-4">
                 <div
-                  className="bg-[#0a57d1] h-3 rounded-full transition-all duration-500"
+                  className="bg-[#2563EB] h-3 rounded-full transition-all duration-500"
                   style={{ width: `${100 - percentile}%` }}
                 />
               </div>
@@ -324,7 +324,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
           <div className="card-base mt-6">
             <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
             
-            <div className="bg-white border-l-4 border-[#e0e0e0] p-4 mb-3">
+            <div className="bg-white border-l-4 border-[#E2E8F0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
               <ul className="text-body space-y-1">
                 <li>• 求人倍率: 1.5倍（過去最高水準）</li>
@@ -379,7 +379,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] container-main">
+    <div className="min-h-screen bg-[#F8FAFC] container-main">
       <div className="max-w-7xl mx-auto">
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">

@@ -2,7 +2,7 @@ export default function SidebarCTA() {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
       {/* ヘッダーバー */}
-      <div className="bg-[#1e3a5f] px-4 py-3">
+      <div className="bg-[#2563EB] px-4 py-3">
         <p className="text-white text-sm font-medium text-center">
           年収アップで手取りを増やすには？
         </p>
@@ -13,13 +13,13 @@ export default function SidebarCTA() {
         {/* 見出し */}
         <h3 className="text-lg font-bold text-gray-800 mb-3 leading-snug">
           <span className="text-[#1e3a5f]">転職のプロ</span>
-          <span className="text-amber-500">が</span>
+          <span className="text-[#F59E0B]">が</span>
           <span className="text-[#1e3a5f]">無料でサポート</span>
         </h3>
 
         {/* カテゴリタグ */}
         <div className="mb-3">
-          <span className="inline-block text-xs font-medium text-[#1e3a5f] border border-[#1e3a5f] rounded px-2 py-1">
+          <span className="inline-block text-xs font-medium text-[#1e3a5f] border border-[#2563EB] rounded px-2 py-1">
             20代・第二新卒向け
           </span>
         </div>

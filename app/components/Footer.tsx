@@ -21,7 +21,7 @@ export default function Footer() {
   const sections = FOOTER_SECTIONS;
 
   return (
-    <footer className="bg-[#2e363b] border-t border-[#e0e0e0] mt-16 text-white">
+    <footer className="bg-[#1E293B] border-t border-[#E2E8F0] mt-16 text-white">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* サイト名 */}
         <div className="text-center mb-6">

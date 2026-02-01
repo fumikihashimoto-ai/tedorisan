@@ -79,7 +79,7 @@ export default function AnnualIncomePageClient({ amount }: Props) {
   const nextAmount = amount + 200000;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-8">
+    <div className="min-h-screen bg-[#F8FAFC] px-4 py-8">
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">
@@ -88,12 +88,12 @@ export default function AnnualIncomePageClient({ amount }: Props) {
           <h1 className="page-title">年収{amountInMan}万円の手取りは？</h1>
 
           {/* 即答セクション（詳細内訳を統合） */}
-          <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
+          <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
 
         {/* 即答 */}
         <div className="bg-white rounded-2xl p-6 mb-6 shadow-sm">
           <p className="text-sm text-gray-600 mb-2 text-center md:text-left">年間手取り</p>
-          <p className="text-5xl md:text-6xl font-black text-[#0a57d1] text-center md:text-left">
+          <p className="text-5xl md:text-6xl font-black text-[#2563EB] text-center md:text-left">
             {Math.round(result.yearlyTakeHome / 10000)}万円
           </p>
         </div>
@@ -101,13 +101,13 @@ export default function AnnualIncomePageClient({ amount }: Props) {
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-white rounded-2xl p-4 shadow-sm">
             <p className="text-xs text-gray-600 mb-1 text-center md:text-left">月収（手取り）</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">
+            <p className="text-2xl font-black text-[#2563EB] text-center md:text-left">
               {Math.round(result.monthlyTakeHome / 10000)}万円
             </p>
           </div>
           <div className="bg-white rounded-2xl p-4 shadow-sm">
             <p className="text-xs text-gray-600 mb-1 text-center md:text-left">手取り率</p>
-            <p className="text-2xl font-black text-[#0a57d1] text-center md:text-left">{result.takehomeRate}%</p>
+            <p className="text-2xl font-black text-[#2563EB] text-center md:text-left">{result.takehomeRate}%</p>
           </div>
         </div>
 
@@ -143,18 +143,18 @@ export default function AnnualIncomePageClient({ amount }: Props) {
       </div>
 
       {/* パーセンタイル表示 */}
-      <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mb-8 shadow-lg">
+      <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 mb-8 shadow-lg">
         <h3 className="text-xl font-bold mb-4">📈 あなたの年収レベル</h3>
 
         <div className="text-center mb-4">
           <p className="text-sm text-gray-600 mb-2">{ageGroup}の</p>
-          <p className="text-4xl font-black text-[#0a57d1]">上位 {percentileData.percentile}%</p>
+          <p className="text-4xl font-black text-[#2563EB]">上位 {percentileData.percentile}%</p>
         </div>
 
         <div className="mb-4">
           <div className="bg-gray-200 h-4 rounded-full overflow-hidden">
             <div
-              className="bg-[#0a57d1] h-full rounded-full"
+              className="bg-[#2563EB] h-full rounded-full"
               style={{ width: `${percentileData.percentile}%` }}
             />
           </div>
@@ -181,7 +181,7 @@ export default function AnnualIncomePageClient({ amount }: Props) {
             </div>
           )}
 
-          <div className="bg-white border-2 border-[#e0e0e0] text-center py-3 rounded-2xl font-bold shadow-sm text-[#0a57d1]">
+          <div className="bg-white border-2 border-[#E2E8F0] text-center py-3 rounded-2xl font-bold shadow-sm text-[#2563EB]">
             年収{amountInMan}万円
           </div>
 
@@ -202,7 +202,7 @@ export default function AnnualIncomePageClient({ amount }: Props) {
         <div className="mt-6 text-center">
           <Link
             href="/tables"
-            className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+            className="inline-block bg-[#F59E0B] hover:bg-[#d97706] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
           >
             年代・年収別 手取り一覧表を見る
           </Link>
@@ -210,13 +210,13 @@ export default function AnnualIncomePageClient({ amount }: Props) {
       </div>
 
       {/* CTAセクション */}
-      <div className="bg-white border-2 border-[#e0e0e0] rounded-2xl p-6 mb-6 shadow-lg">
+      <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 mb-6 shadow-lg">
         <h3 className="text-xl font-bold mb-3 text-center">💡 あなたの正確な手取り額を計算</h3>
         <p className="text-sm text-gray-700 text-center mb-4">扶養家族の人数を考慮した詳細計算</p>
         <div className="text-center">
           <Link
             href="/"
-            className="inline-block bg-[#ff4f42] hover:bg-[#e5463b] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
+            className="inline-block bg-[#F59E0B] hover:bg-[#d97706] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
           >
             手取り計算シミュレーションツールを使う
           </Link>

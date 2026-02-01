@@ -50,7 +50,7 @@ export default function PcAdSidebar() {
   const randomizedAds = useMemo(() => shuffle(ADS), []);
 
   return (
-    <aside className="hidden md:block w-[300px] sticky top-5">
+    <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
       <div className="space-y-5">
         {randomizedAds.map((ad) => (
           <div key={ad.href}>
