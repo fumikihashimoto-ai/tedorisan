@@ -2,11 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Noto_Sans_JP } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { MAGAZINE_GROUP_ORDER, NAV_ITEMS, type NavMenuItem } from '@/app/lib/navigation';
-
-const notoSansJPBlack = Noto_Sans_JP({ weight: '900' });
 
 /** マガジンメニュー項目をグループごとに分割 */
 function groupMagazineItems(items: NavMenuItem[]) {
@@ -76,7 +73,7 @@ export default function Header() {
               <div className="hidden md:flex md:items-center md:gap-4">
                 <Link
                   href="/"
-                  className={`py-1.5 hover:opacity-90 transition-opacity text-2xl ${notoSansJPBlack.className}`}
+                  className="py-1.5 hover:opacity-90 transition-opacity text-2xl font-black"
                   style={{ color: '#3589fb' }}
                   aria-label="手取りのミカタ - 手取り計算・年収シミュレーション・転職の無料ツール"
                 >
@@ -93,7 +90,7 @@ export default function Header() {
                 className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0.5 py-1 hover:opacity-90 transition-opacity"
                 aria-label="手取りのミカタ - 手取り計算・年収シミュレーション・転職の無料ツール"
               >
-                <span className={`text-xl ${notoSansJPBlack.className}`} style={{ color: '#3589fb' }}>
+                <span className="text-xl font-black" style={{ color: '#3589fb' }}>
                   手取りのミカタ
                 </span>
                 <span className="text-[11px] text-[#64748B] font-semibold whitespace-nowrap">
