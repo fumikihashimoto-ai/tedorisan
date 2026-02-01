@@ -27,7 +27,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="建設業で年収1000万円を目指す！高収入を実現するキャリア戦略と秘訣"
         description="建設業の平均年収から職種別の給与水準、年収1000万円を達成するキャリアパス、取得すべき国家資格、効果的な転職戦略まで、高収入を実現するための秘訣を網羅的に解説。"
@@ -49,7 +49,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 建設業界
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               建設業で年収1000万円を目指す！高収入を実現するキャリア戦略と秘訣
             </h1>
 

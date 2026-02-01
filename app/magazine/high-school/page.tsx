@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="高卒・高校中退の就職｜成功のポイントとおすすめ業界・職種"
         description="高卒・高校中退者の就職の現状、未経験から挑戦できる業界・職種、就職活動のコツを解説。"
@@ -40,7 +40,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/high-school">マガジン</Link> {'>'} 高卒の就職 {'>'} 高卒・高校中退の就職
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               高卒・高校中退の就職｜成功のポイントとおすすめ業界・職種
             </h1>
 

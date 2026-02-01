@@ -33,13 +33,16 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
   const ageEntries = useMemo(() => Object.entries(averageIncomeByAge) as [AgeGroup, number][], []);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] px-4 py-8">
-      <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
-        <div className="md:max-w-[800px] md:w-full">
-          <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 手取り月収から逆算
-          </nav>
-          <h1 className="page-title">手取り{amountInMan}万円に必要な年収は？</h1>
+    <div className="min-h-screen bg-[#F8FAFC]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
+          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+            <nav className="breadcrumb mb-3">
+              <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 手取り月収から逆算
+            </nav>
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+              手取り{amountInMan}万円に必要な年収は？
+            </h1>
 
           {/* 即答セクション */}
           <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 md:p-8 mb-8 shadow-lg">
@@ -199,9 +202,10 @@ export default function MonthlyTakeHomePageClient({ amount }: Props) {
           </Link>
         </div>
       </div>
-        </div>
+          </main>
 
-        <PcAdSidebar />
+          <PcAdSidebar />
+        </div>
       </div>
     </div>
   );

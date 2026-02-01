@@ -27,7 +27,7 @@ export const metadata: Metadata = createArticleMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="営業職の年収アップを確実にする！市場価値を高めるスキルと転職術"
         description="営業職の年収を徹底解説。業界・年齢・地域別の平均、成果直結の営業スキル、専門知識、マネジメント能力、語学・ITスキル、転職術、年収交渉のポイントまで網羅。"
@@ -49,7 +49,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 営業職の年収・手取り
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               営業職の年収アップを確実にする！市場価値を高めるスキルと転職術
             </h1>
 

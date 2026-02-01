@@ -132,12 +132,15 @@ export default function CareerChange20sClient() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
-        <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
-          <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link> {'>'} <Link href="/career/career-change-20s">キャリア</Link> {'>'} 20代転職の年収相場
-          </nav>
-          <h1 className="page-title">20代転職の年収相場と手取り計算</h1>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
+          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0 space-y-8 md:space-y-12">
+            <nav className="breadcrumb mb-3">
+              <Link href="/">ホーム</Link> {'>'} <Link href="/career/career-change-20s">キャリア</Link> {'>'} 20代転職の年収相場
+            </nav>
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+              20代転職の年収相場と手取り計算
+            </h1>
 
           <Card>
             <H2>📌 20代の平均年収と、転職でどれくらい変わる？</H2>
@@ -428,9 +431,10 @@ export default function CareerChange20sClient() {
             <H2>❓ よくある質問（FAQ）</H2>
             <FaqAccordion items={FAQ_DATA} />
           </section>
-        </div>
+          </main>
 
-        <PcAdSidebar />
+          <PcAdSidebar />
+        </div>
       </div>
     </div>
   );

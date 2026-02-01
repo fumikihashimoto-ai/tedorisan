@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="30代未経験からの転職を成功させる！後悔しないキャリアチェンジ術"
         description="30代の未経験転職の現状、ポータブルスキルの活かし方、即戦力として評価される転職のコツを解説。後悔しないキャリアチェンジ術を紹介。"
@@ -40,7 +40,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/inexperienced/20s">マガジン</Link> {'>'} 未経験者の就職・転職 {'>'} 30代未経験者の転職
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               30代未経験からの転職を成功させる！後悔しないキャリアチェンジ術
             </h1>
 

@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="高卒女性の就職を成功させる！未経験から理想のキャリアを掴む秘訣"
         description="高卒女性の就職の現状、女性に人気の業界・職種、ワークライフバランスを重視した就職のコツを解説。"
@@ -40,7 +40,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/inexperienced/20s">マガジン</Link> {'>'} 未経験者の就職・転職 {'>'} 高卒女性の就職
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               高卒女性の就職を成功させる！未経験から理想のキャリアを掴む秘訣
             </h1>
 

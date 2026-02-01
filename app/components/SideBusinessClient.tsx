@@ -488,15 +488,17 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] pb-24 md:pb-0">
-      <div className="max-w-7xl mx-auto">
-        <div className="md:flex md:items-start md:gap-8">
-          <div className="md:max-w-[800px] md:w-full">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
+          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
             <nav className="breadcrumb mb-3">
               <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 副業向け手取り計算
             </nav>
-            <h1 className="page-title">副業検討者向け 手取り計算</h1>
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+              副業検討者向け 手取り計算
+            </h1>
             {calculatorSection}
-          </div>
+          </main>
           <PcAdSidebar />
         </div>
       </div>

@@ -29,7 +29,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法"
         description="薬剤師の平均年収や年代別・施設別の給与実態、年収1000万円を達成する薬剤師の特徴と割合、専門性の向上・管理職・企業薬剤師・独立開業といった具体的なキャリア戦略を解説。"
@@ -51,7 +51,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 薬剤師
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法
             </h1>
 

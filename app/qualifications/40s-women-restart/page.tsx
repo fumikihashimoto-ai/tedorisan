@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="在宅・高収入も夢じゃない!「40代女性が人生をやり直すためにおすすめな資格」徹底解説"
         description="在宅・高収入も夢じゃない。40代女性が人生をやり直すために本当に役立つ資格を厳選。Webデザイナー、プログラマー、オンライン秘書、医療事務、FPなどおすすめ資格5選を徹底解説。"
@@ -40,7 +40,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/qualifications">資格</Link> {'>'} 40代女性が人生をやり直すためにおすすめな資格
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               在宅・高収入も夢じゃない!「40代女性が人生をやり直すためにおすすめな資格」徹底解説
             </h1>
 

@@ -22,7 +22,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#1E293B] border-t border-[#E2E8F0] mt-16 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         {/* サイト名 */}
         <div className="text-center mb-6">
           <Link

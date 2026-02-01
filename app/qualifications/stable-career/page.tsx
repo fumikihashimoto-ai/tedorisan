@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="もう仕事に困らない!食いっぱぐれない資格で一生涯活躍できるスキルを手に入れる"
         description="AI時代に強い食いっぱぐれない資格を徹底解説。医療介護、IT、法律会計、建設不動産など、高い専門性と安定した需要を持つ資格の選び方と取得方法。"
@@ -39,7 +39,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/qualifications">資格</Link> {'>'} 食いっぱぐれない資格
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               もう仕事に困らない!食いっぱぐれない資格で一生涯活躍できるスキルを手に入れる
             </h1>
 

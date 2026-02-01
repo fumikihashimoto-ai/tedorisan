@@ -27,7 +27,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略"
         description="臨床検査技師の平均年収を年代別・勤務先別・地域別に徹底解説。経験年数、保有資格、役職が年収に与える影響と、資格取得・転職・管理職・副業による年収アップの具体的な方法を紹介。"
@@ -49,7 +49,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 臨床検査技師
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略
             </h1>
 

@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格"
         description="40代から未経験でエンジニアを目指す方へ。成功のポイント、おすすめの資格・学習方法、転職のコツを解説。"
@@ -40,7 +40,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/qualifications">資格</Link> {'>'} アラフォー未経験からのエンジニア転職
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               アラフォー未経験からエンジニアへ！今から間に合う学習ロードマップと成功事例
             </h1>
 

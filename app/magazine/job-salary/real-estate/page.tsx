@@ -27,7 +27,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="未経験から不動産営業で年収2000万！最短で稼ぐための全知識"
         description="未経験から不動産営業で年収2000万を達成するためのロードマップを徹底解説。年収構造、必須スキル、稼げる会社選び、顧客開拓・クロージング術、成功事例まで網羅。"
@@ -49,7 +49,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} 不動産業界
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               未経験から不動産営業で年収2000万！最短で稼ぐための全知識
             </h1>
 

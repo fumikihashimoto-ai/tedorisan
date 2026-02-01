@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="未経験から挑戦!受験資格なしで取れる国家資格で人生を変える方法"
         description="学歴・実務経験不問の国家資格を厳選紹介。行政書士、宅建士、ITパスポートなど、未経験から挑戦できる資格の勉強法とキャリア戦略を徹底解説。"
@@ -39,7 +39,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/qualifications">資格</Link> {'>'} 受験資格なしで取れる国家資格
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               未経験から挑戦!受験資格なしで取れる国家資格で人生を変える方法
             </h1>
 

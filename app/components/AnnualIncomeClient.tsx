@@ -74,8 +74,10 @@ export default function AnnualIncomeClient({ amount }: Props) {
   const canShowNext = nextAmount <= 10000000;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] px-4 py-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[#F8FAFC]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
+          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
         {/* 即答セクション（最重要） */}
         <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-8 text-center mb-8 shadow-lg">
           <h1 className="text-2xl md:text-3xl font-bold mb-6">
@@ -253,6 +255,8 @@ export default function AnnualIncomeClient({ amount }: Props) {
               手取りのミカタを使う
             </Link>
           </div>
+        </div>
+          </main>
         </div>
       </div>
     </div>

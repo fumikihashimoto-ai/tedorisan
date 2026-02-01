@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="年収1000万円も夢じゃない!高収入が期待できる資格の選び方と成功事例"
         description="ITストラテジスト、社労士、USCPAなど高収入が期待できる資格を厳選紹介。資格の選び方、効率的な学習計画、転職・独立の成功事例まで徹底解説。"
@@ -39,7 +39,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/qualifications">資格</Link> {'>'} 高収入が期待できる資格
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               年収1000万円も夢じゃない!高収入が期待できる資格の選び方と成功事例
             </h1>
 

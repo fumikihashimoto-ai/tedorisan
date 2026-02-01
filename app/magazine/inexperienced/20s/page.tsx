@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="転職したい20代未経験者必見！ゼロから始める理想のキャリアパス"
         description="20代の未経験転職は大きなチャンス。なぜ今が有利なのか、自己分析から求人探し、履歴書・職務経歴書の書き方、面接対策まで、成功に必要なノウハウを徹底解説。転職エージェントの活用術や企業が求める人物像も紹介。"
@@ -40,7 +40,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/inexperienced/20s">マガジン</Link> {'>'} 未経験者の就職・転職 {'>'} 20代未経験者の転職
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               転職したい20代未経験者必見！ゼロから始める理想のキャリアパス
             </h1>
 

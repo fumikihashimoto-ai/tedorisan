@@ -16,7 +16,7 @@ export const metadata: Metadata = createArticleMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
         headline="システムエンジニアのリアル年収大公開！職種・経験年数別の平均と高収入の秘訣"
         description="システムエンジニアの年収を徹底解説。全体平均から年齢層別、経験年数別、職種別（アプリ開発・インフラ・コンサル）の詳細データまで。市場価値の高いスキル、資格取得、転職交渉術、高年収企業の選び方も網羅。"
@@ -38,7 +38,7 @@ export default function Page() {
               <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/job-salary/it-engineer">マガジン</Link> {'>'} 職種別年収 {'>'} ITエンジニア
             </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-gray-800 mb-6">
+            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               システムエンジニアのリアル年収大公開！職種・経験年数別の平均と高収入の秘訣
             </h1>
 
