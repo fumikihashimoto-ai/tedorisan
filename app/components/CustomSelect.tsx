@@ -8,7 +8,7 @@ export type CustomSelectOption = {
 };
 
 type Props = {
-  options: CustomSelectOption[];
+  options: readonly CustomSelectOption[];
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
