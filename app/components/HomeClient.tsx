@@ -5,63 +5,15 @@ import {
   calculateTakeHomeDetailed,
   type TakeHomeDetailedResult,
 } from '../../lib/salaryCalculator';
-import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
 import { Card, H2 } from './ui';
-import RakutenWidgetAd from './RakutenWidgetAd';
-import InlineAd from './InlineAd';
 import ResultTable from './ResultTable';
 import ResultTableAnnualMonthly from './ResultTableAnnualMonthly';
-
-function ageToAgeGroup(age: number): AgeGroup {
-  if (age < 30) return '20代';
-  if (age < 40) return '30代';
-  if (age < 50) return '40代';
-  if (age < 60) return '50代';
-  return '60代以上';
-}
 
 export default function HomeClient() {
   const [age, setAge] = useState('30');
   const [monthlySalary, setMonthlySalary] = useState('30');
   const [results, setResults] = useState<TakeHomeDetailedResult | null>(null);
   const [showResults, setShowResults] = useState(false);
-  const [percentileData, setPercentileData] = useState<{
-    percentile: number;
-    averageDiff: number;
-    message: string;
-  } | null>(null);
-
-  const calculatePercentile = (income: number, ageGroup: AgeGroup) => {
-    const incomeManEn = income / 10000; // 万円に変換
-    const percentiles = percentileByAge[ageGroup];
-    const average = averageIncomeByAge[ageGroup];
-
-    let percentile = 50;
-    let averageDiff = Math.round(incomeManEn - average);
-    let message = "";
-
-    if (incomeManEn >= percentiles.top5) {
-      percentile = 5;
-      message = "高収入層です。さらに上を目指せます。";
-    } else if (incomeManEn >= percentiles.top10) {
-      percentile = 10;
-      message = "高収入層です。さらに上を目指せます。";
-    } else if (incomeManEn >= percentiles.top25) {
-      percentile = 25;
-      message = "高収入層です。さらに上を目指せます。";
-    } else if (incomeManEn >= percentiles.top50) {
-      percentile = 50;
-      message = "平均以上の収入です。転職で大きく伸ばせる可能性があります。";
-    } else if (incomeManEn >= percentiles.top75) {
-      percentile = 75;
-      message = "転職で収入UPのチャンスが大きいです。";
-    } else {
-      percentile = 90;
-      message = "転職で大きく収入を伸ばせる可能性があります。";
-    }
-
-    return { percentile, averageDiff, message };
-  };
 
   const handleCalculate = () => {
     const monthlyValue = parseFloat(String(monthlySalary).replace(/,/g, ''));
@@ -69,10 +21,7 @@ export default function HomeClient() {
       const ageNum = parseInt(String(age), 10) || 30;
       const yearlyIncome = monthlyValue * 12 * 10000; // 月収(万円) × 12
       const calculated = calculateTakeHomeDetailed(yearlyIncome, ageNum, 0);
-      const ageGroup = ageToAgeGroup(ageNum);
-      const pData = calculatePercentile(yearlyIncome, ageGroup);
       setResults(calculated);
-      setPercentileData(pData);
       setShowResults(true);
 
       setTimeout(() => {
@@ -158,46 +107,7 @@ export default function HomeClient() {
                     { label: '手取り額', annual: `${formatJPY(results.takeHome.annual)}円`, monthly: `${formatJPY(results.takeHome.monthly)}円`, highlight: true },
                   ]}
                 />
-
-                {/* あなたの年収レベル（計算結果テーブル直下） */}
-                {percentileData && (
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold mb-3 leading-tight">あなたの年収レベル</h3>
-                    <p className="text-2xl font-black text-[#2563EB] mb-3">日本の上位 {percentileData.percentile}%</p>
-                    <p className="text-base text-gray-700 mb-3">
-                      {percentileData.averageDiff > 0
-                        ? `${ageToAgeGroup(parseInt(String(age), 10) || 30)}の平均より ${percentileData.averageDiff}万円 高い収入です。${percentileData.message}`
-                        : `${ageToAgeGroup(parseInt(String(age), 10) || 30)}の平均より ${Math.abs(percentileData.averageDiff)}万円 低い収入です。${percentileData.message}`}
-                    </p>
-                    {/* 年代別比較 */}
-                    <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold">{ageToAgeGroup(parseInt(String(age), 10) || 30)}:</span>
-                      <span className={`text-lg font-bold ${percentileData.averageDiff >= 0 ? 'text-blue-600' : 'text-red-500'}`}>
-                        {percentileData.averageDiff >= 0 ? '+' : ''}{percentileData.averageDiff}万円
-                      </span>
-                      <span className="text-sm text-gray-400">← あなたの年代</span>
-                    </div>
-                    <div className="mt-4 flex justify-center">
-                      <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" rel="nofollow">
-                        <img
-                          width={300}
-                          height={250}
-                          alt=""
-                          src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003031000&mc=1"
-                          className="border-0"
-                        />
-                      </a>
-                      <img width={1} height={1} src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I1NCH" alt="" className="border-0" />
-                    </div>
-                  </div>
-                )}
               </Card>
-            )}
-
-            {showResults && results && (
-              <div className="md:hidden flex justify-center mt-6">
-                <RakutenWidgetAd />
-              </div>
             )}
 
           </div>
@@ -223,7 +133,6 @@ export default function HomeClient() {
             このような疑問を持つ方は多いでしょう。本記事は、そうしたあなたの疑問を解消し、年収の手取り額の計算方法や仕組みを、初心者の方にも分かりやすく解説することを目的としています。
           </p>
         </section>
-        <InlineAd />
 
         {/* セクション2 */}
         <section id="section-2" className="py-6 mb-8 scroll-mt-6">
@@ -277,7 +186,6 @@ export default function HomeClient() {
             これらの控除項目は、法律によって定められており、原則としてすべての人に適用されます。特に社会保険料と税金は、年収が高くなるほどその負担も大きくなる傾向があります。<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">手取り額を正確に把握することは、毎月の生活費や貯蓄計画を立てる上で不可欠</mark></strong>です。
           </p>
         </section>
-        <InlineAd />
 
         {/* セクション3 */}
         <section id="section-3" className="py-6 mb-8 scroll-mt-6">
@@ -333,7 +241,6 @@ export default function HomeClient() {
             介護保険料は、<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">40歳以上の健康保険加入者に義務付けられており</mark></strong>、健康保険料と一体で徴収されます。
           </p>
         </section>
-        <InlineAd />
 
         {/* セクション4 */}
         <section id="section-4" className="py-6 mb-8 scroll-mt-6">
@@ -428,7 +335,6 @@ export default function HomeClient() {
             <li><strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">iDeCo（個人型確定拠出年金）の掛金</mark></strong>：全額が所得控除の対象</li>
           </ul>
         </section>
-        <InlineAd />
 
         {/* セクション5 */}
         <section id="section-5" className="py-6 mb-8 scroll-mt-6">
@@ -476,7 +382,6 @@ export default function HomeClient() {
             ]}
           />
         </section>
-        <InlineAd />
 
         {/* セクション6 */}
         <section id="section-6" className="py-6 mb-8 scroll-mt-6">
@@ -542,7 +447,6 @@ export default function HomeClient() {
             現在の職場で年収アップが見込めない場合は、転職も有力な選択肢です。特に、<strong className="text-blue-700"><mark className="bg-amber-100 px-1 rounded">成長産業や需要の高い職種への転職</mark></strong>は、大幅な年収アップに繋がりやすい傾向があります。
           </p>
         </section>
-        <InlineAd />
 
         {/* セクション7 */}
         <section id="section-7" className="py-6 mb-8 scroll-mt-6">
@@ -567,7 +471,6 @@ export default function HomeClient() {
             さらに、控除の最大限の活用やiDeCo、NISAといった制度の利用、あるいはキャリアアップを通じて年収そのものを増やすことで、手取り額を増やすことは十分に可能です。この知識を活かし、より豊かな生活設計を実現するための一歩を踏み出しましょう。
           </p>
         </section>
-        <InlineAd />
 
         {/* === 「手取りを増やすための次のステップ」セクション（一時的にコメントアウト） === */}
         {/*
@@ -593,26 +496,6 @@ export default function HomeClient() {
           animation: fade-in 0.3s ease-out;
         }
       `}</style>
-
-      {/* 広告3: ページ下部に固定表示 */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4ASQ2A+3IZO+I0SHD" rel="nofollow">
-          <img
-            width={468}
-            height={60}
-            alt=""
-            src="https://www28.a8.net/svt/bgt?aid=260126641260&wid=001&eno=01&mid=s00000016458003027000&mc=1"
-            className="border-0 max-w-full h-auto"
-          />
-        </a>
-        <img
-          width={1}
-          height={1}
-          src="https://www17.a8.net/0.gif?a8mat=4AVF01+4ASQ2A+3IZO+I0SHD"
-          alt=""
-          className="border-0"
-        />
-      </div>
     </div>
   );
 }

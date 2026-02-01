@@ -1,15 +1,28 @@
 'use client';
 
 import { useState } from 'react';
-import { calculateTakeHome } from '../../lib/salaryCalculator';
-import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
+import { calculateTakeHome, calculateTakeHomeDetailed, type TakeHomeDetailedResult } from '../../lib/salaryCalculator';
+import { type AgeGroup } from '../../lib/ageIncomeData';
 import Link from 'next/link';
 import PcAdSidebar from './PcAdSidebar';
 import AnimatedSelect, { type AnimatedSelectOption } from './AnimatedSelect';
-import { ResultAmount } from './ui';
+import { Card } from './ui';
+import ResultTableAnnualMonthly from './ResultTableAnnualMonthly';
 
 const AGE_OPTIONS: AgeGroup[] = ['20代', '30代', '40代', '50代', '60代以上'];
 const AGE_SELECT_OPTIONS: AnimatedSelectOption[] = AGE_OPTIONS.map((v) => ({ value: v, label: v }));
+
+/** 年代を年齢に変換 */
+function ageGroupToYears(ageGroup: AgeGroup): number {
+  const map: Record<AgeGroup, number> = {
+    '20代': 25,
+    '30代': 35,
+    '40代': 45,
+    '50代': 55,
+    '60代以上': 65,
+  };
+  return map[ageGroup];
+}
 
 type SideBusinessClientProps = {
   embedded?: boolean;
@@ -22,61 +35,51 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
   const [dependents, setDependents] = useState('');
   const [ageGroup, setAgeGroup] = useState<AgeGroup>('30代');
   const [results, setResults] = useState<{
-    salary: ReturnType<typeof calculateTakeHome> | null;
+    salary: TakeHomeDetailedResult | null;
     withSideBusiness: {
       totalIncome: number;
-      taxableIncome: number;
       incomeTax: number;
       residentTax: number;
-      socialInsurance: number;
       takeHome: number;
-      monthlyTakeHome: number;
     } | null;
   }>({ salary: null, withSideBusiness: null });
-  const [showDetails, setShowDetails] = useState(false);
 
   const handleCalculate = () => {
     const salaryValue = parseFloat(salary);
     const sideIncomeValue = parseFloat(sideIncome) || 0;
-    const sideExpensesValue = parseFloat(sideExpenses) || 0;
     const dependentsValue = parseInt(dependents) || 0;
 
     if (salaryValue) {
-      const salaryResult = calculateTakeHome(salaryValue * 10000, dependentsValue);
-      
-      // 副業を含む計算
+      const age = ageGroupToYears(ageGroup);
+      const salaryResult = calculateTakeHomeDetailed(salaryValue * 10000, age, dependentsValue);
+
+      // 副業を含む計算（本業+副業の合計を給与所得として簡易計算）
       const totalIncome = salaryValue * 10000 + sideIncomeValue * 10000;
-      
-      // 雑所得として計算（簡易版）
       const totalResult = calculateTakeHome(totalIncome, dependentsValue);
 
       setResults({
         salary: salaryResult,
         withSideBusiness: {
           totalIncome,
-          taxableIncome: totalResult.breakdown.incomeTax > 0 ? totalIncome : 0,
           incomeTax: totalResult.breakdown.incomeTax,
           residentTax: totalResult.breakdown.residentTax,
-          socialInsurance: salaryResult.breakdown.socialInsurance, // 副業分は社会保険に含まれない
           takeHome: totalResult.takeHome,
-          monthlyTakeHome: totalResult.monthlyTakeHome,
         },
       });
 
-      // 計算結果へスムーズスクロール
       setTimeout(() => {
         document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
-      }, 0);
+      }, 100);
     }
+  };
+
+  const formatJPY = (value: number): string => {
+    return Math.round(value).toLocaleString('ja-JP');
   };
 
   const formatYen = (value: number): string => {
     return (value / 10000).toFixed(1);
   };
-
-  const difference = results.salary && results.withSideBusiness
-    ? results.withSideBusiness.takeHome - results.salary.takeHome
-    : 0;
 
   const calculatorSection = (
     <section id="calculator" className="pt-4 pb-6 mb-0 scroll-mt-6 -mt-4 md:-mt-6">
@@ -197,286 +200,62 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
 
         {/* 計算結果 */}
         {results.salary && results.withSideBusiness && (
-          <div id="results" className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              {/* 結果ヘッダー */}
-              <div className="text-center">
-                <div className="text-sm text-gray-600">青色申告で年間お得になる額は…</div>
-                <ResultAmount tone={difference >= 0 ? 'positive' : 'negative'} className="mt-2">
-                  約 {difference >= 0 ? '+' : ''}
-                  {Math.round(difference / 10000)}
-                  <span className="text-base font-normal ml-1">万円</span>
-                </ResultAmount>
-              </div>
-
-              <div
-                className="text-center text-blue-600 cursor-pointer py-2 mt-4"
-                onClick={() => setShowDetails(!showDetails)}
-              >
-                {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
-              </div>
-
-              {/* 広告1: PC・スマホ両方に表示（詳細を見るの下） */}
-              <div className="my-4 flex justify-center">
-              <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8LMIP" rel="nofollow">
-                <img
-                  width={468}
-                  height={60}
-                  alt=""
-                  src="https://www20.a8.net/svt/bgt?aid=260126641297&wid=001&eno=01&mid=s00000017718074004000&mc=1"
-                  className="border-0 max-w-full h-auto mx-auto"
-                />
-              </a>
-              <img
-                width={1}
-                height={1}
-                src="https://www17.a8.net/0.gif?a8mat=4AVF01+4WTRG2+3SPO+C8LMIP"
-                alt=""
-                className="border-0"
+          <>
+            <Card id="results" variant="flat" className="section-gap animate-fade-in mt-6">
+              <h3 className="font-semibold text-gray-900 mb-3">本業のみの内訳</h3>
+              <ResultTableAnnualMonthly
+                items={[
+                  { label: '額面収入', annual: `${formatJPY(results.salary.annualSalary)}円`, monthly: `${formatJPY(results.salary.monthlySalary)}円` },
+                  { label: '所得税', annual: `${formatJPY(results.salary.incomeTax.annual)}円`, monthly: `${formatJPY(results.salary.incomeTax.monthly)}円` },
+                  { label: '住民税', annual: `${formatJPY(results.salary.residentTax.annual)}円`, monthly: `${formatJPY(results.salary.residentTax.monthly)}円` },
+                  { label: '健康保険', annual: `${formatJPY(results.salary.healthInsurance.annual)}円`, monthly: `${formatJPY(results.salary.healthInsurance.monthly)}円` },
+                  { label: '厚生年金', annual: `${formatJPY(results.salary.pension.annual)}円`, monthly: `${formatJPY(results.salary.pension.monthly)}円` },
+                  { label: '介護保険', annual: `${formatJPY(results.salary.nursingCare.annual)}円`, monthly: `${formatJPY(results.salary.nursingCare.monthly)}円` },
+                  { label: '雇用保険', annual: `${formatJPY(results.salary.employmentInsurance.annual)}円`, monthly: `${formatJPY(results.salary.employmentInsurance.monthly)}円` },
+                  { label: '手取り額', annual: `${formatJPY(results.salary.takeHome.annual)}円`, monthly: `${formatJPY(results.salary.takeHome.monthly)}円`, highlight: true },
+                ]}
               />
-            </div>
 
-            {showDetails && (
-              <div className="mt-4 space-y-4">
-                {/* 入力内容サマリー */}
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse text-sm sm:text-base">
-                    <thead>
-                      <tr>
-                        <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                        <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="p-3 border-b border-gray-100">本業年収</td>
-                        <td className="p-3 border-b border-gray-100 text-right tabular-nums">{Number.isFinite(parseFloat(salary)) ? `${parseFloat(salary)}万円` : '-'}</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 border-b border-gray-100">副業収入</td>
-                        <td className="p-3 border-b border-gray-100 text-right tabular-nums">{Number.isFinite(parseFloat(sideIncome)) ? `${parseFloat(sideIncome)}万円` : '0万円'}</td>
-                      </tr>
-                      <tr className="bg-amber-50 font-bold">
-                        <td className="p-3 border-b border-gray-100">合計年収（本業+副業）</td>
-                        <td className="p-3 border-b border-gray-100 text-right tabular-nums">
-                          {Number.isFinite(parseFloat(salary))
-                            ? `${(parseFloat(salary) + (parseFloat(sideIncome) || 0)).toFixed(1)}万円`
-                            : '-'}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <h3 className="font-semibold text-gray-900 mb-3 mt-6">本業+副業の内訳</h3>
+              <ResultTableAnnualMonthly
+                items={[
+                  { label: '額面収入', annual: `${formatJPY(results.withSideBusiness.totalIncome)}円`, monthly: `${formatJPY(Math.round(results.withSideBusiness.totalIncome / 12))}円` },
+                  { label: '所得税', annual: `${formatJPY(results.withSideBusiness.incomeTax)}円`, monthly: `${formatJPY(Math.round(results.withSideBusiness.incomeTax / 12))}円` },
+                  { label: '住民税', annual: `${formatJPY(results.withSideBusiness.residentTax)}円`, monthly: `${formatJPY(Math.round(results.withSideBusiness.residentTax / 12))}円` },
+                  { label: '健康保険', annual: `${formatJPY(results.salary.healthInsurance.annual)}円`, monthly: `${formatJPY(results.salary.healthInsurance.monthly)}円` },
+                  { label: '厚生年金', annual: `${formatJPY(results.salary.pension.annual)}円`, monthly: `${formatJPY(results.salary.pension.monthly)}円` },
+                  { label: '介護保険', annual: `${formatJPY(results.salary.nursingCare.annual)}円`, monthly: `${formatJPY(results.salary.nursingCare.monthly)}円` },
+                  { label: '雇用保険', annual: `${formatJPY(results.salary.employmentInsurance.annual)}円`, monthly: `${formatJPY(results.salary.employmentInsurance.monthly)}円` },
+                  { label: '手取り額', annual: `${formatJPY(results.withSideBusiness.takeHome)}円`, monthly: `${formatJPY(Math.round(results.withSideBusiness.takeHome / 12))}円`, highlight: true },
+                ]}
+              />
+            </Card>
 
-                {/* 雑所得ケース */}
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">雑所得ケース</h3>
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse text-sm sm:text-base">
-                      <thead>
-                        <tr>
-                          <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                          <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="p-3 border-b border-gray-100">所得税</td>
-                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.incomeTax)}万円</td>
-                        </tr>
-                        <tr>
-                          <td className="p-3 border-b border-gray-100">住民税</td>
-                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.residentTax)}万円</td>
-                        </tr>
-                        <tr className="bg-amber-50 font-bold">
-                          <td className="p-3 border-b border-gray-100">可処分所得</td>
-                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.takeHome)}万円</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                {/* 青色申告ケース */}
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">青色申告ケース（65万円控除）</h3>
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse text-sm sm:text-base">
-                      <thead>
-                        <tr>
-                          <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                          <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="p-3 border-b border-gray-100">控除額</td>
-                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">65万円</td>
-                        </tr>
-                        <tr>
-                          <td className="p-3 border-b border-gray-100">節税効果</td>
-                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">約{formatYen(650000 * 0.33)}万円</td>
-                        </tr>
-                        <tr className="bg-amber-50 font-bold">
-                          <td className="p-3 border-b border-gray-100">可処分所得</td>
-                          <td className="p-3 border-b border-gray-100 text-right tabular-nums">{formatYen(results.withSideBusiness.takeHome)}万円</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+            {/* 青色申告ケース */}
+            <Card variant="flat" className="mt-6">
+              <h3 className="font-semibold text-gray-900 mb-3">青色申告ケース（65万円控除）</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm sm:text-base">
+                  <thead>
+                    <tr>
+                      <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
+                      <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="p-3 border-b border-gray-100">控除額</td>
+                      <td className="p-3 border-b border-gray-100 text-right tabular-nums">65万円</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 border-b border-gray-100">節税効果</td>
+                      <td className="p-3 border-b border-gray-100 text-right tabular-nums">約{formatYen(650000 * 0.33)}万円</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            )}
-          </div>
-        )}
-
-        {/* パーセンタイル表示セクション */}
-        {results.salary && results.withSideBusiness && (() => {
-          const totalIncomeManEn = parseFloat(salary) + (parseFloat(sideIncome) || 0);
-          const percentiles = percentileByAge[ageGroup];
-          const average = averageIncomeByAge[ageGroup];
-          
-          let percentile = 50;
-          let averageDiff = Math.round(totalIncomeManEn - average);
-          let message = "";
-          
-          if (totalIncomeManEn >= percentiles.top5) {
-            percentile = 5;
-            message = "高収入層です。さらに上を目指せます。";
-          } else if (totalIncomeManEn >= percentiles.top10) {
-            percentile = 10;
-            message = "高収入層です。さらに上を目指せます。";
-          } else if (totalIncomeManEn >= percentiles.top25) {
-            percentile = 25;
-            message = "高収入層です。さらに上を目指せます。";
-          } else if (totalIncomeManEn >= percentiles.top50) {
-            percentile = 50;
-            message = "平均以上の収入です。転職で大きく伸ばせる可能性があります。";
-          } else if (totalIncomeManEn >= percentiles.top75) {
-            percentile = 75;
-            message = "転職で収入UPのチャンスが大きいです。";
-          } else {
-            percentile = 90;
-            message = "転職で大きく収入を伸ばせる可能性があります。";
-          }
-          
-          return (
-            <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                📈 あなたの年収レベル
-              </h3>
-              <div className="text-3xl font-black text-[#2563EB] mb-4">
-                日本の上位 {percentile}%
-              </div>
-              
-              {/* ビジュアルバー */}
-              <div className="bg-gray-200 h-3 rounded-full mb-4">
-                <div
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 h-3 rounded-full transition-all duration-500"
-                  style={{ width: `${100 - percentile}%` }}
-                />
-              </div>
-
-              <div className="text-lg mt-4 text-gray-700">
-                {ageGroup}の平均より {Math.abs(averageDiff)}万円{' '}
-                {averageDiff >= 0 ? '高い' : '低い'}
-              </div>
-              <div className="text-body mt-2">{message}</div>
-
-              {/* 広告2: スマホのみ表示（転職で大きく収入を伸ばせる可能性があります。の下） */}
-              {message === "転職で大きく収入を伸ばせる可能性があります。" && (
-                <div className="block md:hidden my-4">
-                  <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT" rel="nofollow">
-                    <img
-                      width={300}
-                      height={250}
-                      alt=""
-                      src="https://www28.a8.net/svt/bgt?aid=260126641297&wid=001&eno=01&mid=s00000017718074008000&mc=1"
-                      className="border-0 mx-auto"
-                    />
-                  </a>
-                  <img
-                    width={1}
-                    height={1}
-                    src="https://www15.a8.net/0.gif?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT"
-                    alt=""
-                    className="border-0"
-                  />
-                </div>
-              )}
-
-              {/* 広告: スマホのみ表示（あなたの年収レベルブロックの下部） */}
-              <div className="block md:hidden my-4">
-                <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4V1GMQ+3SPO+9FFFOX" rel="nofollow">
-                  <img
-                    width={300}
-                    height={250}
-                    alt=""
-                    src="https://www21.a8.net/svt/bgt?aid=260126641294&wid=001&eno=01&mid=s00000017718057011000&mc=1"
-                    className="border-0 mx-auto"
-                  />
-                </a>
-                <img
-                  width={1}
-                  height={1}
-                  src="https://www10.a8.net/0.gif?a8mat=4AVF01+4V1GMQ+3SPO+9FFFOX"
-                  alt=""
-                  className="border-0"
-                />
-              </div>
-            </div>
-          );
-        })()}
-
-        {/* 訴求テキストセクション */}
-        {results.salary && results.withSideBusiness && (
-          <div className="card-base mt-6">
-            <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
-            
-            <div className="bg-white border-l-4 border-[#E2E8F0] p-4 mb-3">
-              <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
-              <ul className="text-body space-y-1">
-                <li>• 求人倍率: 1.5倍（過去最高水準）</li>
-                <li>• 人手不足で企業が高待遇提示</li>
-                <li>• 2025年は転職好機</li>
-              </ul>
-            </div>
-            
-            <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-3">
-              <p className="font-bold mb-2">💰 1年遅れると...</p>
-              <ul className="text-body space-y-1">
-                <li>• 年収UP機会を逃す: -100万円/年</li>
-                <li>• 生涯年収の損失: -1000万円以上</li>
-                <li>• スキルアップの機会も逃す</li>
-              </ul>
-            </div>
-            
-            <div className="bg-green-50 border-l-4 border-green-500 p-4">
-              <p className="font-bold mb-2">📊 転職成功者の平均UP額</p>
-              <ul className="text-body space-y-1">
-                <li>• 20代: +80万円</li>
-                <li className={ageGroup === '30代' ? 'font-bold text-green-700' : ''}>
-                  • 30代: +120万円 {ageGroup === '30代' && '← あなたの年代'}
-                </li>
-                <li className={ageGroup === '40代' ? 'font-bold text-green-700' : ''}>
-                  • 40代: +150万円 {ageGroup === '40代' && '← あなたの年代'}
-                </li>
-                <li className={ageGroup === '50代' ? 'font-bold text-green-700' : ''}>
-                  • 50代: +100万円 {ageGroup === '50代' && '← あなたの年代'}
-                </li>
-                {ageGroup === '20代' && (
-                  <li className="font-bold text-green-700">
-                    • 20代: +80万円 ← あなたの年代
-                  </li>
-                )}
-                {ageGroup === '60代以上' && (
-                  <li className="font-bold text-green-700">
-                    • 60代以上: +80万円 ← あなたの年代
-                  </li>
-                )}
-              </ul>
-            </div>
-            
-          </div>
+            </Card>
+          </>
         )}
 
     </section>

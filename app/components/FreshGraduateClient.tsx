@@ -1,15 +1,28 @@
 'use client';
 
 import { useState } from 'react';
-import { calculateTakeHome } from '../../lib/salaryCalculator';
-import { averageIncomeByAge, percentileByAge, type AgeGroup } from '../../lib/ageIncomeData';
+import { calculateTakeHomeDetailed } from '../../lib/salaryCalculator';
+import { type AgeGroup } from '../../lib/ageIncomeData';
 import Link from 'next/link';
 import PcAdSidebar from './PcAdSidebar';
 import AnimatedSelect, { type AnimatedSelectOption } from './AnimatedSelect';
-import { ResultAmount } from './ui';
+import { Card } from './ui';
+import ResultTableAnnualMonthly from './ResultTableAnnualMonthly';
 
 const AGE_OPTIONS: AgeGroup[] = ['20代', '30代', '40代', '50代', '60代以上'];
 const AGE_SELECT_OPTIONS: AnimatedSelectOption[] = AGE_OPTIONS.map((v) => ({ value: v, label: v }));
+
+/** 年代を年齢に変換（新卒想定） */
+function ageGroupToYears(ageGroup: AgeGroup): number {
+  const map: Record<AgeGroup, number> = {
+    '20代': 25,
+    '30代': 35,
+    '40代': 45,
+    '50代': 55,
+    '60代以上': 65,
+  };
+  return map[ageGroup];
+}
 
 type FreshGraduateClientProps = {
   embedded?: boolean;
@@ -18,31 +31,31 @@ type FreshGraduateClientProps = {
 export default function FreshGraduateClient({ embedded = false }: FreshGraduateClientProps) {
   const [salary, setSalary] = useState('');
   const [ageGroup, setAgeGroup] = useState<AgeGroup>('20代');
-  const [results, setResults] = useState<ReturnType<typeof calculateTakeHome> | null>(null);
-  const [showDetails, setShowDetails] = useState(false);
+  const [results, setResults] = useState<ReturnType<typeof calculateTakeHomeDetailed> | null>(null);
 
   const handleCalculate = () => {
     const salaryValue = parseFloat(salary);
     if (salaryValue) {
-      setResults(calculateTakeHome(salaryValue * 10000, 0));
+      const age = ageGroupToYears(ageGroup);
+      setResults(calculateTakeHomeDetailed(salaryValue * 10000, age, 0));
 
       // 計算結果へスムーズスクロール
       setTimeout(() => {
         document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
-      }, 0);
+      }, 100);
     }
-  };
-
-  const formatYen = (value: number): string => {
-    return (value / 10000).toFixed(1);
   };
 
   const formatJPY = (value: number): string => {
     return Math.round(value).toLocaleString('ja-JP');
   };
 
+  const formatYen = (value: number): string => {
+    return (value / 10000).toFixed(1);
+  };
+
   // 生活費シミュレーション
-  const monthlyTakeHome = results ? results.monthlyTakeHome : 0;
+  const monthlyTakeHome = results ? results.takeHome.monthly : 0;
   const rent = 70000; // 家賃7万円
   const utilities = 15000; // 光熱費1.5万円
   const food = 40000; // 食費4万円
@@ -51,7 +64,6 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
   const other = 20000; // その他2万円
   const totalExpenses = rent + utilities + food + transport + phone + other;
   const surplus = monthlyTakeHome - totalExpenses;
-  const canLiveAlone = surplus >= 0;
 
   const calculatorSection = (
     <section id="calculator" className="pt-4 pb-6 mb-0 scroll-mt-6 -mt-4 md:-mt-6">
@@ -105,74 +117,24 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
 
         {/* 計算結果 */}
         {results && (
-          <div id="results" className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              {/* 結果ヘッダー */}
-              <div className="text-center">
-                <div className="text-sm text-gray-600">あなたの手取り月収（目安）は…</div>
-                <ResultAmount className="mt-2">
-                  約 {formatJPY(results.monthlyTakeHome)}
-                  <span className="text-base font-normal ml-1">円</span>
-                </ResultAmount>
-              </div>
-
-              {/* トグル */}
-              <div
-                className="text-center text-blue-600 cursor-pointer py-2 mt-4"
-                onClick={() => setShowDetails(!showDetails)}
-              >
-                {showDetails ? '[-] 詳細を閉じる' : '[+] 詳細を見る'}
-              </div>
-
-              {/* 内訳テーブル */}
-              {showDetails && (() => {
-                const annualYen = Math.round((parseFloat(salary) || 0) * 10000);
-                const monthlyGross = Math.round(annualYen / 12);
-
-                const health = Math.round((annualYen * 0.05) / 12);
-                const pension = Math.round((annualYen * 0.09) / 12);
-                const employment = Math.round((annualYen * 0.006) / 12);
-                const nursing = Math.max(0, Math.round((annualYen * 0.004) / 12));
-
-                const incomeTax = Math.round((results.breakdown?.incomeTax ?? 0) / 12);
-                const residentTax = Math.round((results.breakdown?.residentTax ?? 0) / 12);
-                const deductionTotal = Math.max(0, monthlyGross - results.monthlyTakeHome);
-
-                const rows = [
-                  { label: '額面月収', value: formatJPY(monthlyGross), highlight: false },
-                  { label: '健康保険料', value: `- ${formatJPY(health)}`, highlight: false },
-                  { label: '厚生年金保険料', value: `- ${formatJPY(pension)}`, highlight: false },
-                  { label: '雇用保険料', value: `- ${formatJPY(employment)}`, highlight: false },
-                  { label: '介護保険料', value: `- ${formatJPY(nursing)}`, highlight: false },
-                  { label: '所得税', value: `- ${formatJPY(incomeTax)}`, highlight: false },
-                  { label: '住民税', value: `- ${formatJPY(residentTax)}`, highlight: false },
-                  { label: '控除合計額', value: `- ${formatJPY(deductionTotal)}`, highlight: true },
-                ];
-
-                return (
-                  <div className="overflow-x-auto mt-4">
-                    <table className="w-full border-collapse text-sm sm:text-base">
-                      <thead>
-                        <tr>
-                          <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">項目</th>
-                          <th className="bg-gray-50 text-gray-700 p-3 text-right font-semibold border-b border-gray-100">金額</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {rows.map((row) => (
-                          <tr key={row.label} className={row.highlight ? 'bg-amber-50 font-bold' : ''}>
-                            <td className="p-3 border-b border-gray-100">{row.label}</td>
-                            <td className="p-3 border-b border-gray-100 text-right tabular-nums">{row.value}円</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                );
-              })()}
+          <>
+            <Card id="results" variant="flat" className="section-gap animate-fade-in mt-6">
+              <ResultTableAnnualMonthly
+                items={[
+                  { label: '額面収入', annual: `${formatJPY(results.annualSalary)}円`, monthly: `${formatJPY(results.monthlySalary)}円` },
+                  { label: '所得税', annual: `${formatJPY(results.incomeTax.annual)}円`, monthly: `${formatJPY(results.incomeTax.monthly)}円` },
+                  { label: '住民税', annual: `${formatJPY(results.residentTax.annual)}円`, monthly: `${formatJPY(results.residentTax.monthly)}円` },
+                  { label: '健康保険', annual: `${formatJPY(results.healthInsurance.annual)}円`, monthly: `${formatJPY(results.healthInsurance.monthly)}円` },
+                  { label: '厚生年金', annual: `${formatJPY(results.pension.annual)}円`, monthly: `${formatJPY(results.pension.monthly)}円` },
+                  { label: '介護保険', annual: `${formatJPY(results.nursingCare.annual)}円`, monthly: `${formatJPY(results.nursingCare.monthly)}円` },
+                  { label: '雇用保険', annual: `${formatJPY(results.employmentInsurance.annual)}円`, monthly: `${formatJPY(results.employmentInsurance.monthly)}円` },
+                  { label: '手取り額', annual: `${formatJPY(results.takeHome.annual)}円`, monthly: `${formatJPY(results.takeHome.monthly)}円`, highlight: true },
+                ]}
+              />
+            </Card>
 
             {/* 一人暮らしの支出の目安 */}
-            <div className="pt-4 mt-4 border-t border-gray-200">
-              <div className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-4">
+            <Card variant="flat" className="mt-6">
               <h3 className="font-semibold text-gray-900 mb-3">一人暮らしの支出の目安</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -210,41 +172,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
                   </span>
                 </div>
               </div>
-            </div>
-            </div>
-
-            {/* 一人暮らし可否判定（削除） */}
-
-            {/* おすすめの使い道 */}
-            <div className="pt-4 mt-4 border-t border-gray-200">
-              <h3 className="font-semibold text-gray-900 mb-3">おすすめの使い道</h3>
-              <ul className="space-y-2 text-caption">
-                {surplus >= 3 && (
-                  <>
-                    <li>• 月3万円の投資信託で資産形成を始める</li>
-                    <li>• 資格取得やスキルアップのための自己投資</li>
-                  </>
-                )}
-                {surplus >= 1 && surplus < 3 && (
-                  <>
-                    <li>• 月1万円の貯蓄で緊急時の備えを作る</li>
-                    <li>• 趣味やレジャーでリフレッシュ</li>
-                  </>
-                )}
-                {surplus < 1 && surplus >= 0 && (
-                  <>
-                    <li>• 少しずつでも貯蓄を心がける</li>
-                    <li>• 生活費の見直しを検討する</li>
-                  </>
-                )}
-                {surplus < 0 && (
-                  <>
-                    <li>• 家賃や生活費の見直しが必要です</li>
-                    <li>• 実家から通える範囲の会社を検討する</li>
-                  </>
-                )}
-              </ul>
-            </div>
+            </Card>
 
             {/* A8.net 新卒・就活生向け広告（埋め込み時は非表示） */}
             {!embedded && (
@@ -260,64 +188,8 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
                 />
               </div>
             )}
-          </div>
+          </>
         )}
-
-        {/* パーセンタイル表示セクション */}
-        {results && (() => {
-          const incomeManEn = parseFloat(salary);
-          const percentiles = percentileByAge[ageGroup];
-          const average = averageIncomeByAge[ageGroup];
-          
-          let percentile = 50;
-          let averageDiff = Math.round(incomeManEn - average);
-          let message = "";
-          
-          if (incomeManEn >= percentiles.top5) {
-            percentile = 5;
-            message = "高収入層です。さらに上を目指せます。";
-          } else if (incomeManEn >= percentiles.top10) {
-            percentile = 10;
-            message = "高収入層です。さらに上を目指せます。";
-          } else if (incomeManEn >= percentiles.top25) {
-            percentile = 25;
-            message = "高収入層です。さらに上を目指せます。";
-          } else if (incomeManEn >= percentiles.top50) {
-            percentile = 50;
-            message = "平均以上の収入です。転職で大きく伸ばせる可能性があります。";
-          } else if (incomeManEn >= percentiles.top75) {
-            percentile = 75;
-            message = "転職で収入UPのチャンスが大きいです。";
-          } else {
-            percentile = 90;
-            message = "転職で大きく収入を伸ばせる可能性があります。";
-          }
-          
-          return (
-            <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                📈 あなたの年収レベル
-              </h3>
-              <div className="text-3xl font-black text-[#2563EB] mb-4">
-                日本の上位 {percentile}%
-              </div>
-              
-              {/* ビジュアルバー */}
-              <div className="bg-gray-200 h-3 rounded-full mb-4">
-                <div
-                  className="bg-[#2563EB] h-3 rounded-full transition-all duration-500"
-                  style={{ width: `${100 - percentile}%` }}
-                />
-              </div>
-
-              <div className="text-lg mt-4 text-gray-700">
-                {ageGroup}の平均より {Math.abs(averageDiff)}万円{' '}
-                {averageDiff >= 0 ? '高い' : '低い'}
-              </div>
-              <div className="text-body mt-2">{message}</div>
-            </div>
-          );
-        })()}
 
         {/* 訴求テキストセクション（埋め込み時は非表示・CTA設定しない） */}
         {!embedded && results && (
