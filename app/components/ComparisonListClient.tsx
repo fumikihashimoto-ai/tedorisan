@@ -98,7 +98,7 @@ export default function ComparisonListClient() {
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
               年代別 手取り徹底解説!将来設計に役立つ賢いお金の増やし方
             </h1>
-            <p className="text-base leading-[1.8] mb-6">
+            <p className="font-normal text-base leading-[1.8] mb-6">
               「手取りが少なくて将来が不安」「自分の年代の平均手取りはどれくらい?」そんな漠然とした疑問や悩みを抱えていませんか?本記事では、新社会人から老後準備期まで、年代別のリアルな手取り額とその背景にある税金や社会保険料の仕組みを徹底解説します。さらに、効率的な節税対策、スキルアップや副業による収入増、NISAやiDeCoを最大限に活用した賢い資産形成術まで、手取りを最大化し、経済的な不安を解消するための具体的な戦略を網羅。この記事を読めば、あなたの年代における手取りの現状と未来が明確になり、豊かな将来設計を描くための具体的な行動指針が見つかるはずです。
             </p>
 

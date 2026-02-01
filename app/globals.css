@@ -170,6 +170,7 @@ html {
 }
 
 body {
+  font-weight: 400;
   background: var(--color-background);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
