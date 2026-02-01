@@ -5,12 +5,12 @@ import Inexperienced40sArticle from './Inexperienced40sArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '40代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  title: '40代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   description:
     '40代の未経験転職の現状、豊富な社会人経験の活かし方、即戦力として評価される転職のコツを解説。',
   keywords: ['40代', '未経験', '転職', 'キャリアチェンジ', 'ポータブルスキル', '即戦力', 'ミドルキャリア'],
   canonicalPath: '/magazine/inexperienced/40s',
-  openGraphTitle: '40代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '40代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   openGraphDescription:
     '40代の未経験転職の現状、豊富な社会人経験の活かし方、即戦力として評価される転職のコツを解説。',
   openGraphType: 'article',

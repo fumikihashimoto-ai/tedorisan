@@ -5,12 +5,12 @@ import InexperiencedArticle from './InexperiencedArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '転職したい20代未経験者必見！ゼロから始める理想のキャリアパス | 手取り計算シミュレーションツール テドリさん',
+  title: '転職したい20代未経験者必見！ゼロから始める理想のキャリアパス | 手取りのミカタ',
   description:
     '20代の未経験転職は大きなチャンス。なぜ今が有利なのか、自己分析から求人探し、履歴書・職務経歴書の書き方、面接対策まで、成功に必要なノウハウを徹底解説。転職エージェントの活用術や企業が求める人物像も紹介。',
   keywords: ['未経験', '転職', '20代', 'キャリア', '第二新卒', '転職エージェント', '履歴書', '面接対策'],
   canonicalPath: '/magazine/inexperienced/20s',
-  openGraphTitle: '転職したい20代未経験者必見！ゼロから始める理想のキャリアパス | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '転職したい20代未経験者必見！ゼロから始める理想のキャリアパス | 手取りのミカタ',
   openGraphDescription:
     '20代の未経験転職は大きなチャンス。なぜ今が有利なのか、自己分析から求人探し、履歴書・職務経歴書の書き方、面接対策まで、成功に必要なノウハウを徹底解説。',
   openGraphType: 'article',

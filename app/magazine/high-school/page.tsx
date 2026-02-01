@@ -5,12 +5,12 @@ import HighSchoolArticle from './HighSchoolArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '高卒・高校中退の就職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  title: '高卒・高校中退の就職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   description:
     '高卒・高校中退者の就職の現状、未経験から挑戦できる業界・職種、就職活動のコツを解説。',
   keywords: ['高卒', '高校中退', '就職', '未経験', 'キャリア'],
   canonicalPath: '/magazine/high-school',
-  openGraphTitle: '高卒・高校中退の就職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '高卒・高校中退の就職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   openGraphDescription:
     '高卒・高校中退者の就職の現状、未経験から挑戦できる業界・職種、就職活動のコツを解説。',
   openGraphType: 'article',

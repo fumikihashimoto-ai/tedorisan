@@ -5,12 +5,12 @@ import Qualification40sWomenArticle from './Qualification40sWomenArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '40代女性が人生をやり直すためにおすすめな資格｜在宅・高収入を実現 | テドリさん',
+  title: '40代女性が人生をやり直すためにおすすめな資格｜在宅・高収入を実現 | 手取りのミカタ',
   description:
     '在宅・高収入も夢じゃない。40代女性が人生をやり直すために本当に役立つ資格を厳選。Webデザイナー、プログラマー、オンライン秘書、医療事務、FPなどおすすめ資格5選を徹底解説。',
   keywords: ['40代', '女性', '資格', '人生やり直し', '在宅ワーク', '高収入', 'セカンドキャリア'],
   canonicalPath: '/qualifications/40s-women-restart',
-  openGraphTitle: '40代女性が人生をやり直すためにおすすめな資格｜在宅・高収入を実現 | テドリさん',
+  openGraphTitle: '40代女性が人生をやり直すためにおすすめな資格｜在宅・高収入を実現 | 手取りのミカタ',
   openGraphDescription:
     '在宅・高収入も夢じゃない。40代女性が人生をやり直すために本当に役立つ資格を厳選。Webデザイナー、プログラマー、オンライン秘書、医療事務、FPなどおすすめ資格5選を徹底解説。',
   openGraphType: 'article',

@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '資格一覧｜手取りアップに役立つ資格 | テドリさん',
+  title: '資格一覧｜手取りアップに役立つ資格 | 手取りのミカタ',
   description: '年収・手取りアップに役立つ資格を一覧で紹介。国家資格、民間資格、職種別のおすすめ資格を解説。',
   keywords: ['資格', '国家資格', '民間資格', '年収アップ', '手取り', 'キャリアアップ'],
   canonicalPath: '/qualifications',
-  openGraphTitle: '資格一覧｜手取りアップに役立つ資格 | テドリさん',
+  openGraphTitle: '資格一覧｜手取りアップに役立つ資格 | 手取りのミカタ',
   openGraphDescription: '年収・手取りアップに役立つ資格を一覧で紹介。国家資格、民間資格、職種別のおすすめ資格を解説。',
   openGraphType: 'website',
 });

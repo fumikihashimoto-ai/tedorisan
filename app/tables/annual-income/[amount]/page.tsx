@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const amountInMan = amount / 10000;
   
   return createPageMetadata({
-    title: `年収${amountInMan}万円の手取りはいくら？｜テドリさん`,
+    title: `年収${amountInMan}万円の手取りはいくら？｜手取りのミカタ`,
     description: `年収${amountInMan}万円の手取り額を自動計算。月収、所得税、住民税、社会保険料の詳細内訳も表示。年代別の位置づけや同年代との比較も。完全無料。`,
     keywords: [`年収${amountInMan}万 手取り`, `年収${amountInMan}万円`, `手取り計算`, `年収 手取り`],
     canonicalPath: `/tables/annual-income/${amount}`,

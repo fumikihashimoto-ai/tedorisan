@@ -78,7 +78,7 @@ export default function Header() {
                   href="/"
                   className={`py-1.5 hover:opacity-90 transition-opacity text-2xl ${notoSansJPBlack.className}`}
                   style={{ color: '#3589fb' }}
-                  aria-label="手取り計算シミュレーションツール テドリさん"
+                  aria-label="手取りのミカタ - 手取り計算・年収シミュレーション・転職の無料ツール"
                 >
                   手取りのミカタ
                 </Link>
@@ -91,7 +91,7 @@ export default function Header() {
               <Link
                 href="/"
                 className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0.5 py-1 hover:opacity-90 transition-opacity"
-                aria-label="手取り計算シミュレーションツール テドリさん"
+                aria-label="手取りのミカタ - 手取り計算・年収シミュレーション・転職の無料ツール"
               >
                 <span className={`text-xl ${notoSansJPBlack.className}`} style={{ color: '#3589fb' }}>
                   手取りのミカタ

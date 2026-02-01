@@ -5,7 +5,7 @@ import ItEngineerArticle from './ItEngineerArticle';
 import { createArticleMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createArticleMetadata({
-  title: 'システムエンジニアのリアル年収大公開！職種・経験年数別の平均と高収入の秘訣 | 手取り計算シミュレーションツール テドリさん',
+  title: 'システムエンジニアのリアル年収大公開！職種・経験年数別の平均と高収入の秘訣 | 手取りのミカタ',
   description:
     'システムエンジニアの年収を徹底解説。全体平均から年齢層別、経験年数別、職種別（アプリ開発・インフラ・コンサル）の詳細データまで。市場価値の高いスキル、資格取得、転職交渉術、高年収企業の選び方も網羅。',
   keywords: ['システムエンジニア', 'SE', '年収', 'ITエンジニア', '転職', 'SIer', 'SES', '自社開発', '平均年収'],

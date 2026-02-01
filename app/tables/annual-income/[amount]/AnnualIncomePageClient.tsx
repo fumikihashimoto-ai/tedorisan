@@ -218,7 +218,7 @@ export default function AnnualIncomePageClient({ amount }: Props) {
             href="/"
             className="inline-block bg-[#F59E0B] hover:bg-[#d97706] text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all hover:shadow-xl hover:scale-105"
           >
-            手取り計算シミュレーションツールを使う
+            手取りのミカタを使う
           </Link>
         </div>
       </div>

@@ -31,12 +31,12 @@ export default function ArticleStructuredData({
     dateModified: dateModified ?? datePublished,
     author: {
       '@type': 'Organization',
-      name: 'テドリさん',
+      name: '手取りのミカタ',
       url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'テドリさん',
+      name: '手取りのミカタ',
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',

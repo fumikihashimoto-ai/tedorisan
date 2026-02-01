@@ -5,7 +5,7 @@ import NurseryArticle from './NurseryArticle';
 import { createArticleMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createArticleMetadata({
-  title: '「保育士 年収」を上げたい！今すぐできる給料アップ術と賢い転職先選び | 手取り計算シミュレーションツール テドリさん',
+  title: '「保育士 年収」を上げたい！今すぐできる給料アップ術と賢い転職先選び | 手取りのミカタ',
   description:
     '保育士の年収を徹底解説。全国平均から地域別・経験年数別・施設形態別の実態、資格手当・処遇改善手当・副業などの給料アップ術、高年収が期待できる保育施設の選び方、転職エージェントの活用法まで網羅。',
   keywords: ['保育士', '年収', '手取り', '転職', '公立保育園', '私立保育園', '処遇改善', '借り上げ社宅'],

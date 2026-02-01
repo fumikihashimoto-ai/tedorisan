@@ -10,7 +10,7 @@ export default function StructuredData() {
         '@type': 'WebSite',
         '@id': 'https://tedorisan.jp/#website',
         url: 'https://tedorisan.jp/',
-        name: 'テドリさん',
+        name: '手取りのミカタ',
         description: '年収から手取り額を自動計算できる無料ツール',
         publisher: {
           '@id': 'https://tedorisan.jp/#organization',
@@ -24,7 +24,7 @@ export default function StructuredData() {
       {
         '@type': 'Organization',
         '@id': 'https://tedorisan.jp/#organization',
-        name: 'テドリさん',
+        name: '手取りのミカタ',
         url: 'https://tedorisan.jp/',
         logo: {
           '@type': 'ImageObject',
@@ -33,7 +33,7 @@ export default function StructuredData() {
           contentUrl: 'https://tedorisan.jp/icon-512.png',
           width: 512,
           height: 512,
-          caption: 'テドリさん',
+          caption: '手取りのミカタ',
         },
         image: {
           '@id': 'https://tedorisan.jp/#logo',
@@ -47,7 +47,7 @@ export default function StructuredData() {
         '@type': 'WebPage',
         '@id': 'https://tedorisan.jp/#webpage',
         url: 'https://tedorisan.jp/',
-        name: '【シミュレーション付き】年収の手取りを最速で計算！初心者でも安心の仕組み解説 | テドリさん',
+        name: '【シミュレーション付き】年収の手取りを最速で計算！初心者でも安心の仕組み解説 | 手取りのミカタ',
         isPartOf: {
           '@id': 'https://tedorisan.jp/#website',
         },
@@ -69,7 +69,7 @@ export default function StructuredData() {
       // ========================================
       {
         '@type': 'SoftwareApplication',
-        name: 'テドリさん - 手取り計算シミュレーション',
+        name: '手取りのミカタ - 手取り計算シミュレーション',
         description: '年収から手取り額をシミュレーションできる無料Webツール',
         url: 'https://tedorisan.jp/',
         applicationCategory: 'FinanceApplication',

@@ -5,7 +5,7 @@ import SalesArticle from './SalesArticle';
 import { createArticleMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createArticleMetadata({
-  title: '営業職の年収アップを確実にする！市場価値を高めるスキルと転職術 | 手取り計算シミュレーションツール テドリさん',
+  title: '営業職の年収アップを確実にする！市場価値を高めるスキルと転職術 | 手取りのミカタ',
   description:
     '営業職の年収を徹底解説。業界・年齢・地域別の平均、成果直結の営業スキル、専門知識、マネジメント能力、語学・ITスキル、転職術、年収交渉のポイントまで網羅。',
   keywords: [

@@ -5,12 +5,12 @@ import NoWorkExperienceArticle from './NoWorkExperienceArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '実務経験なしで取れる国家資格｜未経験からキャリアを切り拓く | テドリさん',
+  title: '実務経験なしで取れる国家資格｜未経験からキャリアを切り拓く | 手取りのミカタ',
   description:
     '文系・理系・IT・医療福祉など分野別に厳選。行政書士、宅建士、FP、ITパスポート、登録販売者など未経験から取得できる国家資格と学習戦略を徹底解説。',
   keywords: ['実務経験なし', '国家資格', '未経験', '行政書士', '宅建士', 'ITパスポート', 'FP', '登録販売者'],
   canonicalPath: '/qualifications/no-work-experience',
-  openGraphTitle: '実務経験なしで取れる国家資格｜未経験からキャリアを切り拓く | テドリさん',
+  openGraphTitle: '実務経験なしで取れる国家資格｜未経験からキャリアを切り拓く | 手取りのミカタ',
   openGraphDescription:
     '文系・理系・IT・医療福祉など分野別に厳選。行政書士、宅建士、FP、ITパスポート、登録販売者など未経験から取得できる国家資格と学習戦略を徹底解説。',
   openGraphType: 'article',

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const amountInMan = amount / 10000;
 
   return createPageMetadata({
-    title: `手取り${amountInMan}万円の年収は？｜テドリさん`,
+    title: `手取り${amountInMan}万円の年収は？｜手取りのミカタ`,
     description: `手取り月収${amountInMan}万円に必要な年収を逆算。所得税・住民税・社会保険料を考慮した正確な計算。年代別の達成難易度も表示。完全無料。`,
     keywords: [`手取り${amountInMan}万`, `手取り${amountInMan}万 年収`, '月収 手取り', '年収 逆算'],
     canonicalPath: `/tables/monthly-takehome/${amount}`,

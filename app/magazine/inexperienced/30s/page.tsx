@@ -5,12 +5,12 @@ import Inexperienced30sArticle from './Inexperienced30sArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '30代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  title: '30代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   description:
     '30代の未経験転職の現状、ポータブルスキルの活かし方、即戦力として評価される転職のコツを解説。後悔しないキャリアチェンジ術を紹介。',
   keywords: ['30代', '未経験', '転職', 'キャリアチェンジ', 'ポータブルスキル', '即戦力'],
   canonicalPath: '/magazine/inexperienced/30s',
-  openGraphTitle: '30代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '30代の未経験転職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   openGraphDescription:
     '30代の未経験転職の現状、ポータブルスキルの活かし方、即戦力として評価される転職のコツを解説。',
   openGraphType: 'article',

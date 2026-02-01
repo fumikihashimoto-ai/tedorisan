@@ -5,12 +5,12 @@ import HighSchoolWomenArticle from './HighSchoolWomenArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '高卒女性の就職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  title: '高卒女性の就職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   description:
     '高卒女性の就職の現状、女性に人気の業界・職種、ワークライフバランスを重視した就職のコツを解説。',
   keywords: ['高卒', '女性', '就職', '未経験', 'キャリア', 'ワークライフバランス'],
   canonicalPath: '/magazine/inexperienced/high-school-women',
-  openGraphTitle: '高卒女性の就職｜成功のポイントとおすすめ業界・職種 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '高卒女性の就職｜成功のポイントとおすすめ業界・職種 | 手取りのミカタ',
   openGraphDescription:
     '高卒女性の就職の現状、女性に人気の業界・職種、ワークライフバランスを重視した就職のコツを解説。',
   openGraphType: 'article',

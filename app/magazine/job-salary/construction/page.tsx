@@ -5,7 +5,7 @@ import ConstructionArticle from './ConstructionArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '建設業で年収1000万円を目指す！高収入を実現するキャリア戦略と秘訣 | 手取り計算シミュレーションツール テドリさん',
+  title: '建設業で年収1000万円を目指す！高収入を実現するキャリア戦略と秘訣 | 手取りのミカタ',
   description:
     '建設業の平均年収から職種別の給与水準、年収1000万円を達成するキャリアパス、取得すべき国家資格、効果的な転職戦略まで、高収入を実現するための秘訣を網羅的に解説。',
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = createPageMetadata({
     'キャリア',
   ],
   canonicalPath: '/magazine/job-salary/construction',
-  openGraphTitle: '建設業で年収1000万円を目指す！高収入を実現するキャリア戦略と秘訣 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '建設業で年収1000万円を目指す！高収入を実現するキャリア戦略と秘訣 | 手取りのミカタ',
   openGraphDescription:
     '建設業の平均年収から職種別の給与水準、年収1000万円を達成するキャリアパス、取得すべき国家資格、効果的な転職戦略まで、高収入を実現するための秘訣を網羅的に解説。',
   openGraphType: 'article',

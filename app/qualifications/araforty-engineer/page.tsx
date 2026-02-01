@@ -5,12 +5,12 @@ import ArafortyEngineerArticle from './ArafortyEngineerArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格 | テドリさん',
+  title: 'アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格 | 手取りのミカタ',
   description:
     '40代から未経験でエンジニアを目指す方へ。成功のポイント、おすすめの資格・学習方法、転職のコツを解説。',
   keywords: ['アラフォー', '40代', '未経験', 'エンジニア転職', 'IT転職', 'プログラミング', '資格'],
   canonicalPath: '/qualifications/araforty-engineer',
-  openGraphTitle: 'アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格 | テドリさん',
+  openGraphTitle: 'アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格 | 手取りのミカタ',
   openGraphDescription:
     '40代から未経験でエンジニアを目指す方へ。成功のポイント、おすすめの資格・学習方法、転職のコツを解説。',
   openGraphType: 'article',

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const SITE_URL = 'https://tedorisan.jp' as const;
-export const SITE_NAME = '手取り計算シミュレーションツール テドリさん' as const;
+export const SITE_NAME = '手取りのミカタ' as const;
 
 /** 共通OG画像（1200x630推奨） */
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png` as const;

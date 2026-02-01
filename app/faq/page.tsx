@@ -3,7 +3,7 @@ import FAQClient, { type FAQCategory } from './FAQClient';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'よくある質問（FAQ）- 手取り計算｜テドリさん',
+  title: 'よくある質問（FAQ）- 手取り計算｜手取りのミカタ',
   description:
     '手取り計算に関するよくある質問。手取りとは？計算方法は？所得税・住民税・社会保険料の仕組みを解説。転職・新卒・副業の疑問も解決。',
   keywords: [

@@ -5,7 +5,7 @@ import RealEstateArticle from './RealEstateArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '未経験から不動産営業で年収2000万！最短で稼ぐための全知識 | 手取り計算シミュレーションツール テドリさん',
+  title: '未経験から不動産営業で年収2000万！最短で稼ぐための全知識 | 手取りのミカタ',
   description:
     '未経験から不動産営業で年収2000万を達成するためのロードマップを徹底解説。年収構造、必須スキル、稼げる会社選び、顧客開拓・クロージング術、成功事例まで網羅。',
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = createPageMetadata({
     'インセンティブ',
   ],
   canonicalPath: '/magazine/job-salary/real-estate',
-  openGraphTitle: '未経験から不動産営業で年収2000万！最短で稼ぐための全知識 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '未経験から不動産営業で年収2000万！最短で稼ぐための全知識 | 手取りのミカタ',
   openGraphDescription:
     '未経験から不動産営業で年収2000万を達成するためのロードマップを徹底解説。年収構造、必須スキル、稼げる会社選び、顧客開拓・クロージング術、成功事例まで網羅。',
   openGraphType: 'article',

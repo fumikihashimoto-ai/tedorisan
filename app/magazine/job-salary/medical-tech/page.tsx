@@ -5,7 +5,7 @@ import MedicalTechArticle from './MedicalTechArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略 | 手取り計算シミュレーションツール テドリさん',
+  title: '臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略 | 手取りのミカタ',
   description:
     '臨床検査技師の平均年収を年代別・勤務先別・地域別に徹底解説。経験年数、保有資格、役職が年収に与える影響と、資格取得・転職・管理職・副業による年収アップの具体的な方法を紹介。',
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = createPageMetadata({
     '医療技術職',
   ],
   canonicalPath: '/magazine/job-salary/medical-tech',
-  openGraphTitle: '臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '臨床検査技師の年収を上げる！給料アップの秘訣とキャリア戦略 | 手取りのミカタ',
   openGraphDescription:
     '臨床検査技師の平均年収を年代別・勤務先別・地域別に徹底解説。経験年数、保有資格、役職が年収に与える影響と、資格取得・転職・管理職・副業による年収アップの具体的な方法を紹介。',
   openGraphType: 'article',

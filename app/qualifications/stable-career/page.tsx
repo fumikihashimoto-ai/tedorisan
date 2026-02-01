@@ -5,12 +5,12 @@ import StableCareerArticle from './StableCareerArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '食いっぱぐれない資格｜もう仕事に困らない一生涯活躍できるスキル | テドリさん',
+  title: '食いっぱぐれない資格｜もう仕事に困らない一生涯活躍できるスキル | 手取りのミカタ',
   description:
     'AI時代に強い食いっぱぐれない資格を徹底解説。医療介護、IT、法律会計、建設不動産など、高い専門性と安定した需要を持つ資格の選び方と取得方法。',
   keywords: ['食いっぱぐれない資格', '安定した資格', 'AI時代', 'キャリア', '国家資格', '専門性'],
   canonicalPath: '/qualifications/stable-career',
-  openGraphTitle: '食いっぱぐれない資格｜もう仕事に困らない一生涯活躍できるスキル | テドリさん',
+  openGraphTitle: '食いっぱぐれない資格｜もう仕事に困らない一生涯活躍できるスキル | 手取りのミカタ',
   openGraphDescription:
     'AI時代に強い食いっぱぐれない資格を徹底解説。医療介護、IT、法律会計、建設不動産など、高い専門性と安定した需要を持つ資格の選び方と取得方法。',
   openGraphType: 'article',

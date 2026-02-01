@@ -5,7 +5,7 @@ import PharmacistArticle from './PharmacistArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法 | 手取り計算シミュレーションツール テドリさん',
+  title: '薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法 | 手取りのミカタ',
   description:
     '薬剤師の平均年収や年代別・施設別の給与実態、年収1000万円を達成する薬剤師の特徴と割合、専門性の向上・管理職・企業薬剤師・独立開業といった具体的なキャリア戦略を解説。',
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = createPageMetadata({
     '企業薬剤師',
   ],
   canonicalPath: '/magazine/job-salary/pharmacist',
-  openGraphTitle: '薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法 | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: '薬剤師で年収1000万円は可能？高収入を狙うための具体的な方法 | 手取りのミカタ',
   openGraphDescription:
     '薬剤師の平均年収や年代別・施設別の給与実態、年収1000万円を達成する薬剤師の特徴と割合、専門性の向上・管理職・企業薬剤師・独立開業といった具体的なキャリア戦略を解説。',
   openGraphType: 'article',

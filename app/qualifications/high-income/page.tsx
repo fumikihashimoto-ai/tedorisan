@@ -5,12 +5,12 @@ import HighIncomeArticle from './HighIncomeArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '高収入が期待できる資格｜年収1000万円も夢じゃない | テドリさん',
+  title: '高収入が期待できる資格｜年収1000万円も夢じゃない | 手取りのミカタ',
   description:
     'ITストラテジスト、社労士、USCPAなど高収入が期待できる資格を厳選紹介。資格の選び方、効率的な学習計画、転職・独立の成功事例まで徹底解説。',
   keywords: ['高収入資格', '年収1000万円', 'ITストラテジスト', '社労士', 'USCPA', '資格取得'],
   canonicalPath: '/qualifications/high-income',
-  openGraphTitle: '高収入が期待できる資格｜年収1000万円も夢じゃない | テドリさん',
+  openGraphTitle: '高収入が期待できる資格｜年収1000万円も夢じゃない | 手取りのミカタ',
   openGraphDescription:
     'ITストラテジスト、社労士、USCPAなど高収入が期待できる資格を厳選紹介。資格の選び方、効率的な学習計画、転職・独立の成功事例まで徹底解説。',
   openGraphType: 'article',

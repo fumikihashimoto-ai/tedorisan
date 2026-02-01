@@ -4,7 +4,7 @@ import SideBusinessArticle from './SideBusinessArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | 手取り計算シミュレーションツール テドリさん',
+  title: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | 手取りのミカタ',
   description:
     '副業の確定申告、これで安心！必要条件から青色申告、経費、会社バレ対策まで、副業収入がある方が知るべき確定申告のすべてをわかりやすく解説。e-Taxでの提出方法も網羅した完全マニュアル。',
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
     '確定申告 マニュアル',
   ],
   canonicalPath: '/tools/side-business',
-  openGraphTitle: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | 手取り計算シミュレーションツール テドリさん',
+  openGraphTitle: 'これで安心！副業の確定申告をわかりやすく解説する完全マニュアル | 手取りのミカタ',
   openGraphDescription:
     '副業の確定申告、これで安心！必要条件から青色申告、経費、会社バレ対策まで、副業収入がある方が知るべき確定申告のすべてをわかりやすく解説。e-Taxでの提出方法も網羅した完全マニュアル。',
   openGraphType: 'article',
