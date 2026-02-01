@@ -27,10 +27,11 @@ export default function Footer() {
         <div className="text-center mb-6">
           <Link
             href="/"
-            className="text-xl font-bold text-white hover:text-[#cccccc] transition-colors"
+            className="block text-xl font-bold text-white hover:text-[#cccccc] transition-colors"
           >
-            手取り計算シミュレーションツール テドリさん
+            手取りのミカタ
           </Link>
+          <p className="mt-1 text-sm text-white/80">手取り計算・年収シミュレーション・転職の無料ツール</p>
         </div>
 
         {/* ページリンク */}
@@ -121,7 +122,7 @@ export default function Footer() {
 
         {/* コピーライト */}
         <div className="text-center text-sm text-[#cccccc]">
-          <p>© {new Date().getFullYear()} 手取り計算シミュレーションツール テドリさん All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} 手取りのミカタ All Rights Reserved.</p>
         </div>
       </div>
     </footer>
