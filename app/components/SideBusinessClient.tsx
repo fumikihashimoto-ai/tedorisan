@@ -284,7 +284,7 @@ export default function SideBusinessClient({ embedded = false }: SideBusinessCli
 
       {/* 固定広告: スマホのみ・ページ下部固定表示 */}
       <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)] md:hidden">
-        <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4V1GMQ+3SPO+9FIFPT" rel="nofollow">
+        <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4V1GMQ+3SPO+9FIFPT" target="_blank" rel="nofollow noopener noreferrer">
           <img
             width={350}
             height={80}

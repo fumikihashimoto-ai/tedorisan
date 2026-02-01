@@ -1,5 +1,3 @@
-import InlineAd from '@/app/components/InlineAd';
-
 export default function PharmacistArticle() {
   return (
     <article className="pb-20">
@@ -7,6 +5,35 @@ export default function PharmacistArticle() {
       <p className="text-base leading-[1.8] mb-4">
         薬剤師として「年収1000万円」は、決して不可能ではありません。この記事では、薬剤師の平均年収や年代別・施設別の給与実態、年収に影響を与える要因を詳しく解説。そして、年収1000万円を達成している薬剤師の割合や特徴を具体的に示し、専門性の向上、管理職への昇進、企業薬剤師への転身、独立・開業といった具体的なキャリア戦略まで網羅的にご紹介します。高年収を実現するための転職活動のポイントや、自身の市場価値を高める交渉術まで網羅。この記事を読めば、あなたのキャリアプラン実現に向けた具体的な道筋が見えてくるでしょう。
       </p>
+
+      {/* スマホのみ：セクション1上の広告 */}
+      <div className="md:hidden my-5 py-4 border-t border-b border-gray-200">
+        <div className="flex justify-center">
+          <a
+            href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+67Z9T"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              width={350}
+              height={160}
+              alt=""
+              src="https://www27.a8.net/svt/bgt?aid=260126641284&wid=001&eno=01&mid=s00000010261001045000&mc=1"
+              className="border-0"
+            />
+          </a>
+        </div>
+        <img
+          width={1}
+          height={1}
+          src="https://www10.a8.net/0.gif?a8mat=4AVF01+4P34KY+276A+67Z9T"
+          alt=""
+          className="border-0"
+        />
+        <p className="mt-1 text-xs text-[#1E293B] leading-relaxed text-left">
+          20代・30代の薬剤師の転職＆派遣ならファルマスタッフ 薬剤師に選ばれる転職NO.1＆7冠獲得！
+        </p>
+      </div>
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">
@@ -159,8 +186,6 @@ export default function PharmacistArticle() {
         </p>
       </section>
 
-      <InlineAd />
-
       {/* セクション2 */}
       <section id="section-2" className="scroll-mt-6">
         <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
@@ -251,8 +276,6 @@ export default function PharmacistArticle() {
           です。次の章では、具体的なキャリア戦略について詳しく解説していきます。
         </p>
       </section>
-
-      <InlineAd />
 
       {/* セクション3 */}
       <section id="section-3" className="scroll-mt-6">
@@ -354,8 +377,6 @@ export default function PharmacistArticle() {
           が不可欠です。独立開業を検討する際は、経営コンサルタントや税理士などの専門家のアドバイスを積極的に求めることが成功への近道となるでしょう。
         </p>
       </section>
-
-      <InlineAd />
 
       {/* セクション4：転職活動のポイント */}
       <section id="section-4" className="scroll-mt-6">
@@ -484,8 +505,6 @@ export default function PharmacistArticle() {
           </li>
         </ul>
       </section>
-
-      <InlineAd />
 
       {/* セクション5：まとめ */}
       <section id="section-5" className="scroll-mt-6">

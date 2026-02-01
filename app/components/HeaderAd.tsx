@@ -29,7 +29,7 @@ export default function HeaderAd() {
 
   return (
     <>
-      <a href={ad.href} rel="nofollow">
+      <a href={ad.href} target="_blank" rel="nofollow noopener noreferrer">
         <img
           width={728}
           height={90}

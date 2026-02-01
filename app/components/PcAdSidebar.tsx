@@ -75,7 +75,7 @@ export default function PcAdSidebar({ useTopAds = false }: Props) {
       <div className={useTopAds ? 'space-y-4' : 'space-y-5'}>
         {ads.map((ad) => (
           <div key={ad.href}>
-            <a href={ad.href} rel="nofollow">
+            <a href={ad.href} target="_blank" rel="nofollow noopener noreferrer">
               <img
                 width={300}
                 height={250}

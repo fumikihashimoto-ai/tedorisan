@@ -8,7 +8,7 @@ export type RelatedLink = { href: string; label: string; image: string; category
 /** マップ定義用（image, category は getRelatedLinks で付与） */
 type RelatedLinkInput = { href: string; label: string };
 
-/** href からヒーロー画像パスを取得（既存の hero_*.png を使用） */
+/** href からヒーロー画像パスを取得（リンク先ページの hero_*.png を使用） */
 function getHeroImage(href: string): string {
   const path = href === '/' ? '/' : href.replace(/\/$/, '');
   const heroMap: Record<string, string> = {
@@ -16,6 +16,8 @@ function getHeroImage(href: string): string {
     '/tools/job-change': 'hero_job-change',
     '/tools/fresh-graduate': 'hero_fresh-graduate',
     '/tools/side-business': 'hero_side-business',
+    '/tables': 'hero_tables',
+    '/faq': 'hero_faq',
     '/magazine/job-salary/it-engineer': 'hero_it-engineer',
     '/magazine/job-salary/nursery': 'hero_nursery',
     '/magazine/job-salary/sales': 'hero_sales',
@@ -40,7 +42,12 @@ function getHeroImage(href: string): string {
     '/career/high-income': 'hero_high-income',
     '/career/career-change-20s': 'hero_job-change',
   };
-  return `/images/${heroMap[path] ?? 'hero_top'}.png`;
+  // 完全一致
+  const exact = heroMap[path];
+  if (exact) return `/images/${exact}.png`;
+  // 動的ルート（/tables/annual-income/*, /tables/monthly-takehome/*）
+  if (path.startsWith('/tables/')) return '/images/hero_tables.png';
+  return '/images/hero_top.png';
 }
 
 /** href からカテゴリを取得 */

@@ -52,7 +52,7 @@ export default function SideBusinessPage() {
           {/* 右カラム：サイドバー */}
           <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
             <div>
-              <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT" rel="nofollow">
+              <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT" target="_blank" rel="nofollow noopener noreferrer">
                 <img
                   width={300}
                   height={250}
