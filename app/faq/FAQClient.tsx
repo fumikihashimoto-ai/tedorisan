@@ -22,7 +22,7 @@ type Props = {
 
 export default function FAQClient({ faqData }: Props) {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] container-main">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">

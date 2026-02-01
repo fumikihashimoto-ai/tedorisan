@@ -86,7 +86,7 @@ export default function HomeClient() {
   };
 
   return (
-    <div className="container-main pb-20">
+    <div className="pb-20">
       <div className="space-y-8 md:space-y-12">
         {/* リード文セクション */}
         <section className="pt-0 pb-8 mb-0">

@@ -116,7 +116,7 @@ export default function HighIncomeClient() {
   }, [result]);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] container-main">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto md:flex md:items-start md:gap-8">
         <div className="space-y-8 md:space-y-12 md:max-w-[800px] md:w-full">
           <nav className="breadcrumb mb-3">

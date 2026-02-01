@@ -324,7 +324,7 @@ export default function JobChangeClient({ embedded = false }: JobChangeClientPro
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] container-main">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
         <div className="md:flex md:items-start md:gap-8">
           <div className="md:max-w-[800px] md:w-full">
