@@ -98,9 +98,9 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     type: 'link',
-    label: '早見表',
+    label: '手取り一覧表',
     href: '/tables/',
-    mobileLabel: '早見表',
+    mobileLabel: '手取り一覧表',
   },
   { type: 'link', label: 'FAQ', href: '/faq', mobileLabel: 'よくあるご質問', footerLabel: 'よくある質問（FAQ）' },
 ];
@@ -133,7 +133,7 @@ export const FOOTER_SECTIONS: { title: string; links: FooterLink[] }[] = [
   {
     title: 'その他',
     links: [
-      { href: '/tables/', label: '早見表' },
+      { href: '/tables/', label: '手取り一覧表' },
       { href: '/faq', label: 'よくある質問（FAQ）' },
     ],
   },
