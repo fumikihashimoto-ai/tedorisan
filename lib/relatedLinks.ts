@@ -5,6 +5,9 @@
 
 export type RelatedLink = { href: string; label: string; image: string; category: string };
 
+/** マップ定義用（image, category は getRelatedLinks で付与） */
+type RelatedLinkInput = { href: string; label: string };
+
 /** href からヒーロー画像パスを取得（既存の hero_*.png を使用） */
 function getHeroImage(href: string): string {
   const path = href === '/' ? '/' : href.replace(/\/$/, '');
@@ -52,7 +55,7 @@ function getCategory(href: string): string {
 }
 
 /** パスパターン（完全一致 or 前方一致）と関連リンクのマッピング */
-const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLink[] }[] = [
+const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }[] = [
   // 計算ツール系
   {
     pattern: '/',
