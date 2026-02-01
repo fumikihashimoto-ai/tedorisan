@@ -7,6 +7,7 @@ import { averageIncomeByIndustry, industryOptions, type IndustryType, type AgeGr
 import PcAdSidebar from './PcAdSidebar';
 import CustomSelect, { type CustomSelectOption } from './CustomSelect';
 import { Card, H2 } from './ui';
+import TablesArticle from '@/app/tables/TablesArticle';
 
 const AGE_OPTIONS: CustomSelectOption[] = [
   { value: '20代', label: '20代' },
@@ -83,15 +84,26 @@ export default function ComparisonListClient() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+            {/* ヒーロー画像 */}
+            <div className="mb-4">
+              <img
+                src="https://ritera.bring-flower.com/storage/images/generated-images/4953/1769913026.png"
+                alt="年代別 手取り徹底解説"
+                className="w-full max-w-full h-auto rounded-lg"
+              />
+            </div>
             <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/tables">早見表</Link> {'>'} 一覧表
+              <Link href="/">ホーム</Link> {'>'} <Link href="/tables">手取り一覧表</Link> {'>'} 一覧表
             </nav>
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              業種・年代別 手取り一覧表
+              年代別 手取り徹底解説!将来設計に役立つ賢いお金の増やし方
             </h1>
+            <p className="text-base leading-[1.8] mb-6">
+              「手取りが少なくて将来が不安」「自分の年代の平均手取りはどれくらい?」そんな漠然とした疑問や悩みを抱えていませんか?本記事では、新社会人から老後準備期まで、年代別のリアルな手取り額とその背景にある税金や社会保険料の仕組みを徹底解説します。さらに、効率的な節税対策、スキルアップや副業による収入増、NISAやiDeCoを最大限に活用した賢い資産形成術まで、手取りを最大化し、経済的な不安を解消するための具体的な戦略を網羅。この記事を読めば、あなたの年代における手取りの現状と未来が明確になり、豊かな将来設計を描くための具体的な行動指針が見つかるはずです。
+            </p>
 
             <Card variant="flat">
-              <H2>🎯 まずは条件を選択</H2>
+              <H2>🎯 業種・年代別 手取り一覧表</H2>
               <div className="flex flex-wrap md:flex-nowrap gap-4 items-end">
                 {/* 業種選択 */}
                 <div className="min-w-[140px] flex-1 md:flex-initial">
@@ -187,6 +199,19 @@ export default function ComparisonListClient() {
             </div>
           </>
         )}
+
+            {/* 記事本文 */}
+            <TablesArticle />
+
+            {/* ページ下部CTA */}
+            <div className="mt-8 text-center">
+              <p className="text-base font-semibold text-gray-800 mb-4">
+                💡 あなたの詳細な手取り額を計算
+              </p>
+              <Link href="/" className="btn-primary-inline">
+                手取りのミカタを使う
+              </Link>
+            </div>
           </main>
 
           <PcAdSidebar useTopAds />
