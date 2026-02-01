@@ -3,21 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { MAGAZINE_GROUP_ORDER, NAV_ITEMS, type NavMenuItem } from '@/app/lib/navigation';
-
-/** マガジンメニュー項目をグループごとに分割 */
-function groupMagazineItems(items: NavMenuItem[]) {
-  const groups = new Map<string, NavMenuItem[]>();
-  for (const item of items) {
-    const group = item.group ?? '';
-    if (!groups.has(group)) groups.set(group, []);
-    groups.get(group)!.push(item);
-  }
-  return MAGAZINE_GROUP_ORDER.flatMap((groupName) => {
-    const groupItems = groups.get(groupName);
-    return groupItems ? [{ groupName, items: groupItems }] : [];
-  });
-}
+import { NAV_ITEMS } from '@/app/lib/navigation';
 
 function isActiveHref(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -26,7 +12,7 @@ function isActiveHref(pathname: string, href: string) {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openSection, setOpenSection] = useState<'tools' | 'magazine' | 'qualifications' | null>(null);
+  const [openSection, setOpenSection] = useState<'tools' | 'job-salary' | 'inexperienced' | 'qualifications' | null>(null);
   const pathname = usePathname();
 
   const closeMenu = () => {
@@ -123,26 +109,11 @@ export default function Header() {
                     >
                       <span className="nav-dropdown-trigger">{item.label}</span>
                       <div className="nav-dropdown-menu">
-                        {item.id === 'magazine' ? (
-                          groupMagazineItems(item.items).map(({ groupName, items: groupItems }) => (
-                            <div key={groupName} className="mb-2 last:mb-0">
-                              <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                                {groupName}
-                              </div>
-                              {groupItems.map((child) => (
-                                <Link key={child.href} href={child.href} className="nav-dropdown-item">
-                                  {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          ))
-                        ) : (
-                          item.items.map((child) => (
-                            <Link key={child.href} href={child.href} className="nav-dropdown-item">
-                              {child.label}
-                            </Link>
-                          ))
-                        )}
+                        {item.items.map((child) => (
+                          <Link key={child.href} href={child.href} className="nav-dropdown-item">
+                            {child.label}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   ) : (
@@ -235,36 +206,16 @@ export default function Header() {
                       </button>
                       {openSection === item.id && (
                         <div className="mobile-submenu">
-                          {item.id === 'magazine' ? (
-                            groupMagazineItems(item.items).map(({ groupName, items: groupItems }) => (
-                              <div key={groupName} className="mb-3 last:mb-0">
-                                <div className="px-2 py-1 text-xs font-semibold text-white/70">
-                                  {groupName}
-                                </div>
-                                {groupItems.map((child) => (
-                                  <Link
-                                    key={child.href}
-                                    href={child.href}
-                                    className="mobile-submenu-item"
-                                    onClick={closeMenu}
-                                  >
-                                    {child.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            ))
-                          ) : (
-                            item.items.map((child) => (
-                              <Link
-                                key={child.href}
-                                href={child.href}
-                                className="mobile-submenu-item"
-                                onClick={closeMenu}
-                              >
-                                {child.label}
-                              </Link>
-                            ))
-                          )}
+                          {item.items.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className="mobile-submenu-item"
+                              onClick={closeMenu}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
                         </div>
                       )}
                     </div>

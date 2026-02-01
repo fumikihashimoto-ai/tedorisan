@@ -16,7 +16,7 @@ export type NavItem =
     }
   | {
       type: 'dropdown';
-      id: 'tools' | 'magazine' | 'qualifications';
+      id: 'tools' | 'job-salary' | 'inexperienced' | 'qualifications';
       label: string;
       items: NavMenuItem[];
       activePrefix: string;
@@ -49,16 +49,18 @@ export const CAREER_MENU_ITEMS: NavMenuItem[] = [
   { label: '40代女性未経験者の転職', href: '/magazine/inexperienced/40s-women', group: '未経験者の就職・転職' },
 ];
 
-// マガジン（職種別年収 + 未経験者の転職 + 高卒・高校中退の就職）
-export const MAGAZINE_MENU_ITEMS: NavMenuItem[] = [
-  ...DATA_MENU_ITEMS,
+/** 未経験者の就職・転職メニュー */
+export const INEXPERIENCED_MENU_ITEMS: NavMenuItem[] = [
   ...CAREER_MENU_ITEMS,
   { label: '高卒・高校中退の就職', href: '/magazine/high-school', group: '未経験者の就職・転職' },
   { label: '高卒女性の就職', href: '/magazine/inexperienced/high-school-women', group: '未経験者の就職・転職' },
 ];
 
-/** マガジンメニューのグループ表示順 */
-export const MAGAZINE_GROUP_ORDER = ['職種別年収', '未経験者の就職・転職'] as const;
+// フッター用（職種別年収 + 未経験者の就職・転職）
+export const MAGAZINE_MENU_ITEMS: NavMenuItem[] = [
+  ...DATA_MENU_ITEMS,
+  ...INEXPERIENCED_MENU_ITEMS,
+];
 
 export const QUALIFICATION_MENU_ITEMS: NavMenuItem[] = [
   { label: '資格一覧', href: '/qualifications' },
@@ -82,11 +84,19 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     type: 'dropdown',
-    id: 'magazine',
-    label: 'マガジン',
-    items: MAGAZINE_MENU_ITEMS,
+    id: 'job-salary',
+    label: '職種別年収',
+    items: DATA_MENU_ITEMS,
+    activePrefix: '/magazine/job-salary',
+    mobileLabel: '職種別年収',
+  },
+  {
+    type: 'dropdown',
+    id: 'inexperienced',
+    label: '未経験者の就職・転職',
+    items: INEXPERIENCED_MENU_ITEMS,
     activePrefix: '/magazine',
-    mobileLabel: 'マガジン',
+    mobileLabel: '未経験者の就職・転職',
   },
   {
     type: 'dropdown',
@@ -102,11 +112,11 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/tables/',
     mobileLabel: '手取り一覧表',
   },
-  { type: 'link', label: 'FAQ', href: '/faq', mobileLabel: 'よくあるご質問', footerLabel: 'よくある質問（FAQ）' },
 ];
 
 export type FooterLink = { href: string; label: string; group?: string };
 
+/** フッターセクション（ヘッダーと同じ構成） */
 export const FOOTER_SECTIONS: { title: string; links: FooterLink[] }[] = [
   {
     title: '計算ツール',
@@ -116,11 +126,17 @@ export const FOOTER_SECTIONS: { title: string; links: FooterLink[] }[] = [
     })),
   },
   {
-    title: 'マガジン',
-    links: MAGAZINE_MENU_ITEMS.map((i) => ({
+    title: '職種別年収',
+    links: DATA_MENU_ITEMS.map((i) => ({
       href: i.href,
       label: i.footerLabel ?? i.label,
-      group: i.group,
+    })),
+  },
+  {
+    title: '未経験者の就職・転職',
+    links: INEXPERIENCED_MENU_ITEMS.map((i) => ({
+      href: i.href,
+      label: i.footerLabel ?? i.label,
     })),
   },
   {
