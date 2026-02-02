@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SideBusinessArticle from './SideBusinessArticle';
+import ArticleSidebarAd from '@/app/components/ArticleSidebarAd';
+import { ARTICLE_SIDEBAR_ADS } from '@/lib/ads';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
@@ -25,7 +27,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function SideBusinessPage() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#F8FAFC] pb-24">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
         <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
           {/* 左カラム：メインコンテンツ */}
@@ -50,47 +52,23 @@ export default function SideBusinessPage() {
           </main>
 
           {/* 右カラム：サイドバー */}
-          <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
-            <div>
-              <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT" target="_blank" rel="nofollow noopener noreferrer">
-                <img
-                  width={300}
-                  height={250}
-                  alt=""
-                  src="https://www28.a8.net/svt/bgt?aid=260126641297&wid=001&eno=01&mid=s00000017718074008000&mc=1"
-                  className="border-0"
-                />
-              </a>
-              <img
-                width={1}
-                height={1}
-                src="https://www10.a8.net/0.gif?a8mat=4AVF01+4WTRG2+3SPO+C8MHDT"
-                alt=""
-                className="border-0"
-              />
-            </div>
-          </aside>
+          <ArticleSidebarAd {...ARTICLE_SIDEBAR_ADS.sideBusiness} />
         </div>
       </div>
 
-      {/* 固定広告: スマホのみ・ページ下部固定表示 */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)] md:hidden">
+      {/* 固定広告: ページ下部に常時表示 */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
         <div>
-          <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4V1GMQ+3SPO+9FIFPT" target="_blank" rel="nofollow noopener noreferrer">
+          <a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4VMW8I+4JGQ+BXIYP" target="_blank" rel="nofollow noopener noreferrer">
             <img
-              width={350}
-              height={80}
+              width={728}
+              height={90}
               alt=""
-              src="https://www22.a8.net/svt/bgt?aid=260126641294&wid=001&eno=01&mid=s00000017718057025000&mc=1"
-              className="border-0"
+              src="https://www26.a8.net/svt/bgt?aid=260126641295&wid=001&eno=01&mid=s00000021185002004000&mc=1"
+              className="border-0 max-w-full h-auto"
             />
           </a>
-          <img
-            width={1}
-            height={1}
-            src="https://www11.a8.net/0.gif?a8mat=4AVF01+4V1GMQ+3SPO+9FIFPT"
-            alt=""
-          />
+          <img width={1} height={1} src="https://www12.a8.net/0.gif?a8mat=4AVF01+4VMW8I+4JGQ+BXIYP" alt="" aria-hidden />
         </div>
       </div>
     </div>
