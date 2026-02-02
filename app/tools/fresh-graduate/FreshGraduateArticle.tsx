@@ -1,4 +1,6 @@
 import FreshGraduateClient from '../../components/FreshGraduateClient';
+import MobileArticleAd from '../../components/MobileArticleAd';
+import { MOBILE_ARTICLE_ADS } from '../../../lib/ads';
 
 export default function FreshGraduateArticle() {
   return (
@@ -10,6 +12,9 @@ export default function FreshGraduateArticle() {
 
       {/* 計算ツール（セクション1の上に配置） */}
       <FreshGraduateClient embedded />
+
+      {/* スマホUI記事内広告（セクション1の直上） */}
+      <MobileArticleAd {...MOBILE_ARTICLE_ADS.freshGraduate} />
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">

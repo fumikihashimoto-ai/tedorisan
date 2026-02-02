@@ -13,6 +13,14 @@ export type MobileArticleAdConfig = {
 };
 
 export const MOBILE_ARTICLE_ADS = {
+  freshGraduate: {
+    href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
+    imgSrc: 'https://www21.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002005000&mc=1',
+    pixelSrc: 'https://www15.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
+    imgWidth: 300,
+    imgHeight: 250,
+    copyText: '効率的に就活を進めるなら新卒就職エージェントneo！最短1での内定獲得！内定支援実績、約45,000件！',
+  },
   pharmacist: {
     href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+67Z9T',
     imgSrc: 'https://www27.a8.net/svt/bgt?aid=260126641284&wid=001&eno=01&mid=s00000010261001045000&mc=1',

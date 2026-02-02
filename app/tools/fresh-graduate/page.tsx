@@ -54,6 +54,32 @@ export default function FreshGraduatePage() {
           <TopPageSidebar />
         </div>
       </div>
+
+      {/* 固定広告: ページ下部固定表示 */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+        <div>
+          <a
+            href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BY641"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              width={468}
+              height={60}
+              alt=""
+              src="https://www20.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002007000&mc=1"
+              className="border-0 max-w-full h-auto"
+            />
+          </a>
+          <img
+            width={1}
+            height={1}
+            src="https://www13.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BY641"
+            alt=""
+            className="border-0"
+          />
+        </div>
+      </div>
     </div>
   );
 }
