@@ -94,8 +94,12 @@ export default function Header() {
                           ? pathname === '/' || pathname.startsWith(item.activePrefix)
                             ? 'nav-active'
                             : ''
-                          : item.id === 'magazine'
-                            ? pathname.startsWith('/magazine')
+                          : item.id === 'job-salary'
+                            ? pathname.startsWith('/magazine/job-salary')
+                              ? 'nav-active'
+                              : ''
+                          : item.id === 'inexperienced'
+                            ? pathname.startsWith('/magazine/inexperienced') || pathname === '/magazine/high-school'
                               ? 'nav-active'
                               : ''
                           : item.id === 'qualifications'
