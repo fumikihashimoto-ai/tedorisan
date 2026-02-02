@@ -1,3 +1,6 @@
+import MobileArticleAd from '@/app/components/MobileArticleAd';
+import { MOBILE_ARTICLE_ADS } from '@/lib/ads';
+
 export default function PharmacistArticle() {
   return (
     <article className="pb-20">
@@ -7,33 +10,7 @@ export default function PharmacistArticle() {
       </p>
 
       {/* スマホのみ：セクション1上の広告 */}
-      <div className="md:hidden my-5 py-4 border-t border-b border-gray-200">
-        <div className="flex justify-center">
-          <a
-            href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+67Z9T"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-          >
-            <img
-              width={350}
-              height={160}
-              alt=""
-              src="https://www27.a8.net/svt/bgt?aid=260126641284&wid=001&eno=01&mid=s00000010261001045000&mc=1"
-              className="border-0"
-            />
-          </a>
-        </div>
-        <img
-          width={1}
-          height={1}
-          src="https://www10.a8.net/0.gif?a8mat=4AVF01+4P34KY+276A+67Z9T"
-          alt=""
-          className="border-0"
-        />
-        <p className="mt-1 text-xs text-[#1E293B] leading-relaxed text-left">
-          20代・30代の薬剤師の転職＆派遣ならファルマスタッフ 薬剤師に選ばれる転職NO.1＆7冠獲得！
-        </p>
-      </div>
+      <MobileArticleAd {...MOBILE_ARTICLE_ADS.pharmacist} />
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">

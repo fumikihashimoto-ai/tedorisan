@@ -77,10 +77,10 @@ export const NAV_ITEMS: NavItem[] = [
   {
     type: 'dropdown',
     id: 'tools',
-    label: '計算ツール',
+    label: '新卒・転職・副業の手取り',
     items: TOOLS_MENU_ITEMS,
     activePrefix: '/tools',
-    mobileLabel: '計算ツール',
+    mobileLabel: '新卒・転職・副業の手取り',
   },
   {
     type: 'dropdown',
@@ -119,7 +119,7 @@ export type FooterLink = { href: string; label: string; group?: string };
 /** フッターセクション（ヘッダーと同じ構成） */
 export const FOOTER_SECTIONS: { title: string; links: FooterLink[] }[] = [
   {
-    title: '計算ツール',
+    title: '新卒・転職・副業の手取り',
     links: TOOLS_MENU_ITEMS.map((i) => ({
       href: i.href,
       label: i.footerLabel ?? i.label,

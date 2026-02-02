@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import ArticleStructuredData from '@/app/components/ArticleStructuredData';
-import PharmacistSidebar from '@/app/components/PharmacistSidebar';
+import ArticleSidebarAd from '@/app/components/ArticleSidebarAd';
 import PharmacistArticle from './PharmacistArticle';
+import { ARTICLE_SIDEBAR_ADS } from '@/lib/ads';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
@@ -60,7 +61,7 @@ export default function Page() {
           </main>
 
           {/* 右カラム：サイドバー（ファルマスタッフ広告） */}
-          <PharmacistSidebar />
+          <ArticleSidebarAd {...ARTICLE_SIDEBAR_ADS.pharmacist} />
         </div>
       </div>
 

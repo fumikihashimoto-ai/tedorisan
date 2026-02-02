@@ -18,13 +18,12 @@ export default function RelatedLinks() {
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="w-full lg:max-w-[1128px] xl:max-w-[1268px]">
-          {/* ヘッダー: RECOMMEND おすすめ記事 */}
+          {/* ヘッダー: RECOMMEND */}
           <h2
             id="related-links-heading"
             className="mb-6"
           >
             <span className="text-xl font-bold text-[#1E293B]">RECOMMEND</span>
-            <span className="ml-2 text-sm font-normal text-[#64748B]">おすすめ記事</span>
             <span className="block mt-1 h-0.5 w-16 bg-[#1E293B]" aria-hidden />
           </h2>
 

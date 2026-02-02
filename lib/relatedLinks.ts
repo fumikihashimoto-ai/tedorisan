@@ -1,6 +1,6 @@
 /**
  * 全ページの関連リンク定義
- * ページ下部に表示する「RECOMMEND おすすめ記事」リンク
+ * ページ下部に表示する「RECOMMEND」リンク
  */
 
 export type RelatedLink = { href: string; label: string; image: string; category: string };
