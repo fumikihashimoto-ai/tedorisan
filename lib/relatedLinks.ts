@@ -67,6 +67,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
   {
     pattern: '/',
     links: [
+      { href: '/qualifications/araforty-engineer', label: '42歳未経験からエンジニアになる方法' },
       { href: '/tools/job-change', label: '転職向け手取り計算' },
       { href: '/tools/fresh-graduate', label: '新卒向け手取り計算' },
       { href: '/tools/side-business', label: '副業向け手取り計算' },

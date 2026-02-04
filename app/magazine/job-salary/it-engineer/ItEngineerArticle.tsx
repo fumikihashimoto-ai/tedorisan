@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import InlineAd from '@/app/components/InlineAd';
 
 export default function ItEngineerArticle() {
@@ -701,6 +702,18 @@ export default function ItEngineerArticle() {
         </h2>
         <p className="text-base leading-[1.8] mb-4">
           システムエンジニアの年収は、経験年数、専門職種、そして個人のスキルレベルによって大きく変動します。特に、市場価値の高い技術やマネジメント能力を身につけることが、高年収を実現する上で不可欠です。本記事で解説した通り、資格取得や戦略的な転職も年収アップの有効な手段となります。常に最新技術を学び、自身の市場価値を高める努力を続けることが、理想のキャリアと年収を掴むための鍵となるでしょう。
+        </p>
+      </section>
+
+      {/* 関連記事 */}
+      <section className="mt-10 pt-6 border-t border-gray-200">
+        <h2 className="text-lg font-bold text-gray-800 mb-3">【関連記事】</h2>
+        <p className="text-base leading-[1.8] mb-2">未経験から挑戦したい方へ:</p>
+        <p className="text-base leading-[1.8]">
+          →{' '}
+          <Link href="/qualifications/araforty-engineer" className="text-blue-600 hover:underline">
+            アラフォー未経験からのエンジニア転職
+          </Link>
         </p>
       </section>
     </article>
