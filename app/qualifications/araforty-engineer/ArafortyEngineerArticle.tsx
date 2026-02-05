@@ -1,5 +1,26 @@
 import Link from 'next/link';
-import InlineAd from '@/app/components/InlineAd';
+
+/** 記事内広告（ディープロ / AccessTrade） */
+function ArticleInlineAd() {
+  return (
+    <div className="my-8 flex justify-center">
+      <a
+        href="https://h.accesstrade.net/sp/cc?rk=0100kno300onsa"
+        rel="nofollow"
+        referrerPolicy="no-referrer-when-downgrade"
+        target="_blank"
+      >
+        <img
+          src="https://h.accesstrade.net/sp/rr?rk=0100kno300onsa"
+          alt="ディープロ"
+          border={0}
+          width={300}
+          height={250}
+        />
+      </a>
+    </div>
+  );
+}
 
 export default function ArafortyEngineerArticle() {
   return (
@@ -172,7 +193,7 @@ export default function ArafortyEngineerArticle() {
         <hr className="my-6 border-gray-200" />
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       {/* セクション2 */}
       <section id="section-2" className="scroll-mt-6">
@@ -257,7 +278,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       {/* セクション3 */}
       <section id="section-3" className="scroll-mt-6">
@@ -411,7 +432,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       {/* セクション4 */}
       <section id="section-4" className="scroll-mt-6">
@@ -573,7 +594,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       {/* セクション5 */}
       <section id="section-5" className="scroll-mt-6">
@@ -636,7 +657,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       {/* セクション6 - リクナビNEXTのリンクを修正 */}
       <section id="section-6" className="scroll-mt-6">
@@ -755,7 +776,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       {/* セクション7 */}
       <section id="section-7" className="scroll-mt-6">
@@ -833,7 +854,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <InlineAd />
+      <ArticleInlineAd />
 
       <hr className="my-6 border-gray-200" />
 
