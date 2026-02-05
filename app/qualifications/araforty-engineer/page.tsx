@@ -5,14 +5,14 @@ import ArafortyEngineerArticle from './ArafortyEngineerArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格 | 手取りのミカタ',
+  title: '【2026年版】アラフォー未経験からエンジニア転職｜42歳でも年収600万円を実現した学習ロードマップ',
   description:
-    '40代から未経験でエンジニアを目指す方へ。成功のポイント、おすすめの資格・学習方法、転職のコツを解説。',
+    '42歳未経験からエンジニア転職は可能です。年収600万円を実現した学習ロードマップ、おすすめスクール、転職成功の秘訣を徹底解説。手取り計算も掲載。アラフォーだからこその強みを活かす方法がわかります。',
   keywords: ['アラフォー', '40代', '未経験', 'エンジニア転職', 'IT転職', 'プログラミング', '資格'],
   canonicalPath: '/qualifications/araforty-engineer',
-  openGraphTitle: 'アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格 | 手取りのミカタ',
+  openGraphTitle: '【2026年版】アラフォー未経験からエンジニア転職｜42歳でも年収600万円を実現した学習ロードマップ',
   openGraphDescription:
-    '40代から未経験でエンジニアを目指す方へ。成功のポイント、おすすめの資格・学習方法、転職のコツを解説。',
+    '42歳未経験からエンジニア転職は可能です。年収600万円を実現した学習ロードマップ、おすすめスクール、転職成功の秘訣を徹底解説。手取り計算も掲載。アラフォーだからこその強みを活かす方法がわかります。',
   openGraphType: 'article',
 });
 
@@ -20,8 +20,8 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       <ArticleStructuredData
-        headline="アラフォー未経験からのエンジニア転職｜成功のポイントとおすすめ資格"
-        description="40代から未経験でエンジニアを目指す方へ。成功のポイント、おすすめの資格・学習方法、転職のコツを解説。"
+        headline="【2026年版】アラフォー未経験からエンジニア転職｜42歳でも年収600万円を実現した学習ロードマップ"
+        description="42歳未経験からエンジニア転職は可能です。年収600万円を実現した学習ロードマップ、おすすめスクール、転職成功の秘訣を徹底解説。手取り計算も掲載。アラフォーだからこその強みを活かす方法がわかります。"
         url="/qualifications/araforty-engineer"
       />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
