@@ -41,7 +41,7 @@ export default function Page() {
             </nav>
 
             <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              アラフォー未経験からエンジニアへ！今から間に合う学習ロードマップと成功事例
+              【2026年版】アラフォー未経験からエンジニア転職｜42歳でも年収600万円を実現した学習ロードマップ
             </h1>
 
             <ArafortyEngineerArticle />
