@@ -124,6 +124,12 @@ const nextConfig: NextConfig = {
         destination: '/tables',
         permanent: true,
       },
+      // 資格一覧ページ削除（先頭記事へリダイレクト）
+      {
+        source: '/qualifications',
+        destination: '/qualifications/araforty-engineer',
+        permanent: true,
+      },
     ];
   },
 };

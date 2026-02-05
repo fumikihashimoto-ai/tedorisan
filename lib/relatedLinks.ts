@@ -85,7 +85,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/magazine/inexperienced/30s', label: '30代の未経験転職' },
       { href: '/magazine/job-salary/it-engineer', label: 'ITエンジニアの年収' },
       { href: '/career/high-income', label: '年収1000万超えの手取り早見表' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -190,7 +190,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/magazine/job-salary/it-engineer', label: 'ITエンジニアの年収' },
       { href: '/magazine/inexperienced/30s', label: '30代の未経験転職' },
       { href: '/magazine/high-school', label: '高卒・高校中退の就職' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -211,7 +211,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/magazine/inexperienced/40s', label: '40代の未経験転職' },
       { href: '/magazine/job-salary/it-engineer', label: 'ITエンジニアの年収' },
       { href: '/qualifications/araforty-engineer', label: 'アラフォーエンジニア転職' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -232,7 +232,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/magazine/inexperienced/30s', label: '30代の未経験転職' },
       { href: '/magazine/inexperienced/40s-women', label: '40代女性の未経験転職' },
       { href: '/qualifications/stable-career', label: '食いっぱぐれない資格' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -265,19 +265,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/tools/fresh-graduate', label: '新卒向け手取り計算' },
     ],
   },
-  // 資格系
-  {
-    pattern: '/qualifications',
-    links: [
-      { href: '/', label: '手取り計算（TOP）' },
-      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
-      { href: '/qualifications/high-income', label: '高収入が期待できる資格' },
-      { href: '/qualifications/stable-career', label: '食いっぱぐれない資格' },
-      { href: '/qualifications/no-entry-requirement', label: '受験資格なしで取れる資格' },
-      { href: '/qualifications/no-work-experience', label: '実務経験なしで取れる資格' },
-      { href: '/qualifications/40s-women-restart', label: '40代女性が人生をやり直す資格' },
-    ],
-  },
+  // 資格系（/qualifications はリダイレクト先の araforty-engineer で表示）
   {
     pattern: '/qualifications/araforty-engineer',
     links: [
@@ -286,15 +274,15 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/qualifications/no-work-experience', label: '実務経験なしで取れる資格' },
       { href: '/magazine/inexperienced/40s', label: '40代の未経験転職' },
       { href: '/qualifications/high-income', label: '高収入が期待できる資格' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/stable-career', label: '食いっぱぐれない資格' },
     ],
   },
   {
     pattern: '/qualifications/40s-women-restart',
     links: [
       { href: '/magazine/inexperienced/40s-women', label: '40代女性の未経験転職' },
-      { href: '/qualifications', label: '資格一覧' },
       { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
+      { href: '/qualifications/stable-career', label: '食いっぱぐれない資格' },
       { href: '/qualifications/high-income', label: '高収入が期待できる資格' },
       { href: '/qualifications/no-entry-requirement', label: '受験資格なしで取れる資格' },
       { href: '/qualifications/stable-career', label: '食いっぱぐれない資格' },
@@ -308,7 +296,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/qualifications/no-work-experience', label: '実務経験なしで取れる資格' },
       { href: '/magazine/high-school', label: '高卒・高校中退の就職' },
       { href: '/magazine/job-salary/construction', label: '建設業界の年収' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -319,7 +307,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/magazine/job-salary/it-engineer', label: 'ITエンジニアの年収' },
       { href: '/magazine/job-salary/pharmacist', label: '薬剤師の年収' },
       { href: '/tools/job-change', label: '転職向け手取り計算' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -330,7 +318,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/qualifications/40s-women-restart', label: '40代女性が人生をやり直す資格' },
       { href: '/qualifications/stable-career', label: '食いっぱぐれない資格' },
       { href: '/tools/side-business', label: '副業向け手取り計算' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {
@@ -340,7 +328,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
       { href: '/magazine/job-salary/medical-tech', label: '臨床検査技師の年収' },
       { href: '/magazine/inexperienced/40s', label: '40代の未経験転職' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/40s-women-restart', label: '40代女性が人生をやり直す資格' },
     ],
   },
   // 早見表・その他
@@ -371,7 +359,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/magazine/inexperienced/20s', label: '20代未経験者の転職' },
       { href: '/tables/', label: '年代・年収別 手取り早見表' },
       { href: '/magazine/job-salary/it-engineer', label: 'ITエンジニアの年収' },
-      { href: '/qualifications', label: '資格一覧' },
+      { href: '/qualifications/araforty-engineer', label: 'アラフォー未経験からのエンジニア転職' },
     ],
   },
   {

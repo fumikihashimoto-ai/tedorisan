@@ -888,8 +888,8 @@ export default function ArafortyEngineerArticle() {
             ITエンジニアの年収・手取り
           </Link>
           、
-          <Link href="/qualifications" className="text-blue-600 hover:underline">
-            資格一覧
+          <Link href="/qualifications/stable-career" className="text-blue-600 hover:underline">
+            食いっぱぐれない資格
           </Link>
         </p>
 

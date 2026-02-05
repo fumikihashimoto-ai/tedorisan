@@ -63,7 +63,6 @@ export const MAGAZINE_MENU_ITEMS: NavMenuItem[] = [
 ];
 
 export const QUALIFICATION_MENU_ITEMS: NavMenuItem[] = [
-  { label: '資格一覧', href: '/qualifications' },
   { label: 'アラフォー未経験からのエンジニア転職', href: '/qualifications/araforty-engineer' },
   { label: '40代女性が人生をやり直すためにおすすめな資格', href: '/qualifications/40s-women-restart' },
   { label: '食いっぱぐれない資格', href: '/qualifications/stable-career' },
