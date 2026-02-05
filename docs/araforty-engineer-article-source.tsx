@@ -1,3 +1,7 @@
+/**
+ * 記事部分ソースコード抽出
+ * 元: app/qualifications/araforty-engineer/ArafortyEngineerArticle.tsx
+ */
 import Link from 'next/link';
 
 /** 記事内広告（ディープロ / AccessTrade） */
