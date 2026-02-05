@@ -47,34 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/tables`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
   ];
 
-  // 6. 早見表：年収別（200万円〜1000万円、20万円刻み）
-  const annualIncomePages: MetadataRoute.Sitemap = [];
-  for (let i = 200; i <= 1000; i += 20) {
-    annualIncomePages.push({
-      url: `${SITE_URL}/tables/annual-income/${i * 10000}`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    });
-  }
-
-  // 7. 早見表：手取り別（15万円〜50万円、5万円刻み）
-  const monthlyTakeHomePages: MetadataRoute.Sitemap = [];
-  for (let i = 15; i <= 50; i += 5) {
-    monthlyTakeHomePages.push({
-      url: `${SITE_URL}/tables/monthly-takehome/${i * 10000}`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    });
-  }
-
-  // 8. FAQ
+  // 6. FAQ
   const faqPage: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
-  // 9. キャリア（オーファンページ・メニュー非表示）
+  // 7. キャリア（オーファンページ・メニュー非表示）
   const careerPages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/career/career-change-20s`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/career/high-income`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
@@ -86,8 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...magazinePages,
     ...qualificationsPages,
     ...tablesTopPage,
-    ...annualIncomePages,
-    ...monthlyTakeHomePages,
     ...faqPage,
     ...careerPages,
   ];

@@ -45,7 +45,7 @@ function getHeroImage(href: string): string {
   // 完全一致
   const exact = heroMap[path];
   if (exact) return `/images/${exact}.png`;
-  // 動的ルート（/tables/annual-income/*, /tables/monthly-takehome/*）
+  // 動的ルート（/tables/*）
   if (path.startsWith('/tables/')) return '/images/hero_tables.png';
   return '/images/hero_top.png';
 }
@@ -343,25 +343,7 @@ const RELATED_LINKS_MAP: { pattern: string | RegExp; links: RelatedLinkInput[] }
       { href: '/qualifications', label: '資格一覧' },
     ],
   },
-  // 早見表・その他（動的ルートは先に定義）
-  {
-    pattern: /^\/tables\/annual-income\/\d+$/,
-    links: [
-      { href: '/', label: '手取り計算（TOP）' },
-      { href: '/tables/', label: '年代・年収別 手取り早見表' },
-      { href: '/tools/job-change', label: '転職向け手取り計算' },
-      { href: '/faq', label: 'よくある質問（FAQ）' },
-    ],
-  },
-  {
-    pattern: /^\/tables\/monthly-takehome\/\d+$/,
-    links: [
-      { href: '/', label: '手取り計算（TOP）' },
-      { href: '/tables/', label: '年代・年収別 手取り早見表' },
-      { href: '/tools/job-change', label: '転職向け手取り計算' },
-      { href: '/faq', label: 'よくある質問（FAQ）' },
-    ],
-  },
+  // 早見表・その他
   {
     pattern: '/tables',
     links: [

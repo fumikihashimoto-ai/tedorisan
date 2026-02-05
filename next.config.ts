@@ -93,7 +93,7 @@ const nextConfig: NextConfig = {
         destination: '/magazine/inexperienced/40s-women',
         permanent: true,
       },
-      // 早見表
+      // 早見表（年収別・手取り別は /tables に集約）
       {
         source: '/comparison/list',
         destination: '/tables',
@@ -105,13 +105,23 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/tables/annual-income/:amount',
+        destination: '/tables',
+        permanent: true,
+      },
+      {
+        source: '/tables/monthly-takehome/:amount',
+        destination: '/tables',
+        permanent: true,
+      },
+      {
         source: '/annual-income/:amount',
-        destination: '/tables/annual-income/:amount',
+        destination: '/tables',
         permanent: true,
       },
       {
         source: '/monthly-takehome/:amount',
-        destination: '/tables/monthly-takehome/:amount',
+        destination: '/tables',
         permanent: true,
       },
     ];
