@@ -870,6 +870,42 @@ export default function ArafortyEngineerArticle() {
 
       <hr className="my-6 border-gray-200" />
 
+      {/* 今すぐ始められる3つのアクション */}
+      <div className="mb-8">
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-8 mb-4 pl-3 border-l-4 border-amber-500">
+          今すぐ始められる3つのアクション
+        </h3>
+        <div className="space-y-5">
+          <div>
+            <p className="text-base leading-[1.8] mb-1 font-semibold text-gray-800">1️⃣ まずは学習を始める</p>
+            <p className="text-base leading-[1.8] mb-1">
+              <strong>Progate</strong>や<strong>ドットインストール</strong>でプログラミングの基礎を無料体験
+            </p>
+            <p className="text-base leading-[1.8] text-gray-600">→ 1週間で「自分にもできる」を実感できます</p>
+          </div>
+          <div>
+            <p className="text-base leading-[1.8] mb-1 font-semibold text-gray-800">2️⃣ スクールの無料相談を受ける</p>
+            <p className="text-base leading-[1.8] mb-1">
+              <strong>転職サポート付きスクール</strong>の無料カウンセリングに参加
+            </p>
+            <p className="text-base leading-[1.8] text-gray-600">→ あなたに最適な学習プランを診断してもらえます</p>
+          </div>
+          <div>
+            <p className="text-base leading-[1.8] mb-1 font-semibold text-gray-800">3️⃣ 転職エージェントに相談する</p>
+            <p className="text-base leading-[1.8] mb-1">
+              <strong>IT業界特化エージェント</strong>に登録（完全無料）
+            </p>
+            <p className="text-base leading-[1.8] text-gray-600">→ 未経験OKの求人情報をチェックできます</p>
+          </div>
+        </div>
+        <p className="text-base leading-[1.8] mt-5 font-semibold text-gray-800">
+          迷っている時間がもったいない。<br />
+          まずは1つでも行動してみましょう。
+        </p>
+      </div>
+
+      <hr className="my-6 border-gray-200" />
+
       {/* セクション8 */}
       <section id="section-8" className="scroll-mt-6">
         <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
