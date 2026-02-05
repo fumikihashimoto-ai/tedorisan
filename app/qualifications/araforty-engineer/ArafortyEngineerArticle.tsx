@@ -17,7 +17,7 @@ export default function ArafortyEngineerArticle() {
 
         <p className="text-base leading-[1.8] mb-4">
           さらに、同期が転職したと聞いて驚愕。<br />
-          「エンジニアになって、年収700万円だって」
+          「エンジニアになって、年収が大幅に上がったらしい」
         </p>
 
         <hr className="my-6 border-gray-200" />
