@@ -828,3 +828,75 @@ h4 {
     background: rgba(255, 255, 255, 0.1);
   }
 }
+
+/* ========================================
+   光が流れる演出（汎用）
+   左から右へ光が流れ、指定秒でリピート
+   ======================================== */
+@keyframes shine-loop {
+  0% {
+    transform: translateX(0);
+  }
+  12% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/**
+ * 使い方:
+ * 1. 光を付けたい要素に class "shine-effect" を付与
+ * 2. その要素に position: relative を付与（Tailwind: relative）
+ * 3. 任意: リピート間隔を変えるなら style で --shine-duration を指定
+ *
+ * 例: <a className="relative shine-effect ..." href="...">ボタン</a>
+ * 例: 4秒ごとにリピート <a className="relative shine-effect ..." style={{ '--shine-duration': '4s' } as React.CSSProperties}>
+ */
+.shine-effect {
+  overflow: hidden;
+  --shine-duration: 3s;
+}
+
+.shine-effect::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(255, 255, 255, 0.75) 32%,
+    rgba(255, 255, 255, 0.75) 78%,
+    rgba(255, 255, 255, 0) 82%
+  );
+  pointer-events: none;
+  animation: shine-loop var(--shine-duration) linear infinite;
+}
+
+/* 後方互換: 旧クラス名も同じスタイルを参照 */
+.cta-button-shine {
+  overflow: hidden;
+  --shine-duration: 3s;
+}
+
+.cta-button-shine::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(255, 255, 255, 0.75) 32%,
+    rgba(255, 255, 255, 0.75) 78%,
+    rgba(255, 255, 255, 0) 82%
+  );
+  pointer-events: none;
+  animation: shine-loop var(--shine-duration) linear infinite;
+}

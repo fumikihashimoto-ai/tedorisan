@@ -1,5 +1,7 @@
 /** 薬剤師ページ右カラム：ファルマスタッフ 広告ブロック */
 
+import CTAButton from '@/app/components/CTAButton';
+
 const BANNER_AD = {
   href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+65EOH',
   imgSrc: 'https://www28.a8.net/svt/bgt?aid=260126641284&wid=001&eno=01&mid=s00000010261001033000&mc=1',
@@ -17,9 +19,6 @@ const RECOMMENDED_ITEMS = [
   '薬剤師のハイクラス転職に薬剤師転職サイトNO.1',
   '転職相談満足度「96.5％」',
 ] as const;
-
-const CTA_BUTTON_CLASS =
-  'block w-full py-2.5 px-4 text-sm font-bold text-white text-center rounded-lg bg-gradient-to-b from-red-600 to-red-800 border-t border-red-500/50 shadow-md hover:from-red-700 hover:to-red-900 transition-colors';
 
 export default function PharmacistSidebar() {
   return (
@@ -68,10 +67,9 @@ export default function PharmacistSidebar() {
 
           {/* CTAボタン */}
           <div className="mt-4">
-            <a href={CTA_AD.href} target="_blank" rel="nofollow noopener noreferrer" className={CTA_BUTTON_CLASS}>
+            <CTAButton href={CTA_AD.href} pixelSrc={CTA_AD.pixelSrc}>
               薬剤師の転職＆派遣ならファルマスタッフ
-            </a>
-            <img width={1} height={1} src={CTA_AD.pixelSrc} alt="" aria-hidden />
+            </CTAButton>
           </div>
         </div>
       </div>

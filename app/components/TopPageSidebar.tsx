@@ -1,5 +1,7 @@
 /** TOPページ右カラム：就職エージェントneo 広告ブロック */
 
+import CTAButton from '@/app/components/CTAButton';
+
 const BANNER_AD = {
   href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
   imgSrc: 'https://www26.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002005000&mc=1',
@@ -18,9 +20,6 @@ const RECOMMENDED_ITEMS = [
   '就活の相談相手がいない',
   '企業とのやりとりが面倒だ',
 ] as const;
-
-const CTA_BUTTON_CLASS =
-  'block w-full py-2.5 px-4 text-sm font-bold text-white text-center rounded-lg bg-gradient-to-b from-red-600 to-red-800 border-t border-red-500/50 shadow-md hover:from-red-700 hover:to-red-900 transition-colors';
 
 export default function TopPageSidebar() {
   return (
@@ -70,10 +69,9 @@ export default function TopPageSidebar() {
 
           {/* CTAボタン */}
           <div className="mt-4">
-            <a href={CTA_AD.href} target="_blank" rel="nofollow noopener noreferrer" className={CTA_BUTTON_CLASS}>
+            <CTAButton href={CTA_AD.href} pixelSrc={CTA_AD.pixelSrc}>
               最短1日で内定獲得可能！就職エージェントneo
-            </a>
-            <img width={1} height={1} src={CTA_AD.pixelSrc} alt="" aria-hidden />
+            </CTAButton>
           </div>
         </div>
       </div>

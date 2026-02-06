@@ -10,6 +10,10 @@ export type MobileArticleAdConfig = {
   imgWidth?: number;
   imgHeight?: number;
   copyText?: string;
+  /** スマホ記事内CTAボタン（テキスト下部に表示、任意） */
+  ctaHref?: string;
+  ctaPixelSrc?: string;
+  ctaLabel?: string;
 };
 
 export const MOBILE_ARTICLE_ADS = {
@@ -36,6 +40,9 @@ export const MOBILE_ARTICLE_ADS = {
     imgWidth: 350,
     imgHeight: 160,
     copyText: '20代・30代の薬剤師の転職＆派遣ならファルマスタッフ 薬剤師に選ばれる転職NO.1＆7冠獲得！',
+    ctaHref: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+5ZEMQ',
+    ctaPixelSrc: 'https://www19.a8.net/0.gif?a8mat=4AVF01+4P34KY+276A+5ZEMQ',
+    ctaLabel: '最短1分！簡単無料登録はこちら',
   },
 } as const satisfies Record<string, MobileArticleAdConfig>;
 

@@ -3,6 +3,8 @@
  * 記事ページの右サイドバーに表示する広告ブロック
  */
 
+import CTAButton from '@/app/components/CTAButton';
+
 type Props = {
   title: string;
   subtitle?: string;
@@ -15,9 +17,6 @@ type Props = {
   ctaPixelSrc: string;
   ctaLabel: string;
 };
-
-const CTA_BUTTON_CLASS =
-  'block w-full py-2.5 px-4 text-sm font-bold text-white text-center rounded-lg bg-gradient-to-b from-red-600 to-red-800 border-t border-red-500/50 shadow-md hover:from-red-700 hover:to-red-900 transition-colors';
 
 export default function ArticleSidebarAd({
   title,
@@ -80,10 +79,9 @@ export default function ArticleSidebarAd({
 
           {/* CTAボタン */}
           <div className="mt-4">
-            <a href={ctaHref} target="_blank" rel="nofollow noopener noreferrer" className={CTA_BUTTON_CLASS}>
+            <CTAButton href={ctaHref} pixelSrc={ctaPixelSrc}>
               {ctaLabel}
-            </a>
-            <img width={1} height={1} src={ctaPixelSrc} alt="" aria-hidden />
+            </CTAButton>
           </div>
         </div>
       </div>
