@@ -53,6 +53,26 @@ export default function Page() {
           <ArticleSidebarAd {...ARTICLE_SIDEBAR_ADS.arafortyEngineer} />
         </div>
       </div>
+
+      {/* 固定広告: ページ下部固定表示（ディープロ） */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+        <div>
+          <a
+            href="https://h.accesstrade.net/sp/cc?rk=0100kno800onsa"
+            rel="nofollow"
+            referrerPolicy="no-referrer-when-downgrade"
+            target="_blank"
+          >
+            <img
+              src="https://h.accesstrade.net/sp/rr?rk=0100kno800onsa"
+              alt="ディープロ"
+              width={728}
+              height={90}
+              className="border-0 max-w-full h-auto"
+            />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
