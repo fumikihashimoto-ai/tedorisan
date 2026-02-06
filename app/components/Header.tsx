@@ -52,7 +52,7 @@ export default function Header() {
     <>
       <header className="shadow-sm border-b border-[#E2E8F0] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="h-14 md:h-16 flex items-center">
+          <div className="h-16 md:h-16 flex items-center">
             {/* PC: 2カラム全体幅（記事+gap+サイドバー）に合わせ、ロゴは左端・ナビは右カラム右端に配置 */}
             <div className="relative w-full md:flex md:items-center md:justify-between lg:max-w-[1128px] xl:max-w-[1268px]">
               {/* PC: 左寄せロゴテキスト + キャッチコピー */}
