@@ -44,6 +44,18 @@ export const MOBILE_ARTICLE_ADS = {
     ctaPixelSrc: 'https://www19.a8.net/0.gif?a8mat=4AVF01+4P34KY+276A+5ZEMQ',
     ctaLabel: '最短1分！簡単無料登録はこちら',
   },
+  /** アラフォーエンジニア記事：ディープロ（AccessTrade） */
+  arafortyEngineer: {
+    href: 'https://h.accesstrade.net/sp/cc?rk=0100kno300onsa',
+    imgSrc: 'https://h.accesstrade.net/sp/rr?rk=0100kno300onsa',
+    pixelSrc: 'https://h.accesstrade.net/sp/rr?rk=0100kno300onsa',
+    imgWidth: 350,
+    imgHeight: 160,
+    copyText:
+      '完全未経験からエンジニア転職を多数実現！実務の卒業課題でプロのスタートラインに立つなら、ディープロ！',
+    ctaHref: 'https://h.accesstrade.net/sp/cc?rk=0100kno300onsa',
+    ctaLabel: 'まずは無料個別相談に参加する',
+  },
 } as const satisfies Record<string, MobileArticleAdConfig>;
 
 /**
@@ -95,5 +107,22 @@ export const ARTICLE_SIDEBAR_ADS = {
     ctaHref: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+5ZU2A',
     ctaPixelSrc: 'https://www16.a8.net/0.gif?a8mat=4AVF01+4P34KY+276A+5ZU2A',
     ctaLabel: '薬剤師の転職＆派遣ならファルマスタッフ',
+  },
+  /** アラフォーエンジニアページ右カラム：ディープロ（AccessTrade） */
+  arafortyEngineer: {
+    title: '実務の卒業課題でプロのスタートラインに立つなら、ディープロ',
+    bannerHref: 'https://h.accesstrade.net/sp/cc?rk=0100kno300onsa',
+    bannerImgSrc: 'https://h.accesstrade.net/sp/rr?rk=0100kno300onsa',
+    bannerPixelSrc: 'https://h.accesstrade.net/sp/cc?rk=0100kno300onsa',
+    recommendedTitle: 'ディープロの良いところ',
+    recommendedItems: [
+      '実務経験1-3年が必要な優良企業への 内定多数！',
+      '開発現場を想定した学習カリキュラム！',
+      '仲間と学ぶスクール！',
+      '挫折しないサポート環境！',
+    ],
+    ctaHref: 'https://h.accesstrade.net/sp/cc?rk=0100kno300onsa',
+    ctaPixelSrc: 'https://h.accesstrade.net/sp/cc?rk=0100kno300onsa',
+    ctaLabel: 'まずは無料個別相談に参加する',
   },
 } as const satisfies Record<string, ArticleSidebarAdConfig>;

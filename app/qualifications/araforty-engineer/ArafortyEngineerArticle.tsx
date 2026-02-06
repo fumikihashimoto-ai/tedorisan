@@ -1,25 +1,10 @@
 import Link from 'next/link';
+import MobileArticleAd from '@/app/components/MobileArticleAd';
+import { MOBILE_ARTICLE_ADS } from '@/lib/ads';
 
-/** 記事内広告（ディープロ / AccessTrade） */
-function ArticleInlineAd() {
-  return (
-    <div className="my-8 flex justify-center">
-      <a
-        href="https://h.accesstrade.net/sp/cc?rk=0100kno300onsa"
-        rel="nofollow"
-        referrerPolicy="no-referrer-when-downgrade"
-        target="_blank"
-      >
-        <img
-          src="https://h.accesstrade.net/sp/rr?rk=0100kno300onsa"
-          alt="ディープロ"
-          width={300}
-          height={250}
-          className="border-0"
-        />
-      </a>
-    </div>
-  );
+/** 記事内広告（ディープロ）：スマホのみ表示（薬剤師ページ同様バナー+訴求文+CTAボタン）。PC記事内CTAは削除済み。 */
+function ArticleDeeproAd() {
+  return <MobileArticleAd {...MOBILE_ARTICLE_ADS.arafortyEngineer} />;
 }
 
 export default function ArafortyEngineerArticle() {
@@ -193,7 +178,7 @@ export default function ArafortyEngineerArticle() {
         <hr className="my-6 border-gray-200" />
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       {/* セクション2 */}
       <section id="section-2" className="scroll-mt-6">
@@ -278,7 +263,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       {/* セクション3 */}
       <section id="section-3" className="scroll-mt-6">
@@ -432,7 +417,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       {/* セクション4 */}
       <section id="section-4" className="scroll-mt-6">
@@ -594,7 +579,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       {/* セクション5 */}
       <section id="section-5" className="scroll-mt-6">
@@ -657,7 +642,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       {/* セクション6 - リクナビNEXTのリンクを修正 */}
       <section id="section-6" className="scroll-mt-6">
@@ -776,7 +761,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       {/* セクション7 */}
       <section id="section-7" className="scroll-mt-6">
@@ -854,7 +839,7 @@ export default function ArafortyEngineerArticle() {
         </p>
       </section>
 
-      <ArticleInlineAd />
+      <ArticleDeeproAd />
 
       <hr className="my-6 border-gray-200" />
 

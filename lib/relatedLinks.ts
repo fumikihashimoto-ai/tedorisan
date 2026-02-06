@@ -390,11 +390,16 @@ export function getRelatedLinks(pathname: string): RelatedLink[] {
       isMatch = pattern.test(normalizedPath);
     }
     if (isMatch) {
-      // 現在のページへのリンクを除外し、画像・カテゴリを付与
+      // 現在のページへのリンクを除外し、同一 href は先頭の1件のみ残す（アラフォーエンジニア転職などを1件に）
+      const seenHref = new Set<string>();
       const filtered = links
         .filter((link) => {
           const linkPath = link.href === '/' ? '/' : link.href.replace(/\/$/, '');
-          return linkPath !== normalizedPath;
+          if (linkPath === normalizedPath) return false;
+          const hrefKey = link.href.replace(/\/$/, '') || '/';
+          if (seenHref.has(hrefKey)) return false;
+          seenHref.add(hrefKey);
+          return true;
         })
         .slice(0, MAX_LINKS)
         .map((link) => ({
