@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import MobileArticleAd from '@/app/components/MobileArticleAd';
+import SchoolRankingCTA from '@/app/components/SchoolRankingCTA';
 import { MOBILE_ARTICLE_ADS } from '@/lib/ads';
 
 /** 記事内広告（ディープロ）：スマホのみ表示（薬剤師ページ同様バナー+訴求文+CTAボタン）。PC記事内CTAは削除済み。 */
@@ -75,6 +76,9 @@ export default function ArafortyEngineerArticle() {
           読み終わる頃には、「自分にもできるかも」と思えるはずです。
         </p>
       </div>
+
+      {/* スクールランキングCTA（手取りのミカタ用） */}
+      <SchoolRankingCTA title="＼人気のプログラミングスクール／" />
 
       {/* セクション1 */}
       <section id="section-1" className="scroll-mt-6">
