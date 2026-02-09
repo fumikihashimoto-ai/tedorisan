@@ -5,13 +5,14 @@ import ItEngineerArticle from './ItEngineerArticle';
 import { createArticleMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createArticleMetadata({
-  title: 'システムエンジニアのリアル年収大公開！職種・経験年数別の平均と高収入の秘訣 | 手取りのミカタ',
+  title: 'ITエンジニアの年収・給料｜職種別・年齢別の平均年収と手取り額【2026年版】',
   description:
-    'システムエンジニアの年収を徹底解説。全体平均から年齢層別、経験年数別、職種別（アプリ開発・インフラ・コンサル）の詳細データまで。市場価値の高いスキル、資格取得、転職交渉術、高年収企業の選び方も網羅。',
+    '厚労省データに基づくITエンジニアの平均年収を職種別・年齢別に徹底解説。Webエンジニア・インフラ・データサイエンティストの年収比較、手取り額の計算方法、転職での給与交渉術も紹介。無料の手取り計算ツールで転職後の手取り額をシミュレーション！',
   keywords: ['システムエンジニア', 'SE', '年収', 'ITエンジニア', '転職', 'SIer', 'SES', '自社開発', '平均年収'],
   canonicalPath: '/magazine/job-salary/it-engineer',
+  openGraphTitle: 'ITエンジニアの年収・給料｜職種別・年齢別の平均年収と手取り額【2026年版】',
   openGraphDescription:
-    'システムエンジニアの年収を徹底解説。年齢層別・職種別の詳細データ、年収アップの方法まで網羅。',
+    '厚労省データに基づくITエンジニアの平均年収を職種別・年齢別に徹底解説。Webエンジニア・インフラ・データサイエンティストの年収比較を紹介。',
 });
 
 export default function Page() {

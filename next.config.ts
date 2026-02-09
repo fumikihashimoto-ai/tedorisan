@@ -4,6 +4,19 @@ const nextConfig: NextConfig = {
   /* config options here */
   async redirects() {
     return [
+      // HTTP → HTTPS 永久リダイレクト（x-forwarded-proto で判定）
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'header',
+            key: 'x-forwarded-proto',
+            value: 'http',
+          },
+        ],
+        destination: 'https://tedorisan.jp/:path*',
+        permanent: true,
+      },
       // 計算ツール
       {
         source: '/job-change',
