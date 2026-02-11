@@ -22,6 +22,14 @@ export function HomePageClient() {
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
       <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
         <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
+          {/* ヒーロー画像 */}
+          <div className="mb-8">
+            <img
+              src="/images/hero_top.png"
+              alt="転職・年収アップ・スキル習得。手取りはいくら？たった3問でわかる、あなたに最適な方法。無料で最適な転職サービス・スキル習得方法をご提案"
+              className="w-full max-w-full h-auto rounded-lg"
+            />
+          </div>
           {/* セクション1: 診断ツール */}
           <section className="mb-10">
             <DiagnosisSection onComplete={handleDiagnosisComplete} />
