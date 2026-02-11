@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import type { DiagnosisResult as DiagnosisResultType } from '@/lib/diagnosisLogic';
 import { DiagnosisSection } from './DiagnosisSection';
 import { DiagnosisResult } from './DiagnosisResult';
@@ -23,10 +22,6 @@ export function HomePageClient() {
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
       <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
         <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
-          <nav className="breadcrumb mb-3">
-            <Link href="/">ホーム</Link>
-          </nav>
-
           {/* セクション1: 診断ツール */}
           <section className="mb-10">
             <DiagnosisSection onComplete={handleDiagnosisComplete} />

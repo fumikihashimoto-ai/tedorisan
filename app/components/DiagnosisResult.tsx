@@ -75,7 +75,7 @@ export function DiagnosisResult({ result }: DiagnosisResultProps) {
       </p>
 
       {/* サービスカード */}
-      <div className="space-y-6 mb-8">
+      <div className="space-y-8 mb-8">
         {services.map((service, index) => (
           <ServiceCard
             key={service.id}
