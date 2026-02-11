@@ -2,16 +2,31 @@
 
 import CTAButton from '@/app/components/CTAButton';
 
-const BANNER_AD = {
+type Ad = {
+  href: string;
+  imgSrc?: string;
+  pixelSrc: string;
+  dataAffiliateName?: string;
+  dataAffiliateNetwork?: string;
+  dataAffiliateCategory?: string;
+};
+
+const BANNER_AD: Ad = {
   href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
   imgSrc: 'https://www26.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002005000&mc=1',
   pixelSrc: 'https://www17.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
-} as const;
+  dataAffiliateName: 'ネオキャリア_新卒就職エージェントneo',
+  dataAffiliateNetwork: 'a8net',
+  dataAffiliateCategory: '転職エージェント（新卒）',
+};
 
-const CTA_AD = {
+const CTA_AD: Ad = {
   href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BWVTE',
   pixelSrc: 'https://www14.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BWVTE',
-} as const;
+  dataAffiliateName: 'ネオキャリア_新卒就職エージェントneo',
+  dataAffiliateNetwork: 'a8net',
+  dataAffiliateCategory: '転職エージェント（新卒）',
+};
 
 const RECOMMENDED_ITEMS = [
   '早く就職を決めたい',
@@ -38,7 +53,16 @@ export default function TopPageSidebar() {
 
           {/* バナー */}
           <div className="flex justify-center">
-            <a href={BANNER_AD.href} target="_blank" rel="nofollow noopener noreferrer">
+            <a
+              href={BANNER_AD.href}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              {...(BANNER_AD.dataAffiliateName && {
+                'data-affiliate-name': BANNER_AD.dataAffiliateName,
+                'data-affiliate-network': BANNER_AD.dataAffiliateNetwork,
+                'data-affiliate-category': BANNER_AD.dataAffiliateCategory,
+              })}
+            >
               <img
                 width={300}
                 height={250}
@@ -67,9 +91,15 @@ export default function TopPageSidebar() {
             </ul>
           </div>
 
-          {/* CTAボタン */}
+          {/* CTAボタン（data-属性は CTAButton のオプション引数で渡す） */}
           <div className="mt-4">
-            <CTAButton href={CTA_AD.href} pixelSrc={CTA_AD.pixelSrc}>
+            <CTAButton
+              href={CTA_AD.href}
+              pixelSrc={CTA_AD.pixelSrc}
+              dataAffiliateName={CTA_AD.dataAffiliateName}
+              dataAffiliateNetwork={CTA_AD.dataAffiliateNetwork}
+              dataAffiliateCategory={CTA_AD.dataAffiliateCategory}
+            >
               最短1日で内定獲得可能！就職エージェントneo
             </CTAButton>
           </div>
