@@ -15,25 +15,25 @@ const BANNER_AD: Ad = {
   href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
   imgSrc: 'https://www26.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002005000&mc=1',
   pixelSrc: 'https://www17.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
-  dataAffiliateName: 'ネオキャリア_新卒就職エージェントneo',
+  dataAffiliateName: '\u30CD\u30AA\u30AD\u30E3\u30EA\u30A2_\u65B0\u5352\u5C31\u8077\u30A8\u30B8\u30A7\u30F3\u30C8neo',
   dataAffiliateNetwork: 'a8net',
-  dataAffiliateCategory: '転職エージェント（新卒）',
+  dataAffiliateCategory: '\u8EE2\u8077\u30A8\u30B8\u30A7\u30F3\u30C8\uff08\u65B0\u5352\uff09',
 };
 
 const CTA_AD: Ad = {
   href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BWVTE',
   pixelSrc: 'https://www14.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BWVTE',
-  dataAffiliateName: 'ネオキャリア_新卒就職エージェントneo',
+  dataAffiliateName: '\u30CD\u30AA\u30AD\u30E3\u30EA\u30A2_\u65B0\u5352\u5C31\u8077\u30A8\u30B8\u30A7\u30F3\u30C8neo',
   dataAffiliateNetwork: 'a8net',
-  dataAffiliateCategory: '転職エージェント（新卒）',
+  dataAffiliateCategory: '\u8EE2\u8077\u30A8\u30B8\u30A7\u30F3\u30C8\uff08\u65B0\u5352\uff09',
 };
 
 const RECOMMENDED_ITEMS = [
-  '早く就職を決めたい',
-  '効率的に質の高い企業に出会いたい',
-  '自己分析や選考対策に自信がない',
-  '就活の次の選択肢がない',
-  '企業とのやりとりが面倒だ',
+  '\u65E9\u304F\u5C31\u8077\u3092\u6C7A\u3081\u305F\u3044',
+  '\u52B9\u7387\u7684\u306B\u8CEA\u306E\u9AD8\u3044\u4F01\u696D\u306B\u51FA\u4F1A\u3044\u305F\u3044',
+  '\u81EA\u5206\u6790\u3084\u9078\u8003\u5BFE\u7B56\u306B\u81EA\u4FE1\u304C\u306A\u3044',
+  '\u5C31\u6D3B\u306E\u6B21\u306E\u9078\u629E\u809A\u304C\u306A\u3044',
+  '\u4F01\u696D\u3068\u306E\u3084\u308A\u3068\u308A\u304C\u9762\u5012\u3060',
 ] as const;
 
 export default function TopPageSidebar() {

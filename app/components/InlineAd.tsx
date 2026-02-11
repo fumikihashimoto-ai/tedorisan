@@ -12,9 +12,9 @@ const INLINE_ADS: Ad[] = [
     href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
     imgSrc: 'https://www22.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002005000&mc=1',
     pixelSrc: 'https://www11.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BXQOH',
-    dataAffiliateName: 'ネオキャリア_新卒就職エージェントneo',
+    dataAffiliateName: '\u30CD\u30AA\u30AD\u30E3\u30EA\u30A2_\u65B0\u5352\u5C31\u8077\u30A8\u30B8\u30A7\u30F3\u30C8neo',
     dataAffiliateNetwork: 'a8net',
-    dataAffiliateCategory: '転職エージェント（新卒）',
+    dataAffiliateCategory: '\u8EE2\u8077\u30A8\u30B8\u30A7\u30F3\u30C8\uff08\u65B0\u5352\uff09',
   },
   {
     href: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4TULF6+5B0Y+HVNAP',
@@ -22,7 +22,7 @@ const INLINE_ADS: Ad[] = [
     pixelSrc: 'https://www19.a8.net/0.gif?a8mat=4AVF01+4TULF6+5B0Y+HVNAP',
     dataAffiliateName: 'MyVision_TechGo',
     dataAffiliateNetwork: 'a8net',
-    dataAffiliateCategory: 'その他（転職・キャリア）',
+    dataAffiliateCategory: '\u305D\u306E\u4ED6\uff08\u8EE2\u8077\u30FB\u30AD\u30E3\u30EA\u30A2\uff09',
   },
 ];
 
