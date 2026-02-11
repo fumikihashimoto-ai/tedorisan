@@ -161,6 +161,39 @@ export const affiliateServices: AffiliateService[] = [
       '調剤薬局求人数業界最大級',
       '高年収求人多数',
     ],
+    catchCopy:
+      '薬剤師求人・薬剤師転職ならファルマスタッフ\n公開求人数50,000件以上！職相談満足度97.7%！',
+    recommendPoints: [
+      '正社員・派遣・パート、多様な働き方に対応',
+      '調剤薬局・DgS・病院など豊富な求人',
+      '給与や休日、勤務開始日などの条件交渉',
+    ],
+    userVoices: [
+      {
+        salaryBefore: '',
+        salaryAfter: '',
+        jobTitle: '40代 男性',
+        age: 45,
+        comment:
+          '結構グイグイ行きそうな担当者だなという印象でしたが、転職活動全体を通じてピンポイントでの派遣労働をご提案いただいたり、内定後の条件交渉を有利にすすめていただいたりと、良い方向に進めていただけたので感謝しています。',
+      },
+      {
+        salaryBefore: '',
+        salaryAfter: '',
+        jobTitle: '30代 女性',
+        age: 35,
+        comment:
+          '急な転職だったのですが、お陰様ですぐに仕事が見つかり助かりました。ありがとうございました。',
+      },
+      {
+        salaryBefore: '',
+        salaryAfter: '',
+        jobTitle: '40代 女性',
+        age: 45,
+        comment:
+          '親身に相談に乗って頂き、必要な情報をいち早く提供して下さって、お陰様で良い就職先のご縁を頂きました。派遣勤務の際も、温かいお言葉やお心遣いで支えて頂きました。',
+      },
+    ],
     affiliateUrl: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+609HU',
     bannerHtml: `<a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4P34KY+276A+65EOH" rel="nofollow noopener noreferrer" target="_blank">
 <img border="0" width="300" height="250" alt="" src="https://www29.a8.net/svt/bgt?aid=260126641284&wid=001&eno=01&mid=s00000010261001033000&mc=1"></a>
@@ -181,6 +214,39 @@ export const affiliateServices: AffiliateService[] = [
       '実践的なプログラミング学習',
       '転職サポート付き',
       '年齢制限なし',
+    ],
+    catchCopy:
+      '実務経験1-3年が必要な優良企業への 内定多数！\nキャリアサポートの年齢制限はなく、 30代以上でも 約9割がエンジニア就職 を決めています！',
+    recommendPoints: [
+      '卒業課題インターンシップの実務経験と実力証明の「オリジナルアプリ」を開発できる',
+      'プロと同じリモートワーク環境で仲間と本気で学び合う',
+      '挫折せずに実務まで一気に到達できるカリキュラム',
+    ],
+    userVoices: [
+      {
+        salaryBefore: '',
+        salaryAfter: '',
+        jobTitle: '元鉄道運転士から自社開発エンジニアに！',
+        age: 33,
+        comment:
+          'shunさん（33歳 / 宮城）\n未経験からで当初自分がついていけるか不安でしたが、自走力を養うカリキュラムや共に切磋琢磨できる仲間に出会えたことで最後まで走り抜けることが出来ました。 今は急成長中のスタートアップで様々な開発経験に携わっています。',
+      },
+      {
+        salaryBefore: '',
+        salaryAfter: '',
+        jobTitle: '40代の一念発起 フルリモートへの挑戦！',
+        age: 46,
+        comment:
+          'Taro Endoさん（46歳 / 福島）\nフルリモート勤務ができる仕事を目指し入校を決意。 アプリデザインなどの仕事に転職をしワクワクの毎日を過ごしています。 アプリデザインを指揮する際には、フロントエンド側だけでなくバックエンド側の知識もあるため、ソフト開発部門と円滑なコミュニケーションができ、ディーププロで開発土台をしっかり学べてよかったと感じています。',
+      },
+      {
+        salaryBefore: '',
+        salaryAfter: '',
+        jobTitle: '保険営業から 開発エンジニアへの転職！',
+        age: 27,
+        comment:
+          'Y.Sさん（27歳 / 埼玉）\n初めての学習でカリキュラムについていけるか、またオンラインでの授業でコミュニケーションが上手くとれるか心配でした。 しかし同期やメンターの方に恵まれ、エラーが起きた際には原因やその解消法について教えて頂き日々成長することが出来ました。 今はやりたかった開発に携わっており、ディープロでよかったと感じています。',
+      },
     ],
     affiliateUrl: 'https://h.accesstrade.net/sp/cc?rk=0100knoa00onsa',
     bannerHtml: `<a href="https://h.accesstrade.net/sp/cc?rk=0100kno300onsa" rel="nofollow noopener noreferrer" referrerpolicy="no-referrer-when-downgrade" target="_blank"><img src="https://h.accesstrade.net/sp/rr?rk=0100kno300onsa" alt="ディープロ" border="0" /></a>`,
@@ -254,6 +320,40 @@ export const affiliateServices: AffiliateService[] = [
       'IT経験者専門',
       '高年収案件多数',
       'ハイクラス転職に強い',
+    ],
+    catchCopy:
+      '自分に合ったエンジニア職が見つかる！\n当社ならではの寄り添ったヒアリングであなたの経験や希望、価値観にピッタリフィットする業種や会社を提案。',
+    recommendPoints: [
+      '幅広い言語のスキルアップが可能な職場',
+      '充実した福利厚生で安心できる環境',
+      '少ない残業でプライベートも充実',
+      '高い有休取得率で土日祝休み',
+    ],
+    userVoices: [
+      {
+        salaryBefore: '850万円',
+        salaryAfter: '1200万円',
+        jobTitle: 'WEBエンジニア → リモート専業テックリード',
+        age: 38,
+        comment:
+          'リモートワークが可能な環境で年収を維持するのが難しいと感じていましたが、エージェントの提案で海外チームとのリモート勤務が可能なテックリード職に転職。年収も上がり満足です。',
+      },
+      {
+        salaryBefore: '550万円',
+        salaryAfter: '700万円',
+        jobTitle: 'QAエンジニア → DevOpsエンジニア',
+        age: 32,
+        comment:
+          '転職後はCI/CDパイプラインの設計など、より責任ある仕事を任されるようになり、大きな達成感を得ています。エージェントのサポートがなければ実現できなかったと思います。',
+      },
+      {
+        salaryBefore: '950万円',
+        salaryAfter: '1200万円',
+        jobTitle: 'フルスタックエンジニア → スタートアップのCTO',
+        age: 42,
+        comment:
+          '家庭との時間を大切にしたいと思い、スタートアップのCTOに挑戦しました。転職後は、週に1回のオフィス勤務とフレキシブルなスケジュールのおかげで、子どもの送り迎えや家族旅行が可能に。',
+      },
     ],
     affiliateUrl: 'https://px.a8.net/svt/ejp?a8mat=4AVF01+4QVFEA+5P1E+5YJRM',
     bannerHtml: `<a href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4QVFEA+5P1E+5YZ75" rel="nofollow noopener noreferrer" target="_blank">
