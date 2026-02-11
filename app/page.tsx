@@ -1,15 +1,13 @@
 import type { Metadata, Viewport } from 'next';
-import Link from 'next/link';
-import HomeClient from './components/HomeClient';
+import { HomePageClient } from './components/HomePageClient';
 import StructuredData from './components/StructuredData';
-import TopPageSidebar from './components/TopPageSidebar';
 
 export const metadata: Metadata = {
   // ========================================
   // 基本メタ情報
   // ========================================
-  title: '【手取り計算シミュレーションツール付き】年収の手取りを最速で計算！初心者でも安心の仕組み解説 | 手取りのミカタ',
-  description: '【手取り計算シミュレーションツール付き】あなたの年収手取り額を最速で計算！額面との違い、社会保険料・税金の種類と計算方法を初心者向けに徹底解説。年収アップのヒントも。年収の手取り計算はこれで完璧！',
+  title: '【年収アップ診断＋手取り計算】あなたに最適な収入アップ方法｜手取りのミカタ',
+  description: '3問の診断であなたに最適な年収アップ方法がわかります。転職・資格・スキル習得から最適なサービスをご提案。手取り計算ツールで転職後の収入もシミュレーション可能。',
   keywords: [
     '手取り計算',
     '年収 手取り',
@@ -53,8 +51,8 @@ export const metadata: Metadata = {
     locale: 'ja_JP',
     url: 'https://tedorisan.jp/',
     siteName: '手取りのミカタ',
-    title: '【手取り計算シミュレーション付き】年収の手取りを最速で計算！初心者でも安心の仕組み解説 | 手取りのミカタ',
-    description: '【手取り計算シミュレーションツール付き】あなたの年収手取り額を最速で計算！額面との違い、社会保険料・税金の種類と計算方法を初心者向けに徹底解説。年収アップのヒントも。年収の手取り計算はこれで完璧！',
+    title: '【年収アップ診断＋手取り計算】あなたに最適な収入アップ方法｜手取りのミカタ',
+    description: '3問の診断であなたに最適な年収アップ方法がわかります。転職・資格・スキル習得から最適なサービスをご提案。手取り計算ツールで転職後の収入もシミュレーション可能。',
     images: [
       {
         url: 'https://tedorisan.jp/og-image.png',
@@ -70,8 +68,8 @@ export const metadata: Metadata = {
   // ========================================
   twitter: {
     card: 'summary_large_image',
-    title: '【手取り計算シミュレーションツール付き】年収の手取りを最速で計算！初心者でも安心の仕組み解説 | 手取りのミカタ',
-    description: '【手取り計算シミュレーションツール付き】あなたの年収手取り額を最速で計算！額面との違い、社会保険料・税金の種類と計算方法を初心者向けに徹底解説。年収アップのヒントも。年収の手取り計算はこれで完璧！',
+    title: '【年収アップ診断＋手取り計算】あなたに最適な収入アップ方法｜手取りのミカタ',
+    description: '3問の診断であなたに最適な年収アップ方法がわかります。転職・資格・スキル習得から最適なサービスをご提案。手取り計算ツールで転職後の収入もシミュレーション可能。',
     images: ['https://tedorisan.jp/og-image.png'],
   },
 
@@ -122,33 +120,8 @@ export default function Home() {
     <div className="min-h-screen bg-[#F8FAFC]">
       <StructuredData />
 
-      {/* メインコンテンツ */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        {/* 2カラムレイアウト（PC: 1024px以上） */}
-        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
-          {/* 左カラム：メインコンテンツ */}
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
-            {/* ヒーロー画像 */}
-            <div className="mb-4">
-              <img
-                src="/images/hero_top.png"
-                alt="年収と手取りのギャップを説明する図"
-                className="w-full max-w-full h-auto rounded-lg"
-              />
-            </div>
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link>
-            </nav>
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              年収の手取りを最速で計算！シミュレーション付きで初心者も安心
-            </h1>
-            <HomeClient />
-          </main>
-
-          {/* 右カラム：サイドバー（スマホ非表示） */}
-          <TopPageSidebar />
-        </div>
-      </div>
+      {/* メインコンテンツ（状態管理は HomePageClient で実施） */}
+      <HomePageClient />
     </div>
   );
 }
