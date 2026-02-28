@@ -28,7 +28,6 @@ export default function PharmacistSidebar() {
           {/* タイトル */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-orange-500 text-lg">👑</span>
               <p className="text-sm font-bold text-[#1E293B]">薬剤師求人・薬剤師転職ならファルマスタッフ</p>
             </div>
             <hr className="border-red-500" />

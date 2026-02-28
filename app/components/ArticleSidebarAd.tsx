@@ -37,7 +37,6 @@ export default function ArticleSidebarAd({
           {/* タイトル */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-orange-500 text-lg">👑</span>
               <p className="text-sm font-bold text-[#1E293B]">{title}</p>
             </div>
             {subtitle && <p className="text-sm font-bold text-red-600 mb-2">{subtitle}</p>}

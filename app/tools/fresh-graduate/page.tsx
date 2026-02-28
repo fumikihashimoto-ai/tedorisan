@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import ArticlePageLayout from '@/app/components/v2/layouts/ArticlePageLayout';
+import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import FreshGraduateArticle from './FreshGraduateArticle';
-import TopPageSidebar from '@/app/components/TopPageSidebar';
 import { createPageMetadata } from '@/app/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
@@ -26,60 +27,20 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function FreshGraduatePage() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
-          {/* 左カラム：メインコンテンツ */}
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
-            {/* ヒーロー画像 */}
-            <div className="mb-4">
-              <img
-                src="/images/hero_fresh-graduate.png"
-                alt="年収と手取りのギャップを説明する図"
-                className="w-full max-w-full h-auto rounded-lg"
-              />
-            </div>
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 新卒向け手取り計算
-            </nav>
+    <ArticlePageLayout
+      catchphrase1="＼新卒の手取り平均を徹底比較／"
+      catchphrase2="【大卒・高卒・専門卒別】"
+    >
+      <TedoriCalculator noMargin contentLayout={true} />
+      <nav className="breadcrumb mb-3">
+        <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 新卒向け手取り計算
+      </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較
-            </h1>
+      <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+        新卒の手取り平均は？大卒・高卒・専門卒のリアルな金額を徹底比較
+      </h1>
 
-            <FreshGraduateArticle />
-          </main>
-
-          {/* 右カラム：サイドバー（TOPページと同じ広告） */}
-          <TopPageSidebar />
-        </div>
-      </div>
-
-      {/* 固定広告: ページ下部固定表示 */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-white py-2 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
-        <div>
-          <a
-            href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4EDBOY+3Y6M+BY641"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-          >
-            <img
-              width={468}
-              height={60}
-              alt=""
-              src="https://www20.a8.net/svt/bgt?aid=260126641266&wid=001&eno=01&mid=s00000018427002007000&mc=1"
-              className="border-0 max-w-full h-auto"
-            />
-          </a>
-          <img
-            width={1}
-            height={1}
-            src="https://www13.a8.net/0.gif?a8mat=4AVF01+4EDBOY+3Y6M+BY641"
-            alt=""
-            className="border-0"
-          />
-        </div>
-      </div>
-    </div>
+      <FreshGraduateArticle />
+    </ArticlePageLayout>
   );
 }

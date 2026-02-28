@@ -27,30 +27,30 @@ export default function ScrollToTopButton() {
 
   return (
     <div
-      className={`
-        fixed left-0 right-0 z-40
-        pointer-events-none
-        transition-all duration-300
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-      `}
-      style={{ bottom: 'calc(76px + 16px)' }}
+      className="fixed bottom-4 left-0 right-0 z-40 pointer-events-none flex justify-center"
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex justify-end">
-        <button
-          onClick={scrollToTop}
+      <div className="w-full max-w-[750px] flex justify-end px-4">
+        <div
           className={`
-            ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}
-            w-12 h-12 
-            text-white 
-            rounded-full 
-            shadow-lg hover:shadow-xl
-            flex items-center justify-center
-            transition-shadow duration-200
-            hover:brightness-110
+            transition-all duration-300
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
           `}
-          style={{ background: '#2563EB' }}
-          aria-label="ページの先頭に戻る"
         >
+          <button
+            onClick={scrollToTop}
+            className={`
+              ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}
+              w-12 h-12 
+              text-white 
+              rounded-full 
+              shadow-lg hover:shadow-xl
+              flex items-center justify-center
+              transition-shadow duration-200
+              hover:brightness-110
+            `}
+            style={{ background: '#1390C8' }}
+            aria-label="ページの先頭に戻る"
+          >
           {/* 上矢印アイコン */}
           <svg
             className="w-6 h-6"
@@ -65,7 +65,8 @@ export default function ScrollToTopButton() {
               d="M5 10l7-7m0 0l7 7m-7-7v18"
             />
           </svg>
-        </button>
+          </button>
+        </div>
       </div>
     </div>
   );

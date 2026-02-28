@@ -1,11 +1,16 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
-import PcAdSidebar from '@/app/components/PcAdSidebar';
-import { Card, FaqAccordion, H2, InputField, PrimaryButton, ResultAmount, ResultRow } from '@/app/components/ui';
+import { Card, FaqAccordion, InputField, PrimaryButton, ResultAmount, ResultRow } from '@/app/components/ui';
+import ArticleBodySection from '@/app/components/v2/article/ArticleBodySection';
+import ArticleSectionHeading from '@/app/components/v2/article/ArticleSectionHeading';
+import ArticleParagraph from '@/app/components/v2/article/ArticleParagraph';
+import ArticleTable from '@/app/components/v2/article/ArticleTable';
+import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import { calculateTakeHome } from '@/lib/salaryCalculator';
 import CustomSelect, { type CustomSelectOption } from '@/app/components/CustomSelect';
+
+const CONTENT_LAYOUT = true;
 
 type AvgIncomeRow = { label: string; average: string; median: string };
 const AVG_INCOME_TABLE: AvgIncomeRow[] = [
@@ -131,58 +136,33 @@ export default function CareerChange20sClient() {
   );
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0 space-y-8 md:space-y-12">
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/career/career-change-20s">キャリア</Link> {'>'} 20代転職の年収相場
-            </nav>
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              20代転職の年収相場と手取り計算
-            </h1>
+    <div className="space-y-8 md:space-y-12">
+      <PointHeaderBox title="20代の平均年収と、転職でどれくらい変わる？" bodyVariant="highlight">
+        <ArticleParagraph className="mb-0">
+          20代の平均年収は365万円です。転職では約40%が年収アップに成功している一方、職種・業界チェンジの内容によっては一時的に下がるケースもあります。まずは転職前後の手取りを比較して、現実的な目標を作りましょう。
+        </ArticleParagraph>
+        <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] text-[var(--color-v2-text)] mt-3 mb-0">出典: doda平均年収ランキング2025 / 国税庁 民間給与実態統計調査 / マイナビ転職動向調査2024年版</p>
+      </PointHeaderBox>
 
-          <Card>
-            <H2>📌 20代の平均年収と、転職でどれくらい変わる？</H2>
-            <p className="text-body leading-relaxed">
-              20代の平均年収は365万円です。転職では約40%が年収アップに成功している一方、職種・業界チェンジの内容によっては一時的に下がるケースもあります。まずは転職前後の手取りを比較して、現実的な目標を作りましょう。
-            </p>
-            <p className="text-small mt-3">出典: doda平均年収ランキング2025 / 国税庁 民間給与実態統計調査 / マイナビ転職動向調査2024年版</p>
-          </Card>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>20代の平均年収データ（2025年版）</ArticleSectionHeading>
+        <ArticleTable
+          headers={['区分', '平均年収', '中央値']}
+          data={AVG_INCOME_TABLE.map((r) => [r.label, r.average, r.median])}
+          headerAlign="left"
+          dataAlign="left"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+      </ArticleBodySection>
 
-          {/* 20代の平均年収データ */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>📊 20代の平均年収データ（2025年版）</H2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">区分</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">平均年収</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">中央値</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {AVG_INCOME_TABLE.map((row) => (
-                    <tr key={row.label} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-[#1E293B]">{row.label}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.average}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.median}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* シミュレーター */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 md:p-8 shadow-lg">
-            <H2>🧮 転職前後の手取り比較シミュレーター</H2>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>転職前後の手取り比較シミュレーター</ArticleSectionHeading>
 
             <Card as="div" className="mb-6">
               <div className="mb-6">
                 <label className="block font-semibold text-gray-900 text-base mb-2">現在の年収</label>
-                <p className="text-caption mb-2">万円単位で入力</p>
+                <p className="font-['Noto_Sans_JP'] text-[14px] leading-[25px] mb-2">万円単位で入力</p>
                 <div className="relative">
                   <InputField
                     type="tel"
@@ -199,7 +179,7 @@ export default function CareerChange20sClient() {
 
               <div className="mb-6">
                 <label className="block font-semibold text-gray-900 text-base mb-2">転職後の希望年収</label>
-                <p className="text-caption mb-2">万円単位で入力</p>
+                <p className="font-['Noto_Sans_JP'] text-[14px] leading-[25px] mb-2">万円単位で入力</p>
                 <div className="relative">
                   <InputField
                     type="tel"
@@ -217,12 +197,12 @@ export default function CareerChange20sClient() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block font-semibold text-gray-900 text-base mb-2">年齢</label>
-                  <p className="text-caption mb-2">22〜29歳</p>
+                  <p className="font-['Noto_Sans_JP'] text-[14px] leading-[25px] mb-2">22〜29歳</p>
                   <CustomSelect options={AGE_OPTIONS} value={age} onChange={setAge} placeholder="年齢を選択" />
                 </div>
                 <div>
                   <label className="block font-semibold text-gray-900 text-base mb-2">扶養人数</label>
-                  <p className="text-caption mb-2">0〜3人</p>
+                  <p className="font-['Noto_Sans_JP'] text-[14px] leading-[25px] mb-2">0〜3人</p>
                   <CustomSelect options={DEPENDENTS_OPTIONS} value={dependents} onChange={setDependents} placeholder="扶養人数を選択" />
                 </div>
               </div>
@@ -230,7 +210,7 @@ export default function CareerChange20sClient() {
               <PrimaryButton type="button" onClick={onCalculate} className="mt-6">
                 計算する
               </PrimaryButton>
-              <p className="text-small mt-3">※ 年齢は目安の文脈表示用です。手取り計算は概算（扶養人数のみ反映）です。</p>
+              <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-3 mb-0">※ 年齢は目安の文脈表示用です。手取り計算は概算（扶養人数のみ反映）です。</p>
             </Card>
 
             {result.current && result.next && (
@@ -242,31 +222,31 @@ export default function CareerChange20sClient() {
                     {diffMan}
                     <span className="text-base font-normal ml-1">万円</span>
                   </ResultAmount>
-                  <p className="text-small mt-2">年齢: {age}歳 / 扶養人数: {dependents}人</p>
+                  <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-2 mb-0">年齢: {age}歳 / 扶養人数: {dependents}人</p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-3 mt-6">
                   <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-[#F8FAFC]">
-                    <div className="text-small">転職前（年間手取り）</div>
+                    <div className="font-['Noto_Sans_JP'] text-[12px] leading-[25px]">転職前（年間手取り）</div>
                     <div className="mt-1 font-black text-[#1E293B] text-2xl">{currentMan}万円</div>
-                    <div className="text-small mt-1">月 {currentMonthlyMan}万円</div>
+                    <div className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-1">月 {currentMonthlyMan}万円</div>
                   </div>
                   <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-[#e8f0fe]">
-                    <div className="text-small">転職後（年間手取り）</div>
+                    <div className="font-['Noto_Sans_JP'] text-[12px] leading-[25px]">転職後（年間手取り）</div>
                     <div className="mt-1 font-black text-[#2563EB] text-2xl">{nextMan}万円</div>
-                    <div className="text-small mt-1">月 {nextMonthlyMan}万円</div>
+                    <div className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-1">月 {nextMonthlyMan}万円</div>
                   </div>
                   <div
                     className={`border-2 border-[#E2E8F0] rounded-2xl p-4 ${
                       diffMan >= 0 ? 'bg-[#ecfdf5]' : 'bg-[#fef2f2]'
                     }`}
                   >
-                    <div className="text-small">差額（年間）</div>
+                    <div className="font-['Noto_Sans_JP'] text-[12px] leading-[25px]">差額（年間）</div>
                     <div className={`mt-1 font-black text-2xl ${diffMan >= 0 ? 'text-[#2563EB]' : 'text-[#dc2626]'}`}>
                       {diffMan >= 0 ? '+' : ''}
                       {diffMan}万円
                     </div>
-                    <div className="text-small mt-1">目安（概算）</div>
+                    <div className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-1">目安（概算）</div>
                   </div>
                 </div>
 
@@ -313,129 +293,82 @@ export default function CareerChange20sClient() {
                 )}
               </Card>
             )}
-          </section>
+      </ArticleBodySection>
 
-          {/* 年齢別早見表 */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>📊 20代 年齢別の平均年収・手取り早見表</H2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">年齢</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">平均年収</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">手取り目安</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">月収手取り</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {AGE_QUICK_TABLE.map((row) => (
-                    <tr key={row.age} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.age}歳</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.salary}万円</td>
-                      <td className="px-4 py-3 text-right font-semibold text-[#1E293B]">約{row.takeHome}万円</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">約{row.monthly}万円</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-small mt-3">※ 手取りは概算の目安です（扶養/地域等で変動します）。</p>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>20代 年齢別の平均年収・手取り早見表</ArticleSectionHeading>
+        <ArticleTable
+          headers={['年齢', '平均年収', '手取り目安', '月収手取り']}
+          data={AGE_QUICK_TABLE.map((r) => [`${r.age}歳`, `${r.salary}万円`, `約${r.takeHome}万円`, `約${r.monthly}万円`])}
+          headerAlign="right"
+          dataAlign="right"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+        <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] text-[var(--color-v2-text)] mt-3 mb-0">※ 手取りは概算の目安です（扶養/地域等で変動します）。</p>
+      </ArticleBodySection>
 
-          {/* 年収変化データ */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>📈 20代転職者の年収変化データ</H2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">項目</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">数値</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {CHANGE_TABLE.map((row) => (
-                    <tr key={row.label} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-[#1E293B]">{row.label}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-small mt-3">出典: マイナビ転職動向調査 2024年版</p>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>20代転職者の年収変化データ</ArticleSectionHeading>
+        <ArticleTable
+          headers={['項目', '数値']}
+          data={CHANGE_TABLE.map((r) => [r.label, r.value])}
+          headerAlign="left"
+          dataAlign="right"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+        <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] text-[var(--color-v2-text)] mt-3 mb-0">出典: マイナビ転職動向調査 2024年版</p>
+      </ArticleBodySection>
 
-          {/* 業界ランキング */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>🏆 20代で年収が高い業界 TOP10</H2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">順位</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">業界</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">20代平均年収</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {TOP_INDUSTRY_TABLE.map((row) => (
-                    <tr key={row.rank} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.rank}</td>
-                      <td className="px-4 py-3 text-[#1E293B]">{row.name}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.salary}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>20代で年収が高い業界 TOP10</ArticleSectionHeading>
+        <ArticleTable
+          headers={['順位', '業界', '20代平均年収']}
+          data={TOP_INDUSTRY_TABLE.map((r) => [r.rank, r.name, r.salary])}
+          headerAlign="left"
+          dataAlign="right"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+      </ArticleBodySection>
 
-          {/* 転職パターン */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>🧭 20代で年収アップしやすい転職パターン</H2>
-            <div className="space-y-3">
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">同業界×同職種（組織チェンジ）</p>
-                <p className="text-body leading-relaxed">経験・スキルをそのまま活かしやすく、年収アップ率が最も高い傾向です。大手企業や成長企業への転職が狙い目です。</p>
-              </div>
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">同職種×異業界（業種チェンジ）</p>
-                <p className="text-body leading-relaxed">スキルを活かしつつ、年収水準の高い業界へ移る形です。例：小売営業→IT営業、事務→金融事務。</p>
-              </div>
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">異職種×同業界（職種チェンジ）</p>
-                <p className="text-body leading-relaxed">業界知識を活かしながらキャリアチェンジ。例：営業→マーケティング、SE→PM。</p>
-              </div>
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">異職種×異業界（フルチェンジ）</p>
-                <p className="text-body leading-relaxed">将来性を見据えた挑戦。短期的に年収が下がることもありますが、成長産業への未経験転職で伸びしろを狙えます。</p>
-              </div>
-            </div>
-          </section>
-
-          {/* 交渉ポイント */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>💬 20代転職の年収交渉ポイント</H2>
-            <ol className="list-decimal pl-5 space-y-2 text-body">
-              <li>市場相場を把握する（同年代・同職種の相場を調査し、自分の市場価値を確認）</li>
-              <li>希望年収は現年収の+10〜20%を目安に（20代なら+30〜50万円アップが現実的）</li>
-              <li>交渉タイミングは内定後（選考中は避け、内定後に条件交渉）</li>
-              <li>転職エージェントを活用（交渉代行・企業の予算感の把握がしやすい）</li>
-            </ol>
-          </section>
-
-          {/* FAQ */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>❓ よくある質問（FAQ）</H2>
-            <FaqAccordion items={FAQ_DATA} />
-          </section>
-          </main>
-
-          <PcAdSidebar />
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>20代で年収アップしやすい転職パターン</ArticleSectionHeading>
+        <div className="space-y-3 font-['Noto_Sans_JP'] text-[14px] leading-[25px]">
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">同業界×同職種（組織チェンジ）</p>
+            <ArticleParagraph className="mb-0">経験・スキルをそのまま活かしやすく、年収アップ率が最も高い傾向です。大手企業や成長企業への転職が狙い目です。</ArticleParagraph>
+          </div>
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">同職種×異業界（業種チェンジ）</p>
+            <ArticleParagraph className="mb-0">スキルを活かしつつ、年収水準の高い業界へ移る形です。例：小売営業→IT営業、事務→金融事務。</ArticleParagraph>
+          </div>
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">異職種×同業界（職種チェンジ）</p>
+            <ArticleParagraph className="mb-0">業界知識を活かしながらキャリアチェンジ。例：営業→マーケティング、SE→PM。</ArticleParagraph>
+          </div>
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">異職種×異業界（フルチェンジ）</p>
+            <ArticleParagraph className="mb-0">将来性を見据えた挑戦。短期的に年収が下がることもありますが、成長産業への未経験転職で伸びしろを狙えます。</ArticleParagraph>
+          </div>
         </div>
-      </div>
+      </ArticleBodySection>
+
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>20代転職の年収交渉ポイント</ArticleSectionHeading>
+        <ol className="list-decimal pl-5 space-y-2 font-['Noto_Sans_JP'] text-[14px] leading-[25px]">
+          <li>市場相場を把握する（同年代・同職種の相場を調査し、自分の市場価値を確認）</li>
+          <li>希望年収は現年収の+10〜20%を目安に（20代なら+30〜50万円アップが現実的）</li>
+          <li>交渉タイミングは内定後（選考中は避け、内定後に条件交渉）</li>
+          <li>転職エージェントを活用（交渉代行・企業の予算感の把握がしやすい）</li>
+        </ol>
+      </ArticleBodySection>
+
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>よくある質問（FAQ）</ArticleSectionHeading>
+        <FaqAccordion items={FAQ_DATA} />
+      </ArticleBodySection>
     </div>
   );
 }

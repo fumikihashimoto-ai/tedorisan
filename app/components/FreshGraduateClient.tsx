@@ -194,7 +194,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
         {/* 訴求テキストセクション（埋め込み時は非表示・CTA設定しない） */}
         {!embedded && results && (
           <div className="card-base mt-6">
-            <h3 className="text-xl font-bold mb-4">💡 今すぐ行動すべき理由</h3>
+            <h3 className="text-xl font-bold mb-4">今すぐ行動すべき理由</h3>
             
             <div className="bg-white border-l-4 border-[#E2E8F0] p-4 mb-3">
               <p className="font-bold mb-2">⏰ 転職市場は今がチャンス</p>
@@ -206,7 +206,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
             </div>
             
             <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-3">
-              <p className="font-bold mb-2">💰 1年遅れると...</p>
+              <p className="font-bold mb-2">1年遅れると...</p>
               <ul className="text-body space-y-1">
                 <li>• 年収UP機会を逃す: -100万円/年</li>
                 <li>• 生涯年収の損失: -1000万円以上</li>
@@ -215,7 +215,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
             </div>
             
             <div className="bg-green-50 border-l-4 border-green-500 p-4">
-              <p className="font-bold mb-2">📊 転職成功者の平均UP額</p>
+              <p className="font-bold mb-2">転職成功者の平均UP額</p>
               <ul className="text-body space-y-1">
                 <li className={ageGroup === '20代' ? 'font-bold text-green-700' : ''}>
                   • 20代: +80万円 {ageGroup === '20代' && '← あなたの年代'}

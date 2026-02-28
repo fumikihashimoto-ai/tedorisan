@@ -1,10 +1,15 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
-import PcAdSidebar from '@/app/components/PcAdSidebar';
-import { Card, FaqAccordion, H2, InputField, PrimaryButton, ResultAmount, ResultRow } from '@/app/components/ui';
+import { Card, FaqAccordion, InputField, PrimaryButton, ResultAmount, ResultRow } from '@/app/components/ui';
+import ArticleBodySection from '@/app/components/v2/article/ArticleBodySection';
+import ArticleSectionHeading from '@/app/components/v2/article/ArticleSectionHeading';
+import ArticleParagraph from '@/app/components/v2/article/ArticleParagraph';
+import ArticleTable from '@/app/components/v2/article/ArticleTable';
+import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import { calculateTakeHome } from '@/lib/salaryCalculator';
+
+const CONTENT_LAYOUT = true;
 
 type QuickRow = {
   annualMan: number;
@@ -116,32 +121,20 @@ export default function HighIncomeClient() {
   }, [result]);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0 space-y-8 md:space-y-12">
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/career/career-change-20s">キャリア</Link> {'>'} 年収1000万超えの手取り
-            </nav>
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              年収1000万超えの手取り計算
-            </h1>
+    <div className="space-y-8 md:space-y-12">
+      <PointHeaderBox title="年収1000万円を超えても、どれだけ引かれる？" bodyVariant="highlight">
+        <ArticleParagraph className="mb-0">
+          年収1000万円でも手取りは約720万円（目安）です。高年収帯は累進課税と社会保険料の影響が大きく、「上がった年収ほど手取りが増えにくい」状態になりやすいのが現実です。
+        </ArticleParagraph>
+      </PointHeaderBox>
 
-          <Card>
-            <H2>📌 年収1000万円を超えても、どれだけ引かれる？</H2>
-            <p className="text-body leading-relaxed">
-              年収1000万円でも手取りは約720万円（目安）です。高年収帯は累進課税と社会保険料の影響が大きく、「上がった年収ほど手取りが増えにくい」状態になりやすいのが現実です。
-            </p>
-          </Card>
-
-          {/* シミュレーター */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 md:p-8 shadow-lg">
-            <H2>🧮 手取りシミュレーター（高年収向け）</H2>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>手取りシミュレーター（高年収向け）</ArticleSectionHeading>
 
             <Card as="div" className="mb-6">
               <div className="mb-6">
                 <label className="block font-semibold text-gray-900 text-base mb-2">年収</label>
-                <p className="text-caption mb-2">1000〜5000万円を想定（概算）</p>
+                <p className="font-['Noto_Sans_JP'] text-[14px] leading-[25px] mb-2">1000〜5000万円を想定（概算）</p>
                 <div className="relative">
                   <InputField
                     type="tel"
@@ -158,7 +151,7 @@ export default function HighIncomeClient() {
 
               <div className="mb-6">
                 <label className="block font-semibold text-gray-900 text-base mb-2">扶養人数</label>
-                <p className="text-caption mb-2">扶養している家族の人数を入力してください</p>
+                <p className="font-['Noto_Sans_JP'] text-[14px] leading-[25px] mb-2">扶養している家族の人数を入力してください</p>
                 <div className="relative">
                   <InputField
                     type="tel"
@@ -183,8 +176,8 @@ export default function HighIncomeClient() {
                 <div className="text-center">
                   <div className="result-label">あなたの年間手取り額は…</div>
                   <ResultAmount className="mt-2">約 {calcSummary.takeHomeMan}<span className="text-base font-normal ml-1">万円</span></ResultAmount>
-                  <p className="text-small mt-2">月の手取り目安: 約 {calcSummary.monthlyMan}万円</p>
-                  <p className="text-small mt-1">実効負担率（税金＋社保）: {calcSummary.effectiveTaxRate}</p>
+                  <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-2 mb-0">月の手取り目安: 約 {calcSummary.monthlyMan}万円</p>
+                  <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-1 mb-0">実効負担率（税金＋社保）: {calcSummary.effectiveTaxRate}</p>
                 </div>
 
                 <div
@@ -209,138 +202,84 @@ export default function HighIncomeClient() {
                 )}
               </Card>
             )}
-          </section>
+      </ArticleBodySection>
 
-          {/* 早見表 */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>📊 年収別 手取り早見表（目安）</H2>
-            <p className="text-small mb-3">※ 40歳未満、扶養なし、東京都の場合の目安</p>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">年収</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">手取り目安</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">手取り率</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">税金+社保</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {QUICK_TABLE.map((row) => (
-                    <tr key={row.annualMan} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.annualMan.toLocaleString()}万円</td>
-                      <td className="px-4 py-3 text-right font-semibold text-[#1E293B]">約{row.takeHomeMan.toLocaleString()}万円</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.rate}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">約{row.taxAndSocialMan.toLocaleString()}万円</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>年収別 手取り早見表（目安）</ArticleSectionHeading>
+        <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mb-3">※ 40歳未満、扶養なし、東京都の場合の目安</p>
+        <ArticleTable
+          headers={['年収', '手取り目安', '手取り率', '税金+社保']}
+          data={QUICK_TABLE.map((r) => [`${formatJPY(r.annualMan)}万円`, `約${formatJPY(r.takeHomeMan)}万円`, r.rate, `約${formatJPY(r.taxAndSocialMan)}万円`])}
+          headerAlign="right"
+          dataAlign="right"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+      </ArticleBodySection>
 
-          {/* 内訳説明 */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>🧾 税金・社会保険料の内訳（年収1000万円の例）</H2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">項目</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">金額（年間）</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">割合</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {EXAMPLE_BREAKDOWN_1000.map((row) => (
-                    <tr key={row.label} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-[#1E293B]">{row.label}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.annualMan}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.rate}</td>
-                    </tr>
-                  ))}
-                  <tr className="border-b border-[#E2E8F0]">
-                    <td className="px-4 py-3 font-bold text-[#1E293B]">合計</td>
-                    <td className="px-4 py-3 text-right font-bold text-[#1E293B]">約273万円</td>
-                    <td className="px-4 py-3 text-right font-bold text-[#1E293B]">27.3%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="text-small mt-3">※ あくまで目安です（控除・地域・年齢・加入保険で変動します）。</p>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>🧾 税金・社会保険料の内訳（年収1000万円の例）</ArticleSectionHeading>
+        <ArticleTable
+          headers={['項目', '金額（年間）', '割合']}
+          data={[...EXAMPLE_BREAKDOWN_1000.map((r) => [r.label, r.annualMan, r.rate]), ['合計', '約273万円', '27.3%']]}
+          headerAlign="left"
+          dataAlign="right"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+        <p className="font-['Noto_Sans_JP'] text-[12px] leading-[25px] mt-3 mb-0">※ あくまで目安です（控除・地域・年齢・加入保険で変動します）。</p>
+      </ArticleBodySection>
 
-          {/* 累進課税 */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>📈 累進課税（所得税）の仕組み</H2>
-            <p className="text-body leading-relaxed mb-3">
-              「年収が上がるほど全部が高い税率になる」わけではなく、課税所得のレンジごとに税率が段階的に上がります。結果として高年収帯は手取りの伸びが鈍くなりやすいです。
-            </p>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-[#E2E8F0] bg-white table-zebra">
-                <thead>
-                  <tr className="bg-[#2563EB] text-white">
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-left">課税所得</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">税率</th>
-                    <th className="border border-[#E2E8F0] px-4 py-3 text-right">控除額</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {PROGRESSIVE_TAX_TABLE.map((row) => (
-                    <tr key={row.range} className="border-b border-[#E2E8F0]">
-                      <td className="px-4 py-3 text-[#1E293B]">{row.range}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.rate}</td>
-                      <td className="px-4 py-3 text-right text-[#1E293B]">{row.deduction}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>累進課税（所得税）の仕組み</ArticleSectionHeading>
+        <ArticleParagraph className="mb-3">
+          「年収が上がるほど全部が高い税率になる」わけではなく、課税所得のレンジごとに税率が段階的に上がります。結果として高年収帯は手取りの伸びが鈍くなりやすいです。
+        </ArticleParagraph>
+        <ArticleTable
+          headers={['課税所得', '税率', '控除額']}
+          data={PROGRESSIVE_TAX_TABLE.map((r) => [r.range, r.rate, r.deduction])}
+          headerAlign="left"
+          dataAlign="right"
+          contentLayout={CONTENT_LAYOUT}
+          noMargin
+        />
+      </ArticleBodySection>
 
-          {/* 職業TOP10 */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>🏆 年収1000万円を超える職業・業界 TOP10</H2>
-            <ol className="list-decimal pl-5 space-y-2 text-body">
-              {TOP10.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ol>
-          </section>
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>年収1000万円を超える職業・業界 TOP10</ArticleSectionHeading>
+        <ol className="list-decimal pl-5 space-y-2 font-['Noto_Sans_JP'] text-[14px] leading-[25px]">
+          {TOP10.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ol>
+      </ArticleBodySection>
 
-          {/* 節税対策 */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>🧠 高年収者向け 節税対策（具体例）</H2>
-            <div className="space-y-4">
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">iDeCo（個人型確定拠出年金）</p>
-                <p className="text-body leading-relaxed">年間最大27.6万円の所得控除。年収1000万円なら年間約8〜11万円の節税効果が目安です。</p>
-              </div>
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">ふるさと納税</p>
-                <p className="text-body leading-relaxed">年収1000万円なら上限約18万円。実質2,000円で返礼品を受け取れます。</p>
-              </div>
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">住宅ローン控除</p>
-                <p className="text-body leading-relaxed">年間最大35万円の税額控除（新築の場合）。13年間適用可能です。</p>
-              </div>
-              <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
-                <p className="font-semibold text-[#1E293B] mb-2">生命保険料控除</p>
-                <p className="text-body leading-relaxed">年間最大12万円の所得控除。家計の保障と合わせて検討しやすいです。</p>
-              </div>
-            </div>
-          </section>
-
-          {/* FAQ */}
-          <section className="bg-white border-2 border-[#E2E8F0] rounded-2xl p-6 shadow-lg">
-            <H2>❓ よくある質問（FAQ）</H2>
-            <FaqAccordion items={FAQ_DATA} />
-          </section>
-          </main>
-
-          <PcAdSidebar />
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>高年収者向け 節税対策（具体例）</ArticleSectionHeading>
+        <div className="space-y-4 font-['Noto_Sans_JP'] text-[14px] leading-[25px]">
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">iDeCo（個人型確定拠出年金）</p>
+            <ArticleParagraph className="mb-0">年間最大27.6万円の所得控除。年収1000万円なら年間約8〜11万円の節税効果が目安です。</ArticleParagraph>
+          </div>
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">ふるさと納税</p>
+            <ArticleParagraph className="mb-0">年収1000万円なら上限約18万円。実質2,000円で返礼品を受け取れます。</ArticleParagraph>
+          </div>
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">住宅ローン控除</p>
+            <ArticleParagraph className="mb-0">年間最大35万円の税額控除（新築の場合）。13年間適用可能です。</ArticleParagraph>
+          </div>
+          <div className="border-2 border-[#E2E8F0] rounded-2xl p-4 bg-white">
+            <p className="font-semibold text-[#1E293B] mb-2">生命保険料控除</p>
+            <ArticleParagraph className="mb-0">年間最大12万円の所得控除。家計の保障と合わせて検討しやすいです。</ArticleParagraph>
+          </div>
         </div>
-      </div>
+      </ArticleBodySection>
+
+      <ArticleBodySection contentLayout={CONTENT_LAYOUT}>
+        <ArticleSectionHeading>よくある質問（FAQ）</ArticleSectionHeading>
+        <FaqAccordion items={FAQ_DATA} />
+      </ArticleBodySection>
     </div>
   );
 }

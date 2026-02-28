@@ -96,7 +96,7 @@ export default function PcAdSidebar({ useTopAds = false }: Props) {
     <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
       <div className={useTopAds ? 'space-y-4' : 'space-y-5'}>
         {ads.map((ad) => (
-          <div key={ad.href}>
+          <div key={ad.href} className="flex justify-center">
             <a
               href={ad.href}
               target="_blank"

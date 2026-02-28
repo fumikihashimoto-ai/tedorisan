@@ -44,7 +44,6 @@ export default function TopPageSidebar() {
           {/* キャッチコピー */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-orange-500 text-lg">👑</span>
               <p className="text-sm font-bold text-[#1E293B]">大学・大学院・専門・短大向け｜就職エージェントneo</p>
             </div>
             <p className="text-sm font-bold text-red-600 mb-2">内定まで最短1日！内定支援実績約45,000件</p>

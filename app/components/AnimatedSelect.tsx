@@ -13,6 +13,8 @@ type Props = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  /** 未選択時（プレースホルダー表示時）のテキストに適用するクラス */
+  placeholderClassName?: string;
   /** フォームフィールドの高さに合わせる（h-12 相当） */
   className?: string;
 };
@@ -22,6 +24,7 @@ export default function AnimatedSelect({
   value,
   onChange,
   placeholder = '選択してください',
+  placeholderClassName,
   className = '',
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -152,7 +155,13 @@ export default function AnimatedSelect({
         aria-controls="animated-select-dropdown"
         tabIndex={0}
       >
-        <span className={selectedOption ? 'text-gray-900' : 'text-gray-500'}>
+        <span
+          className={
+            selectedOption
+              ? 'text-gray-900'
+              : placeholderClassName ?? 'text-gray-500'
+          }
+        >
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <span

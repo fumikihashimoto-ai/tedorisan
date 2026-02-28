@@ -36,7 +36,13 @@ const SCHOOLS: School[] = [
     bannerHtml: `<img src="https://h.accesstrade.net/sp/rr?rk=0100kno000onsa" alt="ディープロ" border="0" style="max-width:100%;max-height:100%;object-fit:contain;" />`,
     linkAttrs: 'referrerpolicy="no-referrer-when-downgrade"',
   },
-  // TODO: 残り3校のアフィリエイトバナーを追加
+  // 以下1校: アフィリエイトID取得後に url / bannerHtml / trackingHtml を本番用に差し替えてください
+  {
+    name: "テックアカデミー",
+    rating: 4.4,
+    url: "https://techacademy.jp/",
+    bannerHtml: `<img src="/images/v2/school-logo.png" alt="テックアカデミー" border="0" style="max-width:100%;max-height:60px;object-fit:contain;" />`,
+  },
 ];
 
 // ============================================================
@@ -94,20 +100,21 @@ export default function SchoolRankingCTA({
         {title}
       </h2>
 
-      {/* 常に横並び（flexbox + overflow-x-auto） */}
-      <div className="flex gap-4 overflow-x-auto pb-1 justify-center snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        {SCHOOLS.map((school, i) => (
-          <div key={i} className="flex-shrink-0 snap-center w-[160px] flex flex-col items-center">
-            {/* バナー画像（アフィリエイトHTMLを直接レンダリング） */}
-            <a
-              href={school.url}
-              rel="nofollow noopener noreferrer"
-              target="_blank"
-              {...(school.linkAttrs ? { referrerPolicy: "no-referrer-when-downgrade" as const } : {})}
-              className="w-full overflow-hidden flex items-center justify-center mt-[10px] mb-[10px]"
-            >
-              <span dangerouslySetInnerHTML={{ __html: school.bannerHtml }} />
-            </a>
+      {/* 常に横並び（flexbox + overflow-x-auto）、スマホで見切れないようフルブリード＋左右パディング */}
+      <div className="-mx-3 md:-mx-4 overflow-x-auto overscroll-x-contain pb-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex gap-4 min-w-min pl-4 pr-4 py-1">
+          {SCHOOLS.map((school, i) => (
+            <div key={i} className="flex-shrink-0 w-[140px] sm:w-[160px] flex flex-col items-center">
+              {/* バナー画像（アフィリエイトHTMLを直接レンダリング） */}
+              <a
+                href={school.url}
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+                {...(school.linkAttrs ? { referrerPolicy: "no-referrer-when-downgrade" as const } : {})}
+                className="w-full min-h-[60px] flex items-center justify-center mt-[10px] mb-[10px] [&_img]:max-w-full [&_img]:max-h-[60px] [&_img]:object-contain"
+              >
+                <span className="block max-w-full" dangerouslySetInnerHTML={{ __html: school.bannerHtml }} />
+              </a>
 
             {/* トラッキングピクセル */}
             {school.trackingHtml && (
@@ -120,7 +127,7 @@ export default function SchoolRankingCTA({
               rel="nofollow noopener noreferrer"
               target="_blank"
               {...(school.linkAttrs ? { referrerPolicy: "no-referrer-when-downgrade" as const } : {})}
-              className="text-[11px] md:text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+              className="text-[11px] md:text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-center break-words max-w-full"
             >
               {school.name}
             </a>
@@ -129,6 +136,7 @@ export default function SchoolRankingCTA({
             <StarRating rating={school.rating} />
           </div>
         ))}
+        </div>
       </div>
     </section>
   );

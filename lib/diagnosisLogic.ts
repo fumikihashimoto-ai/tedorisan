@@ -32,13 +32,19 @@ export type Situation =
   | 'it_beginner'    // IT業界へ転職したい（未経験）
   | 'it_experienced' // IT業界で年収アップしたい（経験者）
   | 'pharmacist'     // 薬剤師として転職したい
-  | 'skill_learning'; // まずはスキルを身につけたい
+  | 'skill_learning'  // まずはスキルを身につけたい
+  | 'second_graduate' // 既卒・第二新卒
+  | 'programming'    // プログラミング
+  | 'video_editing'; // 動画編集
 
 export const SITUATIONS: readonly Situation[] = [
   'it_beginner',
   'it_experienced',
   'pharmacist',
   'skill_learning',
+  'second_graduate',
+  'programming',
+  'video_editing',
 ] as const;
 
 /** 状況の表示用ラベル */
@@ -47,6 +53,9 @@ export const SITUATION_LABELS: Record<Situation, string> = {
   it_experienced: 'IT業界で年収アップしたい（経験者）',
   pharmacist: '薬剤師として転職したい',
   skill_learning: 'まずはスキルを身につけたい',
+  second_graduate: '既卒・第二新卒',
+  programming: 'プログラミング',
+  video_editing: '動画編集',
 };
 
 // ============================================================

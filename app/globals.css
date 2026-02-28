@@ -1,6 +1,14 @@
+/* 1. 最初に @import（必須） */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+/* 2. その後に Tailwind */
 @import "tailwindcss";
 
+/* 3. その後にカスタムスタイル */
 @layer base {
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
   :root {
     /* ========================================
        手取りのミカタ ブランドカラー（リブランディング）
@@ -22,7 +30,7 @@
     --color-success-light: #d1fae5;
 
     /* ベース・背景 */
-    --color-background: #F8FAFC;
+    --color-background: #fff;
     --color-surface: #FFFFFF;
     --color-border: #E2E8F0;
     --color-border-light: #f1f5f9;
@@ -112,6 +120,16 @@
 }
 
 @theme inline {
+  /* v2 記事・TOP 用カラー（比較表・CTA等） */
+  --color-v2-primary: #1390c8;
+  --color-v2-accent: #ff677e;
+  --color-v2-accent-hover: #ff5569;
+  --color-v2-accent-shadow: #c41e37;
+  --color-v2-star: #f1cb43;
+  --color-v2-text: #3f3f3f;
+  --color-v2-bg: #f5f5f5;
+  --color-v2-border: #e6e6e6;
+
   /* 手取りのミカタ ブランドカラー（Tailwind utilities用） */
   --color-primary: #2563EB;
   --color-primary-hover: #1d4ed8;
@@ -127,12 +145,10 @@
   --color-text-secondary: #64748B;
   --color-text-muted: #94a3b8;
   --color-error: #dc2626;
-  --color-background: #F8FAFC;
+  --color-background: #fff;
   --color-foreground: #1E293B;
-  /* 外部フォント依存を避けたシステムフォントスタック（表示速度/安定性を優先） */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, "Noto Sans JP", Arial,
-    sans-serif;
+  /* サイト全体で Noto Sans JP を利用 */
+  --font-sans: "Noto Sans JP", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 
@@ -315,6 +331,30 @@ h4 {
   box-shadow: none;
 }
 
+/* プレースホルダー統一仕様（Noto Sans JP / Bold / 14px / #AAAAAA）
+   Tailwind Preflight の ::placeholder color-mix を上書きし、ブラウザ差を抑える */
+.placeholder-unified::placeholder {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #AAAAAA !important;
+  opacity: 1;
+}
+.placeholder-unified::-webkit-input-placeholder {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #AAAAAA !important;
+  opacity: 1;
+}
+.placeholder-unified::-moz-placeholder {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #AAAAAA !important;
+  opacity: 1;
+}
+
 /* フラットカード（枠線・背景・シャドウなし、計算ツール等で使用） */
 .card-flat {
   background: transparent;
@@ -322,6 +362,29 @@ h4 {
   border-radius: 0;
   padding: 0;
   box-shadow: none;
+}
+
+/* 表組の横スクロール（PC・SP共通・スクロールバーを常時表示） */
+.table-scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+.table-scroll-x::-webkit-scrollbar {
+  height: 8px;
+}
+.table-scroll-x::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+.table-scroll-x::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.table-scroll-x::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 /* 2. 見出し（h2統一） */
@@ -899,4 +962,11 @@ h4 {
   );
   pointer-events: none;
   animation: shine-loop var(--shine-duration) linear infinite;
+}
+
+/* アフィリエイトバナー内の 1x1 計測ピクセルを 1px に固定（ブラウザ互換のため通常CSSで指定） */
+.banner-html-wrapper img[width="1"][height="1"] {
+  width: 1px !important;
+  height: 1px !important;
+  display: block;
 }

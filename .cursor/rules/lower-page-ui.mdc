@@ -1,0 +1,54 @@
+---
+description: 下層ページのUI統一時はフォント・フォントサイズを含めて統一する
+globs:
+  - "app/qualifications/**/*.tsx"
+  - "app/magazine/**/*.tsx"
+  - "app/career/**/*.tsx"
+  - "app/tables/**/*.tsx"
+  - "app/tools/**/*.tsx"
+  - "app/faq/**/*.tsx"
+alwaysApply: false
+---
+
+# 下層ページUI統一ルール
+
+下層ページ（記事・資格・キャリア・マガジン・計算ツール・手取り一覧表・FAQ等）のUIを統一・改修する際は、**フォントとフォントサイズを含めて統一**すること。
+
+**適用対象**: `/tables`, `/tools/*`, `/faq`, `/qualifications/*`, `/magazine/*`, `/career/*`
+
+## 統一基準
+
+- **ベース**: `magazine/job-salary/it-engineer`
+- **詳細**: `docs/lower-page-regulation.md` を参照
+
+## 必須適用項目
+
+| 項目 | 仕様 |
+|------|------|
+| フォント | Noto Sans JP |
+| 本文 | 14px / leading-[25px] |
+| 見出し h2 | 16px |
+| 見出し h3/h4 | 14px |
+| キャプション | 14px |
+| 注釈 | 12px |
+
+## ヒーロー直下の手取り計算シミュレーション
+
+ヒーローセクションの直下に `TedoriCalculator`（手取り計算シミュレーション）を表示する。
+it-engineer 準拠: `<TedoriCalculator noMargin contentLayout={CONTENT_LAYOUT} />`
+
+## 記事内広告
+
+記事コンポーネント（`*Article.tsx`）には **InlineAd やその他の記事内広告を用いない**。v2 移行時は既存の `<InlineAd />` を削除すること。
+
+## 使用コンポーネント
+
+- `TedoriCalculator` - ヒーロー直下に配置（手取り計算）
+- `ArticleParagraph` - 本文
+- `ArticleSectionHeading` - h2
+- `ArticleSubHeading` - h3/h4
+- `ArticleBodySection` - セクション
+- `ArticleTable` - 表組
+- `PointHeaderBox` - 囲み枠
+
+インラインでフォント指定する場合は `font-['Noto_Sans_JP'] text-[14px]` 等を用いる。

@@ -24,7 +24,7 @@ export const metadata: Metadata = createPageMetadata({
 const faqData: FAQCategory[] = [
   {
     title: '基本編',
-    icon: '📌',
+    icon: '',
     items: [
       {
         id: 'basic-1',
@@ -54,7 +54,7 @@ const faqData: FAQCategory[] = [
   },
   {
     title: '所得税・住民税編',
-    icon: '💰',
+    icon: '',
     items: [
       {
         id: 'tax-1',
@@ -78,7 +78,7 @@ const faqData: FAQCategory[] = [
   },
   {
     title: '社会保険編',
-    icon: '🏥',
+    icon: '',
     items: [
       {
         id: 'insurance-1',
@@ -102,7 +102,7 @@ const faqData: FAQCategory[] = [
   },
   {
     title: '転職編',
-    icon: '💼',
+    icon: '',
     items: [
       {
         id: 'job-1',
@@ -126,7 +126,7 @@ const faqData: FAQCategory[] = [
   },
   {
     title: '新卒編',
-    icon: '🎓',
+    icon: '',
     items: [
       {
         id: 'fresh-1',
@@ -150,7 +150,7 @@ const faqData: FAQCategory[] = [
   },
   {
     title: '副業編',
-    icon: '💻',
+    icon: '',
     items: [
       {
         id: 'side-1',

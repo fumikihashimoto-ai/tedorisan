@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import ArticleStructuredData from '@/app/components/ArticleStructuredData';
+import ArticlePageLayout from '@/app/components/v2/layouts/ArticlePageLayout';
+import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import InexperiencedArticle from './InexperiencedArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
@@ -18,82 +20,27 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <>
       <ArticleStructuredData
         headline="転職したい20代未経験者必見！ゼロから始める理想のキャリアパス"
         description="20代の未経験転職は大きなチャンス。なぜ今が有利なのか、自己分析から求人探し、履歴書・職務経歴書の書き方、面接対策まで、成功に必要なノウハウを徹底解説。転職エージェントの活用術や企業が求める人物像も紹介。"
         url="/magazine/inexperienced/20s"
       />
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
-          {/* 左カラム：メインコンテンツ */}
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
-            {/* ヒーロー画像 */}
-            <div className="mb-4">
-              <img
-                src="/images/hero_20s.png"
-                alt=""
-                className="w-full max-w-full h-auto rounded-lg"
-              />
-            </div>
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/inexperienced/20s">マガジン</Link> {'>'} 未経験者の就職・転職 {'>'} 20代未経験者の転職
-            </nav>
+      <ArticlePageLayout
+        catchphrase1="＼20代未経験から転職成功／"
+        catchphrase2="【ゼロから始めるキャリアパス】"
+      >
+        <TedoriCalculator noMargin contentLayout={true} />
+        <nav className="breadcrumb mb-3">
+          <Link href="/">ホーム</Link> {'>'} <Link href="/magazine/inexperienced/20s">マガジン</Link> {'>'} 未経験者の就職・転職 {'>'} 20代未経験者の転職
+        </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              転職したい20代未経験者必見！ゼロから始める理想のキャリアパス
-            </h1>
+        <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+          転職したい20代未経験者必見！ゼロから始める理想のキャリアパス
+        </h1>
 
-            <InexperiencedArticle />
-          </main>
-
-          {/* 右カラム：サイドバー */}
-          <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
-            <div className="space-y-4">
-              <div>
-                <a
-                  href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4QVFEA+5P1E+5YZ75"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                >
-                  <img
-                    width={300}
-                    height={250}
-                    alt=""
-                    src="https://www22.a8.net/svt/bgt?aid=260126641287&wid=001&eno=01&mid=s00000026573001003000&mc=1"
-                  />
-                </a>
-                <img
-                  width={1}
-                  height={1}
-                  src="https://www18.a8.net/0.gif?a8mat=4AVF01+4QVFEA+5P1E+5YZ75"
-                  alt=""
-                />
-              </div>
-              <div>
-                <a
-                  href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4FK6WI+3Y6M+66H9D"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                >
-                  <img
-                    width={300}
-                    height={250}
-                    alt=""
-                    src="https://www26.a8.net/svt/bgt?aid=260126641268&wid=001&eno=01&mid=s00000018427001038000&mc=1"
-                  />
-                </a>
-                <img
-                  width={1}
-                  height={1}
-                  src="https://www14.a8.net/0.gif?a8mat=4AVF01+4FK6WI+3Y6M+66H9D"
-                  alt=""
-                />
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </div>
+        <InexperiencedArticle />
+      </ArticlePageLayout>
+    </>
   );
 }

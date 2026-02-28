@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import ArticlePageLayout from '@/app/components/v2/layouts/ArticlePageLayout';
+import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import JobChangeArticle from './JobChangeArticle';
 import { createPageMetadata } from '@/app/lib/metadata';
 
@@ -25,77 +27,20 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function JobChangePage() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
-        <div className="lg:flex lg:gap-10 xl:gap-12 lg:items-start overflow-visible">
-          {/* 左カラム：メインコンテンツ */}
-          <main className="w-full lg:flex-1 lg:max-w-[800px] xl:max-w-[900px] min-w-0">
-            {/* ヒーロー画像 */}
-            <div className="mb-4">
-              <img
-                src="/images/hero_job-change.png"
-                alt="年収と手取りのギャップを説明する図"
-                className="w-full max-w-full h-auto rounded-lg"
-              />
-            </div>
-            <nav className="breadcrumb mb-3">
-              <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
-            </nav>
+    <ArticlePageLayout
+      catchphrase1="＼年収アップ確実の転職術／"
+      catchphrase2="【失敗しないロードマップ】"
+    >
+      <TedoriCalculator noMargin contentLayout={true} />
+      <nav className="breadcrumb mb-3">
+        <Link href="/">ホーム</Link> {'>'} <Link href="/">計算ツール</Link> {'>'} 転職向け手取り計算
+      </nav>
 
-            <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
-              【2026年版】年収アップ確実！失敗しない転職ロードマップ
-            </h1>
+      <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+        【2026年版】年収アップ確実！失敗しない転職ロードマップ
+      </h1>
 
-            <JobChangeArticle />
-          </main>
-
-          {/* 右カラム：サイドバー */}
-          <aside className="hidden lg:block lg:w-72 xl:w-80 lg:flex-shrink-0 lg:self-start sticky top-5 h-fit">
-            <div className="space-y-4">
-              <div>
-                <a
-                  href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4QVFEA+5P1E+5YZ75"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                >
-                  <img
-                    width={300}
-                    height={250}
-                    alt=""
-                    src="https://www22.a8.net/svt/bgt?aid=260126641287&wid=001&eno=01&mid=s00000026573001003000&mc=1"
-                  />
-                </a>
-                <img
-                  width={1}
-                  height={1}
-                  src="https://www18.a8.net/0.gif?a8mat=4AVF01+4QVFEA+5P1E+5YZ75"
-                  alt=""
-                />
-              </div>
-              <div>
-                <a
-                  href="https://px.a8.net/svt/ejp?a8mat=4AVF01+4FK6WI+3Y6M+66H9D"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                >
-                  <img
-                    width={300}
-                    height={250}
-                    alt=""
-                    src="https://www26.a8.net/svt/bgt?aid=260126641268&wid=001&eno=01&mid=s00000018427001038000&mc=1"
-                  />
-                </a>
-                <img
-                  width={1}
-                  height={1}
-                  src="https://www14.a8.net/0.gif?a8mat=4AVF01+4FK6WI+3Y6M+66H9D"
-                  alt=""
-                />
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </div>
+      <JobChangeArticle />
+    </ArticlePageLayout>
   );
 }

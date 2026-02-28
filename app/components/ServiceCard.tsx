@@ -19,20 +19,6 @@ export interface ServiceCardProps {
 }
 
 // ============================================================
-// GA4（gtag）の型拡張
-// ============================================================
-
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      eventName: string,
-      params: Record<string, string>
-    ) => void;
-  }
-}
-
-// ============================================================
 // コンポーネント
 // ============================================================
 
@@ -101,7 +87,6 @@ export function ServiceCard({ service, rank, position }: ServiceCardProps) {
                 />
               ) : (
                 <>
-                  <span className="text-3xl" aria-hidden>👑</span>
                   <span className="text-2xl font-bold text-gray-800">第{rank}位</span>
                 </>
               )}
@@ -120,7 +105,7 @@ export function ServiceCard({ service, rank, position }: ServiceCardProps) {
       {/* バナーセクション */}
       {service.bannerHtml && (
         <div
-          className="flex justify-center items-center p-6 bg-gray-50 border-b border-gray-200 [&_img]:max-w-full [&_img]:h-auto"
+          className="flex justify-center items-center p-6 bg-gray-50 border-b border-gray-200 [&_img]:max-w-[300px] [&_img]:h-auto"
           dangerouslySetInnerHTML={{ __html: service.bannerHtml }}
         />
       )}
@@ -143,7 +128,6 @@ export function ServiceCard({ service, rank, position }: ServiceCardProps) {
         {service.recommendPoints && service.recommendPoints.length > 0 && (
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6 border-2 border-yellow-200">
             <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <span className="text-2xl" aria-hidden>✨</span>
               おすすめポイント
             </h4>
             <div className="space-y-3">
@@ -153,7 +137,7 @@ export function ServiceCard({ service, rank, position }: ServiceCardProps) {
                   className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm"
                 >
                   <span className="text-2xl flex-shrink-0" aria-hidden>
-                    {index === 0 ? '🎯' : index === 1 ? '⚡' : '🌟'}
+                    {index === 0 ? '1' : index === 1 ? '2' : '3'}
                   </span>
                   <div>
                     <span className="font-bold text-gray-800">{index + 1}：</span>
@@ -168,8 +152,7 @@ export function ServiceCard({ service, rank, position }: ServiceCardProps) {
         {/* 転職者の声 */}
         {service.userVoices && service.userVoices.length > 0 && (
           <div>
-            <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <span className="text-2xl" aria-hidden>💼</span>
+            <h4 className="text-xl font-bold text-gray-800 mb-4">
               転職者の声
             </h4>
             <div className="space-y-4">

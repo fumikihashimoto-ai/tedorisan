@@ -28,7 +28,7 @@ export default function HeaderAd() {
   if (!ad) return null;
 
   return (
-    <>
+    <div className="flex justify-center">
       <a href={ad.href} target="_blank" rel="nofollow noopener noreferrer">
         <img
           width={728}
@@ -49,7 +49,7 @@ export default function HeaderAd() {
         decoding="async"
         style={{ border: 'none' }}
       />
-    </>
+    </div>
   );
 }
 

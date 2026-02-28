@@ -1,0 +1,419 @@
+﻿import InlineAd from '@/app/components/InlineAd';
+
+export default function ConstructionArticle() {
+  return (
+    <article className="pb-20">
+      {/* 繝ｪ繝ｼ繝画枚 */}
+      <p className="text-base leading-[1.8] mb-4">
+        縲悟ｻｺ險ｭ讌ｭ縺ｮ蟷ｴ蜿弱・菴弱＞縲阪→縺・≧繧､繝｡繝ｼ繧ｸ繧偵♀謖√■縺ｮ譁ｹ繧ゅ＞繧九°繧ゅ＠繧後∪縺帙ｓ縺後∝ｮ溘・蟷ｴ蜿・000荳・・莉･荳翫ｒ螳溽樟縺ｧ縺阪ｋ蜿ｯ閭ｽ諤ｧ繧堤ｧ倥ａ縺滓･ｭ逡後〒縺吶よ悽險倅ｺ九〒縺ｯ縲∝ｻｺ險ｭ讌ｭ縺ｮ蟷ｳ蝮・ｹｴ蜿弱°繧芽・遞ｮ蛻･縺ｮ隧ｳ邏ｰ縺ｪ邨ｦ荳取ｰｴ貅悶√◎縺励※蟷ｴ蜿弱↓蠖ｱ髻ｿ繧剃ｸ弱∴繧玖ｦ∝屏繧貞ｾｹ蠎戊ｧ｣隱ｬ縲ゅ＆繧峨↓縲∝ｹｴ蜿・000荳・・繧帝＃謌舌☆繧九◆繧√・蜈ｷ菴鍋噪縺ｪ繧ｭ繝｣繝ｪ繧｢繝代せ縲∝叙蠕励☆縺ｹ縺榊嵜螳ｶ雉・ｼ繧・ｰる摩繧ｹ繧ｭ繝ｫ縲√◎縺励※蜉ｹ譫懃噪縺ｪ霆｢閨ｷ謌ｦ逡･縺ｾ縺ｧ縲・ｫ伜庶蜈･繧貞ｮ溽樟縺吶ｋ縺溘ａ縺ｮ遘倩ｨ｣繧堤ｶｲ鄒・噪縺ｫ縺皮ｴｹ莉九＠縺ｾ縺吶よ悴邨碁ｨ薙°繧蛾ｫ伜ｹｴ蜿弱ｒ逶ｮ謖・☆譁ｹ豕輔ｄ縲∝､ｧ謇九・荳ｭ蟆丈ｼ∵･ｭ縺ｮ驕ｸ謚櫁い縺ｾ縺ｧ縲√≠縺ｪ縺溘・繧ｭ繝｣繝ｪ繧｢繧呈ｬ｡縺ｮ繝ｬ繝吶Ν縺ｸ蠑輔″荳翫￡繧九◆繧√・繝ｭ繝ｼ繝峨・繝・・縺後％縺薙↓縺ゅｊ縺ｾ縺吶・      </p>
+
+      {/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ1 */}
+      <section id="section-1" className="scroll-mt-6">
+        <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+          1. 蟒ｺ險ｭ讌ｭ縺ｮ蟷ｳ蝮・ｹｴ蜿弱→迴ｾ迥ｶ
+        </h2>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｯ縲∵律譛ｬ縺ｮ遉ｾ莨壹う繝ｳ繝輔Λ繧呈髪縺医ｋ驥崎ｦ√↑逕｣讌ｭ縺ｧ縺ゅｊ縲√◎縺ｮ蟷ｴ蜿取ｰｴ貅悶・螟壹￥縺ｮ豎り・閠・↓縺ｨ縺｣縺ｦ髢｢蠢・・鬮倥＞繝・・繝槭〒縺吶ゅ％縺薙〒縺ｯ縲∝ｻｺ險ｭ讌ｭ蜈ｨ菴薙・蟷ｳ蝮・ｹｴ蜿弱∽ｸｻ隕√↑閨ｷ遞ｮ蛻･縺ｮ蟷ｴ蜿取ｯ碑ｼ・√◎縺励※蟷ｴ蜿弱↓蠖ｱ髻ｿ繧剃ｸ弱∴繧倶ｸｻ隕√↑隕∝屏縺ｫ縺､縺・※隧ｳ縺励￥隗｣隱ｬ縺励∪縺吶・        </p>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          1.1 蟒ｺ險ｭ讌ｭ蜈ｨ菴薙・蟷ｴ蜿取ｰｴ貅・        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蝗ｽ遞主ｺ√′逋ｺ陦ｨ縺励◆縲御ｻ､蜥・蟷ｴ蛻・ｰ鷹俣邨ｦ荳主ｮ滓・邨ｱ險郁ｪｿ譟ｻ邨先棡縲阪↓繧医ｋ縺ｨ縲∝ｻｺ險ｭ讌ｭ縺ｮ蟷ｳ蝮・ｹｴ蜿弱・
+          <mark className="bg-amber-100 px-1 rounded font-bold">邏・48荳・・</mark>
+          縺ｨ縺輔ｌ縺ｦ縺・∪縺吶ゅ％繧後・縲∵律譛ｬ蜈ｨ菴薙・蟷ｳ蝮・ｹｴ蜿弱〒縺ゅｋ邏・60荳・・縺ｨ豈碑ｼ・＠縺ｦ縲∫ｴ・8荳・・鬮倥＞豌ｴ貅悶↓縺ゅｊ縲∝ｻｺ險ｭ讌ｭ縺梧ｯ碑ｼ・噪鬮倥＞邨ｦ荳取ｰｴ貅悶↓縺ゅｋ縺薙→縺後ｏ縺九ｊ縺ｾ縺吶ゅ∪縺溘∝挨縺ｮ隱ｿ譟ｻ縺ｧ縺ｯ縲・025蟷ｴ迴ｾ蝨ｨ縲∝ｻｺ險ｭ讌ｭ縺ｮ蟷ｳ蝮・ｹｴ蜿弱・565.3荳・・縺ｧ縺ゅｊ縲・繝ｶ譛医≠縺溘ｊ縺ｮ邨ｦ荳主ｹｳ蝮・・38.4荳・・縲∝ｹｴ髢薙・繝ｼ繝翫せ蟷ｳ蝮・｡阪・104.6荳・・縺ｨ蝣ｱ蜻翫＆繧後※縺・∪縺吶・        </p>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｮ蟷ｴ蜿弱・縲∫ｵ碁ｨ灘ｹｴ謨ｰ繧・ｹｴ鮨｢縺ｫ繧医▲縺ｦ谿ｵ髫守噪縺ｫ荳頑・縺吶ｋ蛯ｾ蜷代′隕九ｉ繧後∪縺吶ゆｻ･荳九↓縲∝嵜遞主ｺ√・繝・・繧ｿ繧貞渕縺ｫ縺励◆蟷ｴ莉｣蛻･縺ｮ蟷ｳ蝮・ｹｴ蜿弱ｒ遉ｺ縺励∪縺吶・        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse my-5 text-sm sm:text-base min-w-[300px]">
+            <thead>
+              <tr>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">蟷ｴ莉｣</th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">蟷ｳ蝮・ｹｴ蜿・/th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-3 border-b border-gray-100">20莉｣譛ｪ貅</td>
+                <td className="p-3 border-b border-gray-100">邏・34荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">20莉｣蜑榊濠・・0・・4豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・37荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">20莉｣蠕悟濠・・5・・9豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・18荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">30莉｣蜑榊濠・・0・・4豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・28荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">30莉｣蠕悟濠・・5・・9豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・76荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">40莉｣蜑榊濠・・0・・4豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・09荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">40莉｣蠕悟濠・・5・・9豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・49荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">50莉｣蜑榊濠・・0・・4豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・74荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">50莉｣蠕悟濠・・5・・9豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・84荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">60莉｣蜑榊濠・・0・・4豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・47荳・・</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">60莉｣蠕悟濠・・5・・9豁ｳ・・/td>
+                <td className="p-3 border-b border-gray-100">邏・48荳・・</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          1.2 閨ｷ遞ｮ蛻･縺ｮ蟷ｴ蜿取ｯ碑ｼ・        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｨ荳蜿｣縺ｫ險縺｣縺ｦ繧ゅ√◎縺ｮ閨ｷ遞ｮ縺ｯ螟壼ｲ舌↓繧上◆繧翫√◎繧後◇繧後・蟆る摩諤ｧ繧・ｽｹ蜑ｲ縺ｫ蠢懊§縺ｦ蟷ｴ蜿取ｰｴ貅悶ｂ螟ｧ縺阪￥逡ｰ縺ｪ繧翫∪縺吶ら音縺ｫ蟆る摩諤ｧ縺ｮ鬮倥＞謚陦楢・繧・ｮ｡逅・・縺ｯ鬮伜ｹｴ蜿弱′譛溷ｾ・〒縺阪ｋ蛯ｾ蜷代↓縺ゅｊ縺ｾ縺吶・        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse my-5 text-sm sm:text-base min-w-[500px]">
+            <thead>
+              <tr>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">閨ｷ遞ｮ</th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">蟷ｳ蝮・ｹｴ蜿弱・逶ｮ螳・/th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">蛯呵・/th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-3 border-b border-gray-100">荳邏壼ｻｺ遽牙｣ｫ</td>
+                <td className="p-3 border-b border-gray-100">邏・40荳・・・・00荳・・</td>
+                <td className="p-3 border-b border-gray-100">謇ｱ縺・ｻｺ遽臥黄縺ｮ隕乗ｨ｡縺悟､ｧ縺阪￥縲∝ｰる摩諤ｧ縺碁ｫ倥＞</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">謚陦灘｣ｫ</td>
+                <td className="p-3 border-b border-gray-100">邏・70荳・・</td>
+                <td className="p-3 border-b border-gray-100">迚ｹ螳壹・蟆る摩蛻・㍽縺ｫ縺翫￠繧矩ｫ伜ｺｦ縺ｪ謚陦灘鴨繧呈怏縺吶ｋ</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">蟒ｺ遽画命蟾･邂｡逅・橿螢ｫ・・邏夲ｼ・/td>
+                <td className="p-3 border-b border-gray-100">邏・60荳・・・・50荳・・</td>
+                <td className="p-3 border-b border-gray-100">蟾･莠句・菴薙・邂｡逅・・逶｣逹｣繧定｡後≧縲りｳ・ｼ縺ｮ譛臥┌縺悟､ｧ縺阪￥蠖ｱ髻ｿ</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">蝨滓惠譁ｽ蟾･邂｡逅・橿螢ｫ</td>
+                <td className="p-3 border-b border-gray-100">邏・00荳・・・・00荳・・</td>
+                <td className="p-3 border-b border-gray-100">蝨滓惠蟾･莠九・譁ｽ蟾･邂｡逅・ｒ諡・≧縲・邏壼叙蠕励〒鬮伜ｹｴ蜿弱′譛溷ｾ・〒縺阪ｋ</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">髮ｻ豌怜ｷ･</td>
+                <td className="p-3 border-b border-gray-100">邏・50荳・・</td>
+                <td className="p-3 border-b border-gray-100">髮ｻ豌苓ｨｭ蛯吶・險ｭ鄂ｮ繝ｻ驟咲ｷ壼ｷ･莠九↑縺ｩ繧定｡後≧</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">貂ｬ驥乗橿陦楢・/td>
+                <td className="p-3 border-b border-gray-100">邏・50荳・・</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ險ｭ迴ｾ蝣ｴ縺ｮ貂ｬ驥上ｄ隱ｿ譟ｻ繧呈球蠖・/td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">螟ｧ蟾･</td>
+                <td className="p-3 border-b border-gray-100">邏・50荳・・・・50荳・・</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ迚ｩ縺ｮ鬪ｨ邨・∩繧・・螟冶｣・・譛ｨ蟾･莠九ｒ陦後≧</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">驩・ｭ句ｷ･</td>
+                <td className="p-3 border-b border-gray-100">邏・00荳・・</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ迚ｩ縺ｮ蝓ｺ遉弱→縺ｪ繧矩延遲九・邨・∩遶九※繧定｡後≧</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">謗伜炎菴懈･ｭ荳ｻ莉ｻ閠・・逋ｺ遐ｴ謚螢ｫ</td>
+                <td className="p-3 border-b border-gray-100">邏・20荳・・</td>
+                <td className="p-3 border-b border-gray-100">蟆る摩逧・↑菴懈･ｭ繧剃ｼｴ縺・◆繧√・ｫ伜ｹｴ蜿弱′譛溷ｾ・〒縺阪ｋ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          1.3 蟷ｴ蜿弱↓蠖ｱ髻ｿ繧剃ｸ弱∴繧玖ｦ∝屏
+        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｧ蟷ｴ蜿弱ｒ豎ｺ螳壹☆繧玖ｦ∝屏縺ｯ螟壼ｲ舌↓繧上◆繧翫∪縺吶′縲∫音縺ｫ莉･荳九・隕∫ｴ縺悟､ｧ縺阪￥蠖ｱ髻ｿ縺励∪縺吶・        </p>
+
+        <h4 className="text-base sm:text-lg font-bold text-gray-800 mt-5 mb-2">
+          1.3.1 邨碁ｨ灘ｹｴ謨ｰ縺ｨ繧ｹ繧ｭ繝ｫ
+        </h4>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後〒縺ｯ縲・          <mark className="bg-amber-100 px-1 rounded font-bold">邨碁ｨ灘ｹｴ謨ｰ縺悟｢励∴繧九↓縺､繧後※蟷ｴ蜿弱′荳頑・縺吶ｋ蛯ｾ蜷代′鬘戊送縺ｧ縺・/mark>
+          縲ら音縺ｫ迴ｾ蝣ｴ縺ｧ縺ｮ螳溷漁邨碁ｨ薙ｄ縲∫音螳壹・蟾･豕輔↓髢｢縺吶ｋ蟆る摩逧・↑繧ｹ繧ｭ繝ｫ縲√・繝阪ず繝｡繝ｳ繝郁・蜉帙↑縺ｩ縺ｯ縲∝ｹｴ蜿弱い繝・・縺ｫ逶ｴ邨舌☆繧矩㍾隕√↑隕∫ｴ縺ｨ縺ｪ繧翫∪縺吶・        </p>
+
+        <h4 className="text-base sm:text-lg font-bold text-gray-800 mt-5 mb-2">
+          1.3.2 莨∵･ｭ縺ｮ隕乗ｨ｡縺ｨ蝨ｰ蝓・        </h4>
+        <p className="text-base leading-[1.8] mb-4">
+          蟷ｴ蜿弱・縲∵園螻槭☆繧・          <mark className="bg-amber-100 px-1 rounded font-bold">莨∵･ｭ縺ｮ隕乗ｨ｡縺ｫ繧医▲縺ｦ螟ｧ縺阪￥螟牙虚縺励∪縺・/mark>
+          縲ら音縺ｫ縲∝､ｧ謇九ぞ繝阪さ繝ｳ縺ｨ蜻ｼ縺ｰ繧後ｋ莨∵･ｭ鄒､・医せ繝ｼ繝代・繧ｼ繝阪さ繝ｳ縺ｪ縺ｩ・峨・縲∝ｹｳ蝮・ｹｴ蜿弱′髱槫ｸｸ縺ｫ鬮倥￥縲・00荳・・縺九ｉ1,100荳・・縺ｫ驕斐☆繧九％縺ｨ繧ゅ≠繧翫∪縺吶ゅ％繧後ｉ縺ｮ莨∵･ｭ縺ｧ縺ｯ縲・0莉｣縺ｧ蟷ｴ蜿・,000荳・・繧定ｶ・∴繧九こ繝ｼ繧ｹ繧ら渚縺励￥縺ゅｊ縺ｾ縺帙ｓ縲ゆｸ譁ｹ縲∽ｸｭ蟆丈ｼ∵･ｭ縺ｧ縺ｯ螟ｧ謇九→豈碑ｼ・＠縺ｦ蟷ｴ蜿取ｰｴ貅悶′荳九′繧句だ蜷代↓縺ゅｊ縺ｾ縺吶・        </p>
+
+        <h4 className="text-base sm:text-lg font-bold text-gray-800 mt-5 mb-2">
+          1.3.3 雉・ｼ縺ｮ譛臥┌
+        </h4>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｫ縺翫＞縺ｦ縲・          <mark className="bg-amber-100 px-1 rounded font-bold">蝗ｽ螳ｶ雉・ｼ縺ｮ譛臥┌縺ｯ蟷ｴ蜿弱↓螟ｧ縺阪￥蠖ｱ髻ｿ縺吶ｋ隕∝屏縺ｮ荳縺､縺ｧ縺・/mark>
+          縲ゆｸ邏壼ｻｺ遽牙｣ｫ繧・邏壼ｻｺ遽画命蟾･邂｡逅・橿螢ｫ縲∵橿陦灘｣ｫ縺ｪ縺ｩ縺ｮ鬮伜ｺｦ縺ｪ蟆る摩雉・ｼ縺ｯ縲∵球蠖薙〒縺阪ｋ讌ｭ蜍咏ｯ・峇縺悟ｺ・′繧翫√ｈ繧願ｲｬ莉ｻ縺ｮ螟ｧ縺阪＞遶句ｴ縺ｫ蟆ｱ縺上％縺ｨ縺後〒縺阪ｋ縺溘ａ縲・ｫ伜ｹｴ蜿弱↓郢九′繧翫ｄ縺吶＞蛯ｾ蜷代′縺ゅｊ縺ｾ縺吶・        </p>
+      </section>
+
+      <InlineAd />
+
+      {/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ2 */}
+      <section id="section-2" className="scroll-mt-6">
+        <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+          2. 蟷ｴ蜿・000荳・・繧貞ｮ溽樟縺吶ｋ繧ｭ繝｣繝ｪ繧｢繝代せ
+        </h2>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後〒蟷ｴ蜿・000荳・・縺ｨ縺・≧逶ｮ讓吶・縲∵ｱｺ縺励※螟｢迚ｩ隱槭〒縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲る←蛻・↑繧ｭ繝｣繝ｪ繧｢繝代せ繧帝∈謚槭＠縲∵姶逡･逧・↓繧ｹ繧ｭ繝ｫ縺ｨ邨碁ｨ薙ｒ遨阪∩驥阪・繧九％縺ｨ縺ｧ縲√％縺ｮ鬮伜庶蜈･繧貞ｮ溽樟縺吶ｋ縺薙→縺ｯ蜊∝・縺ｫ蜿ｯ閭ｽ縺ｧ縺吶・        </p>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          2.1 鬮伜ｹｴ蜿弱′譛溷ｾ・〒縺阪ｋ閨ｷ遞ｮ
+        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後↓縺ｯ螟夂ｨｮ螟壽ｧ倥↑閨ｷ遞ｮ縺悟ｭ伜惠縺励∪縺吶′縲√◎縺ｮ荳ｭ縺ｧ繧ら音縺ｫ
+          <mark className="bg-amber-100 px-1 rounded font-bold">蟷ｴ蜿・000荳・・莉･荳翫・鬮伜庶蜈･繧堤漁縺・ｄ縺吶＞閨ｷ遞ｮ</mark>
+          縺後≠繧翫∪縺吶・        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse my-5 text-sm sm:text-base min-w-[500px]">
+            <thead>
+              <tr>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">閨ｷ遞ｮ蜷・/th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">讌ｭ蜍吝・螳ｹ縺ｮ讎りｦ・/th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">鬮伜ｹｴ蜿弱ｒ譛溷ｾ・〒縺阪ｋ逅・罰</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-3 border-b border-gray-100">譁ｽ蟾･邂｡逅・/td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ遽臥黄繧・悄譛ｨ讒矩迚ｩ縺ｮ蟒ｺ險ｭ迴ｾ蝣ｴ縺ｫ縺翫＞縺ｦ縲∝ｷ･遞九∝刀雉ｪ縲∝ｮ牙・縲∝次萓｡縺ｮ邂｡逅・ｒ陦後≧縲・/td>
+                <td className="p-3 border-b border-gray-100">繝励Ο繧ｸ繧ｧ繧ｯ繝亥・菴薙・雋ｬ莉ｻ繧定ｲ縺・∝､夐｡阪・莠育ｮ励→螟壽焚縺ｮ蜊泌鴨莨夂､ｾ繧貞虚縺九☆驥崎ｦ√↑繝昴ず繧ｷ繝ｧ繝ｳ縲ょ､ｧ隕乗ｨ｡縺ｪ繧ｼ繝阪さ繝ｳ繧・ｰる摩諤ｧ縺ｮ鬮倥＞繧ｵ繝悶さ繝ｳ縺ｧ縺ｮ邨碁ｨ薙′隧穂ｾ｡縺輔ｌ繧九・/td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">險ｭ險医・繝・じ繧､繝ｳ</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ遽芽ｨｭ險医・・蟶りｨ育判縲√Λ繝ｳ繝峨せ繧ｱ繝ｼ繝励ョ繧ｶ繧､繝ｳ縺ｪ縺ｩ縲∝ｻｺ險ｭ迚ｩ縺ｮ莨∫判縺九ｉ蜈ｷ菴鍋噪縺ｪ蝗ｳ髱｢菴懈・縺ｾ縺ｧ繧呈球蠖薙・/td>
+                <td className="p-3 border-b border-gray-100">蜑ｵ騾諤ｧ縲∵橿陦灘鴨縲√◎縺励※豕戊ｦ上ｄ繧ｳ繧ｹ繝医ｒ閠・・縺励◆邱丞粋逧・↑謠先｡亥鴨縺梧ｱゅａ繧峨ｌ繧九・IM/CIM縺ｪ縺ｩ縺ｮ譛譁ｰ謚陦薙ｒ菴ｿ縺・％縺ｪ縺帙ｋ莠ｺ譚舌ｂ驥榊ｮ昴＆繧後ｋ縲・/td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">繧ｳ繝ｳ繧ｵ繝ｫ繧ｿ繝ｳ繝医・PM</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ險ｭ繝励Ο繧ｸ繧ｧ繧ｯ繝医・莨∫判遶区｡医∽ｺ区･ｭ諤ｧ隧穂ｾ｡縲∫匱豕ｨ閠・髪謠ｴ縲√・繝ｭ繧ｸ繧ｧ繧ｯ繝医・繝阪ず繝｡繝ｳ繝医↑縺ｩ繧定｡後≧縲・/td>
+                <td className="p-3 border-b border-gray-100">鬮伜ｺｦ縺ｪ蟆る摩遏･隴倥→雎雁ｯ後↑邨碁ｨ薙↓蝓ｺ縺･縺阪√・繝ｭ繧ｸ繧ｧ繧ｯ繝医・謌仙粥縺ｫ荳榊庄谺縺ｪ謌ｦ逡･逧・愛譁ｭ繧剃ｸ九☆縲ょ嵜蜀・､悶・繧､繝ｳ繝輔Λ繝励Ο繧ｸ繧ｧ繧ｯ繝医ｄ螟ｧ隕乗ｨ｡蜀埼幕逋ｺ縺ｧ鬮倥＞蝣ｱ驟ｬ縺瑚ｨｭ螳壹＆繧後※縺・ｋ縲・/td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">謚陦馴幕逋ｺ繝ｻ遐皮ｩｶ</td>
+                <td className="p-3 border-b border-gray-100">譁ｰ邏譚舌・髢狗匱縲∵眠蟾･豕輔・遐皮ｩｶ縲∝ｻｺ險ｭDX謚陦難ｼ・I縲！oT縲√Ο繝懊ャ繝医。IM/CIM縺ｪ縺ｩ・峨・遐皮ｩｶ髢狗匱繧定｡後≧縲・/td>
+                <td className="p-3 border-b border-gray-100">譛蜈育ｫｯ縺ｮ謚陦薙ｒ霑ｽ豎ゅ＠縲∵･ｭ逡悟・菴薙・逕溽肇諤ｧ蜷台ｸ翫ｄ譁ｰ縺溘↑萓｡蛟､蜑ｵ騾縺ｫ雋｢迪ｮ縲ょ､ｧ謇九ぞ繝阪さ繝ｳ縺ｮ遐皮ｩｶ髢狗匱驛ｨ髢縺ｧ鬮伜庶蜈･縺梧悄蠕・〒縺阪ｋ縲・/td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          2.2 繧ｭ繝｣繝ｪ繧｢繧｢繝・・縺ｮ縺溘ａ縺ｮ繧ｹ繝・ャ繝・        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟷ｴ蜿・000荳・・繧貞ｮ溽樟縺吶ｋ縺溘ａ縺ｫ縺ｯ縲∬ｨ育判逧・↑繧ｭ繝｣繝ｪ繧｢繧｢繝・・縺御ｸ榊庄谺縺ｧ縺吶・        </p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li className="text-base leading-[1.8]">
+            <strong>邨碁ｨ薙→繧ｹ繧ｭ繝ｫ縺ｮ遨阪∩驥阪・</strong>・壼､壽ｧ倥↑繝励Ο繧ｸ繧ｧ繧ｯ繝医ｒ邨碁ｨ薙＠縲∝ｮ溷漁繧帝壹§縺ｦ蟷・ｺ・＞繧ｹ繧ｭ繝ｫ繧堤ｿ貞ｾ励☆繧九％縺ｨ縺碁㍾隕√〒縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>雉・ｼ蜿門ｾ励→蟆る摩諤ｧ縺ｮ豺ｱ蛹・/strong>・壻ｸ邏壼ｻｺ遽牙｣ｫ縲∵橿陦灘｣ｫ縲∵命蟾･邂｡逅・橿螢ｫ・・邏夲ｼ峨↑縺ｩ縺ｯ縲∝ｰる摩諤ｧ繧定ｨｼ譏弱＠縲√ｈ繧願ｲｬ莉ｻ縺ｮ縺ゅｋ繝昴ず繧ｷ繝ｧ繝ｳ縺ｸ縺ｮ驕薙ｒ髢九″縺ｾ縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>繝槭ロ繧ｸ繝｡繝ｳ繝郁・蜉帙・鄙貞ｾ・/strong>・壽橿陦灘鴨縺縺代〒縺ｪ縺上∽ｺｺ繧・ｵ・ｹ斐ｒ蜍輔°縺吶・繝阪ず繝｡繝ｳ繝郁・蜉帙′荳榊庄谺縺ｧ縺吶ゅ・繝ｭ繧ｸ繧ｧ繧ｯ繝医Μ繝ｼ繝繝ｼ繧・樟蝣ｴ莉｣逅・ｺｺ縺ｨ縺励※縺ｮ邨碁ｨ薙ｒ遨阪・縺薙→縺梧ｱゅａ繧峨ｌ縺ｾ縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>莠ｺ閼亥ｽ｢謌舌→諠・ｱ蜿朱寔</strong>・壽･ｭ逡悟屮菴薙∈縺ｮ蜿ょ刈縲√そ繝溘リ繝ｼ繧・ｺ､豬∽ｼ壹∈縺ｮ蜃ｺ蟶ｭ繧帝壹§縺ｦ縲∝酔讌ｭ閠・ｄ髢｢騾｣莨∵･ｭ縺ｨ縺ｮ郢九′繧翫ｒ蠎・￡縺ｾ縺励ｇ縺・・          </li>
+        </ul>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          2.3 譛ｪ邨碁ｨ薙°繧蛾ｫ伜ｹｴ蜿弱ｒ逶ｮ謖・☆譁ｹ豕・        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後′譛ｪ邨碁ｨ薙〒縺ゅ▲縺ｦ繧ゅ∝ｹｴ蜿・000荳・・繧堤岼謖・☆縺薙→縺ｯ蜿ｯ閭ｽ縺ｧ縺吶ゅ◆縺縺励∵姶逡･逧・↑繧｢繝励Ο繝ｼ繝√→蠑ｷ縺・э谺ｲ縺梧ｱゅａ繧峨ｌ縺ｾ縺吶・        </p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li className="text-base leading-[1.8]">
+            <strong>繝昴ユ繝ｳ繧ｷ繝｣繝ｫ謗｡逕ｨ縺ｨ謨呵ご蛻ｶ蠎ｦ</strong>・壻ｸ驛ｨ縺ｮ螟ｧ謇九ぞ繝阪さ繝ｳ繧・ｰる摩諤ｧ縺ｮ鬮倥＞莨∵･ｭ縺ｧ縺ｯ縲√・繝・Φ繧ｷ繝｣繝ｫ繧帝㍾隕悶＠縺滓悴邨碁ｨ楢・治逕ｨ繧定｡後▲縺ｦ縺翫ｊ縲∝・螳溘＠縺溽比ｿｮ蛻ｶ蠎ｦ繧ОJT繧帝壹§縺ｦ蟆る摩遏･隴倥ｄ繧ｹ繧ｭ繝ｫ繧堤ｿ貞ｾ励＆縺帙ｋ菴灘宛繧呈紛縺医※縺・∪縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>逡ｰ讌ｭ遞ｮ縺九ｉ縺ｮ霆｢閨ｷ謌ｦ逡･</strong>・壻ｻ匁･ｭ逡後〒蝓ｹ縺｣縺溘せ繧ｭ繝ｫ繧・ｵ碁ｨ薙′縲∝ｻｺ險ｭ讌ｭ逡後〒縲荊ransferable skills・郁ｻ｢逕ｨ蜿ｯ閭ｽ縺ｪ繧ｹ繧ｭ繝ｫ・峨阪→縺励※鬮倥￥隧穂ｾ｡縺輔ｌ繧九こ繝ｼ繧ｹ縺後≠繧翫∪縺吶・T讌ｭ逡後〒縺ｮ邨碁ｨ薙・蟒ｺ險ｭDX謗ｨ騾ｲ縺ｫ縲・≡陞肴･ｭ逡後〒縺ｮ邨碁ｨ薙・蟒ｺ險ｭ繝励Ο繧ｸ繧ｧ繧ｯ繝医・繝輔ぃ繧､繝翫Φ繧ｹ縺ｫ豢ｻ縺九○繧句庄閭ｽ諤ｧ縺後≠繧翫∪縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>迢ｬ遶九・襍ｷ讌ｭ縺ｨ縺・≧驕ｸ謚櫁い</strong>・夊ｱ雁ｯ後↑邨碁ｨ薙→蟆る摩遏･隴倥√◎縺励※蠑ｷ縺・Μ繝ｼ繝繝ｼ繧ｷ繝・・繧呈戟縺､莠ｺ譚舌〒縺ゅｌ縺ｰ縲∫峡遶九・襍ｷ讌ｭ繧るｫ伜ｹｴ蜿弱ｒ螳溽樟縺吶ｋ譛牙鴨縺ｪ驕ｸ謚櫁い縺ｨ縺ｪ繧翫∪縺吶・          </li>
+        </ul>
+      </section>
+
+      <InlineAd />
+
+      {/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ3 */}
+      <section id="section-3" className="scroll-mt-6">
+        <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+          3. 蟷ｴ蜿弱い繝・・縺ｫ逶ｴ邨舌☆繧玖ｳ・ｼ縺ｨ繧ｹ繧ｭ繝ｫ
+        </h2>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後〒蟷ｴ蜿・000荳・・繧堤岼謖・☆荳翫〒縲・          <mark className="bg-amber-100 px-1 rounded font-bold">閾ｪ霄ｫ縺ｮ蟶ょｴ萓｡蛟､繧帝ｫ倥ａ繧玖ｳ・ｼ縺ｮ蜿門ｾ励→縲∝ｮ溷漁縺ｧ蠖ｹ遶九▽蟆る摩繧ｹ繧ｭ繝ｫ縲√◎縺励※繝槭ロ繧ｸ繝｡繝ｳ繝郁・蜉帙・蜷台ｸ翫′荳榊庄谺</mark>
+          縺ｧ縺吶・        </p>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          3.1 蜿門ｾ励☆縺ｹ縺榊嵜螳ｶ雉・ｼ
+        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｫ縺翫＞縺ｦ縲∫音螳壹・讌ｭ蜍吶ｒ陦後≧縺溘ａ縺ｫ縺ｯ蝗ｽ螳ｶ雉・ｼ縺悟ｿ・医→縺ｪ繧句ｴ蜷医′螟壹￥縲√％繧後ｉ縺ｮ雉・ｼ縺ｯ蟷ｴ蜿弱↓逶ｴ邨舌☆繧矩㍾隕√↑隕∫ｴ縺ｧ縺吶ら音縺ｫ1邏壹・雉・ｼ縺ｯ縲∝､ｧ隕乗ｨ｡縺ｪ繝励Ο繧ｸ繧ｧ繧ｯ繝医・雋ｬ莉ｻ閠・ｒ蜍吶ａ繧九◆繧√↓蠢・ｦ√→縺輔ｌ縲√◎縺ｮ蛻・ｫ倥＞隧穂ｾ｡縺ｨ蝣ｱ驟ｬ縺ｫ縺､縺ｪ縺後ｊ縺ｾ縺吶・        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse my-5 text-sm sm:text-base min-w-[500px]">
+            <thead>
+              <tr>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">雉・ｼ蜷・/th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">讎りｦ√→蟷ｴ蜿弱∈縺ｮ蠖ｱ髻ｿ</th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">諠ｳ螳壹＆繧後ｋ閨ｷ遞ｮ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-3 border-b border-gray-100">1邏壽命蟾･邂｡逅・橿螢ｫ</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ險ｭ迴ｾ蝣ｴ縺ｫ縺翫￠繧区命蟾･險育判縲∝ｷ･遞狗ｮ｡逅・∝刀雉ｪ邂｡逅・∝ｮ牙・邂｡逅・↑縺ｩ繧堤ｵｱ諡ｬ縲・邏壹・螟ｧ隕乗ｨ｡縺ｪ蟾･莠九・荳ｻ莉ｻ謚陦楢・ｄ逶｣逅・橿陦楢・↓縺ｪ繧後ｋ縺溘ａ縲∝ｹｴ蜿・000荳・・繧堤岼謖・☆荳翫〒蠢・育ｴ壹・雉・ｼ縲・/td>
+                <td className="p-3 border-b border-gray-100">譁ｽ蟾･邂｡逅・・√・繝ｭ繧ｸ繧ｧ繧ｯ繝医・繝阪・繧ｸ繝｣繝ｼ</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">1邏壼ｻｺ遽牙｣ｫ</td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ遽臥黄縺ｮ險ｭ險医・蟾･莠狗屮逅・ｒ陦後≧蝗ｽ螳ｶ雉・ｼ縲・邏壹・螟ｧ隕乗ｨ｡縺ｪ蟒ｺ遽臥黄繧・､・尅縺ｪ讒矩縺ｮ蟒ｺ遽臥黄縺ｮ險ｭ險医′蜿ｯ閭ｽ縲ょｰる摩諤ｧ縺碁撼蟶ｸ縺ｫ鬮倥￥縲∬ｨｭ險井ｺ句漁謇縺ｮ邨悟霧繧・､ｧ謇句ｻｺ險ｭ莨夂､ｾ縺ｮ險ｭ險磯Κ髢縺ｧ鬮伜庶蜈･縺梧悄蠕・〒縺阪ｋ縲・/td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ遽芽ｨｭ險郁・∬ｨｭ險育屮逅・・/td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">謚陦灘｣ｫ・亥ｻｺ險ｭ驛ｨ髢・・/td>
+                <td className="p-3 border-b border-gray-100">遘大ｭｦ謚陦薙↓髢｢縺吶ｋ鬮伜ｺｦ縺ｪ蟆る摩遏･隴倥→蠢懃畑閭ｽ蜉帙ｒ謖√▽縺薙→繧定ｨｼ譏弱☆繧句嵜螳ｶ雉・ｼ縲ょｻｺ險ｭ繧ｳ繝ｳ繧ｵ繝ｫ繧ｿ繝ｳ繝医ｄ螟ｧ謇句ｻｺ險ｭ莨夂､ｾ縺ｮ謚陦馴幕逋ｺ驛ｨ髢縺ｪ縺ｩ縺ｧ蟆る摩螳ｶ縺ｨ縺励※縺ｮ鬮倥＞隧穂ｾ｡縺ｨ蝣ｱ驟ｬ繧貞ｾ励ｉ繧後ｋ縲・/td>
+                <td className="p-3 border-b border-gray-100">蟒ｺ險ｭ繧ｳ繝ｳ繧ｵ繝ｫ繧ｿ繝ｳ繝医∫皮ｩｶ髢狗匱閠・/td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">螳・慍蟒ｺ迚ｩ蜿門ｼ募｣ｫ</td>
+                <td className="p-3 border-b border-gray-100">荳榊虚逕｣蜿門ｼ輔↓髢｢縺吶ｋ蟆る摩遏･隴倥ｒ謖√▽蝗ｽ螳ｶ雉・ｼ縲ょｻｺ險ｭ讌ｭ縺ｮ荳ｭ縺ｧ繧ゅ∽ｸ榊虚逕｣髢狗匱繧・ｮ・慍騾謌舌↑縺ｩ繧呈焔謗帙￠繧倶ｼ∵･ｭ縺ｧ縲∝悄蝨ｰ縺ｮ莉募・繧後ｄ雋ｩ螢ｲ縺ｫ縺翫＞縺ｦ驥榊ｮ昴＆繧後∝ｹｴ蜿弱い繝・・縺ｫ雋｢迪ｮ縲・/td>
+                <td className="p-3 border-b border-gray-100">荳榊虚逕｣髢狗匱諡・ｽ楢・∫畑蝨ｰ莉募・繧梧球蠖楢・/td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          3.2 螳溷漁邨碁ｨ薙→蟆る摩繧ｹ繧ｭ繝ｫ縺ｮ驥崎ｦ∵ｧ
+        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          雉・ｼ蜿門ｾ励↓蜉縺医※縲∝ｮ溷漁邨碁ｨ薙→迚ｹ螳壹・蟆る摩繧ｹ繧ｭ繝ｫ縺ｯ蟷ｴ蜿弱ｒ螟ｧ縺阪￥蟾ｦ蜿ｳ縺吶ｋ隕∝屏縺ｨ縺ｪ繧翫∪縺吶ら音縺ｫ縲∫樟莉｣縺ｮ蟒ｺ險ｭ讌ｭ逡後〒縺ｯ縲√ョ繧ｸ繧ｿ繝ｫ謚陦薙∈縺ｮ蟇ｾ蠢懊ｄ迚ｹ谿翫↑蟾･豕輔↓髢｢縺吶ｋ遏･隕九′豎ゅａ繧峨ｌ繧句だ蜷代↓縺ゅｊ縺ｾ縺吶・        </p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li className="text-base leading-[1.8]">
+            <strong>螟ｧ隕乗ｨ｡繝励Ο繧ｸ繧ｧ繧ｯ繝育ｵ碁ｨ・/strong>・夊ｶ・ｫ伜ｱ､繝薙Ν縲∝､ｧ隕乗ｨ｡繧､繝ｳ繝輔Λ縲∝・髢狗匱繝励Ο繧ｸ繧ｧ繧ｯ繝医↑縺ｩ縲・屮譏灘ｺｦ縺ｮ鬮倥＞螟ｧ隕乗ｨ｡繝励Ο繧ｸ繧ｧ繧ｯ繝医〒縺ｮ邨碁ｨ薙・縲∝倶ｺｺ縺ｮ閭ｽ蜉帙→螳溽ｸｾ繧定ｨｼ譏弱☆繧倶ｸ翫〒髱槫ｸｸ縺ｫ蠑ｷ蜉帙↑繧｢繝斐・繝ｫ繝昴う繝ｳ繝医→縺ｪ繧翫∪縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>BIM/CIM繧ｹ繧ｭ繝ｫ</strong>・咤IM・・uilding Information Modeling・峨ｄCIM・・onstruction Information Modeling・峨・縲∝ｻｺ險ｭ繝励Ο繧ｸ繧ｧ繧ｯ繝医・蜈ｨ蟾･遞九〒3D繝｢繝・Ν繧呈ｴｻ逕ｨ縺吶ｋ謚陦薙〒縺吶・IM/CIM繧剃ｽｿ縺・％縺ｪ縺帙ｋ莠ｺ譚舌・縲・撼蟶ｸ縺ｫ蟶ょｴ萓｡蛟､縺碁ｫ倥＞縺ｧ縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>DX髢｢騾｣繧ｹ繧ｭ繝ｫ</strong>・唔oT縲、I縲√ラ繝ｭ繝ｼ繝ｳ縲√Ο繝懊ャ繝医↑縺ｩ縺ｮ繝・ず繧ｿ繝ｫ謚陦薙ｒ豢ｻ逕ｨ縺励◆DX縺悟刈騾溘＠縺ｦ縺・∪縺吶ゅ％繧後ｉ縺ｮ謚陦薙ｒ迴ｾ蝣ｴ縺ｫ蟆主・繝ｻ豢ｻ逕ｨ縺ｧ縺阪ｋ繧ｹ繧ｭ繝ｫ縺ｯ縲∽ｼ∵･ｭ縺九ｉ鬮倥￥隧穂ｾ｡縺輔ｌ縺ｾ縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>迚ｹ螳壹・蟾･豕輔ｄ謚陦薙↓髢｢縺吶ｋ蟆る摩遏･隴・/strong>・壼・髴・・蛻ｶ髴・橿陦薙∫音谿雁渕遉主ｷ･豕輔∫腸蠅・・諷ｮ蝙句ｻｺ遽会ｼ・EH縺ｪ縺ｩ・峨√Μ繝弱・繝ｼ繧ｷ繝ｧ繝ｳ繝ｻ繧ｳ繝ｳ繝舌・繧ｸ繝ｧ繝ｳ謚陦薙↑縺ｩ縲∫音螳壹・繝九ャ繝√↑蛻・㍽縺ｫ縺翫￠繧区ｷｱ縺・ｰる摩遏･隴倥・縲・ｫ倥＞蝣ｱ驟ｬ繧貞ｾ励ｋ讖滉ｼ壹ｒ繧ゅ◆繧峨＠縺ｾ縺吶・          </li>
+        </ul>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          3.3 繝槭ロ繧ｸ繝｡繝ｳ繝郁・蜉帙・蜷台ｸ・        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟷ｴ蜿・000荳・・繧定ｶ・∴繧矩ｫ伜庶蜈･繧堤岼謖・☆縺ｫ縺ｯ縲∝腰縺ｪ繧区橿陦楢・→縺励※縺ｮ繧ｹ繧ｭ繝ｫ縺縺代〒縺ｪ縺上・          <mark className="bg-amber-100 px-1 rounded font-bold">邨・ｹ斐ｄ繝励Ο繧ｸ繧ｧ繧ｯ繝医ｒ蜍輔°縺吶・繝阪ず繝｡繝ｳ繝郁・蜉帙′荳榊庄谺</mark>
+          縺ｧ縺吶ゅ・繝ｭ繧ｸ繧ｧ繧ｯ繝医・繝阪ず繝｡繝ｳ繝郁・蜉帙√Μ繝ｼ繝繝ｼ繧ｷ繝・・縺ｨ繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ閭ｽ蜉帙∽ｺｺ譚占ご謌舌・謖・ｰ手・蜉帙∫ｵ悟霧隕也せ縺ｨ謌ｦ逡･逧・晁・′豎ゅａ繧峨ｌ縺ｾ縺吶・        </p>
+      </section>
+
+      <InlineAd />
+
+      {/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ4 */}
+      <section id="section-4" className="scroll-mt-6">
+        <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+          4. 鬮伜庶蜈･繧貞掌縺医ｋ霆｢閨ｷ謌ｦ逡･
+        </h2>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後〒蟷ｴ蜿・000荳・・縺ｨ縺・≧鬮伜庶蜈･繧貞ｮ溽樟縺吶ｋ縺溘ａ縺ｫ縺ｯ縲∵姶逡･逧・↑霆｢閨ｷ豢ｻ蜍輔′荳榊庄谺縺ｧ縺吶ら樟蝨ｨ縺ｮ蟶ょｴ蜍募髄繧呈ｭ｣遒ｺ縺ｫ謚頑升縺励∬・霄ｫ縺ｮ蠑ｷ縺ｿ繧呈怙螟ｧ髯舌↓豢ｻ縺九○繧倶ｼ∵･ｭ繧・・遞ｮ繧定ｦ区･ｵ繧√ｋ縺薙→縺梧・蜉溘∈縺ｮ骰ｵ縺ｨ縺ｪ繧翫∪縺吶・        </p>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          4.1 螟ｧ謇倶ｼ∵･ｭ縺ｨ荳ｭ蟆丈ｼ∵･ｭ縺ｮ驕ｸ謚櫁い
+        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          <mark className="bg-amber-100 px-1 rounded font-bold">螟ｧ謇倶ｼ∵･ｭ縲∫音縺ｫ繧ｹ繝ｼ繝代・繧ｼ繝阪さ繝ｳ縺ｨ蜻ｼ縺ｰ繧後ｋ莨∵･ｭ縺ｯ縲∝ｹｳ蝮・ｹｴ蜿弱′鬮倥＞蛯ｾ蜷代↓縺ゅｊ縺ｾ縺吶・/mark>
+          萓九∴縺ｰ縲∝､ｧ謇句ｻｺ險ｭ莨夂､ｾ縺ｮ荳ｭ縺ｫ縺ｯ蟷ｳ蝮・ｹｴ蜿弱′1000荳・・繧定ｶ・∴繧倶ｼ∵･ｭ繧り､・焚蟄伜惠縺励∪縺吶ゅ％繧後ｉ縺ｮ莨∵･ｭ縺ｯ螟ｧ隕乗ｨ｡縺ｪ繝励Ο繧ｸ繧ｧ繧ｯ繝医↓謳ｺ繧上ｋ讖滉ｼ壹′螟壹￥縲∝ｮ牙ｮ壹＠縺溽ｵ悟霧蝓ｺ逶､縺ｨ蜈・ｮ溘＠縺溽ｦ丞茜蜴夂函縺碁ｭ・鴨縺ｧ縺吶・        </p>
+        <p className="text-base leading-[1.8] mb-4">
+          荳譁ｹ縲∽ｸｭ蟆丈ｼ∵･ｭ繧・ｰる摩蟾･莠倶ｼ夂､ｾ縺ｯ縲∝､ｧ謇九→豈碑ｼ・＠縺ｦ蟷ｳ蝮・ｹｴ蜿弱′菴弱＞繧､繝｡繝ｼ繧ｸ縺後≠繧九°繧ゅ＠繧後∪縺帙ｓ縲ゅ＠縺九＠縲・          <mark className="bg-amber-100 px-1 rounded font-bold">迚ｹ螳壹・謚陦薙ｄ繝九ャ繝√↑蛻・㍽縺ｧ鬮倥＞蟆る摩諤ｧ繧呈戟縺､荳ｭ蟆丈ｼ∵･ｭ縺ｧ縺ｯ縲∝､ｧ謇倶ｼ∵･ｭ縺ｫ蛹ｹ謨ｵ縺吶ｋ縲√≠繧九＞縺ｯ縺昴ｌ莉･荳翫・鬮伜庶蜈･繧貞ｾ励ｉ繧後ｋ蜿ｯ閭ｽ諤ｧ縺後≠繧翫∪縺吶・/mark>
+        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse my-5 text-sm sm:text-base min-w-[500px]">
+            <thead>
+              <tr>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">豈碑ｼ・・岼</th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">螟ｧ謇倶ｼ∵･ｭ・医ぞ繝阪さ繝ｳ縺ｪ縺ｩ・・/th>
+                <th className="bg-gray-50 text-gray-700 p-3 text-left font-semibold border-b border-gray-100">荳ｭ蟆丈ｼ∵･ｭ・亥ｰる摩蟾･莠倶ｼ夂､ｾ縺ｪ縺ｩ・・/th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-3 border-b border-gray-100">繝励Ο繧ｸ繧ｧ繧ｯ繝郁ｦ乗ｨ｡</td>
+                <td className="p-3 border-b border-gray-100">螟ｧ隕乗ｨ｡縺ｪ繧､繝ｳ繝輔Λ縲・・蟶る幕逋ｺ縲√Λ繝ｳ繝峨・繝ｼ繧ｯ蟒ｺ遽峨↑縺ｩ</td>
+                <td className="p-3 border-b border-gray-100">蟆る摩蟾･莠九∝慍蝓溷ｯ・捩蝙区｡井ｻｶ縲∝ｰ剰ｦ乗ｨ｡縺九ｉ荳ｭ隕乗ｨ｡蟒ｺ遽峨↑縺ｩ</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">蟷ｴ蜿取ｰｴ貅・/td>
+                <td className="p-3 border-b border-gray-100">蜈ｨ菴鍋噪縺ｫ鬮俶ｰｴ貅悶∫音縺ｫ邂｡逅・・繧・ｰる摩閨ｷ縺ｧ縺ｯ1000荳・・雜・ｂ蜿ｯ閭ｽ</td>
+                <td className="p-3 border-b border-gray-100">莨∵･ｭ繧・ｰる摩諤ｧ縺ｫ繧医ｋ縺後∫音螳壹・蛻・㍽縺ｧ縺ｯ鬮俶ｰｴ貅悶ｂ蜿ｯ閭ｽ</td>
+              </tr>
+              <tr>
+                <td className="p-3 border-b border-gray-100">繧ｭ繝｣繝ｪ繧｢繝代せ</td>
+                <td className="p-3 border-b border-gray-100">邨・ｹ皮噪縺ｪ繧ｭ繝｣繝ｪ繧｢繧｢繝・・縲∝､壽ｧ倥↑驛ｨ髢縺ｧ縺ｮ邨碁ｨ薙∵ｵｷ螟門共蜍吶・蜿ｯ閭ｽ諤ｧ</td>
+                <td className="p-3 border-b border-gray-100">譌ｩ譛溘・陬・㍼讓ｩ縲∝､壽ｧ倥↑讌ｭ蜍咏ｵ碁ｨ薙∝ｰる摩謚陦薙・豺ｱ蛹悶∫ｵ悟霧螻､縺ｸ縺ｮ霑代＆</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          4.2 霆｢閨ｷ蟶ょｴ縺ｮ蜍募髄縺ｨ繝√Ε繝ｳ繧ｹ
+        </h3>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ逡後・霆｢閨ｷ蟶ょｴ縺ｯ縲∫樟蝨ｨ縲・          <mark className="bg-amber-100 px-1 rounded font-bold">豎り・閠・↓縺ｨ縺｣縺ｦ髱槫ｸｸ縺ｫ譛牙茜縺ｪ迥ｶ豕・/mark>
+          縺檎ｶ壹＞縺ｦ縺・∪縺吶りレ譎ｯ縺ｫ縺ｯ縲∵・諤ｧ逧・↑莠ｺ謇倶ｸ崎ｶｳ縺ｨ縲√◎繧後↓莨ｴ縺・ｼ∵･ｭ縺ｮ謗｡逕ｨ諢乗ｬｲ縺ｮ鬮倥＆縺後≠繧翫∪縺吶ょｻｺ險ｭ讌ｭ逡悟・菴薙〒鬮倬ｽ｢蛹悶′騾ｲ繧薙〒縺翫ｊ縲∬凶蟷ｴ螻､縺ｮ莠ｺ譚舌′荳崎ｶｳ縺励※縺・ｋ縺ｨ縺・≧讒矩逧・↑隱ｲ鬘後′縺ゅｊ縺ｾ縺吶ゅ∪縺溘√う繝ｳ繝輔Λ縺ｮ閠∵愎蛹門ｯｾ遲悶ｄ驛ｽ蟶ょ・髢狗匱繝励Ο繧ｸ繧ｧ繧ｯ繝医・豢ｻ逋ｺ蛹悶ｂ縲∝ｻｺ險ｭ謚戊ｳ・・諡｡螟ｧ繧堤何蠑輔＠縲∵ｱゆｺｺ繝九・繧ｺ繧貞ｺ募・￥縺励※縺・∪縺吶・        </p>
+        <p className="text-base leading-[1.8] mb-4">
+          2024蟷ｴ4譛医°繧牙ｻｺ險ｭ讌ｭ縺ｫ繧る←逕ｨ縺輔ｌ繧九梧凾髢灘､門感蜒阪・荳企剞隕丞宛縲阪√＞繧上ｆ繧九・024蟷ｴ蝠城｡後阪・縲∵･ｭ逡後・蜒阪″譁ｹ繧貞､ｧ縺阪￥螟蛾擠縺吶ｋ縺阪▲縺九￠縺ｨ縺ｪ縺｣縺ｦ縺・∪縺吶ゅ％繧後↓繧医ｊ縲∵･ｭ蜍吶・繝・ず繧ｿ繝ｫ蛹厄ｼ・X・峨ｄ逕溽肇諤ｧ蜷台ｸ翫∈縺ｮ謚戊ｳ・′蜉騾溘＠縺ｦ縺・∪縺吶ょｻｺ險ｭDX髢｢騾｣縺ｮ閨ｷ遞ｮ縺ｧ縺ｯ縲∝ｹｴ蜿・000荳・・繧定ｶ・∴繧区ｱゆｺｺ繧りｦ九ｉ繧後∪縺吶・        </p>
+
+        <h3 className="text-[length:var(--font-size-h3-mobile)] sm:text-[length:var(--font-size-h3)] font-bold text-gray-800 mt-7 mb-3 pl-3 border-l-2 border-blue-400">
+          4.3 蜉ｹ譫懃噪縺ｪ霆｢閨ｷ豢ｻ蜍輔・騾ｲ繧∵婿
+        </h3>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li className="text-base leading-[1.8]">
+            <strong>閾ｪ霄ｫ縺ｮ蟶ょｴ萓｡蛟､繧呈ｭ｣遒ｺ縺ｫ謚頑升縺吶ｋ</strong>・夐℃蜴ｻ縺ｮ繝励Ο繧ｸ繧ｧ繧ｯ繝医〒縺ｮ蜈ｷ菴鍋噪縺ｪ螳溽ｸｾ・医さ繧ｹ繝亥炎貂帙∝ｷ･譛溽洒邵ｮ縲∝刀雉ｪ蜷台ｸ翫↑縺ｩ・峨ｄ縲∝叙蠕励＠縺ｦ縺・ｋ蝗ｽ螳ｶ雉・ｼ縺ｪ縺ｩ繧呈・遒ｺ縺ｫ險隱槫喧縺励∪縺励ｇ縺・・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>繝ｬ繧ｸ繝･繝｡繝ｻ閨ｷ蜍咏ｵ梧ｭｴ譖ｸ縺ｨ繝昴・繝医ヵ繧ｩ繝ｪ繧ｪ縺ｮ菴懈・</strong>・壼・菴鍋噪縺ｪ螳溽ｸｾ繧・ｲ｢迪ｮ蜀・ｮｹ繧呈焚蟄励ｒ莠､縺医※險倩ｿｰ縺励∽ｼ∵･ｭ縺梧ｱゅａ繧倶ｺｺ譚仙ワ縺ｨ蜷郁・縺吶ｋ轤ｹ繧貞ｼｷ隱ｿ縺励∪縺励ｇ縺・・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>蟆る摩縺ｮ霆｢閨ｷ繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医ｒ豢ｻ逕ｨ縺吶ｋ</strong>・壼ｻｺ險ｭ讌ｭ逡後↓迚ｹ蛹悶＠縺溯ｻ｢閨ｷ繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・縲∵･ｭ逡後・譛譁ｰ蜍募髄繧・撼蜈ｬ髢区ｱゆｺｺ諠・ｱ縺ｫ邊ｾ騾壹＠縺ｦ縺翫ｊ縲∵怙驕ｩ縺ｪ莨∵･ｭ繧堤ｴｹ莉九＠縺ｦ縺上ｌ縺ｾ縺吶る撼蜈ｬ髢区ｱゆｺｺ縺ｸ縺ｮ繧｢繧ｯ繧ｻ繧ｹ縲∽ｼ∵･ｭ縺ｨ縺ｮ莠､貂我ｻ｣陦後・∈閠・ｯｾ遲悶∵ュ蝣ｱ蜿朱寔縺ｨ縺・▲縺溘Γ繝ｪ繝・ヨ縺後≠繧翫∪縺吶・          </li>
+          <li className="text-base leading-[1.8]">
+            <strong>髱｢謗･蟇ｾ遲悶→蟷ｴ蜿惹ｺ､貂・/strong>・壹％繧後∪縺ｧ縺ｮ邨碁ｨ薙ｄ繧ｹ繧ｭ繝ｫ縺悟ｿ懷供莨∵･ｭ縺ｧ縺ｩ縺ｮ繧医≧縺ｫ豢ｻ縺九○繧九°繧貞・菴鍋噪縺ｫ繧｢繝斐・繝ｫ縺励∪縺励ｇ縺・ょｹｴ蜿惹ｺ､貂峨・霆｢閨ｷ謌仙粥縺ｮ驥崎ｦ√↑隕∫ｴ縺ｧ縺吶・          </li>
+        </ul>
+        <p className="text-base leading-[1.8] mb-4">
+          鬮伜庶蜈･繧貞ｮ溽樟縺吶ｋ縺溘ａ縺ｫ縺ｯ縲∫樟蝨ｨ縺ｮ蟒ｺ險ｭ讌ｭ逡後′謚ｱ縺医ｋ隱ｲ鬘鯉ｼ井ｺｺ謇倶ｸ崎ｶｳ縲．X謗ｨ騾ｲ縺ｪ縺ｩ・峨ｒ逅・ｧ｣縺励√◎繧後ｉ縺ｮ隗｣豎ｺ縺ｫ雋｢迪ｮ縺ｧ縺阪ｋ莠ｺ譚舌〒縺ゅｋ縺薙→繧偵い繝斐・繝ｫ縺吶ｋ縺薙→縺悟柑譫懃噪縺ｧ縺吶・        </p>
+      </section>
+
+      <InlineAd />
+
+      {/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ5・壹∪縺ｨ繧・*/}
+      <section id="section-5" className="scroll-mt-6">
+        <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+          5. 縺ｾ縺ｨ繧・        </h2>
+        <p className="text-base leading-[1.8] mb-4">
+          蟒ｺ險ｭ讌ｭ縺ｧ蟷ｴ蜿・000荳・・繧堤岼謖・☆縺薙→縺ｯ縲∵ｱｺ縺励※螟｢迚ｩ隱槭〒縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲よ悽險倅ｺ九〒隗｣隱ｬ縺励◆繧医≧縺ｫ縲∝ｻｺ險ｭ讌ｭ蜈ｨ菴薙・蟷ｴ蜿取ｰｴ貅悶・荳頑・蛯ｾ蜷代↓縺ゅｊ縲∫音螳壹・閨ｷ遞ｮ繧・ｰる摩繧ｹ繧ｭ繝ｫ縲∝嵜螳ｶ雉・ｼ縺ｮ蜿門ｾ励↓繧医▲縺ｦ鬮伜庶蜈･繧貞ｮ溽樟縺吶ｋ驕薙・髢九°繧後※縺・∪縺吶・        </p>
+        <p className="text-base leading-[1.8] mb-4">
+          迚ｹ縺ｫ縲∵命蟾･邂｡逅・橿螢ｫ繧・ｻｺ遽牙｣ｫ縺ｨ縺・▲縺溯ｳ・ｼ縺ｯ蟶ょｴ萓｡蛟､縺碁ｫ倥￥縲√く繝｣繝ｪ繧｢繧｢繝・・縺ｮ蠑ｷ蜉帙↑豁ｦ蝎ｨ縺ｨ縺ｪ繧翫∪縺吶ゅ∪縺溘√・繝阪ず繝｡繝ｳ繝郁・蜉帙・蜷台ｸ翫ｄ縲∝､ｧ謇倶ｼ∵･ｭ縺ｸ縺ｮ謌ｦ逡･逧・↑霆｢閨ｷ繧ょｹｴ蜿弱い繝・・縺ｫ逶ｴ邨舌＠縺ｾ縺吶り・霄ｫ縺ｮ繧ｭ繝｣繝ｪ繧｢繝励Λ繝ｳ繧呈・遒ｺ縺ｫ縺励∝・菴鍋噪縺ｪ陦悟虚繧堤ｩ阪∩驥阪・繧九％縺ｨ縺ｧ縲∝ｻｺ險ｭ讌ｭ逡後〒縺ｮ鬮伜庶蜈･縺ｯ蜊∝・縺ｫ驕疲・蜿ｯ閭ｽ縺ｧ縺吶よ悴譚･繧定ｦ区紺縺医◆雉｢譏弱↑驕ｸ謚槭→蜉ｪ蜉帙′縲√≠縺ｪ縺溘・蟷ｴ蜿・000荳・・繧堤樟螳溘・繧ゅ・縺ｫ縺吶ｋ縺ｧ縺励ｇ縺・・        </p>
+      </section>
+    </article>
+  );
+}
+

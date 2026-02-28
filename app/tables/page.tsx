@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import ArticlePageLayout from '@/app/components/v2/layouts/ArticlePageLayout';
+import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonListClient from '../components/ComparisonListClient';
 import { createPageMetadata } from '@/app/lib/metadata';
 
@@ -13,5 +16,21 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function TablesPage() {
-  return <ComparisonListClient />;
+  return (
+    <ArticlePageLayout
+      catchphrase1="＼年代別 手取りを徹底解説／"
+      catchphrase2="【将来設計に役立つお金の増やし方】"
+    >
+      <TedoriCalculator noMargin contentLayout={true} />
+      <nav className="breadcrumb mb-3">
+        <Link href="/">ホーム</Link> {'>'} <Link href="/tables">手取り一覧表</Link> {'>'} 一覧表
+      </nav>
+
+      <h1 className="text-[length:var(--font-size-h1-mobile)] sm:text-[length:var(--font-size-h1)] font-bold text-[#1E293B] mb-6">
+        年代別 手取り徹底解説!将来設計に役立つ賢いお金の増やし方
+      </h1>
+
+      <ComparisonListClient />
+    </ArticlePageLayout>
+  );
 }
