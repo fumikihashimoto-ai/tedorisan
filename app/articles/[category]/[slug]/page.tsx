@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug } from '@/lib/microcms';
 import { createPageMetadata } from '@/app/lib/metadata';
@@ -135,6 +136,42 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <PageLayout maxWidth="content">
+      {/* ヒーローセクション（thumbnail画像がある場合のみ） */}
+      {article.thumbnail && (
+        <section className="relative w-full max-w-[750px] mx-auto -mx-4 overflow-hidden">
+          <div className="relative w-full aspect-[16/9] min-h-[200px] md:min-h-[300px]">
+            <Image
+              src={article.thumbnail.url}
+              alt={article.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 750px"
+              priority
+            />
+            {/* 暗いグラデーションオーバーレイ */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+            {/* タイトルオーバーレイ */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+              <h1 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-white leading-[1.5] drop-shadow-md">
+                {article.title}
+              </h1>
+              {article.category.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {article.category.map((cat) => (
+                    <span
+                      key={cat}
+                      className="font-['Noto_Sans_JP'] text-[10px] text-white bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded"
+                    >
+                      {getCategoryLabel(cat)}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* パンくずリスト */}
       <nav className="font-['Noto_Sans_JP'] text-[12px] text-[#64748B] py-3">
         <Link href="/" className="hover:text-[#1390c8]">TOP</Link>
@@ -149,21 +186,25 @@ export default async function ArticleDetailPage({ params }: Props) {
       </nav>
 
       <article className="py-6">
-        <h1 className="font-['Noto_Sans_JP'] text-[16px] font-bold text-[#3f3f3f] pb-4 mb-6 border-b-2 border-[#1390c8]">
-          {article.title}
-        </h1>
-
-        {article.category.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-6">
-            {article.category.map((cat) => (
-              <span
-                key={cat}
-                className="font-['Noto_Sans_JP'] text-[10px] text-[#1390c8] bg-[#f0f9ff] px-1.5 py-0.5 rounded"
-              >
-                {getCategoryLabel(cat)}
-              </span>
-            ))}
-          </div>
+        {/* thumbnailがない場合のみ通常のh1タイトルを表示 */}
+        {!article.thumbnail && (
+          <>
+            <h1 className="font-['Noto_Sans_JP'] text-[16px] font-bold text-[#3f3f3f] pb-4 mb-6 border-b-2 border-[#1390c8]">
+              {article.title}
+            </h1>
+            {article.category.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mb-6">
+                {article.category.map((cat) => (
+                  <span
+                    key={cat}
+                    className="font-['Noto_Sans_JP'] text-[10px] text-[#1390c8] bg-[#f0f9ff] px-1.5 py-0.5 rounded"
+                  >
+                    {getCategoryLabel(cat)}
+                  </span>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
         <div className="flex flex-col gap-6">
