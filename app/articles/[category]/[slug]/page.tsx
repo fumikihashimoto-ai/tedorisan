@@ -67,8 +67,8 @@ function renderBodyBlock(block: ArticleBodyBlock, index: number) {
 
   // パーツブロック
   if (block.fieldId === 'partsBlock') {
-    const partType = block.partType ?? '';
-    const partCategory = block.partCategory ?? '';
+    const partType = (block.partType ?? '').trim().toLowerCase();
+    const partCategory = (block.partCategory ?? '').trim();
 
     if (partType === 'calculator') {
       return <TedoriCalculator key={index} noMargin contentLayout />;
