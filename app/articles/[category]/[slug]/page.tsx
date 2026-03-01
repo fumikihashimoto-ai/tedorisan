@@ -138,8 +138,8 @@ export default async function ArticleDetailPage({ params }: Props) {
     <PageLayout maxWidth="content">
       {/* ヒーローセクション（thumbnail画像がある場合のみ） */}
       {article.thumbnail && (
-        <section className="relative w-full max-w-[750px] mx-auto -mx-4 overflow-hidden">
-          <div className="relative w-full aspect-[16/9] min-h-[200px] md:min-h-[300px]">
+        <section className="relative w-full overflow-hidden rounded-[2px]">
+          <div className="relative w-full aspect-[16/9]">
             <Image
               src={article.thumbnail.url}
               alt={article.title}
