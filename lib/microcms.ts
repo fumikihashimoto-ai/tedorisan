@@ -11,8 +11,8 @@ export type ArticleThumbnail = {
 export type ArticleBodyBlock = {
   fieldId: string;
   richText?: string;
-  partType?: string;
-  partCategory?: string;
+  partType?: string | string[];
+  partCategory?: string | string[];
 };
 
 export type Article = {

@@ -20,6 +20,12 @@ type Props = {
   params: Promise<{ category: string; slug: string }>;
 };
 
+/** microCMSのセレクトフィールドは配列で返る場合がある。先頭の値を文字列として取得する */
+function resolveField(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return (value[0] ?? '').trim().toLowerCase();
+  return (value ?? '').trim().toLowerCase();
+}
+
 /** partCategoryからComparisonTableのtargetSituationsへマッピング */
 const PART_CATEGORY_SITUATIONS: Record<string, string[]> = {
   it: ['it_beginner', 'it_experienced'],
@@ -67,8 +73,8 @@ function renderBodyBlock(block: ArticleBodyBlock, index: number) {
 
   // パーツブロック
   if (block.fieldId === 'partsBlock') {
-    const partType = (block.partType ?? '').trim().toLowerCase();
-    const partCategory = (block.partCategory ?? '').trim();
+    const partType = resolveField(block.partType);
+    const partCategory = resolveField(block.partCategory);
 
     if (partType === 'calculator') {
       return <TedoriCalculator key={index} noMargin contentLayout />;
