@@ -39,6 +39,20 @@ export async function getArticles(queries?: MicroCMSQueries) {
   });
 }
 
+// カテゴリ別記事一覧取得
+export async function getArticlesByCategory(
+  category: string,
+  queries?: MicroCMSQueries
+) {
+  return await client.getList<Article>({
+    endpoint: "articles",
+    queries: {
+      ...queries,
+      filters: `category[contains]${category}`,
+    },
+  });
+}
+
 // 記事詳細取得（slugでフィルタして1件取得）
 export async function getArticleBySlug(slug: string) {
   const data = await client.getList<Article>({
