@@ -181,11 +181,11 @@ export default async function ArticleDetailPage({ params }: Props) {
       </nav>
 
       {/* 4. タイトル（h1）+ カテゴリタグ */}
-      <h1 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] pb-4 mb-6 border-b-2 border-[#1390c8]">
+      <h1 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] pb-4 mb-4 border-b-2 border-[#1390c8]">
         {article.title}
       </h1>
       {article.category.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-6">
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {article.category.map((cat) => (
             <span
               key={cat}
@@ -198,8 +198,8 @@ export default async function ArticleDetailPage({ params }: Props) {
       )}
 
       {/* 5. 記事本文（calculatorを除外したbodyBlocks） */}
-      <article className="py-6">
-        <div className="flex flex-col gap-6">
+      <article className="pt-2 pb-6">
+        <div className="flex flex-col gap-4">
           {contentBlocks.map((block, index) => renderBodyBlock(block, index))}
         </div>
       </article>
