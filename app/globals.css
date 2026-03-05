@@ -1024,6 +1024,26 @@ h4 {
   overflow-x: auto;
 }
 
+/* 記事リッチテキスト内のリストスタイル（Tailwindリセットの上書き） */
+.article-rich-text ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+}
+.article-rich-text ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+.article-rich-text li {
+  margin-bottom: 8px;
+}
+.article-rich-text li:last-child {
+  margin-bottom: 0;
+}
+/* リスト内のp要素の余白をリセット（microCMSのHTML形式対応） */
+.article-rich-text li p {
+  margin-bottom: 0;
+}
+
 /* PointHeaderBox内の出典テキスト（ボディ内 .article-rich-text の最後のp要素） */
 .point-header-body .article-rich-text p:last-child {
   font-size: 12px;
