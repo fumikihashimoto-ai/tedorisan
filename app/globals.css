@@ -991,6 +991,39 @@ h4 {
   margin-bottom: 0;
 }
 
+/* 記事リッチテキスト内のテーブルスタイル */
+.article-rich-text table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+.article-rich-text table th {
+  background-color: var(--color-v2-primary);
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  text-align: center;
+}
+.article-rich-text table td {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  text-align: center;
+}
+.article-rich-text table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+/* テーブルセル内のp要素の余白をリセット（microCMSのHTML形式対応） */
+.article-rich-text table th p,
+.article-rich-text table td p {
+  margin-bottom: 0;
+}
+/* リッチテキスト内テーブルの横スクロール対応 */
+.article-rich-text {
+  overflow-x: auto;
+}
+
 /* PointHeaderBox内の出典テキスト（ボディ内 .article-rich-text の最後のp要素） */
 .point-header-body .article-rich-text p:last-child {
   font-size: 12px;
