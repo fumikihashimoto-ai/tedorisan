@@ -67,7 +67,7 @@ echo ""
 echo "📋 チェック2: .gitignore の設定"
 
 if [ -f .gitignore ]; then
-  if grep -q "\.env\.local" .gitignore; then
+  if grep -qE '\.env\.local|\.env\*\.local|\.env\*' .gitignore; then
     echo -e "${GREEN}✅ .env.local は .gitignore に含まれています${NC}"
   else
     echo -e "${RED}❌ .env.local が .gitignore に含まれていません！${NC}"
