@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { cmsRedirects } from './lib/redirects';
 
 const nextConfig: NextConfig = {
   images: {
@@ -150,6 +151,7 @@ const nextConfig: NextConfig = {
         destination: '/qualifications/araforty-engineer',
         permanent: true,
       },
+      ...cmsRedirects,
     ];
   },
 };
