@@ -41,7 +41,7 @@ export default function PointHeaderBox({
       </div>
 
       {/* ボディ */}
-      <div className={bodyClasses}>{children}</div>
+      <div className={`point-header-body ${bodyClasses}`}>{children}</div>
     </div>
   );
 }
