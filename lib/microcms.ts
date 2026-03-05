@@ -13,6 +13,9 @@ export type ArticleBodyBlock = {
   richText?: string;
   partType?: string | string[];
   partCategory?: string | string[];
+  pointTitle?: string;
+  pointBody?: string;
+  pointVariant?: string | string[];
 };
 
 export type Article = {

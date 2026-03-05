@@ -8,6 +8,7 @@ import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
 import ArticleCTAButton from '@/app/components/v2/common/ArticleCTAButton';
+import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import { affiliateServices } from '@/lib/comparisonData';
 import {
   isValidCategory,
@@ -90,6 +91,24 @@ function renderBodyBlock(block: ArticleBodyBlock, index: number) {
           title="転職サイト簡単比較表"
           services={affiliateServices}
         />
+      );
+    }
+
+    if (partType === 'pointbox') {
+      const variant = resolveField(block.pointVariant) || 'highlight';
+      return (
+        <PointHeaderBox
+          key={index}
+          title={block.pointTitle || ''}
+          bodyVariant={variant as 'highlight' | 'bordered'}
+        >
+          {block.pointBody && (
+            <div
+              className="article-rich-text font-['Noto_Sans_JP'] text-[14px] leading-[25px] text-[#3f3f3f]"
+              dangerouslySetInnerHTML={{ __html: block.pointBody }}
+            />
+          )}
+        </PointHeaderBox>
       );
     }
 

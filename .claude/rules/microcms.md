@@ -28,6 +28,9 @@ type ArticleBodyBlock = {
   richText?: string;     // fieldId === 'richTextBlock' の場合
   partType?: string | string[];   // fieldId === 'partsBlock' の場合
   partCategory?: string | string[];  // パーツのカテゴリ指定
+  pointTitle?: string;              // pointBoxパーツのタイトル
+  pointBody?: string;               // pointBoxパーツの本文（HTML文字列）
+  pointVariant?: string | string[];  // pointBoxパーツのバリアント（'highlight' or 'bordered'）
 };
 ```
 
@@ -77,6 +80,7 @@ if (!article) { notFound(); }
   - `calculator` → `TedoriCalculator` コンポーネント
   - `comparison` → `ComparisonTable` コンポーネント
   - `cta` → `ArticleCTAButton` コンポーネント
+  - `pointBox` → `PointHeaderBox` コンポーネント（青ヘッダー+本文ボックス）
   - 未知のpartType → プレースホルダー表示
 
 ### microCMSセレクトフィールドの注意
