@@ -153,16 +153,6 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   const categoryLabel = ARTICLE_CATEGORIES[category as ArticleCategorySlug];
 
-  // bodyBlocksからcalculatorパーツを検出
-  const calculatorBlock = article.bodyBlocks.find(
-    (block) => block.fieldId === 'partsBlock' && resolveField(block.partType) === 'calculator'
-  );
-
-  // 本文レンダリング用のbodyBlocksからcalculatorを除外
-  const contentBlocks = article.bodyBlocks.filter(
-    (block) => !(block.fieldId === 'partsBlock' && resolveField(block.partType) === 'calculator')
-  );
-
   return (
     <PageLayout maxWidth="content">
       {/* 1. ヒーローセクション（thumbnail画像がある場合のみ） */}
@@ -181,12 +171,7 @@ export default async function ArticleDetailPage({ params }: Props) {
         </section>
       )}
 
-      {/* 2. 計算パーツ（bodyBlocksにcalculatorがある場合のみ） */}
-      {calculatorBlock && (
-        <TedoriCalculator noMargin contentLayout />
-      )}
-
-      {/* 3. パンくずリスト */}
+      {/* 2. パンくずリスト */}
       <nav className="font-['Noto_Sans_JP'] text-[12px] text-[#64748B] py-3">
         <Link href="/" className="hover:text-[#1390c8]">TOP</Link>
         <span className="mx-1">&gt;</span>
@@ -216,10 +201,10 @@ export default async function ArticleDetailPage({ params }: Props) {
         </div>
       )}
 
-      {/* 5. 記事本文（calculatorを除外したbodyBlocks） */}
+      {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">
         <div className="flex flex-col gap-4">
-          {contentBlocks.map((block, index) => renderBodyBlock(block, index))}
+          {article.bodyBlocks.map((block, index) => renderBodyBlock(block, index))}
         </div>
       </article>
     </PageLayout>
