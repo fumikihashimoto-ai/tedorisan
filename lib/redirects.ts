@@ -11,4 +11,9 @@ export const cmsRedirects: Redirect[] = [
     destination: '/articles/career-change/high-school-career',
     permanent: true,
   },
+  {
+    source: '/career/career-change-20s',
+    destination: '/articles/career-change/career-change-20s',
+    permanent: true,
+  },
 ];
