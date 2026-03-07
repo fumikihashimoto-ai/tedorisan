@@ -1011,7 +1011,7 @@ h4 {
 .article-rich-text table td {
   padding: 8px 16px;
   border: 1px solid #d1d5db;
-  text-align: center;
+  text-align: left;
 }
 .article-rich-text table tbody tr:nth-child(even) {
   background-color: #f9fafb;
