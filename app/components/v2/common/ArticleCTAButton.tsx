@@ -35,7 +35,12 @@ export default function ArticleCTAButton({
 
   if (href) {
     return (
-      <a href={href} className={baseClasses}>
+      <a
+        href={href}
+        target="_blank"
+        rel="nofollow sponsored noopener noreferrer"
+        className={baseClasses}
+      >
         <div className="text-center w-full">{children}</div>
         {arrowIcon}
       </a>

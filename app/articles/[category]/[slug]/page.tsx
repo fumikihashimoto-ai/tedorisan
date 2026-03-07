@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug } from '@/lib/microcms';
+import { getArticleBySlug, getAdsByCategory } from '@/lib/microcms';
 import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
@@ -16,7 +16,10 @@ import {
   type ArticleCategorySlug,
   ARTICLE_CATEGORIES,
 } from '@/lib/articleCategories';
-import type { ArticleBodyBlock } from '@/lib/microcms';
+import type { ArticleBodyBlock, Ad } from '@/lib/microcms';
+
+/** 常に最新の広告データを取得するためキャッシュを無効化 */
+export const revalidate = 0;
 
 type Props = {
   params: Promise<{ category: string; slug: string }>;
@@ -37,14 +40,6 @@ const PART_CATEGORY_SITUATIONS: Record<string, string[]> = {
   'video-editing': ['video_editing'],
 };
 
-/** partCategoryからCTAテキストとリンクへマッピング */
-const CTA_CONFIG: Record<string, { text: string; href: string }> = {
-  it: { text: 'IT転職の無料相談はこちら', href: '/career/it-engineer' },
-  programming: { text: 'プログラミングスクールを比較する', href: '/career/programming' },
-  pharmacist: { text: '薬剤師の転職相談はこちら', href: '/career/pharmacist' },
-  default: { text: '転職相談はこちら', href: '/career' },
-};
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const article = await getArticleBySlug(slug);
@@ -61,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-function renderBodyBlock(block: ArticleBodyBlock, index: number) {
+function renderBodyBlock(block: ArticleBodyBlock, index: number, ad: Ad | null) {
   // リッチテキストブロック
   if (block.fieldId === 'richTextBlock' && block.richText) {
     return (
@@ -113,11 +108,12 @@ function renderBodyBlock(block: ArticleBodyBlock, index: number) {
     }
 
     if (partType === 'cta') {
-      const config = CTA_CONFIG[partCategory] ?? CTA_CONFIG.default;
+      const service = ad?.services[0];
+      if (!service) return null;
       return (
         <div key={index} className="py-2">
-          <ArticleCTAButton href={config.href}>
-            {config.text}
+          <ArticleCTAButton href={service.affiliateUrl}>
+            {service.ctaText ?? '無料で相談する'}
           </ArticleCTAButton>
         </div>
       );
@@ -150,6 +146,9 @@ export default async function ArticleDetailPage({ params }: Props) {
   if (!article) {
     notFound();
   }
+
+  const { contents: ads } = await getAdsByCategory(category);
+  const ad = ads[0] ?? null;
 
   const categoryLabel = ARTICLE_CATEGORIES[category as ArticleCategorySlug];
 
@@ -204,7 +203,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">
         <div className="flex flex-col gap-4">
-          {article.bodyBlocks.map((block, index) => renderBodyBlock(block, index))}
+          {article.bodyBlocks.map((block, index) => renderBodyBlock(block, index, ad))}
         </div>
       </article>
     </PageLayout>
