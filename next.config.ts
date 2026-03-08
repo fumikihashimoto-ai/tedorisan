@@ -281,6 +281,17 @@ const nextConfig: NextConfig = {
         destination: '/articles/skill-up/40s-women-restart',
         permanent: true,
       },
+      // キャリア系ページ → リダイレクト
+      {
+        source: '/career/career-change-20s',
+        destination: '/articles/career-change/career-change-20s',
+        permanent: true,
+      },
+      {
+        source: '/career/high-income',
+        destination: '/',
+        permanent: true,
+      },
       ...cmsRedirects,
     ];
   },
