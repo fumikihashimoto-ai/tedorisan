@@ -29,7 +29,7 @@ export default function ScrollToTopButton() {
     <div
       className="fixed bottom-4 left-0 right-0 z-40 pointer-events-none flex justify-center"
     >
-      <div className="w-full max-w-[750px] flex justify-end px-4">
+      <div className="w-full max-w-[1200px] flex justify-end px-4">
         <div
           className={`
             transition-all duration-300

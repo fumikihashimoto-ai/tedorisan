@@ -18,8 +18,8 @@ import { TopServiceCard } from './TopServiceCard';
 import ArticleCard from './article/ArticleCard';
 import ComparisonTable from './common/ComparisonTable';
 
-// TOP用の共通コンテナクラス（コンテンツ幅750px統一）
-const TOP_CONTAINER = 'max-w-[750px] mx-auto px-4';
+// TOP用の共通コンテナクラス（コンテンツ幅1200px統一）
+const TOP_CONTAINER = 'max-w-[1200px] mx-auto px-4';
 
 // セクション間余白（v2ルール準拠）
 const SECTION_SPACING = 'py-4 md:py-6 lg:py-8';

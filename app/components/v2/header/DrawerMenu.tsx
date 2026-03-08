@@ -52,7 +52,7 @@ export default function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
   return (
     <>
       {/* ドロワー */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-[750px] bg-white shadow-xl z-[70] overflow-y-auto">
+      <div className="fixed top-0 right-0 h-full w-full max-w-[1200px] bg-white shadow-xl z-[70] overflow-y-auto">
         {/* ヘッダー */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-lg font-bold text-gray-900">メニュー</h2>

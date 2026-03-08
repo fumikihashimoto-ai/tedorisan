@@ -16,7 +16,7 @@ export function HeroSection({
 }: HeroSectionProps = {}) {
   return (
     <section
-      className="relative w-full max-w-[750px] mx-auto flex flex-col min-h-[150px] md:min-h-[260px] overflow-hidden"
+      className="relative w-full max-w-[1200px] mx-auto flex flex-col min-h-[150px] md:min-h-[260px] overflow-hidden"
       style={{ backgroundColor: '#79ccf1' }}
     >
       {/* テキストエリア（中央） */}

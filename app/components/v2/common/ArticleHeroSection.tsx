@@ -25,7 +25,7 @@ export default function ArticleHeroSection({
 }: ArticleHeroSectionProps) {
   return (
     <div
-      className={`w-full mt-6 ${noMargin ? 'pb-0' : 'pb-6'}`}
+      className={`w-full mx-[-16px] w-[calc(100%+32px)] ${noMargin ? 'pb-0' : 'pb-6'}`}
     >
       <section
         className={`relative w-full overflow-hidden rounded-[2px] ${className}`}
@@ -36,7 +36,7 @@ export default function ArticleHeroSection({
           alt={alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 750px"
+          sizes="(max-width: 1200px) 100vw, 1200px"
           priority={priority}
         />
       </section>

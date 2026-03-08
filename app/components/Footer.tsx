@@ -36,7 +36,7 @@ export default function Footer() {
     <footer className="font-['Noto_Sans_JP']">
       {/* ナビゲーションエリア */}
       <div className="bg-[#1E293B] px-6 py-10">
-        <div className="max-w-[750px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <FooterLinkList title="転職する" items={jobChangeMenu} />
           <FooterLinkList title="スキルアップする" items={skillUpMenu} />
           <FooterLinkList title="年収を調べる" items={salaryMenu} />
@@ -46,7 +46,7 @@ export default function Footer() {
 
       {/* ロゴ + リンク */}
       <div className="bg-[#1B3C65] px-4 pt-6 pb-4">
-        <div className="max-w-[750px] mx-auto flex flex-col items-center gap-4">
+        <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
           {/* 運営者情報・プライバシーポリシー */}
           <div className="flex gap-4 text-[11px] text-slate-400">
             <Link href="/about" className="hover:text-white transition-colors">

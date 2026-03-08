@@ -46,15 +46,15 @@ const relatedArticles = [
 export default function CalculatorPage() {
   return (
     <PageLayout maxWidth="content">
-      <section className="mt-6">
+      <section className="w-[calc(100%+32px)] mx-[-16px]">
         <Image
           src="/images/hero_calculator.jpg"
           alt="手取り計算シミュレーター - 年収・月収から手取りを無料計算"
           width={750}
           height={420}
-          className="w-full rounded-[2px]"
+          className="w-full"
           priority
-          sizes="(max-width: 750px) 100vw, 750px"
+          sizes="(max-width: 1200px) 100vw, 1200px"
         />
       </section>
 

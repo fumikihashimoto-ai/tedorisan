@@ -22,7 +22,7 @@ export default function PageLayout({
     tablet: 'max-w-2xl', // 672px
     desktop: 'max-w-4xl', // 896px
     wide: 'max-w-6xl', // 1152px
-    content: 'max-w-[750px] px-4', // TOPページ仕様: 750px統一
+    content: 'max-w-[1200px] px-4', // コンテンツ幅1200px統一
   };
 
   const paddingClass = maxWidth === 'content' ? '' : 'px-[10px]';

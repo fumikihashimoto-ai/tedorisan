@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <>
       {/* ヘッダー（全画面共通・ドロアーメニュー） */}
-      <header className="border-b border-gray-200 shadow-sm max-w-[750px] mx-auto" style={{ backgroundColor: '#fff' }}>
+      <header className="border-b border-gray-200 shadow-sm w-full" style={{ backgroundColor: '#fff' }}>
         <div className="grid grid-cols-[1fr_auto_1fr] items-center h-14 px-4">
           <div aria-hidden />
           {/* ロゴ（grid中央、transformを使わずサブピクセルぼやけを回避） */}
