@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { IMAGE_PATHS } from '@/app/lib/constants/styles';
 import {
   jobChangeMenu,
   skillUpMenu,
@@ -49,16 +47,6 @@ export default function Footer() {
       {/* ロゴ + リンク */}
       <div className="bg-[#1B3C65] px-4 pt-6 pb-4">
         <div className="max-w-[750px] mx-auto flex flex-col items-center gap-4">
-          {/* ロゴ */}
-          <div className="relative w-32 h-8">
-            <Image
-              src={IMAGE_PATHS.headLogo}
-              alt="手取りのミカタ"
-              fill
-              className="object-contain brightness-0 invert"
-            />
-          </div>
-
           {/* 運営者情報・プライバシーポリシー */}
           <div className="flex gap-4 text-[11px] text-slate-400">
             <Link href="/about" className="hover:text-white transition-colors">
