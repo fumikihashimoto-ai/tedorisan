@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
@@ -45,6 +46,18 @@ const relatedArticles = [
 export default function CalculatorPage() {
   return (
     <PageLayout maxWidth="content">
+      <section className="mt-6">
+        <Image
+          src="/images/hero_calculator.jpg"
+          alt="手取り計算シミュレーター - 年収・月収から手取りを無料計算"
+          width={750}
+          height={420}
+          className="w-full rounded-[2px]"
+          priority
+          sizes="(max-width: 750px) 100vw, 750px"
+        />
+      </section>
+
       <h1 className="page-title mt-6">手取り計算シミュレーター</h1>
 
       <section className="mt-6">
