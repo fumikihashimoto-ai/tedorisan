@@ -18,7 +18,6 @@ import { freeConsultationCtaConfig } from '@/lib/articleData/itEngineerSalary';
 import {
   isValidCategory,
   getCategoryLabel,
-  type ArticleCategorySlug,
   ARTICLE_CATEGORIES,
 } from '@/lib/articleCategories';
 import {
@@ -188,7 +187,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     .filter((a) => a.slug !== slug)
     .slice(0, 10);
 
-  const categoryLabel = ARTICLE_CATEGORIES[category as ArticleCategorySlug];
+  const categoryLabel = ARTICLE_CATEGORIES[category];
 
   return (
     <PageLayout maxWidth="content">

@@ -5,6 +5,7 @@ import { Star } from 'lucide-react';
 import { IMAGE_PATHS } from '@/app/lib/constants/styles';
 import type { AffiliateService } from '@/lib/comparisonData';
 import type { Situation } from '@/lib/diagnosisLogic';
+import { filterAndSortServices } from '@/lib/serviceFilter';
 import SectionBar from './SectionBar';
 
 interface ComparisonTableProps {
@@ -30,15 +31,8 @@ export default function ComparisonTable({
   fullWidth = true,
   services,
 }: ComparisonTableProps) {
-  // targetSituationsに含まれるサービスをフィルタリング
-  const filteredServices = services
-    .filter((service) =>
-      targetSituations.some((target) =>
-        service.targetSituation.includes(target)
-      )
-    )
-    .sort((a, b) => b.epc - a.epc)
-    .slice(0, maxItems);
+  // targetSituationsに含まれるサービスをフィルタリング（共通関数を利用）
+  const filteredServices = filterAndSortServices(targetSituations, services, maxItems);
 
   // サービスがない場合は何も表示しない
   if (filteredServices.length === 0) return null;

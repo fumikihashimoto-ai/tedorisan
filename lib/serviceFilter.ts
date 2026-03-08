@@ -17,6 +17,25 @@ export {
 export type ServiceTabType = 'transfer' | 'skillup';
 
 /**
+ * targetSituationsでフィルタ → EPCで降順ソート → 件数制限
+ * ComparisonTable・filterServicesByCategory 等で共通利用
+ */
+export function filterAndSortServices<T extends { targetSituation: string[]; epc: number }>(
+  targetSituations: readonly string[],
+  services: T[],
+  limit: number
+): T[] {
+  return services
+    .filter((service) =>
+      targetSituations.some((target) =>
+        service.targetSituation.includes(target)
+      )
+    )
+    .sort((a, b) => b.epc - a.epc)
+    .slice(0, limit);
+}
+
+/**
  * カテゴリ・タブに応じてサービスをフィルタリングして返す
  * @param category 選択中のカテゴリ
  * @param tab アクティブなタブ
@@ -29,31 +48,19 @@ export function filterServicesByCategory<T extends { targetSituation: string[]; 
   services: T[],
   limit = 3
 ): T[] {
-  const targetSituations = getTargetSituationsByCategory(category);
-
-  let filtered: T[];
-
   if (tab === 'skillup') {
     if (category === 'programming') {
-      filtered = services.filter((s) => s.targetSituation.includes('programming'));
-    } else if (category === 'video_editing') {
-      filtered = services.filter((s) => s.targetSituation.includes('video_editing'));
-    } else {
-      filtered = services.filter(
-        (s) =>
-          s.targetSituation.includes('programming') ||
-          s.targetSituation.includes('video_editing')
-      );
+      return filterAndSortServices(['programming'], services, limit);
     }
-  } else {
-    if (targetSituations.length > 0) {
-      filtered = services.filter((s) =>
-        targetSituations.some((t) => s.targetSituation.includes(t))
-      );
-    } else {
-      filtered = [...services];
+    if (category === 'video_editing') {
+      return filterAndSortServices(['video_editing'], services, limit);
     }
+    return filterAndSortServices(['programming', 'video_editing'], services, limit);
   }
 
-  return filtered.sort((a, b) => b.epc - a.epc).slice(0, limit);
+  const targetSituations = getTargetSituationsByCategory(category);
+  if (targetSituations.length > 0) {
+    return filterAndSortServices(targetSituations, services, limit);
+  }
+  return [...services].sort((a, b) => b.epc - a.epc).slice(0, limit);
 }

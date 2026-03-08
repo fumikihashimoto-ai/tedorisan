@@ -9,7 +9,6 @@ import {
   ARTICLE_CATEGORIES,
   isValidCategory,
   getCategoryLabel,
-  type ArticleCategorySlug,
 } from '@/lib/articleCategories';
 
 type Props = {
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'カテゴリが見つかりません | 手取りのミカタ' };
   }
 
-  const label = ARTICLE_CATEGORIES[category as ArticleCategorySlug];
+  const label = ARTICLE_CATEGORIES[category];
   return createPageMetadata({
     title: `${label}の記事一覧 | 手取りのミカタ`,
     description: `${label}に関する記事一覧です。年収・手取り・転職に関する最新情報をお届けします。`,
@@ -41,7 +40,7 @@ export default async function CategoryPage({ params }: Props) {
     notFound();
   }
 
-  const label = ARTICLE_CATEGORIES[category as ArticleCategorySlug];
+  const label = ARTICLE_CATEGORIES[category];
   const { contents: articles } = await getArticlesByCategory(category, {
     fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
     orders: '-publishedAt',
