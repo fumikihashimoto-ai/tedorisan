@@ -9,7 +9,7 @@ import SectionBar from './SectionBar';
 
 interface ComparisonTableProps {
   /** フィルタリングするtargetSituation（複数指定可） */
-  targetSituations: string[];
+  targetSituations: Situation[];
   /** 表のタイトル（showSectionBar が true の場合に表示） */
   title?: string;
   /** タイトルバー（SectionBar）を表示するか（デフォルト: true） */
@@ -34,7 +34,7 @@ export default function ComparisonTable({
   const filteredServices = services
     .filter((service) =>
       targetSituations.some((target) =>
-        service.targetSituation.includes(target as Situation)
+        service.targetSituation.includes(target)
       )
     )
     .sort((a, b) => b.epc - a.epc)

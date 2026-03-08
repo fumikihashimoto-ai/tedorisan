@@ -4,21 +4,18 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { TabType } from '@/lib/topPageTypes';
 import type { ServiceCategoryType } from '@/lib/serviceFilter';
+import type { AffiliateService } from '@/lib/comparisonData';
 import type { Article } from '@/lib/microcms';
 import { transferCategories, skillupCategories } from '@/lib/topPageData';
-import { affiliateServices } from '@/lib/comparisonData';
 import {
   getTargetSituationsByCategory,
   filterServicesByCategory,
 } from '@/lib/serviceFilter';
 import { HeroSection } from './HeroSection';
-import { TabSwitch } from './TabSwitch';
 import { CategoryButtons } from './CategoryButtons';
 import { TopServiceCard } from './TopServiceCard';
 import ArticleCard from './article/ArticleCard';
 import ComparisonTable from './common/ComparisonTable';
-import SectionBar from './common/SectionBar';
-import CategoryLinkGrid from './common/CategoryLinkGrid';
 
 // TOP用の共通コンテナクラス（コンテンツ幅750px統一）
 const TOP_CONTAINER = 'max-w-[750px] mx-auto px-4';
@@ -32,6 +29,8 @@ interface TopPageClientProps {
   skillUpArticles: Article[];
   salaryArticles: Article[];
   basicsArticles: Article[];
+  /** サーバー側から注入されたサービスデータ（クライアントバンドル削減のため） */
+  services: AffiliateService[];
 }
 
 /** カテゴリ別記事セクション */
@@ -79,6 +78,7 @@ export function TopPageClient({
   skillUpArticles,
   salaryArticles,
   basicsArticles,
+  services,
 }: TopPageClientProps) {
   const [activeTab, setActiveTab] = useState<TabType>('transfer');
   const [serviceCategory, setServiceCategory] =
@@ -96,7 +96,7 @@ export function TopPageClient({
   const displayedServices = filterServicesByCategory(
     serviceCategory,
     activeTab,
-    affiliateServices,
+    services,
     3
   );
 
@@ -171,7 +171,7 @@ export function TopPageClient({
       >
         <ComparisonTable
           targetSituations={getTargetSituationsByCategory(serviceCategory)}
-          services={affiliateServices}
+          services={services}
           title={
             activeTab === 'transfer'
               ? '転職サイト簡単比較表'

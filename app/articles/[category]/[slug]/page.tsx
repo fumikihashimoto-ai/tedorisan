@@ -21,6 +21,10 @@ import {
   type ArticleCategorySlug,
   ARTICLE_CATEGORIES,
 } from '@/lib/articleCategories';
+import {
+  PART_CATEGORY_SITUATIONS,
+  ARTICLE_CATEGORY_SITUATIONS,
+} from '@/lib/categoryMapping';
 import type { ArticleBodyBlock, Ad } from '@/lib/microcms';
 
 /** 同一リクエスト内で getArticleBySlug の重複呼び出しを防ぐ（generateMetadata と page で共有） */
@@ -38,23 +42,6 @@ function resolveField(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return (value[0] ?? '').trim().toLowerCase();
   return (value ?? '').trim().toLowerCase();
 }
-
-/** partCategoryからComparisonTableのtargetSituationsへマッピング */
-const PART_CATEGORY_SITUATIONS: Record<string, string[]> = {
-  it: ['it_beginner', 'it_experienced'],
-  programming: ['programming'],
-  pharmacist: ['pharmacist'],
-  'second-graduate': ['second_graduate'],
-  'video-editing': ['video_editing'],
-};
-
-/** カテゴリ別の自動挿入ComparisonTable用マッピング */
-const CATEGORY_SITUATIONS: Record<string, string[]> = {
-  'career-change': ['it_beginner', 'second_graduate'],
-  'skill-up': ['programming', 'video_editing'],
-  'salary-data': ['it_beginner', 'it_experienced', 'second_graduate'],
-  'salary-basics': ['it_beginner', 'second_graduate'],
-};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
@@ -259,12 +246,12 @@ export default async function ArticleDetailPage({ params }: Props) {
       </article>
 
       {/* 5.5. カテゴリ別比較表（bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
-      {CATEGORY_SITUATIONS[category] &&
+      {ARTICLE_CATEGORY_SITUATIONS[category] &&
         !article.bodyBlocks.some(
           (block) => block.fieldId === 'partsBlock' && resolveField(block.partType) === 'comparison'
         ) && (
           <ComparisonTable
-            targetSituations={CATEGORY_SITUATIONS[category]}
+            targetSituations={ARTICLE_CATEGORY_SITUATIONS[category]}
             title="おすすめサービス比較"
             services={affiliateServices}
           />

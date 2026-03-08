@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { getArticles, getArticlesByCategory } from '@/lib/microcms';
+import { affiliateServices } from '@/lib/comparisonData';
 import { TopPageClient } from '@/app/components/v2/TopPageClient';
 
 export const metadata: Metadata = {
@@ -64,6 +65,7 @@ export default async function Home() {
       skillUpArticles={skillUpArticles}
       salaryArticles={salaryArticles}
       basicsArticles={basicsArticles}
+      services={affiliateServices}
     />
   );
 }

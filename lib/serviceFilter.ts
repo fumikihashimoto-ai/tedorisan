@@ -1,39 +1,17 @@
 /**
- * サービスフィルタ用のカテゴリ型と targetSituations マッピング
+ * サービスフィルタ用のロジック
  * TOPページ・比較表で共通利用
  */
 
-import type { Situation } from './diagnosisLogic';
+import type { ServiceCategoryType } from './categoryMapping';
+import { getTargetSituationsByCategory } from './categoryMapping';
 
-export type ServiceCategoryType =
-  | 'it_engineer'
-  | 'pharmacist'
-  | 'second_graduate'
-  | 'programming'
-  | 'video_editing';
-
-/**
- * カテゴリに対応する targetSituations（フィルタ条件）
- */
-export const CATEGORY_TO_TARGET_SITUATIONS: Record<
-  ServiceCategoryType,
-  Situation[]
-> = {
-  it_engineer: ['it_beginner', 'it_experienced'],
-  pharmacist: ['pharmacist'],
-  second_graduate: ['second_graduate'],
-  programming: ['programming'],
-  video_editing: ['video_editing'],
-};
-
-/**
- * カテゴリから targetSituations を取得
- */
-export function getTargetSituationsByCategory(
-  category: ServiceCategoryType
-): Situation[] {
-  return CATEGORY_TO_TARGET_SITUATIONS[category] ?? [];
-}
+// カテゴリ型・マッピング・ヘルパーは categoryMapping.ts に一元化して再エクスポート
+export type { ServiceCategoryType } from './categoryMapping';
+export {
+  CATEGORY_TO_TARGET_SITUATIONS,
+  getTargetSituationsByCategory,
+} from './categoryMapping';
 
 /** タブ種別（転職 or スキルアップ） */
 export type ServiceTabType = 'transfer' | 'skillup';
