@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { cache } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -21,6 +22,9 @@ import {
   ARTICLE_CATEGORIES,
 } from '@/lib/articleCategories';
 import type { ArticleBodyBlock, Ad } from '@/lib/microcms';
+
+/** 同一リクエスト内で getArticleBySlug の重複呼び出しを防ぐ（generateMetadata と page で共有） */
+const getArticleCached = cache((slug: string) => getArticleBySlug(slug));
 
 /** 常に最新の広告データを取得するためキャッシュを無効化 */
 export const revalidate = 0;
@@ -54,7 +58,7 @@ const CATEGORY_SITUATIONS: Record<string, string[]> = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = await getArticleCached(slug);
 
   if (!article || !isValidCategory(category)) {
     return { title: '記事が見つかりません | 手取りのミカタ' };
@@ -177,20 +181,22 @@ export default async function ArticleDetailPage({ params }: Props) {
     notFound();
   }
 
-  const article = await getArticleBySlug(slug);
+  // 記事・広告・関連記事を並列取得（APIレスポンス待ちを最小化）
+  const [article, { contents: ads }, { contents: categoryArticles }] = await Promise.all([
+    getArticleCached(slug),
+    getAdsByCategory(category),
+    getArticlesByCategory(category, {
+      limit: 11,
+      fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
+      orders: '-publishedAt',
+    }),
+  ]);
+
   if (!article) {
     notFound();
   }
 
-  const { contents: ads } = await getAdsByCategory(category);
   const ad = ads[0] ?? null;
-
-  // 同カテゴリの関連記事を取得（現在の記事を除外して最大10件）
-  const { contents: categoryArticles } = await getArticlesByCategory(category, {
-    limit: 11,
-    fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
-    orders: '-publishedAt',
-  });
   const relatedArticles = categoryArticles
     .filter((a) => a.slug !== slug)
     .slice(0, 10);
