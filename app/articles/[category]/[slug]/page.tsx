@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getAdsByCategory } from '@/lib/microcms';
+import { getArticleBySlug, getArticlesByCategory, getAdsByCategory } from '@/lib/microcms';
+import ArticleCard from '@/app/components/v2/article/ArticleCard';
 import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
@@ -176,6 +177,16 @@ export default async function ArticleDetailPage({ params }: Props) {
   const { contents: ads } = await getAdsByCategory(category);
   const ad = ads[0] ?? null;
 
+  // 同カテゴリの関連記事を取得（現在の記事を除外して最大10件）
+  const { contents: categoryArticles } = await getArticlesByCategory(category, {
+    limit: 11,
+    fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
+    orders: '-publishedAt',
+  });
+  const relatedArticles = categoryArticles
+    .filter((a) => a.slug !== slug)
+    .slice(0, 10);
+
   const categoryLabel = ARTICLE_CATEGORIES[category as ArticleCategorySlug];
 
   return (
@@ -232,6 +243,26 @@ export default async function ArticleDetailPage({ params }: Props) {
           {article.bodyBlocks.map((block, index) => renderBodyBlock(block, index, ad))}
         </div>
       </article>
+
+      {/* 6. 関連記事セクション */}
+      {relatedArticles.length > 0 && (
+        <section className="pt-4 pb-8">
+          <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] mb-4">
+            同じカテゴリの記事
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {relatedArticles.map((related) => (
+              <ArticleCard
+                key={related.id}
+                title={related.title}
+                imageUrl={related.thumbnail?.url ?? '/images/default-thumbnail.png'}
+                tags={related.category ?? []}
+                href={`/articles/${category}/${related.slug}`}
+              />
+            ))}
+          </div>
+        </section>
+      )}
     </PageLayout>
   );
 }
