@@ -25,7 +25,7 @@ export default function ArticleHeroSection({
 }: ArticleHeroSectionProps) {
   return (
     <div
-      className={`w-full mt-4 ${noMargin ? 'pb-0' : 'pb-6'}`}
+      className={`w-full mt-6 ${noMargin ? 'pb-0' : 'pb-6'}`}
     >
       <section
         className={`relative w-full overflow-hidden rounded-[2px] ${className}`}
