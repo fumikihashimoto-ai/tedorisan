@@ -281,6 +281,12 @@ const nextConfig: NextConfig = {
         destination: '/articles/skill-up/40s-women-restart',
         permanent: true,
       },
+      // ツールページ → 計算ページ
+      {
+        source: '/tools',
+        destination: '/calculator',
+        permanent: true,
+      },
       // キャリア系ページ → リダイレクト
       {
         source: '/career/career-change-20s',
