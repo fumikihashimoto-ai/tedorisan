@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/app/lib/metadata';
 import { MAGAZINE_MENU_ITEMS, QUALIFICATION_MENU_ITEMS, TOOLS_MENU_ITEMS } from '@/app/lib/navigation';
+import { getArticles } from '@/lib/microcms';
 
 /**
  * サイトマップ - Google Search Console 提出用
@@ -11,7 +12,7 @@ import { MAGAZINE_MENU_ITEMS, QUALIFICATION_MENU_ITEMS, TOOLS_MENU_ITEMS } from 
  * robots.txt に sitemap の記載あり（自動でクロール対象）
  * /qualifications はリダイレクト先のため掲載なし（QUALIFICATION_MENU_ITEMS に含まない）
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastMod = new Date().toISOString();
 
   // 1. TOPページ
@@ -59,6 +60,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/career/high-income`, lastModified: lastMod, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
+  // 8. CMS記事ページ（microCMSから動的取得）
+  let articlePages: MetadataRoute.Sitemap = [];
+  try {
+    const { contents: articles } = await getArticles({
+      limit: 100,
+      fields: ['id', 'slug', 'category', 'updatedAt'],
+      orders: '-publishedAt',
+    });
+    articlePages = articles
+      .filter((article) => article.slug && article.category.length > 0)
+      .map((article) => ({
+        url: `${SITE_URL}/articles/${article.category[0]}/${article.slug}`,
+        lastModified: article.updatedAt ?? lastMod,
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }));
+  } catch {
+    // microCMS API エラー時は記事ページなしでサイトマップを生成（静的ページは維持）
+  }
+
   return [
     ...topPage,
     ...toolsPages,
@@ -67,5 +88,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tablesTopPage,
     ...faqPage,
     ...careerPages,
+    ...articlePages,
   ];
 }

@@ -6,6 +6,8 @@ type Props = {
   url: string;
   datePublished?: string; // ISO 8601形式
   dateModified?: string;
+  /** og:image用のサムネイルURL（Google推奨） */
+  image?: string;
 };
 
 /**
@@ -18,6 +20,7 @@ export default function ArticleStructuredData({
   url,
   datePublished = '2025-01-01',
   dateModified,
+  image,
 }: Props) {
   const fullUrl = url.startsWith('http') ? url : `${SITE_URL}${url}`;
 
@@ -49,6 +52,7 @@ export default function ArticleStructuredData({
       '@type': 'WebPage',
       '@id': fullUrl,
     },
+    ...(image ? { image } : {}),
     inLanguage: 'ja',
   };
 

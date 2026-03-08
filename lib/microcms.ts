@@ -27,6 +27,10 @@ export type Article = {
   category: string[];
   thumbnail: ArticleThumbnail | null;
   bodyBlocks: ArticleBodyBlock[];
+  /** microCMS自動付与: 公開日時（ISO 8601） */
+  publishedAt?: string;
+  /** microCMS自動付与: 更新日時（ISO 8601） */
+  updatedAt?: string;
 };
 
 // 広告サービス情報（ads API / serviceInfo カスタムフィールド）

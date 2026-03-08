@@ -10,6 +10,7 @@ import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
 import ArticleCTAButton from '@/app/components/v2/common/ArticleCTAButton';
+import ArticleStructuredData from '@/app/components/ArticleStructuredData';
 import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import SectionBar from '@/app/components/v2/common/SectionBar';
 import FreeConsultationCTA from '@/app/components/v2/common/FreeConsultationCTA';
@@ -191,6 +192,16 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <PageLayout maxWidth="content">
+      {/* 0. 構造化データ（JSON-LD） */}
+      <ArticleStructuredData
+        headline={article.title}
+        description={article.description}
+        url={`/articles/${category}/${article.slug}`}
+        datePublished={article.publishedAt}
+        dateModified={article.updatedAt}
+        image={article.thumbnail?.url}
+      />
+
       {/* 1. ヒーローセクション（thumbnail画像がある場合のみ） */}
       {article.thumbnail && (
         <section className="w-full overflow-hidden rounded-[2px]">
