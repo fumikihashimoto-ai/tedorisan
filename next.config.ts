@@ -145,10 +145,15 @@ const nextConfig: NextConfig = {
         destination: '/tables',
         permanent: true,
       },
-      // 資格一覧ページ削除（先頭記事へリダイレクト）
+      // 資格系ページ → 記事ページへリダイレクト
+      {
+        source: '/qualifications/araforty-engineer',
+        destination: '/articles/skill-up/araforty-engineer',
+        permanent: true,
+      },
       {
         source: '/qualifications',
-        destination: '/qualifications/araforty-engineer',
+        destination: '/articles/skill-up/araforty-engineer',
         permanent: true,
       },
       ...cmsRedirects,
