@@ -44,6 +44,14 @@ const PART_CATEGORY_SITUATIONS: Record<string, string[]> = {
   'video-editing': ['video_editing'],
 };
 
+/** カテゴリ別の自動挿入ComparisonTable用マッピング */
+const CATEGORY_SITUATIONS: Record<string, string[]> = {
+  'career-change': ['career_change'],
+  'skill-up': ['skill_up'],
+  'salary-data': ['career_change', 'skill_up'],
+  'salary-basics': ['career_change'],
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const article = await getArticleBySlug(slug);
@@ -243,6 +251,18 @@ export default async function ArticleDetailPage({ params }: Props) {
           {article.bodyBlocks.map((block, index) => renderBodyBlock(block, index, ad))}
         </div>
       </article>
+
+      {/* 5.5. カテゴリ別比較表（bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
+      {CATEGORY_SITUATIONS[category] &&
+        !article.bodyBlocks.some(
+          (block) => block.fieldId === 'partsBlock' && resolveField(block.partType) === 'comparison'
+        ) && (
+          <ComparisonTable
+            targetSituations={CATEGORY_SITUATIONS[category]}
+            title="おすすめサービス比較"
+            services={affiliateServices}
+          />
+        )}
 
       {/* 6. 関連記事セクション */}
       {relatedArticles.length > 0 && (
