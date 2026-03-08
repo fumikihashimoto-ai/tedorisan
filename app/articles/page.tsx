@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { getArticles } from '@/lib/microcms';
 import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
-import { ARTICLE_CATEGORIES, getCategoryLabel } from '@/lib/articleCategories';
+import { ARTICLE_CATEGORIES, CATEGORY_LABELS, getCategoryLabel } from '@/lib/articleCategories';
 
 export const metadata: Metadata = createPageMetadata({
   title: '記事一覧 | 手取りのミカタ',
@@ -37,14 +37,19 @@ export default async function ArticlesPage() {
         <h2 className="font-['Noto_Sans_JP'] text-[14px] font-bold text-[#3f3f3f] mb-3">
           カテゴリから探す
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {Object.entries(ARTICLE_CATEGORIES).map(([slug, label]) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {Object.keys(ARTICLE_CATEGORIES).map((slug) => (
             <Link
               key={slug}
               href={`/articles/${slug}`}
-              className="flex items-center justify-center bg-white border border-[#e6e6e6] rounded-[2px] py-3 px-2 font-['Noto_Sans_JP'] text-[14px] text-[#1390c8] font-bold hover:bg-[#f0f9ff] transition-colors duration-200"
+              className="flex items-center justify-between bg-white border border-[#e6e6e6] rounded-[4px] p-4 hover:border-[#1390c8] transition-colors duration-200"
             >
-              {label}
+              <span className="font-['Noto_Sans_JP'] text-[14px] font-bold text-[#3f3f3f]">
+                {CATEGORY_LABELS[slug] ?? slug}
+              </span>
+              <span className="font-['Noto_Sans_JP'] text-[12px] text-[#1390c8]">
+                記事一覧を見る →
+              </span>
             </Link>
           ))}
         </div>

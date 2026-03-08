@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAdsByCategory } from '@/lib/microcms';
 import ArticleCard from '@/app/components/v2/article/ArticleCard';
-import { createPageMetadata } from '@/app/lib/metadata';
+import { createPageMetadata, SITE_URL } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
@@ -218,7 +218,22 @@ export default async function ArticleDetailPage({ params }: Props) {
         </section>
       )}
 
-      {/* 2. パンくずリスト */}
+      {/* 2. パンくずリスト（JSON-LD + 表示） */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'TOP', item: SITE_URL },
+              { '@type': 'ListItem', position: 2, name: '記事一覧', item: `${SITE_URL}/articles` },
+              { '@type': 'ListItem', position: 3, name: categoryLabel, item: `${SITE_URL}/articles/${category}` },
+              { '@type': 'ListItem', position: 4, name: article.title, item: `${SITE_URL}/articles/${category}/${article.slug}` },
+            ],
+          }),
+        }}
+      />
       <nav className="font-['Noto_Sans_JP'] text-[12px] text-[#64748B] py-3">
         <Link href="/" className="hover:text-[#1390c8]">TOP</Link>
         <span className="mx-1">&gt;</span>
