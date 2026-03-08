@@ -964,25 +964,42 @@ h4 {
   animation: shine-loop var(--shine-duration) linear infinite;
 }
 
-/* 記事リッチテキスト内のh2スタイル */
+/* 記事リッチテキスト内の見出しスタイル */
 .article-rich-text h2 {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 24px;
   font-weight: 700;
-  color: #1E293B;
-  line-height: 34px;
-  padding-bottom: 8px;
+  font-size: 20px;
+  border-bottom: 2px solid #2563EB;
+  padding-bottom: 6px;
   margin-top: 32px;
   margin-bottom: 16px;
-  border-bottom: 2px solid #1390c8;
 }
-@media (max-width: 640px) {
-  .article-rich-text h2 {
-    font-size: 20px;
-    margin-top: 28px;
-    margin-bottom: 14px;
-    padding-bottom: 6px;
-  }
+.article-rich-text h3 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  border-bottom: 1px solid #CBD5E1;
+  padding-bottom: 4px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+.article-rich-text h4 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 4px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.article-rich-text h5 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: 1px dashed #E2E8F0;
+  padding-bottom: 2px;
+  margin-top: 16px;
+  margin-bottom: 8px;
 }
 
 /* 記事リッチテキスト内の段落間隔 */
