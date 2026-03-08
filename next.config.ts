@@ -156,6 +156,12 @@ const nextConfig: NextConfig = {
         destination: '/articles/skill-up/araforty-engineer',
         permanent: true,
       },
+      // magazine系ページ → 記事ページへリダイレクト
+      {
+        source: '/magazine/job-salary/it-engineer',
+        destination: '/articles/salary-data/it-engineer',
+        permanent: true,
+      },
       ...cmsRedirects,
     ];
   },
