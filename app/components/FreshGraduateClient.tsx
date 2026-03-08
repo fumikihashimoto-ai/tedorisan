@@ -67,7 +67,7 @@ export default function FreshGraduateClient({ embedded = false }: FreshGraduateC
 
   const calculatorSection = (
     <section id="calculator" className="pt-4 pb-6 mb-0 scroll-mt-6 -mt-4 md:-mt-6">
-      <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-amber-500">
+      <h2 className="text-[length:var(--font-size-h2-mobile)] sm:text-[length:var(--font-size-h2)] font-bold text-gray-800 mt-10 mb-4 pl-3 border-l-4 border-[#1390c8]">
         新卒の手取り計算シミュレーション
       </h2>
       <div className="pt-0 pb-4 w-full">

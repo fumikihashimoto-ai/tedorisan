@@ -33,7 +33,7 @@ export default function ArticleSection({
           className="text-lg md:text-xl font-black mb-4 pb-2 border-b-2"
           style={{
             color: COLORS.textPrimary,
-            borderColor: COLORS.primaryLight,
+            borderColor: COLORS.primary,
           }}
         >
           {title}
