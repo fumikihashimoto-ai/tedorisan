@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { CATEGORY_LABELS } from '@/lib/articleCategories';
 
 interface ArticleCardProps {
   title: string;
@@ -43,7 +44,7 @@ export default function ArticleCard({
               key={tag}
               className="font-['Noto_Sans_JP'] text-[10px] text-[#1390c8] bg-[#f0f9ff] px-1.5 py-0.5 rounded"
             >
-              {tag}
+              {CATEGORY_LABELS[tag] ?? tag}
             </span>
           ))}
         </div>

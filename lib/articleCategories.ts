@@ -18,3 +18,12 @@ export function getCategoryLabel(slug: string): string {
   }
   return slug;
 }
+
+/** カテゴリスラッグの表示用ラベル（タグ・セクション見出し用） */
+export const CATEGORY_LABELS: Record<string, string> = {
+  'career-change': '転職する',
+  'skill-up': 'スキルアップ',
+  'salary-data': '年収を調べる',
+  'salary-basics': '手取りの基礎知識',
+  'tools': 'ツール',
+};

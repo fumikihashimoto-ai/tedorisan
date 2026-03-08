@@ -11,6 +11,7 @@ import {
   getTargetSituationsByCategory,
   filterServicesByCategory,
 } from '@/lib/serviceFilter';
+import { CATEGORY_LABELS } from '@/lib/articleCategories';
 import { HeroSection } from './HeroSection';
 import { CategoryButtons } from './CategoryButtons';
 import { TopServiceCard } from './TopServiceCard';
@@ -46,7 +47,7 @@ function CategoryArticleSection({
   if (articles.length === 0) return null;
   return (
     <section className={`${TOP_CONTAINER} ${SECTION_SPACING}`}>
-      <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#2563EB] pl-3 mb-4">
+      <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#1390c8] pl-3 mb-4">
         {title}
       </h2>
       <div className="flex flex-col gap-3">
@@ -111,7 +112,7 @@ export function TopPageClient({
       {/* 新着記事セクション */}
       {latestArticles.length > 0 && (
         <section className={`${TOP_CONTAINER} ${SECTION_SPACING}`}>
-          <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#2563EB] pl-3 mb-4">
+          <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#1390c8] pl-3 mb-4">
             新着記事
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
