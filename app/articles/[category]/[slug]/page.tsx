@@ -10,7 +10,9 @@ import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
 import ArticleCTAButton from '@/app/components/v2/common/ArticleCTAButton';
 import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import SectionBar from '@/app/components/v2/common/SectionBar';
+import FreeConsultationCTA from '@/app/components/v2/common/FreeConsultationCTA';
 import { affiliateServices } from '@/lib/comparisonData';
+import { freeConsultationCtaConfig } from '@/lib/articleData/itEngineerSalary';
 import {
   isValidCategory,
   getCategoryLabel,
@@ -114,6 +116,19 @@ function renderBodyBlock(block: ArticleBodyBlock, index: number, ad: Ad | null) 
           key={index}
           title={block.sectionBarTitle || ''}
           noMargin
+        />
+      );
+    }
+
+    if (partType === 'freeconsultationcta') {
+      const deeproService = affiliateServices.find((s) => s.id === 'deepro');
+      if (!deeproService) return null;
+      return (
+        <FreeConsultationCTA
+          key={index}
+          service={deeproService}
+          {...freeConsultationCtaConfig}
+          contentLayout
         />
       );
     }
