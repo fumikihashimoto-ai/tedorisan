@@ -3,7 +3,7 @@ import { cache } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getArticlesByCategory, getAdsByCategory } from '@/lib/microcms';
+import { getArticleBySlug, getArticlesByCategory, getAds } from '@/lib/microcms';
 import ArticleCard from '@/app/components/v2/article/ArticleCard';
 import { createPageMetadata, SITE_URL } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
@@ -169,9 +169,9 @@ export default async function ArticleDetailPage({ params }: Props) {
   }
 
   // 記事・広告・関連記事を並列取得（APIレスポンス待ちを最小化）
-  const [article, { contents: ads }, { contents: categoryArticles }] = await Promise.all([
+  const [article, { contents: allAds }, { contents: categoryArticles }] = await Promise.all([
     getArticleCached(slug),
-    getAdsByCategory(category),
+    getAds({ limit: 100 }),
     getArticlesByCategory(category, {
       limit: 11,
       fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
@@ -183,7 +183,12 @@ export default async function ArticleDetailPage({ params }: Props) {
     notFound();
   }
 
-  const ad = ads[0] ?? null;
+  // 広告の優先順位: 1. targetSlug一致 → 2. カテゴリ一致(targetSlug空) → 3. all(targetSlug空)
+  const slugMatchAd = allAds.find((a) => a.targetSlug === slug);
+  const ad = slugMatchAd
+    ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes(category))
+    ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes('all'))
+    ?? null;
   const relatedArticles = categoryArticles
     .filter((a) => a.slug !== slug)
     .slice(0, 10);

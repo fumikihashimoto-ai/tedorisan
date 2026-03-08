@@ -61,6 +61,8 @@ export type Ad = {
   id: string;
   /** セレクトフィールド: "career-change" | "skill-up" | "salary-data" | "salary-basics" */
   categorySlug: string[];
+  /** 特定記事スラッグ向けの広告指定（テキスト型・任意） */
+  targetSlug?: string;
   /** 繰り返しフィールド（serviceInfo カスタムフィールド） */
   services: AdServiceInfo[];
 };
