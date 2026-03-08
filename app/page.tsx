@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { getArticles, getArticlesByCategory } from '@/lib/microcms';
 import { TopPageClient } from '@/app/components/v2/TopPageClient';
 
 export const metadata: Metadata = {
@@ -39,6 +40,30 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export default function Home() {
-  return <TopPageClient />;
+const articleFields: string[] = ['id', 'title', 'slug', 'description', 'category', 'thumbnail'];
+
+export default async function Home() {
+  const [
+    { contents: latestArticles },
+    { contents: careerArticles },
+    { contents: skillUpArticles },
+    { contents: salaryArticles },
+    { contents: basicsArticles },
+  ] = await Promise.all([
+    getArticles({ limit: 6, orders: '-publishedAt', fields: articleFields }),
+    getArticlesByCategory('career-change', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('skill-up', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('salary-data', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('salary-basics', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+  ]);
+
+  return (
+    <TopPageClient
+      latestArticles={latestArticles}
+      careerArticles={careerArticles}
+      skillUpArticles={skillUpArticles}
+      salaryArticles={salaryArticles}
+      basicsArticles={basicsArticles}
+    />
+  );
 }

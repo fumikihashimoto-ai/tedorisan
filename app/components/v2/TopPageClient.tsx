@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import type { TabType } from '@/lib/topPageTypes';
 import type { ServiceCategoryType } from '@/lib/serviceFilter';
+import type { Article } from '@/lib/microcms';
 import { transferCategories, skillupCategories } from '@/lib/topPageData';
 import { affiliateServices } from '@/lib/comparisonData';
 import {
@@ -13,6 +15,7 @@ import { HeroSection } from './HeroSection';
 import { TabSwitch } from './TabSwitch';
 import { CategoryButtons } from './CategoryButtons';
 import { TopServiceCard } from './TopServiceCard';
+import ArticleCard from './article/ArticleCard';
 import ComparisonTable from './common/ComparisonTable';
 import SectionBar from './common/SectionBar';
 import CategoryLinkGrid from './common/CategoryLinkGrid';
@@ -23,7 +26,60 @@ const TOP_CONTAINER = 'max-w-[750px] mx-auto px-4';
 // セクション間余白（v2ルール準拠）
 const SECTION_SPACING = 'py-4 md:py-6 lg:py-8';
 
-export function TopPageClient() {
+interface TopPageClientProps {
+  latestArticles: Article[];
+  careerArticles: Article[];
+  skillUpArticles: Article[];
+  salaryArticles: Article[];
+  basicsArticles: Article[];
+}
+
+/** カテゴリ別記事セクション */
+function CategoryArticleSection({
+  title,
+  articles,
+  categorySlug,
+}: {
+  title: string;
+  articles: Article[];
+  categorySlug: string;
+}) {
+  if (articles.length === 0) return null;
+  return (
+    <section className={`${TOP_CONTAINER} ${SECTION_SPACING}`}>
+      <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#2563EB] pl-3 mb-4">
+        {title}
+      </h2>
+      <div className="flex flex-col gap-3">
+        {articles.map((article) => (
+          <ArticleCard
+            key={article.id}
+            title={article.title}
+            imageUrl={article.thumbnail?.url ?? '/images/default-thumbnail.png'}
+            tags={article.category ?? []}
+            href={`/articles/${article.category?.[0] ?? categorySlug}/${article.slug}`}
+          />
+        ))}
+      </div>
+      <div className="mt-3 text-right">
+        <Link
+          href={`/articles/${categorySlug}`}
+          className="font-['Noto_Sans_JP'] text-[14px] text-[#2563EB] hover:underline"
+        >
+          一覧を見る →
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+export function TopPageClient({
+  latestArticles,
+  careerArticles,
+  skillUpArticles,
+  salaryArticles,
+  basicsArticles,
+}: TopPageClientProps) {
   const [activeTab, setActiveTab] = useState<TabType>('transfer');
   const [serviceCategory, setServiceCategory] =
     useState<ServiceCategoryType>('it_engineer');
@@ -51,6 +107,34 @@ export function TopPageClient() {
     <div className="min-h-screen bg-white">
       {/* ヒーロー */}
       <HeroSection />
+
+      {/* 新着記事セクション */}
+      {latestArticles.length > 0 && (
+        <section className={`${TOP_CONTAINER} ${SECTION_SPACING}`}>
+          <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#2563EB] pl-3 mb-4">
+            新着記事
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {latestArticles.map((article) => (
+              <ArticleCard
+                key={article.id}
+                title={article.title}
+                imageUrl={article.thumbnail?.url ?? '/images/default-thumbnail.png'}
+                tags={article.category ?? []}
+                href={`/articles/${article.category?.[0] ?? 'career-change'}/${article.slug}`}
+              />
+            ))}
+          </div>
+          <div className="mt-3 text-right">
+            <Link
+              href="/articles"
+              className="font-['Noto_Sans_JP'] text-[14px] text-[#2563EB] hover:underline"
+            >
+              もっと見る →
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* 目的選択セクション */}
       {/* <section
@@ -98,13 +182,27 @@ export function TopPageClient() {
         />
       </section>
 
-      {/* 年代・業種から探す */}
-      {/* <section
-        className={`bg-white ${TOP_CONTAINER} ${SECTION_SPACING}`}
-      >
-        <SectionBar title="年代・業種から探す" variant="withPadding" />
-        <CategoryLinkGrid categories={categories} />
-      </section> */}
+      {/* カテゴリ別記事セクション */}
+      <CategoryArticleSection
+        title="転職する"
+        articles={careerArticles}
+        categorySlug="career-change"
+      />
+      <CategoryArticleSection
+        title="スキルアップ"
+        articles={skillUpArticles}
+        categorySlug="skill-up"
+      />
+      <CategoryArticleSection
+        title="年収を調べる"
+        articles={salaryArticles}
+        categorySlug="salary-data"
+      />
+      <CategoryArticleSection
+        title="手取りの基礎知識"
+        articles={basicsArticles}
+        categorySlug="salary-basics"
+      />
     </div>
   );
 }
