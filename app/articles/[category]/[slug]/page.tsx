@@ -46,10 +46,10 @@ const PART_CATEGORY_SITUATIONS: Record<string, string[]> = {
 
 /** カテゴリ別の自動挿入ComparisonTable用マッピング */
 const CATEGORY_SITUATIONS: Record<string, string[]> = {
-  'career-change': ['career_change'],
-  'skill-up': ['skill_up'],
-  'salary-data': ['career_change', 'skill_up'],
-  'salary-basics': ['career_change'],
+  'career-change': ['it_beginner', 'second_graduate'],
+  'skill-up': ['programming', 'video_editing'],
+  'salary-data': ['it_beginner', 'it_experienced', 'second_graduate'],
+  'salary-basics': ['it_beginner', 'second_graduate'],
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
