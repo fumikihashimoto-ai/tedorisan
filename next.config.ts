@@ -162,6 +162,125 @@ const nextConfig: NextConfig = {
         destination: '/articles/salary-data/it-engineer',
         permanent: true,
       },
+      {
+        source: '/magazine/job-salary/sales',
+        destination: '/articles/salary-data/sales',
+        permanent: true,
+      },
+      {
+        source: '/magazine/job-salary/pharmacist',
+        destination: '/articles/salary-data/pharmacist',
+        permanent: true,
+      },
+      {
+        source: '/magazine/job-salary/nursery',
+        destination: '/articles/salary-data/nursery',
+        permanent: true,
+      },
+      {
+        source: '/magazine/job-salary/medical-tech',
+        destination: '/articles/salary-data/medical-tech',
+        permanent: true,
+      },
+      {
+        source: '/magazine/job-salary/real-estate',
+        destination: '/articles/salary-data/real-estate',
+        permanent: true,
+      },
+      {
+        source: '/magazine/job-salary/construction',
+        destination: '/articles/salary-data/construction',
+        permanent: true,
+      },
+      // 未経験転職系ページ → 記事ページへリダイレクト
+      {
+        source: '/magazine/inexperienced/20s',
+        destination: '/articles/career-change/20s',
+        permanent: true,
+      },
+      {
+        source: '/magazine/inexperienced/20s-women',
+        destination: '/articles/career-change/20s-women',
+        permanent: true,
+      },
+      {
+        source: '/magazine/inexperienced/30s',
+        destination: '/articles/career-change/30s',
+        permanent: true,
+      },
+      {
+        source: '/magazine/inexperienced/30s-women',
+        destination: '/articles/career-change/30s-women',
+        permanent: true,
+      },
+      {
+        source: '/magazine/inexperienced/40s',
+        destination: '/articles/career-change/40s',
+        permanent: true,
+      },
+      {
+        source: '/magazine/inexperienced/40s-women',
+        destination: '/articles/career-change/40s-women',
+        permanent: true,
+      },
+      {
+        source: '/magazine/inexperienced/high-school-women',
+        destination: '/articles/career-change/high-school-women',
+        permanent: true,
+      },
+      {
+        source: '/magazine/high-school',
+        destination: '/articles/career-change/high-school-career',
+        permanent: true,
+      },
+      // ツール系ページ → 記事ページへリダイレクト
+      {
+        source: '/tools/fresh-graduate',
+        destination: '/articles/career-change/fresh-graduate',
+        permanent: true,
+      },
+      {
+        source: '/tools/job-change',
+        destination: '/articles/career-change/job-change',
+        permanent: true,
+      },
+      {
+        source: '/tools/side-business',
+        destination: '/articles/salary-basics/side-business',
+        permanent: true,
+      },
+      // 早見表 → 記事ページへリダイレクト
+      {
+        source: '/tables',
+        destination: '/articles/salary-basics/tables',
+        permanent: true,
+      },
+      // 資格系ページ → 記事ページへリダイレクト（追加分）
+      {
+        source: '/qualifications/stable-career',
+        destination: '/articles/skill-up/stable-career',
+        permanent: true,
+      },
+      {
+        source: '/qualifications/no-entry-requirement',
+        destination: '/articles/skill-up/no-entry-requirement',
+        permanent: true,
+      },
+      {
+        source: '/qualifications/no-work-experience',
+        destination: '/articles/skill-up/no-work-experience',
+        permanent: true,
+      },
+      {
+        source: '/qualifications/high-income',
+        destination: '/articles/skill-up/high-income',
+        permanent: true,
+      },
+      {
+        source: '/qualifications/40s-women-restart',
+        destination: '/articles/skill-up/40s-women-restart',
+        permanent: true,
+      },
       ...cmsRedirects,
     ];
   },
