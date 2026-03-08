@@ -1,30 +1,80 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { IMAGE_PATHS } from '@/app/lib/constants/styles';
+import {
+  jobChangeMenu,
+  skillUpMenu,
+  salaryMenu,
+  calculatorMenu,
+} from '@/lib/headerMenuData';
+import type { MenuItem } from '@/lib/headerMenuData';
+
+function FooterLinkList({ title, items }: { title: string; items: MenuItem[] }) {
+  return (
+    <div>
+      <h3 className="font-['Noto_Sans_JP'] text-[13px] font-bold text-white mb-3">
+        {title}
+      </h3>
+      <ul className="space-y-2">
+        {items.map((item, index) =>
+          item.href ? (
+            <li key={index}>
+              <Link
+                href={item.href}
+                className="font-['Noto_Sans_JP'] text-[12px] text-slate-300 hover:text-white transition-colors"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ) : null,
+        )}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-[#fff] text-white pt-[10px] pb-0">
-      {/* ロゴ（100%幅・青エリアの上） */}
-      <div className="w-full flex justify-center mb-2 bg-[#fff] py-2">
-        <div className="relative w-40 h-10">
-          <Image
-            src={IMAGE_PATHS.headLogo}
-            alt="手取りのミカタ"
-            fill
-            className="object-contain"
-          />
+    <footer className="font-['Noto_Sans_JP']">
+      {/* ナビゲーションエリア */}
+      <div className="bg-[#1E293B] px-6 py-10">
+        <div className="max-w-[750px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <FooterLinkList title="転職する" items={jobChangeMenu} />
+          <FooterLinkList title="スキルアップする" items={skillUpMenu} />
+          <FooterLinkList title="年収を調べる" items={salaryMenu} />
+          <FooterLinkList title="手取りを計算" items={calculatorMenu} />
         </div>
       </div>
 
-      <div className="max-w-md mx-auto px-4 bg-[#1390C8]" />
+      {/* ロゴ + リンク */}
+      <div className="bg-[#1B3C65] px-4 pt-6 pb-4">
+        <div className="max-w-[750px] mx-auto flex flex-col items-center gap-4">
+          {/* ロゴ */}
+          <div className="relative w-32 h-8">
+            <Image
+              src={IMAGE_PATHS.headLogo}
+              alt="手取りのミカタ"
+              fill
+              className="object-contain brightness-0 invert"
+            />
+          </div>
 
-      {/* コピーライト（横幅100%） */}
-      <div className="w-full bg-[#1B3C65] px-4 py-4 text-center">
-        <p className="text-[10px] text-[#fff]">
-          運営者情報｜プライバシーポリシー
-          <br />
-          © 2026 手取りのミカタ All Rights Reserved.
-        </p>
+          {/* 運営者情報・プライバシーポリシー */}
+          <div className="flex gap-4 text-[11px] text-slate-400">
+            <Link href="/about" className="hover:text-white transition-colors">
+              運営者情報
+            </Link>
+            <span className="text-slate-600">|</span>
+            <Link href="/privacy" className="hover:text-white transition-colors">
+              プライバシーポリシー
+            </Link>
+          </div>
+
+          {/* コピーライト */}
+          <p className="text-[10px] text-slate-500">
+            © 2026 手取りのミカタ All Rights Reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
