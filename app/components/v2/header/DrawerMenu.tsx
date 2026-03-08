@@ -94,16 +94,7 @@ export default function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
             </button>
             {openAccordion === 'job-change' && (
               <div className="px-4 py-2 bg-gray-50">
-                {jobChangeMenu.columns.map((column, colIndex) => (
-                  <div key={colIndex} className="mb-3">
-                    <div className="text-xs font-semibold text-gray-500 uppercase mb-1">
-                      {column.title}
-                    </div>
-                    <ul className="space-y-1 pl-2">
-                      {renderMenuItems(column.items)}
-                    </ul>
-                  </div>
-                ))}
+                <ul className="space-y-1">{renderMenuItems(jobChangeMenu)}</ul>
               </div>
             )}
           </li>
