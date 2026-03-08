@@ -16,6 +16,7 @@ export type ArticleBodyBlock = {
   pointTitle?: string;
   pointBody?: string;
   pointVariant?: string | string[];
+  sectionBarTitle?: string;
 };
 
 export type Article = {

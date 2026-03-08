@@ -9,6 +9,7 @@ import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
 import ArticleCTAButton from '@/app/components/v2/common/ArticleCTAButton';
 import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
+import SectionBar from '@/app/components/v2/common/SectionBar';
 import { affiliateServices } from '@/lib/comparisonData';
 import {
   isValidCategory,
@@ -104,6 +105,16 @@ function renderBodyBlock(block: ArticleBodyBlock, index: number, ad: Ad | null) 
             />
           )}
         </PointHeaderBox>
+      );
+    }
+
+    if (partType?.toLowerCase() === 'sectionbar') {
+      return (
+        <SectionBar
+          key={index}
+          title={block.sectionBarTitle || ''}
+          noMargin
+        />
       );
     }
 
