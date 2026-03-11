@@ -55,7 +55,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/data/industry/pharmacist',
-        destination: '/magazine/job-salary/pharmacist',
+        destination: '/articles/salary-data/pharmacist',
         permanent: true,
       },
       {
@@ -70,17 +70,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/data/industry/real-estate',
-        destination: '/magazine/job-salary/real-estate',
+        destination: '/articles/salary-data/real-estate',
         permanent: true,
       },
       {
         source: '/data/industry/construction',
-        destination: '/magazine/job-salary/construction',
+        destination: '/articles/salary-data/construction',
         permanent: true,
       },
       {
         source: '/data/industry/sales',
-        destination: '/magazine/job-salary/sales',
+        destination: '/articles/salary-data/sales',
         permanent: true,
       },
       // 未経験の転職（旧 /career/inexperienced* → 新 /magazine/inexperienced/*）
@@ -252,6 +252,11 @@ const nextConfig: NextConfig = {
       // 早見表 → 記事ページへリダイレクト
       {
         source: '/tables',
+        destination: '/articles/salary-basics/tables',
+        permanent: true,
+      },
+      {
+        source: '/tables/',
         destination: '/articles/salary-basics/tables',
         permanent: true,
       },
