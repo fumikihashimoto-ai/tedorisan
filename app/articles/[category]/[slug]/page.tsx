@@ -3,7 +3,10 @@ import { cache } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getArticlesByCategory, getAds } from '@/lib/microcms';
+import { getArticleBySlug, getArticlesByCategory, getAds, getAdServices, getAdCreatives } from '@/lib/microcms';
+import { matchAdServices, findCreative } from '@/lib/adUtils';
+import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
+import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
 import ArticleCard from '@/app/components/v2/article/ArticleCard';
 import { createPageMetadata, SITE_URL } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
@@ -169,7 +172,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   }
 
   // 記事・広告・関連記事を並列取得（APIレスポンス待ちを最小化）
-  const [article, { contents: allAds }, { contents: categoryArticles }] = await Promise.all([
+  const [article, { contents: allAds }, { contents: categoryArticles }, { contents: adServices }, { contents: adCreatives }] = await Promise.all([
     getArticleCached(slug),
     getAds({ limit: 100 }),
     getArticlesByCategory(category, {
@@ -177,6 +180,8 @@ export default async function ArticleDetailPage({ params }: Props) {
       fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
       orders: '-publishedAt',
     }),
+    getAdServices({ limit: 100, filters: 'is_active[equals]true' }),
+    getAdCreatives({ limit: 100, filters: 'is_active[equals]true' }),
   ]);
 
   if (!article) {
@@ -189,6 +194,12 @@ export default async function ArticleDetailPage({ params }: Props) {
     ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes(category))
     ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes('all'))
     ?? null;
+  // v4広告マッチング
+  const matchedServices = matchAdServices(adServices, category, article.target_occupation);
+  const matchedServiceIds = matchedServices.map((s) => s.id);
+  const banner300x250 = findCreative(adCreatives, matchedServiceIds, 'banner_300x250');
+  const banner320x50 = findCreative(adCreatives, matchedServiceIds, 'banner_320x50');
+
   const relatedArticles = categoryArticles
     .filter((a) => a.slug !== slug)
     .slice(0, 10);
@@ -275,7 +286,12 @@ export default async function ArticleDetailPage({ params }: Props) {
         </div>
       </article>
 
-      {/* 5.5. カテゴリ別比較表（bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
+      {/* 5.5. v4 300×250バナー広告（show_ad_300x250 = true の記事のみ） */}
+      {article.show_ad_300x250 && banner300x250 && (
+        <AdBanner300x250 creative={banner300x250} />
+      )}
+
+      {/* 5.6. カテゴリ別比較表（bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
       {ARTICLE_CATEGORY_SITUATIONS[category] &&
         !article.bodyBlocks.some(
           (block) => block.fieldId === 'partsBlock' && resolveField(block.partType) === 'comparison'
@@ -305,6 +321,10 @@ export default async function ArticleDetailPage({ params }: Props) {
             ))}
           </div>
         </section>
+      )}
+      {/* 7. v4 320×50フッター固定バナー（スマホのみ表示） */}
+      {banner320x50 && (
+        <AdBannerFooter creative={banner320x50} />
       )}
     </PageLayout>
   );

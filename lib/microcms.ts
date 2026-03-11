@@ -27,10 +27,41 @@ export type Article = {
   category: string[];
   thumbnail: ArticleThumbnail | null;
   bodyBlocks: ArticleBodyBlock[];
+  /** 対象職種（v4広告マッチング用） */
+  target_occupation?: string;
+  /** 300×250バナー広告を表示するか */
+  show_ad_300x250?: boolean;
   /** microCMS自動付与: 公開日時（ISO 8601） */
   publishedAt?: string;
   /** microCMS自動付与: 更新日時（ISO 8601） */
   updatedAt?: string;
+};
+
+// v4広告サービス（ad-services API）
+export type AdService = {
+  id: string;
+  name: string;
+  /** "career-change" | "skill-up" | "side-job" | "tax-saving" */
+  service_category: string;
+  /** 対象職種タグ */
+  occupation_tags: string[];
+  /** "a8" | "accesstrade" | "afb" */
+  asp: string;
+  /** 優先順位（小さいほど優先） */
+  priority: number;
+  is_active: boolean;
+};
+
+// v4広告素材（ad-creatives API）
+export type AdCreative = {
+  id: string;
+  /** コンテンツ参照: ad-services */
+  service: AdService;
+  /** "text" | "banner_300x250" | "banner_320x50" */
+  format: string;
+  /** 広告HTMLコード */
+  raw_html: string;
+  is_active: boolean;
 };
 
 // 広告サービス情報（ads API / serviceInfo カスタムフィールド）
@@ -114,6 +145,22 @@ export async function getAdsByCategory(
       ...queries,
       filters: `categorySlug[contains]${category}`,
     },
+  });
+}
+
+// v4広告サービス一覧取得
+export async function getAdServices(queries?: MicroCMSQueries) {
+  return await client.getList<AdService>({
+    endpoint: "ad-services",
+    queries,
+  });
+}
+
+// v4広告素材一覧取得
+export async function getAdCreatives(queries?: MicroCMSQueries) {
+  return await client.getList<AdCreative>({
+    endpoint: "ad-creatives",
+    queries,
   });
 }
 
