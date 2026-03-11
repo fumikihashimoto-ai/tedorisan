@@ -48,11 +48,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = await getArticleCached(slug);
 
   if (!article || !isValidCategory(category)) {
-    return { title: '記事が見つかりません | 手取りのミカタ' };
+    return { title: '記事が見つかりません' };
   }
 
   return createPageMetadata({
-    title: `${article.title} | 手取りのミカタ`,
+    title: article.title,
     description: article.description,
     canonicalPath: `/articles/${category}/${article.slug}`,
     openGraphType: 'article',

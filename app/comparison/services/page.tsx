@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import ComparisonClient from './ComparisonClient';
 
 export const metadata: Metadata = {
-  title: 'あなたにおすすめのサービス比較｜手取りのミカタ',
+  title: 'あなたにおすすめのサービス比較',
   description:
     '診断結果に基づいたおすすめサービスを比較。転職・スキル習得であなたに最適な方法を見つけましょう。',
   robots: {

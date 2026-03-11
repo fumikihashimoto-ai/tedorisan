@@ -22,12 +22,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   if (!isValidCategory(category)) {
-    return { title: 'カテゴリが見つかりません | 手取りのミカタ' };
+    return { title: 'カテゴリが見つかりません' };
   }
 
   const label = ARTICLE_CATEGORIES[category];
   return createPageMetadata({
-    title: `${label}の記事一覧 | 手取りのミカタ`,
+    title: `${label}の記事一覧`,
     description: `${label}に関する記事一覧です。年収・手取り・転職に関する最新情報をお届けします。`,
     canonicalPath: `/articles/${category}`,
     openGraphType: 'website',

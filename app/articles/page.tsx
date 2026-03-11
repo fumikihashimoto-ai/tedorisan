@@ -7,7 +7,7 @@ import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import { ARTICLE_CATEGORIES, CATEGORY_LABELS, getCategoryLabel } from '@/lib/articleCategories';
 
 export const metadata: Metadata = createPageMetadata({
-  title: '記事一覧 | 手取りのミカタ',
+  title: '記事一覧',
   description: '手取りのミカタの記事一覧ページです。年収・手取り・転職に関する最新情報をお届けします。',
   canonicalPath: '/articles',
   openGraphType: 'website',
