@@ -1,5 +1,11 @@
 import type { AdService, AdCreative } from './microcms';
 
+/** microCMSセレクトフィールドは配列で返る場合がある。先頭の値を文字列として取得する */
+function resolveField(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return (value[0] ?? '').trim().toLowerCase();
+  return (value ?? '').trim().toLowerCase();
+}
+
 /**
  * 記事に合致する広告サービスを取得する
  *
@@ -12,7 +18,7 @@ import type { AdService, AdCreative } from './microcms';
 export function matchAdServices(
   services: AdService[],
   articleCategory: string,
-  targetOccupation?: string,
+  targetOccupation?: string | string[],
 ): AdService[] {
   // カテゴリマッピング: 記事カテゴリ → 広告サービスカテゴリ
   const categoryMap: Record<string, string> = {
@@ -25,17 +31,19 @@ export function matchAdServices(
   const serviceCategory = categoryMap[articleCategory] ?? articleCategory;
 
   const active = services.filter(
-    (s) => s.is_active && s.service_category === serviceCategory,
+    (s) => s.is_active && resolveField(s.service_category) === serviceCategory,
   );
 
   // occupation マッチするものを先頭に、その中で priority 昇順
   const withOccupation: AdService[] = [];
   const withoutOccupation: AdService[] = [];
 
+  const resolvedOccupation = resolveField(targetOccupation);
+
   for (const s of active) {
     if (
-      targetOccupation &&
-      s.occupation_tags.includes(targetOccupation)
+      resolvedOccupation &&
+      s.occupation_tags.includes(resolvedOccupation)
     ) {
       withOccupation.push(s);
     } else {
@@ -64,8 +72,8 @@ export function findCreative(
     const found = creatives.find(
       (c) =>
         c.is_active &&
-        c.service.id === id &&
-        c.format === format,
+        c.service?.id === id &&
+        resolveField(c.format) === format,
     );
     if (found) return found;
   }

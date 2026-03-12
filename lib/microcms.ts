@@ -27,8 +27,8 @@ export type Article = {
   category: string[];
   thumbnail: ArticleThumbnail | null;
   bodyBlocks: ArticleBodyBlock[];
-  /** 対象職種（v4広告マッチング用） */
-  target_occupation?: string;
+  /** 対象職種（v4広告マッチング用・microCMSセレクトフィールド: 配列で返る場合あり） */
+  target_occupation?: string | string[];
   /** 300×250バナー広告を表示するか */
   show_ad_300x250?: boolean;
   /** microCMS自動付与: 公開日時（ISO 8601） */
@@ -41,8 +41,8 @@ export type Article = {
 export type AdService = {
   id: string;
   name: string;
-  /** "career-change" | "skill-up" | "side-job" | "tax-saving" */
-  service_category: string;
+  /** "career-change" | "skill-up" | "side-job" | "tax-saving"（microCMSセレクトフィールド: 配列で返る場合あり） */
+  service_category: string | string[];
   /** 対象職種タグ */
   occupation_tags: string[];
   /** "a8" | "accesstrade" | "afb" */
@@ -57,8 +57,8 @@ export type AdCreative = {
   id: string;
   /** コンテンツ参照: ad-services */
   service: AdService;
-  /** "text" | "banner_300x250" | "banner_320x50" */
-  format: string;
+  /** "text" | "banner_300x250" | "banner_320x50"（microCMSセレクトフィールド: 配列で返る場合あり） */
+  format: string | string[];
   /** 広告HTMLコード */
   raw_html: string;
   is_active: boolean;
