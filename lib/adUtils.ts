@@ -61,6 +61,19 @@ export function matchAdServices(
 }
 
 /**
+ * 広告HTMLの<a>タグに target="_blank" と rel="noopener noreferrer nofollow" を付与する
+ */
+export function sanitizeAdHtml(html: string): string {
+  return html.replace(/<a\b([^>]*)>/gi, (_match, attrs: string) => {
+    // 既存の target / rel 属性を除去
+    let cleaned = attrs
+      .replace(/\s*target\s*=\s*["'][^"']*["']/gi, '')
+      .replace(/\s*rel\s*=\s*["'][^"']*["']/gi, '');
+    return `<a${cleaned} target="_blank" rel="noopener noreferrer nofollow">`;
+  });
+}
+
+/**
  * マッチしたサービスに紐づく広告素材を format で絞り込む
  */
 export function findCreative(

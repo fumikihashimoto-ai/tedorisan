@@ -1,4 +1,5 @@
 import type { AdCreative } from '@/lib/microcms';
+import { sanitizeAdHtml } from '@/lib/adUtils';
 
 interface AdBanner300x250Props {
   creative: AdCreative;
@@ -13,7 +14,7 @@ export default function AdBanner300x250({ creative }: AdBanner300x250Props) {
     <div className="flex justify-center py-4">
       <div
         className="w-[300px] h-[250px] overflow-hidden"
-        dangerouslySetInnerHTML={{ __html: creative.raw_html }}
+        dangerouslySetInnerHTML={{ __html: sanitizeAdHtml(creative.raw_html) }}
       />
     </div>
   );
