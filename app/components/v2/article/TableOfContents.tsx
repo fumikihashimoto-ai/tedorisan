@@ -39,10 +39,9 @@ export default function TableOfContents({ bodyBlocks }: TableOfContentsProps) {
   if (headings.length < 2) return null;
 
   return (
-    <nav className="bg-[#f5f5f5] border border-[#e6e6e6] rounded-md p-4 mb-6">
-      <p className="font-['Noto_Sans_JP'] text-[14px] font-bold text-[#3f3f3f] mb-3 flex items-center gap-2">
-        <span className="text-[#1390c8]">📑</span>
-        この記事の目次
+    <nav className="bg-white border border-[#e6e6e6] rounded-none p-4 mb-6">
+      <p className="font-['Noto_Sans_JP'] text-[14px] font-bold text-[#3f3f3f] mb-3">
+        目次
       </p>
       <ol className="list-none m-0 p-0 space-y-1">
         {headings.map((heading) => (
