@@ -7,47 +7,67 @@ function resolveField(value: string | string[] | undefined): string {
 }
 
 /**
+ * 記事カテゴリに対応する広告サービスカテゴリの一覧を返す
+ * salary-basics → 自カテゴリ + tax-saving
+ * salary-data   → 自カテゴリ + career-change
+ */
+function getServiceCategories(articleCategory: string): string[] {
+  const categoryExtensions: Record<string, string[]> = {
+    'salary-basics': ['salary-basics', 'tax-saving'],
+    'salary-data': ['salary-data', 'career-change'],
+  };
+  return categoryExtensions[articleCategory] ?? [articleCategory];
+}
+
+/**
  * 記事に合致する広告サービスを取得する
  *
- * マッチング優先順位:
+ * マッチングルール:
  * 1. is_active = true のもののみ
- * 2. 記事の category と service_category が一致
- * 3. 記事の target_occupation が occupation_tags に含まれるサービスを優先
- * 4. priority 昇順でソート
+ * 2. カテゴリマッチ: 記事の category と service_category が一致
+ *    （salary-basics は tax-saving も、salary-data は career-change も対象）
+ * 3. 職種マッチ:
+ *    - 記事が unspecified → 同カテゴリの全サービスを表示
+ *    - 記事が特定職種 → occupation_tags にその職種 or unspecified を含むサービス
+ * 4. 職種が完全一致するサービスを優先し、priority 昇順でソート
  */
 export function matchAdServices(
   services: AdService[],
   articleCategory: string,
   targetOccupation?: string | string[],
 ): AdService[] {
-  // カテゴリマッピング: 記事カテゴリ → 広告サービスカテゴリ
-  const categoryMap: Record<string, string> = {
-    'career-change': 'career-change',
-    'skill-up': 'skill-up',
-    'salary-data': 'career-change',
-    'salary-basics': 'tax-saving',
-  };
-
-  const serviceCategory = categoryMap[articleCategory] ?? articleCategory;
+  const serviceCategories = getServiceCategories(articleCategory);
 
   const active = services.filter(
-    (s) => s.is_active && resolveField(s.service_category) === serviceCategory,
+    (s) => s.is_active && serviceCategories.includes(resolveField(s.service_category)),
   );
 
-  // occupation マッチするものを先頭に、その中で priority 昇順
-  const withOccupation: AdService[] = [];
-  const withoutOccupation: AdService[] = [];
-
   const resolvedOccupation = resolveField(targetOccupation);
+  const isUnspecified = !resolvedOccupation || resolvedOccupation === 'unspecified';
 
-  for (const s of active) {
-    if (
-      resolvedOccupation &&
-      s.occupation_tags.includes(resolvedOccupation)
-    ) {
-      withOccupation.push(s);
+  let matched: AdService[];
+
+  if (isUnspecified) {
+    // 記事が unspecified → 同カテゴリの全サービスを表示対象
+    matched = active;
+  } else {
+    // 記事が特定職種 → occupation_tags にその職種 or "unspecified" を含むサービス
+    matched = active.filter(
+      (s) =>
+        s.occupation_tags.includes(resolvedOccupation) ||
+        s.occupation_tags.includes('unspecified'),
+    );
+  }
+
+  // 職種が完全一致するものを優先し、priority 昇順
+  const exactMatch: AdService[] = [];
+  const otherMatch: AdService[] = [];
+
+  for (const s of matched) {
+    if (!isUnspecified && s.occupation_tags.includes(resolvedOccupation)) {
+      exactMatch.push(s);
     } else {
-      withoutOccupation.push(s);
+      otherMatch.push(s);
     }
   }
 
@@ -55,8 +75,8 @@ export function matchAdServices(
     a.priority - b.priority;
 
   return [
-    ...withOccupation.sort(byPriority),
-    ...withoutOccupation.sort(byPriority),
+    ...exactMatch.sort(byPriority),
+    ...otherMatch.sort(byPriority),
   ];
 }
 
