@@ -15,6 +15,7 @@ import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
 import ArticleCTAButton from '@/app/components/v2/common/ArticleCTAButton';
 import ArticleStructuredData from '@/app/components/ArticleStructuredData';
 import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
+import TableOfContents from '@/app/components/v2/article/TableOfContents';
 import SectionBar from '@/app/components/v2/common/SectionBar';
 import FreeConsultationCTA from '@/app/components/v2/common/FreeConsultationCTA';
 import { affiliateServices } from '@/lib/comparisonData';
@@ -291,6 +292,9 @@ export default async function ArticleDetailPage({ params }: Props) {
           ))}
         </div>
       )}
+
+      {/* 4.5. 目次 */}
+      <TableOfContents bodyBlocks={article.bodyBlocks} />
 
       {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">
