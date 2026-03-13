@@ -31,6 +31,8 @@ export type Article = {
   target_occupation?: string | string[];
   /** 300×250バナー広告を表示するか */
   show_ad_300x250?: boolean;
+  /** 固定広告素材（複数コンテンツ参照: ad_creatives）— 設定時は通常マッチングをスキップ */
+  fixed_ad_creative?: AdCreative[];
   /** microCMS自動付与: 公開日時（ISO 8601） */
   publishedAt?: string;
   /** microCMS自動付与: 更新日時（ISO 8601） */

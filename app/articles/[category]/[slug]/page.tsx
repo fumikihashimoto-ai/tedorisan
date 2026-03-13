@@ -28,7 +28,7 @@ import {
   PART_CATEGORY_SITUATIONS,
   ARTICLE_CATEGORY_SITUATIONS,
 } from '@/lib/categoryMapping';
-import type { ArticleBodyBlock, Ad } from '@/lib/microcms';
+import type { ArticleBodyBlock, Ad, AdCreative } from '@/lib/microcms';
 
 /** 同一リクエスト内で getArticleBySlug の重複呼び出しを防ぐ（generateMetadata と page で共有） */
 const getArticleCached = cache((slug: string) => getArticleBySlug(slug));
@@ -194,11 +194,24 @@ export default async function ArticleDetailPage({ params }: Props) {
     ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes(category))
     ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes('all'))
     ?? null;
-  // v4広告マッチング
-  const matchedServices = matchAdServices(adServices, category, article.target_occupation);
-  const matchedServiceIds = matchedServices.map((s) => s.id);
-  const banner300x250 = findCreative(adCreatives, matchedServiceIds, 'banner_300x250');
-  const banner320x50 = findCreative(adCreatives, matchedServiceIds, 'banner_320x50');
+  // v4広告マッチング: fixed_ad_creative が設定されていればマッチングをスキップ
+  const hasFixedAd = Array.isArray(article.fixed_ad_creative) && article.fixed_ad_creative.length > 0;
+
+  let banner300x250: AdCreative | null = null;
+  let banner320x50: AdCreative | null = null;
+
+  if (hasFixedAd) {
+    // 固定広告素材からフォーマット別に取得
+    const fixedCreatives = article.fixed_ad_creative!;
+    banner300x250 = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'banner_300x250') ?? null;
+    banner320x50 = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'banner_320x50') ?? null;
+  } else {
+    // 通常のマッチングロジック
+    const matchedServices = matchAdServices(adServices, category, article.target_occupation);
+    const matchedServiceIds = matchedServices.map((s) => s.id);
+    banner300x250 = findCreative(adCreatives, matchedServiceIds, 'banner_300x250');
+    banner320x50 = findCreative(adCreatives, matchedServiceIds, 'banner_320x50');
+  }
 
   const relatedArticles = categoryArticles
     .filter((a) => a.slug !== slug)
