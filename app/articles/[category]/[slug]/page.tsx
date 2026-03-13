@@ -4,8 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAds, getAdServices, getAdCreatives } from '@/lib/microcms';
-import { matchAdServices, findCreative } from '@/lib/adUtils';
+import { matchAdServices, findCreative, getTextAd } from '@/lib/adUtils';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
+import AdText from '@/app/components/v2/article/AdText';
 import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
 import ArticleCard from '@/app/components/v2/article/ArticleCard';
 import { createPageMetadata, SITE_URL } from '@/app/lib/metadata';
@@ -200,18 +201,21 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   let banner300x250: AdCreative | null = null;
   let banner320x50: AdCreative | null = null;
+  let textAd: AdCreative | null = null;
 
   if (hasFixedAd) {
     // 固定広告素材からフォーマット別に取得
     const fixedCreatives = article.fixed_ad_creative!;
     banner300x250 = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'banner_300x250') ?? null;
     banner320x50 = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'banner_320x50') ?? null;
+    textAd = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'text') ?? null;
   } else {
     // 通常のマッチングロジック
     const matchedServices = matchAdServices(adServices, category, article.target_occupation);
     const matchedServiceIds = matchedServices.map((s) => s.id);
     banner300x250 = findCreative(adCreatives, matchedServiceIds, 'banner_300x250');
     banner320x50 = findCreative(adCreatives, matchedServiceIds, 'banner_320x50');
+    textAd = getTextAd(adCreatives, matchedServiceIds);
   }
 
   const relatedArticles = categoryArticles
@@ -295,6 +299,9 @@ export default async function ArticleDetailPage({ params }: Props) {
 
       {/* 4.5. 目次 */}
       <TableOfContents bodyBlocks={article.bodyBlocks} />
+
+      {/* 4.6. テキスト広告（目次直後・本文前） */}
+      {textAd && <AdText creative={textAd} />}
 
       {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">

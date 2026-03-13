@@ -94,6 +94,17 @@ export function sanitizeAdHtml(html: string): string {
 }
 
 /**
+ * マッチしたサービスに紐づくテキスト広告（format = "text"）を1件返す
+ * priority順で最も高いサービスのものを優先
+ */
+export function getTextAd(
+  creatives: AdCreative[],
+  serviceIds: string[],
+): AdCreative | null {
+  return findCreative(creatives, serviceIds, 'text');
+}
+
+/**
  * マッチしたサービスに紐づく広告素材を format で絞り込む
  */
 export function findCreative(
