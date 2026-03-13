@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAds, getAdServices, getAdCreatives } from '@/lib/microcms';
-import { matchAdServices, findCreative, getTextAd } from '@/lib/adUtils';
+import { matchAdServices, findCreative, getTextAd, sanitizeAdHtml } from '@/lib/adUtils';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
 import AdText from '@/app/components/v2/article/AdText';
 import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
@@ -64,14 +64,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-function renderBodyBlock(block: ArticleBodyBlock, index: number, ad: Ad | null) {
+/**
+ * richTextのHTML文字列内、最初の</h2>直後に300×250バナーHTMLを挿入する。
+ * </h2>が見つからない場合はそのまま返す。
+ */
+function injectBannerAfterFirstH2(richText: string, bannerHtml: string): string {
+  const closingH2 = '</h2>';
+  const pos = richText.indexOf(closingH2);
+  if (pos === -1) return richText;
+  const insertAt = pos + closingH2.length;
+  return richText.slice(0, insertAt) + bannerHtml + richText.slice(insertAt);
+}
+
+function renderBodyBlock(
+  block: ArticleBodyBlock,
+  index: number,
+  ad: Ad | null,
+  inlineAdHtml?: string,
+) {
   // リッチテキストブロック
   if (block.fieldId === 'richTextBlock' && block.richText) {
+    const html = inlineAdHtml
+      ? injectBannerAfterFirstH2(block.richText, inlineAdHtml)
+      : block.richText;
     return (
       <div
         key={index}
         className="article-rich-text font-['Noto_Sans_JP'] text-[14px] leading-[25px] text-[#3f3f3f]"
-        dangerouslySetInnerHTML={{ __html: block.richText }}
+        dangerouslySetInnerHTML={{ __html: html }}
       />
     );
   }
@@ -306,7 +326,29 @@ export default async function ArticleDetailPage({ params }: Props) {
       {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">
         <div className="flex flex-col gap-4">
-          {article.bodyBlocks.map((block, index) => renderBodyBlock(block, index, ad))}
+          {(() => {
+            // 最初のrichTextBlockのh2直後に300×250バナーを挿入するためのHTML
+            const inlineBannerHtml =
+              article.show_ad_300x250 && banner300x250
+                ? `<div style="display:flex;justify-content:center;padding:16px 0"><div style="width:300px;height:250px;overflow:hidden">${sanitizeAdHtml(banner300x250.raw_html)}</div></div>`
+                : '';
+            let inlineBannerInserted = false;
+
+            return article.bodyBlocks.map((block, index) => {
+              // 最初の</h2>を含むrichTextBlockにのみバナーを挿入
+              if (
+                !inlineBannerInserted &&
+                inlineBannerHtml &&
+                block.fieldId === 'richTextBlock' &&
+                block.richText &&
+                block.richText.includes('</h2>')
+              ) {
+                inlineBannerInserted = true;
+                return renderBodyBlock(block, index, ad, inlineBannerHtml);
+              }
+              return renderBodyBlock(block, index, ad);
+            });
+          })()}
         </div>
       </article>
 
