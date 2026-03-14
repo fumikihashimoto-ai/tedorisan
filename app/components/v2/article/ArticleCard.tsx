@@ -23,19 +23,19 @@ export default function ArticleCard({
   return (
     <Link
       href={href}
-      className={`flex gap-3 bg-white rounded-[2px] overflow-hidden border border-[#e6e6e6] p-0 hover:shadow-md transition-shadow duration-200 h-full ${className}`}
+      className={`flex flex-col bg-white rounded-lg overflow-hidden border border-[#e6e6e6] hover:shadow-md transition-shadow duration-200 h-full ${className}`}
     >
-      <div className="relative w-[100px] h-[75px] flex-shrink-0">
-<Image
-        src={imageUrl}
-        alt={title}
+      <div className="relative w-full aspect-[16/9]">
+        <Image
+          src={imageUrl}
+          alt={title}
           fill
           className="object-cover"
-          sizes="100px"
+          sizes="(max-width: 640px) 100vw, 50vw"
         />
       </div>
-      <div className="flex-1 min-w-0 py-2 pr-2">
-        <p className="font-['Noto_Sans_JP'] font-bold text-[14px] text-[#3f3f3f] line-clamp-2 mb-1">
+      <div className="p-4">
+        <p className="font-['Noto_Sans_JP'] font-bold text-[15px] text-[#3f3f3f] line-clamp-3 mb-2">
           {title}
         </p>
         <div className="flex flex-wrap gap-1">

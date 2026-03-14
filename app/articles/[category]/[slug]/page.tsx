@@ -435,7 +435,7 @@ export default async function ArticleDetailPage({ params }: Props) {
           <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] mb-4">
             同じカテゴリの記事
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedArticles.map((related) => (
               <ArticleCard
                 key={related.id}
