@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAds, getAdServices, getAdCreatives } from '@/lib/microcms';
-import { matchAdServices, findCreative, findCreatives, sanitizeAdHtml } from '@/lib/adUtils';
+import { matchAdServices, findCreatives } from '@/lib/adUtils';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
 import AdText from '@/app/components/v2/article/AdText';
 import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
@@ -65,10 +65,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * richTextのHTML文字列内、n番目(1-indexed)の<h2の直前にバナーHTMLを挿入する。
- * 該当のh2が見つからない場合はそのまま返す。
+ * richTextのHTML文字列をn番目(1-indexed)の<h2の直前で分割する。
+ * 該当のh2が見つからない場合はnullを返す。
  */
-function injectBannerBeforeNthH2(richText: string, bannerHtml: string, n: number): string {
+function splitBeforeNthH2(richText: string, n: number): { before: string; after: string } | null {
   let count = 0;
   let searchFrom = 0;
   while (searchFrom < richText.length) {
@@ -76,43 +76,67 @@ function injectBannerBeforeNthH2(richText: string, bannerHtml: string, n: number
     if (pos === -1) break;
     count++;
     if (count === n) {
-      return richText.slice(0, pos) + bannerHtml + richText.slice(pos);
+      return { before: richText.slice(0, pos), after: richText.slice(pos) };
     }
     searchFrom = pos + 1;
   }
-  return richText;
+  return null;
 }
 
 /**
- * richTextのHTML文字列内、最初の</h2>直後にバナーHTMLを挿入する。
- * </h2>が見つからない場合はそのまま返す。
+ * richTextのHTML文字列を最初の</h2>直後で分割する。
+ * </h2>が見つからない場合はnullを返す。
  */
-function injectBannerAfterFirstH2(richText: string, bannerHtml: string): string {
+function splitAfterFirstH2(richText: string): { before: string; after: string } | null {
   const closingH2 = '</h2>';
   const pos = richText.indexOf(closingH2);
-  if (pos === -1) return richText;
-  const insertAt = pos + closingH2.length;
-  return richText.slice(0, insertAt) + bannerHtml + richText.slice(insertAt);
+  if (pos === -1) return null;
+  const splitAt = pos + closingH2.length;
+  return { before: richText.slice(0, splitAt), after: richText.slice(splitAt) };
 }
+
+const RICH_TEXT_CLASS = "article-rich-text font-['Noto_Sans_JP'] text-[16px] leading-[1.85] sm:text-[18px] sm:leading-[1.9] text-[#08131a]";
 
 function renderBodyBlock(
   block: ArticleBodyBlock,
   index: number,
   ad: Ad | null,
-  inlineAd?: { html: string; mode: 'before'; nthH2: number } | { html: string; mode: 'after' },
+  inlineAdBanner?: { creatives: AdCreative[]; mode: 'before'; nthH2: number } | { creatives: AdCreative[]; mode: 'after' },
 ) {
   // リッチテキストブロック
   if (block.fieldId === 'richTextBlock' && block.richText) {
-    const html = inlineAd
-      ? (inlineAd.mode === 'before'
-          ? injectBannerBeforeNthH2(block.richText, inlineAd.html, inlineAd.nthH2)
-          : injectBannerAfterFirstH2(block.richText, inlineAd.html))
-      : block.richText;
+    // インライン広告バナーの挿入: richTextを分割してReactコンポーネントを間に挟む
+    if (inlineAdBanner) {
+      const split = inlineAdBanner.mode === 'before'
+        ? splitBeforeNthH2(block.richText, inlineAdBanner.nthH2)
+        : splitAfterFirstH2(block.richText);
+
+      if (split) {
+        return (
+          <div key={index}>
+            {split.before && (
+              <div
+                className={RICH_TEXT_CLASS}
+                dangerouslySetInnerHTML={{ __html: split.before }}
+              />
+            )}
+            <AdBanner300x250 creatives={inlineAdBanner.creatives} />
+            {split.after && (
+              <div
+                className={RICH_TEXT_CLASS}
+                dangerouslySetInnerHTML={{ __html: split.after }}
+              />
+            )}
+          </div>
+        );
+      }
+    }
+
     return (
       <div
         key={index}
-        className="article-rich-text font-['Noto_Sans_JP'] text-[16px] leading-[1.85] sm:text-[18px] sm:leading-[1.9] text-[#08131a]"
-        dangerouslySetInnerHTML={{ __html: html }}
+        className={RICH_TEXT_CLASS}
+        dangerouslySetInnerHTML={{ __html: block.richText }}
       />
     );
   }
@@ -353,14 +377,9 @@ export default async function ArticleDetailPage({ params }: Props) {
       <article className="pt-2 pb-6">
         <div className="flex flex-col gap-4">
           {(() => {
-            // 300×250バナーのHTML（show_ad_300x250 = true の場合のみ、インライン広告は1件目を使用）
-            const inlineBanner = banners300x250.length > 0 ? banners300x250[0] : null;
-            const bannerHtml =
-              article.show_ad_300x250 && inlineBanner
-                ? `<div class="ad-inline-banner" style="display:flex;justify-content:center;margin-bottom:16px;padding-top:16px"><div style="width:300px;min-width:300px;height:250px;overflow:hidden">${sanitizeAdHtml(inlineBanner.raw_html).replace(/<img /g, '<img style="max-width:none;width:auto;height:auto" ')}</div></div>`
-                : '';
+            const showInlineBanner = article.show_ad_300x250 && banners300x250.length > 0;
 
-            if (!bannerHtml) {
+            if (!showInlineBanner) {
               return article.bodyBlocks.map((block, index) =>
                 renderBodyBlock(block, index, ad),
               );
@@ -369,7 +388,7 @@ export default async function ArticleDetailPage({ params }: Props) {
             // bodyBlocks全体でh2の出現を数え、2つ目のh2を含むブロックを特定
             let h2Count = 0;
             let targetBlockIndex = -1;
-            let targetH2InBlock = 0; // ブロック内で何番目のh2か (1-indexed)
+            let targetH2InBlock = 0;
             let firstH2BlockIndex = -1;
             for (let i = 0; i < article.bodyBlocks.length; i++) {
               const b = article.bodyBlocks[i];
@@ -381,7 +400,6 @@ export default async function ArticleDetailPage({ params }: Props) {
                     h2Count++;
                     if (h2Count === 2) {
                       targetBlockIndex = i;
-                      targetH2InBlock = j + 1 - (h2Count - matches.length);
                       break;
                     }
                   }
@@ -392,26 +410,22 @@ export default async function ArticleDetailPage({ params }: Props) {
 
             // ブロック内で2つ目のh2が何番目か正確に計算
             if (targetBlockIndex !== -1) {
-              const b = article.bodyBlocks[targetBlockIndex];
-              const prevH2s = (() => {
-                let count = 0;
-                for (let i = 0; i < targetBlockIndex; i++) {
-                  const bl = article.bodyBlocks[i];
-                  if (bl.fieldId === 'richTextBlock' && bl.richText) {
-                    count += (bl.richText.match(/<h2/g) || []).length;
-                  }
+              let prevH2s = 0;
+              for (let i = 0; i < targetBlockIndex; i++) {
+                const bl = article.bodyBlocks[i];
+                if (bl.fieldId === 'richTextBlock' && bl.richText) {
+                  prevH2s += (bl.richText.match(/<h2/g) || []).length;
                 }
-                return count;
-              })();
-              targetH2InBlock = 2 - prevH2s; // ブロック内でのh2番号 (1-indexed)
+              }
+              targetH2InBlock = 2 - prevH2s;
             }
 
             return article.bodyBlocks.map((block, index) => {
               if (targetBlockIndex !== -1 && index === targetBlockIndex) {
-                return renderBodyBlock(block, index, ad, { html: bannerHtml, mode: 'before', nthH2: targetH2InBlock });
+                return renderBodyBlock(block, index, ad, { creatives: banners300x250, mode: 'before', nthH2: targetH2InBlock });
               }
               if (targetBlockIndex === -1 && index === firstH2BlockIndex) {
-                return renderBodyBlock(block, index, ad, { html: bannerHtml, mode: 'after' });
+                return renderBodyBlock(block, index, ad, { creatives: banners300x250, mode: 'after' });
               }
               return renderBodyBlock(block, index, ad);
             });
