@@ -50,7 +50,7 @@ function CategoryArticleSection({
       <h2 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] border-l-4 border-[#1390c8] pl-3 mb-4">
         {title}
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {articles.map((article) => (
           <ArticleCard
             key={article.id}

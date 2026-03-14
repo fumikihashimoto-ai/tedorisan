@@ -58,10 +58,10 @@ export default async function Home() {
     { contents: basicsArticles },
   ] = await Promise.all([
     getArticles({ limit: 6, orders: '-publishedAt', fields: articleFields }),
-    getArticlesByCategory('career-change', { limit: 4, fields: articleFields, orders: '-publishedAt' }),
-    getArticlesByCategory('skill-up', { limit: 4, fields: articleFields, orders: '-publishedAt' }),
-    getArticlesByCategory('salary-data', { limit: 4, fields: articleFields, orders: '-publishedAt' }),
-    getArticlesByCategory('salary-basics', { limit: 4, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('career-change', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('skill-up', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('salary-data', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getArticlesByCategory('salary-basics', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
   ]);
 
   return (
