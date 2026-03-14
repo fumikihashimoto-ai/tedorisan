@@ -341,6 +341,11 @@ export default async function ArticleDetailPage({ params }: Props) {
       {/* 4.5. 目次 */}
       <TableOfContents bodyBlocks={article.bodyBlocks} />
 
+      {/* 4.55. PC専用 300×250バナー（目次直後・テキスト広告前） */}
+      {article.show_ad_300x250 && banners300x250.length > 0 && (
+        <AdBanner300x250 creatives={banners300x250} pcOnly />
+      )}
+
       {/* 4.6. テキスト広告（目次直後・本文前） */}
       {textAds.length > 0 && <AdText creatives={textAds} />}
 

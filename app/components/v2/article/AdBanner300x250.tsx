@@ -7,6 +7,8 @@ import { sanitizeAdHtml } from '@/lib/adUtils';
 interface AdBanner300x250Props {
   /** 表示候補の広告素材（複数可） */
   creatives: AdCreative[];
+  /** trueの場合、PC（641px以上）のみ表示しSPでは非表示 */
+  pcOnly?: boolean;
 }
 
 /**
@@ -15,7 +17,7 @@ interface AdBanner300x250Props {
  * - SP（640px以下）: 1件のみ表示
  * - 登録数が多い場合はクライアントサイドでランダム選択
  */
-export default function AdBanner300x250({ creatives }: AdBanner300x250Props) {
+export default function AdBanner300x250({ creatives, pcOnly = false }: AdBanner300x250Props) {
   // PC用: 最大2件をランダム選択
   const [pcCreatives, setPcCreatives] = useState<AdCreative[]>([]);
   // SP用: 1件をランダム選択
@@ -56,8 +58,8 @@ export default function AdBanner300x250({ creatives }: AdBanner300x250Props) {
         ))}
       </div>
 
-      {/* SP表示: 640px以下 */}
-      {spCreative && (
+      {/* SP表示: 640px以下（pcOnly時は非表示） */}
+      {!pcOnly && spCreative && (
         <div className="flex sm:hidden justify-center py-4">
           <div
             className="w-[300px] h-[250px] overflow-hidden"
