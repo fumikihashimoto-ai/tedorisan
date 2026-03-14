@@ -1,6 +1,6 @@
 import React from 'react';
 import PageLayout from './PageLayout';
-import { HeroSection } from '../HeroSection';
+import { HeroSectionText } from '../HeroSectionText';
 
 interface ArticlePageLayoutProps {
   children: React.ReactNode;
@@ -28,7 +28,7 @@ export default function ArticlePageLayout({
     <PageLayout maxWidth="content" className={className}>
       {/* ヒーロー（TOPと同様・750px幅で表示） */}
       <div className="-mx-4">
-        <HeroSection
+        <HeroSectionText
           catchphrase1={catchphrase1}
           catchphrase2={catchphrase2}
         />
