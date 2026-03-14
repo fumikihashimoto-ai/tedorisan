@@ -371,7 +371,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       )}
 
       {/* 4.6. テキスト広告（目次直後・本文前） */}
-      {textAds.length > 0 && <AdText creatives={textAds} />}
+      {textAds.length > 0 && <AdText creatives={textAds} category={category} />}
 
       {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">
