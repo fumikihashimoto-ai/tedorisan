@@ -5,31 +5,25 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAdServices, getAdCreatives } from '@/lib/microcms';
 import { matchAdServices, findCreatives, resolveField } from '@/lib/adUtils';
+import { findInlineBannerTarget } from '@/lib/inlineAdHelper';
+import { renderBodyBlock } from '@/app/components/v2/article/BodyBlockRenderer';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
 import AdText from '@/app/components/v2/article/AdText';
 import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
 import ArticleCard from '@/app/components/v2/article/ArticleCard';
 import { createPageMetadata, SITE_URL } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
-import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
 import ArticleStructuredData from '@/app/components/ArticleStructuredData';
-import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import TableOfContents from '@/app/components/v2/article/TableOfContents';
-import SectionBar from '@/app/components/v2/common/SectionBar';
-import FreeConsultationCTA from '@/app/components/v2/common/FreeConsultationCTA';
 import { affiliateServices } from '@/lib/comparisonData';
-import { freeConsultationCtaConfig } from '@/lib/articleData/itEngineerSalary';
 import {
   isValidCategory,
   getCategoryLabel,
   ARTICLE_CATEGORIES,
 } from '@/lib/articleCategories';
-import {
-  PART_CATEGORY_SITUATIONS,
-  ARTICLE_CATEGORY_SITUATIONS,
-} from '@/lib/categoryMapping';
-import type { ArticleBodyBlock, AdCreative } from '@/lib/microcms';
+import { ARTICLE_CATEGORY_SITUATIONS } from '@/lib/categoryMapping';
+import type { AdCreative } from '@/lib/microcms';
 
 /** 同一リクエスト内で getArticleBySlug の重複呼び出しを防ぐ（generateMetadata と page で共有） */
 const getArticleCached = cache((slug: string) => getArticleBySlug(slug));
@@ -55,160 +49,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     canonicalPath: `/articles/${category}/${article.slug}`,
     openGraphType: 'article',
   });
-}
-
-/**
- * richTextのHTML文字列をn番目(1-indexed)の<h2の直前で分割する。
- * 該当のh2が見つからない場合はnullを返す。
- */
-function splitBeforeNthH2(richText: string, n: number): { before: string; after: string } | null {
-  let count = 0;
-  let searchFrom = 0;
-  while (searchFrom < richText.length) {
-    const pos = richText.indexOf('<h2', searchFrom);
-    if (pos === -1) break;
-    count++;
-    if (count === n) {
-      return { before: richText.slice(0, pos), after: richText.slice(pos) };
-    }
-    searchFrom = pos + 1;
-  }
-  return null;
-}
-
-/**
- * richTextのHTML文字列を最初の</h2>直後で分割する。
- * </h2>が見つからない場合はnullを返す。
- */
-function splitAfterFirstH2(richText: string): { before: string; after: string } | null {
-  const closingH2 = '</h2>';
-  const pos = richText.indexOf(closingH2);
-  if (pos === -1) return null;
-  const splitAt = pos + closingH2.length;
-  return { before: richText.slice(0, splitAt), after: richText.slice(splitAt) };
-}
-
-const RICH_TEXT_CLASS = "article-rich-text font-['Noto_Sans_JP'] text-[16px] leading-[1.85] sm:text-[18px] sm:leading-[1.9] text-[#08131a]";
-
-function renderBodyBlock(
-  block: ArticleBodyBlock,
-  index: number,
-  inlineAdBanner?: { creatives: AdCreative[]; mode: 'before'; nthH2: number } | { creatives: AdCreative[]; mode: 'after' },
-) {
-  // リッチテキストブロック
-  if (block.fieldId === 'richTextBlock' && block.richText) {
-    // インライン広告バナーの挿入: richTextを分割してReactコンポーネントを間に挟む
-    if (inlineAdBanner) {
-      const split = inlineAdBanner.mode === 'before'
-        ? splitBeforeNthH2(block.richText, inlineAdBanner.nthH2)
-        : splitAfterFirstH2(block.richText);
-
-      if (split) {
-        return (
-          <div key={index}>
-            {split.before && (
-              <div
-                className={RICH_TEXT_CLASS}
-                dangerouslySetInnerHTML={{ __html: split.before }}
-              />
-            )}
-            <AdBanner300x250 creatives={inlineAdBanner.creatives} />
-            {split.after && (
-              <div
-                className={RICH_TEXT_CLASS}
-                dangerouslySetInnerHTML={{ __html: split.after }}
-              />
-            )}
-          </div>
-        );
-      }
-    }
-
-    return (
-      <div
-        key={index}
-        className={RICH_TEXT_CLASS}
-        dangerouslySetInnerHTML={{ __html: block.richText }}
-      />
-    );
-  }
-
-  // パーツブロック
-  if (block.fieldId === 'partsBlock') {
-    const partType = resolveField(block.partType);
-    const partCategory = resolveField(block.partCategory);
-
-    if (partType === 'calculator') {
-      return <TedoriCalculator key={index} noMargin contentLayout />;
-    }
-
-    if (partType === 'comparison') {
-      const situations = PART_CATEGORY_SITUATIONS[partCategory] ?? ['it_beginner'];
-      return (
-        <ComparisonTable
-          key={index}
-          targetSituations={situations}
-          title="転職サイト簡単比較表"
-          services={affiliateServices}
-        />
-      );
-    }
-
-    if (partType === 'pointbox') {
-      const variant = resolveField(block.pointVariant) || 'highlight';
-      return (
-        <PointHeaderBox
-          key={index}
-          title={block.pointTitle || ''}
-          bodyVariant={variant as 'highlight' | 'bordered'}
-        >
-          {block.pointBody && (
-            <div
-              className="article-rich-text font-['Noto_Sans_JP'] text-[16px] leading-[1.85] sm:text-[18px] sm:leading-[1.9] text-[#08131a]"
-              dangerouslySetInnerHTML={{ __html: block.pointBody }}
-            />
-          )}
-        </PointHeaderBox>
-      );
-    }
-
-    if (partType?.toLowerCase() === 'sectionbar') {
-      return (
-        <SectionBar
-          key={index}
-          title={block.sectionBarTitle || ''}
-          noMargin
-        />
-      );
-    }
-
-    if (partType === 'freeconsultationcta') {
-      const deeproService = affiliateServices.find((s) => s.id === 'deepro');
-      if (!deeproService) return null;
-      return (
-        <FreeConsultationCTA
-          key={index}
-          service={deeproService}
-          {...freeConsultationCtaConfig}
-          contentLayout
-        />
-      );
-    }
-
-    // 未知のpartType（旧 'cta' パーツタイプも含む）
-    return (
-      <div
-        key={index}
-        className="bg-[#f5f5f5] border border-[#e6e6e6] rounded p-4 text-center"
-      >
-        <p className="font-['Noto_Sans_JP'] text-[12px] text-[#64748B]">
-          パーツ: {partType || '不明'}
-        </p>
-      </div>
-    );
-  }
-
-  return null;
 }
 
 export default async function ArticleDetailPage({ params }: Props) {
@@ -261,6 +101,12 @@ export default async function ArticleDetailPage({ params }: Props) {
     .slice(0, 10);
 
   const categoryLabel = ARTICLE_CATEGORIES[category];
+
+  // インラインバナー挿入ターゲットの計算
+  const showInlineBanner = article.show_ad_300x250 && banners300x250.length > 0;
+  const inlineTarget = showInlineBanner
+    ? findInlineBannerTarget(article.bodyBlocks)
+    : null;
 
   return (
     <PageLayout maxWidth="content">
@@ -339,75 +185,33 @@ export default async function ArticleDetailPage({ params }: Props) {
       <TableOfContents bodyBlocks={article.bodyBlocks} />
 
       {/* 4.55. PC専用 300×250バナー（目次直後・テキスト広告前） */}
-      {article.show_ad_300x250 && banners300x250.length > 0 && (
+      {showInlineBanner && (
         <AdBanner300x250 creatives={banners300x250} pcOnly />
       )}
 
       {/* 4.6. テキスト広告（目次直後・本文前） */}
       {textAds.length > 0 && <AdText creatives={textAds} category={category} />}
 
-      {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
+      {/* 5. 記事本文 */}
       <article className="pt-2 pb-6">
         <div className="flex flex-col gap-4">
-          {(() => {
-            const showInlineBanner = article.show_ad_300x250 && banners300x250.length > 0;
-
-            if (!showInlineBanner) {
-              return article.bodyBlocks.map((block, index) =>
-                renderBodyBlock(block, index),
-              );
-            }
-
-            // bodyBlocks全体でh2の出現を数え、2つ目のh2を含むブロックを特定
-            let h2Count = 0;
-            let targetBlockIndex = -1;
-            let targetH2InBlock = 0;
-            let firstH2BlockIndex = -1;
-            for (let i = 0; i < article.bodyBlocks.length; i++) {
-              const b = article.bodyBlocks[i];
-              if (b.fieldId === 'richTextBlock' && b.richText) {
-                const matches = b.richText.match(/<h2/g);
-                if (matches) {
-                  if (firstH2BlockIndex === -1) firstH2BlockIndex = i;
-                  for (let j = 0; j < matches.length; j++) {
-                    h2Count++;
-                    if (h2Count === 2) {
-                      targetBlockIndex = i;
-                      break;
-                    }
-                  }
-                  if (targetBlockIndex !== -1) break;
-                }
-              }
-            }
-
-            // ブロック内で2つ目のh2が何番目か正確に計算
-            if (targetBlockIndex !== -1) {
-              let prevH2s = 0;
-              for (let i = 0; i < targetBlockIndex; i++) {
-                const bl = article.bodyBlocks[i];
-                if (bl.fieldId === 'richTextBlock' && bl.richText) {
-                  prevH2s += (bl.richText.match(/<h2/g) || []).length;
-                }
-              }
-              targetH2InBlock = 2 - prevH2s;
-            }
-
-            return article.bodyBlocks.map((block, index) => {
+          {article.bodyBlocks.map((block, index) => {
+            if (inlineTarget) {
+              const { targetBlockIndex, targetH2InBlock, firstH2BlockIndex } = inlineTarget;
               if (targetBlockIndex !== -1 && index === targetBlockIndex) {
                 return renderBodyBlock(block, index, { creatives: banners300x250, mode: 'before', nthH2: targetH2InBlock });
               }
               if (targetBlockIndex === -1 && index === firstH2BlockIndex) {
                 return renderBodyBlock(block, index, { creatives: banners300x250, mode: 'after' });
               }
-              return renderBodyBlock(block, index);
-            });
-          })()}
+            }
+            return renderBodyBlock(block, index);
+          })}
         </div>
       </article>
 
       {/* 5.5. v4 300×250バナー広告（show_ad_300x250 = true の記事のみ） */}
-      {article.show_ad_300x250 && banners300x250.length > 0 && (
+      {showInlineBanner && (
         <AdBanner300x250 creatives={banners300x250} />
       )}
 
