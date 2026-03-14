@@ -3,7 +3,7 @@ import { cache } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getArticlesByCategory, getAds, getAdServices, getAdCreatives } from '@/lib/microcms';
+import { getArticleBySlug, getArticlesByCategory, getAdServices, getAdCreatives } from '@/lib/microcms';
 import { matchAdServices, findCreatives } from '@/lib/adUtils';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
 import AdText from '@/app/components/v2/article/AdText';
@@ -13,7 +13,6 @@ import { createPageMetadata, SITE_URL } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import TedoriCalculator from '@/app/components/v2/common/TedoriCalculator';
 import ComparisonTable from '@/app/components/v2/common/ComparisonTable';
-import ArticleCTAButton from '@/app/components/v2/common/ArticleCTAButton';
 import ArticleStructuredData from '@/app/components/ArticleStructuredData';
 import PointHeaderBox from '@/app/components/v2/article/PointHeaderBox';
 import TableOfContents from '@/app/components/v2/article/TableOfContents';
@@ -30,7 +29,7 @@ import {
   PART_CATEGORY_SITUATIONS,
   ARTICLE_CATEGORY_SITUATIONS,
 } from '@/lib/categoryMapping';
-import type { ArticleBodyBlock, Ad, AdCreative } from '@/lib/microcms';
+import type { ArticleBodyBlock, AdCreative } from '@/lib/microcms';
 
 /** 同一リクエスト内で getArticleBySlug の重複呼び出しを防ぐ（generateMetadata と page で共有） */
 const getArticleCached = cache((slug: string) => getArticleBySlug(slug));
@@ -100,7 +99,6 @@ const RICH_TEXT_CLASS = "article-rich-text font-['Noto_Sans_JP'] text-[16px] lea
 function renderBodyBlock(
   block: ArticleBodyBlock,
   index: number,
-  ad: Ad | null,
   inlineAdBanner?: { creatives: AdCreative[]; mode: 'before'; nthH2: number } | { creatives: AdCreative[]; mode: 'after' },
 ) {
   // リッチテキストブロック
@@ -203,19 +201,7 @@ function renderBodyBlock(
       );
     }
 
-    if (partType === 'cta') {
-      const service = ad?.services[0];
-      if (!service) return null;
-      return (
-        <div key={index} className="py-2">
-          <ArticleCTAButton href={service.affiliateUrl}>
-            {service.ctaText ?? '無料で相談する'}
-          </ArticleCTAButton>
-        </div>
-      );
-    }
-
-    // 未知のpartType
+    // 未知のpartType（旧 'cta' パーツタイプも含む）
     return (
       <div
         key={index}
@@ -239,9 +225,8 @@ export default async function ArticleDetailPage({ params }: Props) {
   }
 
   // 記事・広告・関連記事を並列取得（APIレスポンス待ちを最小化）
-  const [article, { contents: allAds }, { contents: categoryArticles }, { contents: adServices }, { contents: adCreatives }] = await Promise.all([
+  const [article, { contents: categoryArticles }, { contents: adServices }, { contents: adCreatives }] = await Promise.all([
     getArticleCached(slug),
-    getAds({ limit: 100 }),
     getArticlesByCategory(category, {
       limit: 11,
       fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
@@ -255,12 +240,6 @@ export default async function ArticleDetailPage({ params }: Props) {
     notFound();
   }
 
-  // 広告の優先順位: 1. targetSlug一致 → 2. カテゴリ一致(targetSlug空) → 3. all(targetSlug空)
-  const slugMatchAd = allAds.find((a) => a.targetSlug === slug);
-  const ad = slugMatchAd
-    ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes(category))
-    ?? allAds.find((a) => !a.targetSlug && a.categorySlug.includes('all'))
-    ?? null;
   // v4広告マッチング: fixed_ad_creative が設定されていればマッチングをスキップ
   const hasFixedAd = Array.isArray(article.fixed_ad_creative) && article.fixed_ad_creative.length > 0;
 
@@ -381,7 +360,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
             if (!showInlineBanner) {
               return article.bodyBlocks.map((block, index) =>
-                renderBodyBlock(block, index, ad),
+                renderBodyBlock(block, index),
               );
             }
 
@@ -422,12 +401,12 @@ export default async function ArticleDetailPage({ params }: Props) {
 
             return article.bodyBlocks.map((block, index) => {
               if (targetBlockIndex !== -1 && index === targetBlockIndex) {
-                return renderBodyBlock(block, index, ad, { creatives: banners300x250, mode: 'before', nthH2: targetH2InBlock });
+                return renderBodyBlock(block, index, { creatives: banners300x250, mode: 'before', nthH2: targetH2InBlock });
               }
               if (targetBlockIndex === -1 && index === firstH2BlockIndex) {
-                return renderBodyBlock(block, index, ad, { creatives: banners300x250, mode: 'after' });
+                return renderBodyBlock(block, index, { creatives: banners300x250, mode: 'after' });
               }
-              return renderBodyBlock(block, index, ad);
+              return renderBodyBlock(block, index);
             });
           })()}
         </div>
