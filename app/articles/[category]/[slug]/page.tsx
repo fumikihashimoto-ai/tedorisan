@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAdServices, getAdCreatives } from '@/lib/microcms';
-import { matchAdServices, findCreatives } from '@/lib/adUtils';
+import { matchAdServices, findCreatives, resolveField } from '@/lib/adUtils';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
 import AdText from '@/app/components/v2/article/AdText';
 import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
@@ -40,12 +40,6 @@ export const revalidate = 0;
 type Props = {
   params: Promise<{ category: string; slug: string }>;
 };
-
-/** microCMSのセレクトフィールドは配列で返る場合がある。先頭の値を文字列として取得する */
-function resolveField(value: string | string[] | undefined): string {
-  if (Array.isArray(value)) return (value[0] ?? '').trim().toLowerCase();
-  return (value ?? '').trim().toLowerCase();
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;

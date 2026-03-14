@@ -1,7 +1,7 @@
 import type { AdService, AdCreative } from './microcms';
 
 /** microCMSセレクトフィールドは配列で返る場合がある。先頭の値を文字列として取得する */
-function resolveField(value: string | string[] | undefined): string {
+export function resolveField(value: string | string[] | undefined): string {
   if (Array.isArray(value)) return (value[0] ?? '').trim().toLowerCase();
   return (value ?? '').trim().toLowerCase();
 }
@@ -91,37 +91,6 @@ export function sanitizeAdHtml(html: string): string {
       .replace(/\s*rel\s*=\s*["'][^"']*["']/gi, '');
     return `<a${cleaned} target="_blank" rel="noopener noreferrer nofollow">`;
   });
-}
-
-/**
- * マッチしたサービスに紐づくテキスト広告（format = "text"）を1件返す
- * priority順で最も高いサービスのものを優先
- */
-export function getTextAd(
-  creatives: AdCreative[],
-  serviceIds: string[],
-): AdCreative | null {
-  return findCreative(creatives, serviceIds, 'text');
-}
-
-/**
- * マッチしたサービスに紐づく広告素材を format で絞り込み、1件返す
- */
-export function findCreative(
-  creatives: AdCreative[],
-  serviceIds: string[],
-  format: string,
-): AdCreative | null {
-  for (const id of serviceIds) {
-    const found = creatives.find(
-      (c) =>
-        c.is_active &&
-        c.service?.id === id &&
-        resolveField(c.format) === format,
-    );
-    if (found) return found;
-  }
-  return null;
 }
 
 /**
