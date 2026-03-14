@@ -968,7 +968,7 @@ h4 {
 .article-rich-text h2 {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 23px;
   border-bottom: 2px solid #1390c8;
   padding-bottom: 6px;
   margin-top: 32px;
@@ -977,7 +977,7 @@ h4 {
 .article-rich-text h3 {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 24px;
   margin-bottom: 12px;
 }
@@ -1002,10 +1002,23 @@ h4 {
 
 /* 記事リッチテキスト内の段落間隔 */
 .article-rich-text p {
-  margin-bottom: 16px;
+  margin-bottom: 1.6em;
 }
 .article-rich-text p:last-child {
   margin-bottom: 0;
+}
+
+/* 記事リッチテキスト SP対応 */
+@media (max-width: 640px) {
+  .article-rich-text h2 {
+    font-size: 20px;
+  }
+  .article-rich-text h3 {
+    font-size: 18px;
+  }
+  .article-rich-text p {
+    margin-bottom: 1.4em;
+  }
 }
 
 /* 記事リッチテキスト内のテーブルスタイル */

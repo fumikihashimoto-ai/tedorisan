@@ -111,7 +111,7 @@ function renderBodyBlock(
     return (
       <div
         key={index}
-        className="article-rich-text font-['Noto_Sans_JP'] text-[14px] leading-[25px] text-[#3f3f3f]"
+        className="article-rich-text font-['Noto_Sans_JP'] text-[16px] leading-[1.85] sm:text-[18px] sm:leading-[1.9] text-[#08131a]"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
@@ -148,7 +148,7 @@ function renderBodyBlock(
         >
           {block.pointBody && (
             <div
-              className="article-rich-text font-['Noto_Sans_JP'] text-[14px] leading-[25px] text-[#3f3f3f]"
+              className="article-rich-text font-['Noto_Sans_JP'] text-[16px] leading-[1.85] sm:text-[18px] sm:leading-[1.9] text-[#08131a]"
               dangerouslySetInnerHTML={{ __html: block.pointBody }}
             />
           )}
