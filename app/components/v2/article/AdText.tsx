@@ -1,12 +1,33 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import type { AdCreative } from '@/lib/microcms';
 import { sanitizeAdHtml } from '@/lib/adUtils';
 
 interface AdTextProps {
-  creative: AdCreative;
+  /** 表示候補のテキスト広告素材（複数可） */
+  creatives: AdCreative[];
 }
 
-export default function AdText({ creative }: AdTextProps) {
-  const safeHtml = sanitizeAdHtml(creative.raw_html);
+/**
+ * テキスト広告コンポーネント
+ * 複数件ある場合はクライアントサイドでランダム1件を選択して表示
+ */
+export default function AdText({ creatives }: AdTextProps) {
+  const [selected, setSelected] = useState<AdCreative | null>(null);
+
+  useEffect(() => {
+    if (creatives.length === 0) return;
+    if (creatives.length === 1) {
+      setSelected(creatives[0]);
+    } else {
+      setSelected(creatives[Math.floor(Math.random() * creatives.length)]);
+    }
+  }, [creatives]);
+
+  if (creatives.length === 0 || !selected) return null;
+
+  const safeHtml = sanitizeAdHtml(selected.raw_html);
 
   return (
     <div className="mb-6 bg-[#f0f8ff] border-l-4 border-[#1390c8] rounded-r-md p-4 relative">

@@ -105,7 +105,7 @@ export function getTextAd(
 }
 
 /**
- * マッチしたサービスに紐づく広告素材を format で絞り込む
+ * マッチしたサービスに紐づく広告素材を format で絞り込み、1件返す
  */
 export function findCreative(
   creatives: AdCreative[],
@@ -122,4 +122,31 @@ export function findCreative(
     if (found) return found;
   }
   return null;
+}
+
+/**
+ * マッチしたサービスに紐づく広告素材を format で絞り込み、全件返す
+ * priority順（serviceIds の順序）で並ぶ
+ */
+export function findCreatives(
+  creatives: AdCreative[],
+  serviceIds: string[],
+  format: string,
+): AdCreative[] {
+  const results: AdCreative[] = [];
+  const usedIds = new Set<string>();
+  for (const id of serviceIds) {
+    const found = creatives.filter(
+      (c) =>
+        c.is_active &&
+        c.service?.id === id &&
+        resolveField(c.format) === format &&
+        !usedIds.has(c.id),
+    );
+    for (const c of found) {
+      results.push(c);
+      usedIds.add(c.id);
+    }
+  }
+  return results;
 }

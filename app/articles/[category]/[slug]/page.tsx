@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAds, getAdServices, getAdCreatives } from '@/lib/microcms';
-import { matchAdServices, findCreative, getTextAd, sanitizeAdHtml } from '@/lib/adUtils';
+import { matchAdServices, findCreative, findCreatives, sanitizeAdHtml } from '@/lib/adUtils';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
 import AdText from '@/app/components/v2/article/AdText';
 import AdBannerFooter from '@/app/components/v2/article/AdBannerFooter';
@@ -240,23 +240,23 @@ export default async function ArticleDetailPage({ params }: Props) {
   // v4広告マッチング: fixed_ad_creative が設定されていればマッチングをスキップ
   const hasFixedAd = Array.isArray(article.fixed_ad_creative) && article.fixed_ad_creative.length > 0;
 
-  let banner300x250: AdCreative | null = null;
-  let banner320x50: AdCreative | null = null;
-  let textAd: AdCreative | null = null;
+  let banners300x250: AdCreative[] = [];
+  let banners320x50: AdCreative[] = [];
+  let textAds: AdCreative[] = [];
 
   if (hasFixedAd) {
     // 固定広告素材からフォーマット別に取得
     const fixedCreatives = article.fixed_ad_creative!;
-    banner300x250 = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'banner_300x250') ?? null;
-    banner320x50 = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'banner_320x50') ?? null;
-    textAd = fixedCreatives.find((c) => c.is_active && resolveField(c.format) === 'text') ?? null;
+    banners300x250 = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'banner_300x250');
+    banners320x50 = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'banner_320x50');
+    textAds = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'text');
   } else {
     // 通常のマッチングロジック
     const matchedServices = matchAdServices(adServices, category, article.target_occupation);
     const matchedServiceIds = matchedServices.map((s) => s.id);
-    banner300x250 = findCreative(adCreatives, matchedServiceIds, 'banner_300x250');
-    banner320x50 = findCreative(adCreatives, matchedServiceIds, 'banner_320x50');
-    textAd = getTextAd(adCreatives, matchedServiceIds);
+    banners300x250 = findCreatives(adCreatives, matchedServiceIds, 'banner_300x250');
+    banners320x50 = findCreatives(adCreatives, matchedServiceIds, 'banner_320x50');
+    textAds = findCreatives(adCreatives, matchedServiceIds, 'text');
   }
 
   const relatedArticles = categoryArticles
@@ -342,16 +342,17 @@ export default async function ArticleDetailPage({ params }: Props) {
       <TableOfContents bodyBlocks={article.bodyBlocks} />
 
       {/* 4.6. テキスト広告（目次直後・本文前） */}
-      {textAd && <AdText creative={textAd} />}
+      {textAds.length > 0 && <AdText creatives={textAds} />}
 
       {/* 5. 記事本文（bodyBlocksをそのまま表示、calculatorもインラインで表示） */}
       <article className="pt-2 pb-6">
         <div className="flex flex-col gap-4">
           {(() => {
-            // 300×250バナーのHTML（show_ad_300x250 = true の場合のみ）
+            // 300×250バナーのHTML（show_ad_300x250 = true の場合のみ、インライン広告は1件目を使用）
+            const inlineBanner = banners300x250.length > 0 ? banners300x250[0] : null;
             const bannerHtml =
-              article.show_ad_300x250 && banner300x250
-                ? `<div class="ad-inline-banner" style="display:flex;justify-content:center;margin-bottom:16px;padding-top:16px"><div style="width:300px;min-width:300px;height:250px;overflow:hidden">${sanitizeAdHtml(banner300x250.raw_html).replace(/<img /g, '<img style="max-width:none;width:auto;height:auto" ')}</div></div>`
+              article.show_ad_300x250 && inlineBanner
+                ? `<div class="ad-inline-banner" style="display:flex;justify-content:center;margin-bottom:16px;padding-top:16px"><div style="width:300px;min-width:300px;height:250px;overflow:hidden">${sanitizeAdHtml(inlineBanner.raw_html).replace(/<img /g, '<img style="max-width:none;width:auto;height:auto" ')}</div></div>`
                 : '';
 
             if (!bannerHtml) {
@@ -414,8 +415,8 @@ export default async function ArticleDetailPage({ params }: Props) {
       </article>
 
       {/* 5.5. v4 300×250バナー広告（show_ad_300x250 = true の記事のみ） */}
-      {article.show_ad_300x250 && banner300x250 && (
-        <AdBanner300x250 creative={banner300x250} />
+      {article.show_ad_300x250 && banners300x250.length > 0 && (
+        <AdBanner300x250 creatives={banners300x250} />
       )}
 
       {/* 5.6. カテゴリ別比較表（bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
@@ -450,8 +451,8 @@ export default async function ArticleDetailPage({ params }: Props) {
         </section>
       )}
       {/* 7. v4 320×50フッター固定バナー（スマホのみ表示） */}
-      {banner320x50 && (
-        <AdBannerFooter creative={banner320x50} />
+      {banners320x50.length > 0 && (
+        <AdBannerFooter creatives={banners320x50} />
       )}
     </PageLayout>
   );
