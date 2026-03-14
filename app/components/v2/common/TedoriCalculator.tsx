@@ -79,7 +79,7 @@ export default function TedoriCalculator({
     }
   };
 
-  const fullBleedClass = contentLayout ? '-mx-4 px-4' : '-mx-[10px] px-[10px]';
+  const fullBleedClass = contentLayout ? '' : '-mx-[10px] px-[10px]';
   const containerClasses = fullWidth
     ? `bg-[var(--color-v2-bg)] ${fullBleedClass} pt-5 pb-[16px] ${noMargin ? 'mb-0' : 'mb-6'}`
     : `bg-[var(--color-v2-bg)] pt-5 pb-[16px] ${noMargin ? 'mb-0' : 'mb-6'}`;
