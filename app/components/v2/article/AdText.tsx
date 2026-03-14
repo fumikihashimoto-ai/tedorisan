@@ -44,15 +44,12 @@ export default function AdText({ creatives, category }: AdTextProps) {
   const catchcopy = CATEGORY_CATCHCOPY[category] ?? DEFAULT_CATCHCOPY;
 
   return (
-    <div className="mb-6 bg-[#f0f8ff] border-l-4 border-[#1390c8] rounded-r-md p-4 relative">
-      <span className="font-['Noto_Sans_JP'] text-[10px] font-bold text-[#64748B] bg-white px-1.5 py-0.5 rounded border border-[#e6e6e6] absolute top-2 right-2">
-        PR
-      </span>
-      <p className="font-['Noto_Sans_JP'] text-[13px] font-bold text-[#1390c8] text-center mb-1">
+    <div className="mb-6 border-[3px] border-[#FF677E] rounded-none bg-white px-4 py-3">
+      <p className="font-['Noto_Sans_JP'] text-[12px] font-bold text-[#1390c8] text-center mb-1 underline" style={{ textDecorationColor: '#F1CB43' }}>
         {catchcopy}
       </p>
       <div
-        className="ad-text-content font-['Noto_Sans_JP'] text-[13px] leading-[22px] text-[#3f3f3f]"
+        className="ad-text-content font-['Noto_Sans_JP'] text-[18px] font-bold text-[#FF677E] text-center leading-[1.6] [&_a]:text-[#FF677E]"
         dangerouslySetInnerHTML={{ __html: safeHtml }}
       />
     </div>
