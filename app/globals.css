@@ -11,111 +11,18 @@
   }
   :root {
     /* ========================================
-       手取りのミカタ ブランドカラー（リブランディング）
+       :root固有の変数（@theme inlineに含まれないもの）
+       カラー・フォントサイズ等のTailwind連携変数は @theme inline で定義
     ======================================== */
-    /* プライマリ（ブルー） */
-    --color-primary: #2563EB;
-    --color-primary-hover: #1d4ed8;
-    --color-primary-light: #dbeafe;
-    --color-primary-dark: #1e40af;
-
-    /* アクセント（アンバー） */
-    --color-accent: #F59E0B;
-    --color-accent-hover: #d97706;
-    --color-accent-light: #fef3c7;
-
-    /* サブ（グリーン） */
-    --color-success: #10B981;
-    --color-success-hover: #059669;
-    --color-success-light: #d1fae5;
-
-    /* ベース・背景 */
-    --color-background: #fff;
-    --color-surface: #FFFFFF;
-    --color-border: #E2E8F0;
-    --color-border-light: #f1f5f9;
-
-    /* テキスト */
-    --color-text-primary: #1E293B;
-    --color-text-secondary: #64748B;
-    --color-text-muted: #94a3b8;
-
-    /* セマンティック */
-    --color-error: #dc2626;
-    --color-warning: #F59E0B;
-    --color-info: #2563EB;
-
-    /* 後方互換用（HSL形式） */
-    --bg-base: 210 40% 98%;
-    /* #F8FAFC */
-    --bg-subtle: 210 40% 98%;
-    --text-primary: 222 47% 11%;
-    /* #1E293B */
-    --text-secondary: 215 16% 47%;
-    /* #64748B */
-    --text-muted: 215 20% 65%;
-    /* #94a3b8 */
-    --accent-primary: 217 91% 60%;
-    /* #2563EB */
-    --accent-secondary: 38 92% 50%;
-    /* #F59E0B */
-    --border-light: 214 32% 91%;
-    /* #E2E8F0 */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --muted: 215 16% 47%;
-    --border: 214 32% 91%;
 
     /* シャドウ（控えめ） */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
 
-    /* ========================================
-       フォントサイズ変数（rem基準）
-       html: 16px = 1rem
-    ======================================== */
-    --font-size-base: 1rem;
-    /* 16px */
-    --font-size-sm: 0.875rem;
-    /* 14px - キャプション・補足 */
-    --font-size-xs: 0.75rem;
-    /* 12px - 最小サイズ（注釈等） */
-
-    /* 見出し（PC） */
-    --font-size-h1: 1.875rem;
-    /* 30px */
-    --font-size-h2: 1.5rem;
-    /* 24px */
-    --font-size-h3: 1.25rem;
-    /* 20px */
-    --font-size-h4: 1.125rem;
-    /* 18px */
-
-    /* 特殊用途 */
-    --font-size-button: 1rem;
-    /* 16px */
-    --font-size-button-mobile: 1.125rem;
-    /* 18px - SP */
-    --font-size-label: 0.875rem;
-    /* 14px */
-    --font-size-hero: 2rem;
-    /* 32px - ヒーローセクション */
-    --font-size-hero-mobile: 1.5rem;
-    /* 24px - SP */
-
-    /* 見出し（SP用・ユーティリティ用） */
-    --font-size-h1-mobile: 1.5rem;
-    --font-size-h2-mobile: 1.25rem;
-    --font-size-h3-mobile: 1.125rem;
-    --font-size-h4-mobile: 1rem;
-
-    /* 行間・文字間 */
-    --line-height-tight: 1.4;
-    --line-height-base: 1.8;
-    --line-height-relaxed: 2;
-    --letter-spacing-tight: -0.01em;
-    --letter-spacing-base: 0.02em;
-    --letter-spacing-wide: 0.05em;
+    /* フォントサイズ（globals.css内のクラスで使用、@theme inlineに含まないもの） */
+    --font-size-base: 1rem;       /* 16px */
+    --font-size-sm: 0.875rem;     /* 14px - キャプション・補足 */
+    --font-size-xs: 0.75rem;      /* 12px - 最小サイズ（注釈等） */
   }
 }
 
@@ -172,13 +79,6 @@
   --letter-spacing-tight: -0.01em;
   --letter-spacing-base: 0.02em;
   --letter-spacing-wide: 0.05em;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 93%;
-  }
 }
 
 html {
@@ -923,30 +823,6 @@ h4 {
 }
 
 .shine-effect::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -100%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0) 28%,
-    rgba(255, 255, 255, 0.75) 32%,
-    rgba(255, 255, 255, 0.75) 78%,
-    rgba(255, 255, 255, 0) 82%
-  );
-  pointer-events: none;
-  animation: shine-loop var(--shine-duration) linear infinite;
-}
-
-/* 後方互換: 旧クラス名も同じスタイルを参照 */
-.cta-button-shine {
-  overflow: hidden;
-  --shine-duration: 3s;
-}
-
-.cta-button-shine::after {
   content: "";
   width: 100%;
   height: 100%;
