@@ -11,6 +11,9 @@ import {
   getCategoryLabel,
 } from '@/lib/articleCategories';
 
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 type Props = {
   params: Promise<{ category: string }>;
 };

@@ -3,6 +3,8 @@ import { getArticles, getArticlesByCategory } from '@/lib/microcms';
 import { affiliateServices } from '@/lib/comparisonData';
 import { TopPageClient } from '@/app/components/v2/TopPageClient';
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: '手取り計算シミュレーター｜年収・月収から手取りを無料計算【2026年版】',
   description:
