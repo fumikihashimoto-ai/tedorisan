@@ -62,3 +62,17 @@ export const calculatorMenu: MenuItem[] = [
   { label: '高卒の手取り平均', href: '/articles/salary-basics/highschool-takehome' },
   { label: '副業の確定申告はいくらから？', href: '/articles/salary-basics/fukugyou-kakutei' },
 ];
+
+// ドロワーメニュー用データ（女性の副業）
+export const womenSideJobMenu: MenuItem[] = [
+  { label: 'チャットレディとは？', href: '/articles/women-side-job/chatlady-guide' },
+  { label: 'チャットレディで稼げる？', href: '/articles/women-side-job/chatlady-earning-tips' },
+  { label: 'ノンアダルトのチャットレディ', href: '/articles/women-side-job/chatlady-non-adult' },
+  { label: 'チャットレディは危ない？', href: '/articles/women-side-job/chatlady-risk-safety' },
+  { label: 'チャットレディの副業', href: '/articles/women-side-job/chatlady-side-job' },
+  { label: 'チャットレディの確定申告', href: '/articles/women-side-job/chatlady-kakuteishinkoku' },
+  { label: 'チャットレディのコツ', href: '/articles/women-side-job/chatlady-tips' },
+  { label: 'マスクでもできる？', href: '/articles/women-side-job/chatlady-mask' },
+  { label: '女性におすすめの副業比較', href: '/articles/women-side-job/chatlady-womens-side-job' },
+  { label: 'チャットレディアプリ比較', href: '/articles/women-side-job/chatlady-app' },
+];

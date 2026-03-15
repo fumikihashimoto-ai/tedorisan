@@ -7,6 +7,7 @@ import {
   skillUpMenu,
   salaryMenu,
   calculatorMenu,
+  womenSideJobMenu,
 } from '@/lib/headerMenuData';
 import type { MenuItem } from '@/lib/headerMenuData';
 
@@ -155,6 +156,26 @@ export default function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
             {openAccordion === 'calculator' && (
               <div className="px-4 py-2 bg-gray-50">
                 <ul className="space-y-1">{renderMenuItems(calculatorMenu)}</ul>
+              </div>
+            )}
+          </li>
+
+          {/* 女性の副業 */}
+          <li className="border-b border-gray-200">
+            <button
+              onClick={() => toggleAccordion('women-side-job')}
+              className="w-full flex items-center justify-between px-4 py-3 text-left text-gray-900 font-medium hover:bg-gray-50"
+              aria-expanded={openAccordion === 'women-side-job'}
+              aria-haspopup="true"
+            >
+              <span>女性の副業</span>
+              <span className="text-xs">
+                {openAccordion === 'women-side-job' ? '▲' : '▼'}
+              </span>
+            </button>
+            {openAccordion === 'women-side-job' && (
+              <div className="px-4 py-2 bg-gray-50">
+                <ul className="space-y-1">{renderMenuItems(womenSideJobMenu)}</ul>
               </div>
             )}
           </li>
