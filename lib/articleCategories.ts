@@ -4,6 +4,7 @@ export const ARTICLE_CATEGORIES = {
   "skill-up": "スキルアップ",
   "salary-data": "給与データ",
   "salary-basics": "手取りの基礎知識",
+  "women-side-job": "女性の副業",
 } as const;
 
 export type ArticleCategorySlug = keyof typeof ARTICLE_CATEGORIES;
@@ -25,5 +26,6 @@ export const CATEGORY_LABELS: Record<string, string> = {
   'skill-up': 'スキルアップ',
   'salary-data': '年収を調べる',
   'salary-basics': '手取りの基礎知識',
+  'women-side-job': '女性の副業',
   'tools': 'ツール',
 };
