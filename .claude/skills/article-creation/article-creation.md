@@ -5,6 +5,7 @@
 
 KW情報を受け取り、構成設計→本文生成→メタ情報→CTA→MDファイル出力→画像プロンプトまでを一貫して処理する。
 Kumaの確認は「構成承認」の1回のみ。承認後は最後まで自動で進む。
+Kumaが「投稿して」と指示した場合は `scripts/post-article.ts` でmicroCMSに下書き投稿する。
 
 **出力は以下の5ファイルに分けてMDファイルとして保存する。**
 
@@ -345,10 +346,22 @@ oversaturated, cluttered, dark background
 | ファイル名 | 内容 | 用途 |
 |---|---|---|
 | file01_KW調査レポート.md | KWクラスター・記事設計サマリー | 記録・振り返り用 |
-| file02_メタ情報.md | title・meta description | CMS入力用 |
-| file03_記事本文.md | 本文（hタグ・strong・CTAコメント） | microCMS貼り付け用 |
+| file02_メタ情報.md | title・meta description・スラッグ | CMS入力用 |
+| file03_記事本文.md | 本文（hタグ・strong・CTAコメント） | microCMS自動投稿用 |
 | file04_チェックリスト_CTA.md | チェックリスト・CTA推奨箇所 | 公開前確認用 |
 | file05_画像プロンプト.md | Leonardo AI用プロンプト | ヒーロー画像生成用 |
+
+### microCMS投稿手順
+
+Kumaが定性チェック（★項目）を確認後、「投稿して」と指示する。
+
+```
+投稿して
+```
+
+Claude Codeが `scripts/post-article.ts` を実行し、下書き状態でmicroCMSに投稿する。
+投稿成功後にコンテンツIDと管理画面URLを報告する。
+公開はKumaが管理画面で手動実行する。
 
 ---
 
