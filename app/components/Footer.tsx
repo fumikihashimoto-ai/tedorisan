@@ -70,10 +70,10 @@ export default function Footer() {
         <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
           {/* 運営者情報・プライバシーポリシー */}
           <div className="flex gap-4 text-[11px] text-slate-400">
-            <Link href="/about" className="hover:text-white transition-colors">
+            {/* <Link href="/about" className="hover:text-white transition-colors">
               運営者情報
             </Link>
-            <span className="text-slate-600">|</span>
+            <span className="text-slate-600">|</span> */}
             <Link href="/privacy" className="hover:text-white transition-colors">
               プライバシーポリシー
             </Link>
