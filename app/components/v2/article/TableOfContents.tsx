@@ -52,10 +52,10 @@ export default function TableOfContents({ bodyBlocks }: TableOfContentsProps) {
             <a
               href={`#${heading.id}`}
               className={`
-                font-['Noto_Sans_JP'] text-[13px] leading-[22px] text-[#1390c8]
+                font-['Noto_Sans_JP'] text-[16px] sm:text-[18px] leading-[1.85] text-[#1390c8]
                 hover:text-[#0e6f9c] hover:underline
                 block py-0.5
-                ${heading.level === 3 ? 'text-[12px] text-[#64748B] hover:text-[#1390c8] before:content-["└"] before:mr-1 before:text-[#e6e6e6]' : 'font-medium'}
+                ${heading.level === 3 ? 'text-[14px] sm:text-[16px] text-[#64748B] hover:text-[#1390c8] before:content-["└"] before:mr-1 before:text-[#e6e6e6]' : 'font-medium'}
               `}
             >
               {heading.text}
