@@ -860,7 +860,7 @@ h4 {
 .article-rich-text h4 {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   border-bottom: 1px solid #E2E8F0;
   padding-bottom: 4px;
   margin-top: 20px;
@@ -892,6 +892,12 @@ h4 {
   .article-rich-text h3 {
     font-size: 18px;
   }
+  .article-rich-text h4 {
+    font-size: 16px;
+  }
+  .article-rich-text table {
+    font-size: 16px;
+  }
   .article-rich-text p {
     margin-bottom: 1.4em;
   }
@@ -902,7 +908,8 @@ h4 {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #d1d5db;
-  font-size: 14px;
+  font-size: 18px;
+  min-width: 480px;
 }
 .article-rich-text table th {
   background-color: var(--color-v2-primary);
