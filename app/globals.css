@@ -935,6 +935,7 @@ h4 {
     line-height: 30px;
     font-weight: 400;
     color: rgb(8, 19, 26);
+    min-width: 600px;
   }
   .article-rich-text table td,
   .article-rich-text table th {
