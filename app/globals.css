@@ -890,28 +890,6 @@ h4 {
   margin-bottom: 0;
 }
 
-/* 記事リッチテキスト SP対応 */
-@media (max-width: 640px) {
-  .article-rich-text h2 {
-    font-size: 20px;
-  }
-  .article-rich-text h3 {
-    font-size: 18px;
-  }
-  .article-rich-text h4 {
-    font-size: 16px;
-  }
-  .article-rich-text table {
-    font-size: 16px;
-    line-height: 30px;
-    font-weight: 400;
-    color: rgb(8, 19, 26);
-  }
-  .article-rich-text p {
-    margin-bottom: 1.4em;
-  }
-}
-
 /* 記事リッチテキスト内のテーブルスタイル */
 .article-rich-text table {
   width: 100%;
@@ -946,6 +924,28 @@ h4 {
   overflow-x: auto;
   scroll-padding: 0;
   scroll-margin: 0;
+}
+
+/* 記事リッチテキスト SP対応 */
+@media (max-width: 640px) {
+  .article-rich-text h2 {
+    font-size: 20px;
+  }
+  .article-rich-text h3 {
+    font-size: 18px;
+  }
+  .article-rich-text h4 {
+    font-size: 16px;
+  }
+  .article-rich-text table {
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    color: rgb(8, 19, 26);
+  }
+  .article-rich-text p {
+    margin-bottom: 1.4em;
+  }
 }
 
 /* 記事リッチテキスト内のリストスタイル（Tailwindリセットの上書き） */
