@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { getArticles, getArticlesByCategory, getPickupArticles } from '@/lib/microcms';
 import { affiliateServices } from '@/lib/comparisonData';
 import { TopPageClient } from '@/app/components/v2/TopPageClient';
+import PickupHero from '@/app/components/v2/top/PickupHero';
+import PickupRecommended from '@/app/components/v2/top/PickupRecommended';
 
 export const revalidate = 3600;
 
@@ -68,17 +70,27 @@ export default async function Home() {
     getPickupArticles(),
   ]);
 
-  // ピックアップ記事（デザイン実装は後日。データ取得のみ準備）
-  const { hero: _pickupHero, recommended: _pickupRecommended } = pickup;
+  const { hero: pickupHero, recommended: pickupRecommended } = pickup;
 
   return (
-    <TopPageClient
-      latestArticles={latestArticles}
-      careerArticles={careerArticles}
-      skillUpArticles={skillUpArticles}
-      salaryArticles={salaryArticles}
-      basicsArticles={basicsArticles}
-      services={affiliateServices}
-    />
+    <>
+      {/* 1. ヒーローセクション（ピックアップ優先度1位） */}
+      {pickupHero && <PickupHero article={pickupHero} />}
+
+      {/* 2. おすすめ記事セクション（ピックアップ優先度2位以降） */}
+      {pickupRecommended.length > 0 && (
+        <PickupRecommended articles={pickupRecommended} />
+      )}
+
+      {/* 3〜5. 手取り計算シミュレーター / 新着記事 / カテゴリ別ランキング */}
+      <TopPageClient
+        latestArticles={latestArticles}
+        careerArticles={careerArticles}
+        skillUpArticles={skillUpArticles}
+        salaryArticles={salaryArticles}
+        basicsArticles={basicsArticles}
+        services={affiliateServices}
+      />
+    </>
   );
 }
