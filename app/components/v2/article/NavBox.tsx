@@ -48,7 +48,7 @@ export default function NavBox({ title, links }: NavBoxProps) {
           <Link
             key={link.url}
             href={link.url}
-            className="block px-4 py-3 border-[2px] border-[#128EC7] rounded bg-white text-[#128EC7] text-[14px] font-bold text-center no-underline hover:bg-[#128EC7] hover:text-white transition-colors"
+            className="block px-4 py-3 rounded bg-[#128EC7] text-white text-[14px] font-bold text-center no-underline hover:opacity-85 transition-opacity"
           >
             {link.label}
           </Link>
