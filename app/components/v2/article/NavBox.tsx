@@ -43,15 +43,14 @@ export default function NavBox({ title, links }: NavBoxProps) {
           {title}
         </p>
       )}
-      <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-2 gap-3">
         {links.map((link) => (
           <Link
             key={link.url}
             href={link.url}
-            className="block px-4 py-3 border border-[#E8E6E0] rounded-md hover:bg-[#FFF5F5] transition-colors no-underline text-[18px] text-[#333333] leading-[1.5]"
+            className="block px-4 py-3 border-[2px] border-[#BF0000] rounded bg-white text-[#BF0000] text-[14px] font-bold text-center no-underline hover:bg-[#BF0000] hover:text-white transition-colors"
           >
-            <strong className="text-[#BF0000] font-bold">{link.label}</strong>
-            ｜{link.description}
+            {link.label}
           </Link>
         ))}
       </div>
