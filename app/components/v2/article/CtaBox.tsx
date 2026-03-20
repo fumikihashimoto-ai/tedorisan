@@ -28,23 +28,23 @@ export default function CtaBox({
   return (
     <div className="border-[3px] border-[#BF0000] rounded-none bg-white px-5 py-5 my-6 text-center">
       {title && (
-        <p className="font-['Noto_Sans_JP'] text-[18px] font-bold text-[#BF0000] mb-2">
+        <p className="font-['Noto_Sans_JP'] text-[16px] font-bold text-[#BF0000] mb-2">
           {title}
         </p>
       )}
       {description && (
-        <p className="font-['Noto_Sans_JP'] text-[18px] text-[#333333] leading-[1.6] mb-3">
+        <p className="font-['Noto_Sans_JP'] text-[16px] text-[#333333] leading-[1.6] mb-3">
           {description}
         </p>
       )}
       {isPlaceholder ? (
-        <span className="inline-block bg-[#BF0000] text-white text-[18px] font-bold px-8 py-3 rounded opacity-50 cursor-not-allowed">
+        <span className="inline-block bg-[#BF0000] text-white text-[16px] font-bold px-8 py-3 rounded opacity-50 cursor-not-allowed">
           {buttonText}
         </span>
       ) : isInternal ? (
         <Link
           href={buttonLink}
-          className="inline-block bg-[#BF0000] text-white text-[18px] font-bold px-8 py-3 rounded hover:opacity-85 transition-opacity no-underline"
+          className="inline-block bg-[#BF0000] text-white text-[16px] font-bold px-8 py-3 rounded hover:opacity-85 transition-opacity no-underline"
         >
           {buttonText}
         </Link>
@@ -53,7 +53,7 @@ export default function CtaBox({
           href={buttonLink}
           target="_blank"
           rel={needsSponsoredRel ? 'nofollow sponsored noopener noreferrer' : 'noopener noreferrer'}
-          className="inline-block bg-[#BF0000] text-white text-[18px] font-bold px-8 py-3 rounded hover:opacity-85 transition-opacity no-underline"
+          className="inline-block bg-[#BF0000] text-white text-[16px] font-bold px-8 py-3 rounded hover:opacity-85 transition-opacity no-underline"
         >
           {buttonText}
         </a>
