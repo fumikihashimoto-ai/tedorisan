@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { getArticles, getArticlesByCategory } from '@/lib/microcms';
+import { getArticles, getArticlesByCategory, getPickupArticles } from '@/lib/microcms';
 import { affiliateServices } from '@/lib/comparisonData';
 import { TopPageClient } from '@/app/components/v2/TopPageClient';
 
@@ -58,13 +58,18 @@ export default async function Home() {
     { contents: skillUpArticles },
     { contents: salaryArticles },
     { contents: basicsArticles },
+    pickup,
   ] = await Promise.all([
     getArticles({ limit: 6, orders: '-publishedAt', fields: articleFields }),
     getArticlesByCategory('career-change', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
     getArticlesByCategory('skill-up', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
     getArticlesByCategory('salary-data', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
     getArticlesByCategory('salary-basics', { limit: 3, fields: articleFields, orders: '-publishedAt' }),
+    getPickupArticles(),
   ]);
+
+  // ピックアップ記事（デザイン実装は後日。データ取得のみ準備）
+  const { hero: _pickupHero, recommended: _pickupRecommended } = pickup;
 
   return (
     <TopPageClient

@@ -42,6 +42,12 @@ export type Article = {
   show_ad_300x250?: boolean;
   /** 固定広告素材（複数コンテンツ参照: ad_creatives）— 設定時は通常マッチングをスキップ */
   fixed_ad_creative?: AdCreative[];
+  /** 広告非表示フラグ: trueの場合、記事内の全広告をスキップ */
+  hideAds?: boolean;
+  /** TOPピックアップ表示ON/OFF */
+  isPickup?: boolean;
+  /** ピックアップ優先度（数値が小さいほど優先） */
+  pickupPriority?: number;
   /** microCMS自動付与: 公開日時（ISO 8601） */
   publishedAt?: string;
   /** microCMS自動付与: 更新日時（ISO 8601） */
@@ -137,6 +143,34 @@ export async function createArticle(
     content: data,
     isDraft: options?.isDraft ?? true,
   });
+}
+
+// ピックアップ記事取得（isPickup === true の記事を pickupPriority 昇順で取得）
+export async function getPickupArticles() {
+  const data = await client.getList<Article>({
+    endpoint: "articles",
+    queries: {
+      filters: "isPickup[equals]true",
+      orders: "pickupPriority",
+      fields: [
+        "id",
+        "title",
+        "slug",
+        "description",
+        "category",
+        "thumbnail",
+        "isPickup",
+        "pickupPriority",
+      ],
+      limit: 10,
+    },
+  });
+
+  const articles = data.contents;
+  const hero = articles[0] ?? null;
+  const recommended = articles.slice(1);
+
+  return { hero, recommended };
 }
 
 // 記事詳細取得（slugでフィルタして1件取得）

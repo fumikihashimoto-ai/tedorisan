@@ -74,26 +74,31 @@ export default async function ArticleDetailPage({ params }: Props) {
     notFound();
   }
 
-  // v4広告マッチング: fixed_ad_creative が設定されていればマッチングをスキップ
-  const hasFixedAd = Array.isArray(article.fixed_ad_creative) && article.fixed_ad_creative.length > 0;
+  // hideAds === true の場合、全広告をスキップ
+  const hideAds = article.hideAds === true;
+
+  // v4広告マッチング: hideAds時は空配列のまま、fixed_ad_creative が設定されていればマッチングをスキップ
+  const hasFixedAd = !hideAds && Array.isArray(article.fixed_ad_creative) && article.fixed_ad_creative.length > 0;
 
   let banners300x250: AdCreative[] = [];
   let banners320x50: AdCreative[] = [];
   let textAds: AdCreative[] = [];
 
-  if (hasFixedAd) {
-    // 固定広告素材からフォーマット別に取得
-    const fixedCreatives = article.fixed_ad_creative!;
-    banners300x250 = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'banner_300x250');
-    banners320x50 = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'banner_320x50');
-    textAds = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'text');
-  } else {
-    // 通常のマッチングロジック
-    const matchedServices = matchAdServices(adServices, category, article.target_occupation);
-    const matchedServiceIds = matchedServices.map((s) => s.id);
-    banners300x250 = findCreatives(adCreatives, matchedServiceIds, 'banner_300x250');
-    banners320x50 = findCreatives(adCreatives, matchedServiceIds, 'banner_320x50');
-    textAds = findCreatives(adCreatives, matchedServiceIds, 'text');
+  if (!hideAds) {
+    if (hasFixedAd) {
+      // 固定広告素材からフォーマット別に取得
+      const fixedCreatives = article.fixed_ad_creative!;
+      banners300x250 = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'banner_300x250');
+      banners320x50 = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'banner_320x50');
+      textAds = fixedCreatives.filter((c) => c.is_active && resolveField(c.format) === 'text');
+    } else {
+      // 通常のマッチングロジック
+      const matchedServices = matchAdServices(adServices, category, article.target_occupation);
+      const matchedServiceIds = matchedServices.map((s) => s.id);
+      banners300x250 = findCreatives(adCreatives, matchedServiceIds, 'banner_300x250');
+      banners320x50 = findCreatives(adCreatives, matchedServiceIds, 'banner_320x50');
+      textAds = findCreatives(adCreatives, matchedServiceIds, 'text');
+    }
   }
 
   const relatedArticles = categoryArticles
@@ -102,8 +107,8 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   const categoryLabel = ARTICLE_CATEGORIES[category];
 
-  // インラインバナー挿入ターゲットの計算
-  const showInlineBanner = article.show_ad_300x250 && banners300x250.length > 0;
+  // インラインバナー挿入ターゲットの計算（hideAds時は無効）
+  const showInlineBanner = !hideAds && article.show_ad_300x250 && banners300x250.length > 0;
   const inlineTarget = showInlineBanner
     ? findInlineBannerTarget(article.bodyBlocks)
     : null;
@@ -190,7 +195,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       )}
 
       {/* 4.6. テキスト広告（目次直後・本文前） */}
-      {textAds.length > 0 && <AdText creatives={textAds} category={category} />}
+      {!hideAds && textAds.length > 0 && <AdText creatives={textAds} category={category} />}
 
       {/* 5. 記事本文 */}
       <article className="pt-2 pb-6">
@@ -215,8 +220,8 @@ export default async function ArticleDetailPage({ params }: Props) {
         <AdBanner300x250 creatives={banners300x250} />
       )}
 
-      {/* 5.6. カテゴリ別比較表（bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
-      {ARTICLE_CATEGORY_SITUATIONS[category] &&
+      {/* 5.6. カテゴリ別比較表（hideAds時は非表示、bodyBlocks内にcomparisonが無い場合のみ自動挿入） */}
+      {!hideAds && ARTICLE_CATEGORY_SITUATIONS[category] &&
         !article.bodyBlocks.some(
           (block) => block.fieldId === 'partsBlock' && resolveField(block.partType) === 'comparison'
         ) && (
@@ -246,8 +251,8 @@ export default async function ArticleDetailPage({ params }: Props) {
           </div>
         </section>
       )}
-      {/* 7. v4 320×50フッター固定バナー（スマホのみ表示） */}
-      {banners320x50.length > 0 && (
+      {/* 7. v4 320×50フッター固定バナー（スマホのみ表示・hideAds時は非表示） */}
+      {!hideAds && banners320x50.length > 0 && (
         <AdBannerFooter creatives={banners320x50} />
       )}
     </PageLayout>
