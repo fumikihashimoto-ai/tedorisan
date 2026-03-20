@@ -267,16 +267,11 @@ h4 {
 /* 表組の横スクロール（PC・SP共通・スクロールバーを常時表示） */
 .table-scroll-x {
   overflow-x: auto;
-  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  overscroll-behavior-x: contain;
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 #f1f5f9;
-  scroll-padding: 0;
-  scroll-margin: 0;
-  scroll-snap-type: x mandatory;
-}
-.table-scroll-x > table {
-  scroll-snap-align: start;
 }
 .table-scroll-x::-webkit-scrollbar {
   height: 8px;
@@ -922,8 +917,6 @@ h4 {
 /* リッチテキスト内テーブルの横スクロール対応 */
 .article-rich-text {
   overflow-x: auto;
-  scroll-padding: 0;
-  scroll-margin: 0;
 }
 
 /* 記事リッチテキスト SP対応 */
@@ -942,6 +935,20 @@ h4 {
     line-height: 30px;
     font-weight: 400;
     color: rgb(8, 19, 26);
+  }
+  .article-rich-text table td,
+  .article-rich-text table th {
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    color: rgb(8, 19, 26);
+    white-space: normal;
+    word-break: break-all;
+    min-width: 80px;
+  }
+  .article-rich-text table th {
+    font-weight: 700;
+    color: #fff;
   }
   .article-rich-text p {
     margin-bottom: 1.4em;

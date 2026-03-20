@@ -5,6 +5,7 @@ import { freeConsultationCtaConfig } from '@/lib/articleData/itEngineerSalary';
 import { PART_CATEGORY_SITUATIONS } from '@/lib/categoryMapping';
 import type { ArticleBodyBlock, AdCreative } from '@/lib/microcms';
 import AdBanner300x250 from './AdBanner300x250';
+import RichTextBlock from './RichTextBlock';
 import TedoriCalculator from '../common/TedoriCalculator';
 import ComparisonTable from '../common/ComparisonTable';
 import PointHeaderBox from './PointHeaderBox';
@@ -40,17 +41,11 @@ export function renderBodyBlock(
         return (
           <div key={index}>
             {split.before && (
-              <div
-                className={RICH_TEXT_CLASS}
-                dangerouslySetInnerHTML={{ __html: split.before }}
-              />
+              <RichTextBlock html={split.before} className={RICH_TEXT_CLASS} />
             )}
             <AdBanner300x250 creatives={inlineAdBanner.creatives} />
             {split.after && (
-              <div
-                className={RICH_TEXT_CLASS}
-                dangerouslySetInnerHTML={{ __html: split.after }}
-              />
+              <RichTextBlock html={split.after} className={RICH_TEXT_CLASS} />
             )}
           </div>
         );
@@ -58,11 +53,7 @@ export function renderBodyBlock(
     }
 
     return (
-      <div
-        key={index}
-        className={RICH_TEXT_CLASS}
-        dangerouslySetInnerHTML={{ __html: block.richText }}
-      />
+      <RichTextBlock key={index} html={block.richText} className={RICH_TEXT_CLASS} />
     );
   }
 
