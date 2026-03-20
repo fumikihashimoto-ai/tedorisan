@@ -17,6 +17,15 @@ export type ArticleBodyBlock = {
   pointBody?: string;
   pointVariant?: string | string[];
   sectionBarTitle?: string;
+  /** ctaBox パーツ用フィールド */
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonLink?: string;
+  ctaVariant?: string | string[];
+  /** navBox パーツ用フィールド */
+  navTitle?: string;
+  navLinksJson?: string;
 };
 
 export type Article = {
@@ -107,6 +116,26 @@ export async function getAdCreatives(queries?: MicroCMSQueries) {
   return await client.getList<AdCreative>({
     endpoint: "ad-creatives",
     queries,
+  });
+}
+
+// 記事を作成（Write API）
+export type CreateArticleInput = {
+  title: string;
+  slug: string;
+  description: string;
+  category: string[];
+  bodyBlocks: ArticleBodyBlock[];
+};
+
+export async function createArticle(
+  data: CreateArticleInput,
+  options?: { isDraft?: boolean }
+) {
+  return await client.create<CreateArticleInput>({
+    endpoint: "articles",
+    content: data,
+    isDraft: options?.isDraft ?? true,
   });
 }
 

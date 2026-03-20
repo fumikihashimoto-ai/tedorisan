@@ -9,6 +9,8 @@ import RichTextBlock from './RichTextBlock';
 import TedoriCalculator from '../common/TedoriCalculator';
 import ComparisonTable from '../common/ComparisonTable';
 import PointHeaderBox from './PointHeaderBox';
+import CtaBox from './CtaBox';
+import NavBox, { parseNavLinks } from './NavBox';
 import SectionBar from '../common/SectionBar';
 import FreeConsultationCTA from '../common/FreeConsultationCTA';
 
@@ -102,6 +104,31 @@ export function renderBodyBlock(
           key={index}
           title={block.sectionBarTitle || ''}
           noMargin
+        />
+      );
+    }
+
+    if (partType === 'ctabox') {
+      const variant = resolveField(block.ctaVariant) || 'orange';
+      return (
+        <CtaBox
+          key={index}
+          title={block.ctaTitle || ''}
+          description={block.ctaDescription || ''}
+          buttonText={block.ctaButtonText || ''}
+          buttonLink={block.ctaButtonLink || '#'}
+          variant={variant as 'orange' | 'red' | 'coral'}
+        />
+      );
+    }
+
+    if (partType === 'navbox') {
+      const links = parseNavLinks(block.navLinksJson);
+      return (
+        <NavBox
+          key={index}
+          title={block.navTitle || ''}
+          links={links}
         />
       );
     }
