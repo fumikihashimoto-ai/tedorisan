@@ -28,8 +28,8 @@ import type { AdCreative } from '@/lib/microcms';
 /** 同一リクエスト内で getArticleBySlug の重複呼び出しを防ぐ（generateMetadata と page で共有） */
 const getArticleCached = cache((slug: string) => getArticleBySlug(slug));
 
-/** 常に最新の広告データを取得するためキャッシュを無効化 */
-export const revalidate = 0;
+/** ISR: 60秒ごとにデータを再取得 */
+export const revalidate = 60;
 
 type Props = {
   params: Promise<{ category: string; slug: string }>;

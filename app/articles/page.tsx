@@ -6,7 +6,7 @@ import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import { ARTICLE_CATEGORIES, CATEGORY_LABELS, getCategoryLabel } from '@/lib/articleCategories';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export const metadata: Metadata = createPageMetadata({
   title: '記事一覧',

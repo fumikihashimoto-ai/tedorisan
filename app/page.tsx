@@ -5,7 +5,7 @@ import { TopPageClient } from '@/app/components/v2/TopPageClient';
 import PickupHero from '@/app/components/v2/top/PickupHero';
 import PickupRecommended from '@/app/components/v2/top/PickupRecommended';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: '手取り計算シミュレーター｜年収・月収から手取りを無料計算【2026年版】',
