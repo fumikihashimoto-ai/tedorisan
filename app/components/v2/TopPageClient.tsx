@@ -58,6 +58,8 @@ function CategoryArticleSection({
             imageUrl={article.thumbnail?.url ?? '/images/default-thumbnail.png'}
             tags={article.category ?? []}
             href={`/articles/${article.category?.[0] ?? categorySlug}/${article.slug}`}
+            publishedAt={article.publishedAt}
+            updatedAt={article.updatedAt}
           />
         ))}
       </div>
@@ -123,6 +125,8 @@ export function TopPageClient({
                 imageUrl={article.thumbnail?.url ?? '/images/default-thumbnail.png'}
                 tags={article.category ?? []}
                 href={`/articles/${article.category?.[0] ?? 'career-change'}/${article.slug}`}
+                publishedAt={article.publishedAt}
+                updatedAt={article.updatedAt}
               />
             ))}
           </div>

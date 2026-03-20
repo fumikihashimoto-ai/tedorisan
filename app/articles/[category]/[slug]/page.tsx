@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticlesByCategory, getAdServices, getAdCreatives } from '@/lib/microcms';
 import { matchAdServices, findCreatives, resolveField } from '@/lib/adUtils';
+import { formatArticleDate } from '@/lib/dateFormat';
 import { findInlineBannerTarget } from '@/lib/inlineAdHelper';
 import { renderBodyBlock } from '@/app/components/v2/article/BodyBlockRenderer';
 import AdBanner300x250 from '@/app/components/v2/article/AdBanner300x250';
@@ -63,7 +64,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     getArticleCached(slug),
     getArticlesByCategory(category, {
       limit: 11,
-      fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
+      fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail', 'publishedAt', 'updatedAt'],
       orders: '-publishedAt',
     }),
     getAdServices({ limit: 100, filters: 'is_active[equals]true' }),
@@ -173,6 +174,11 @@ export default async function ArticleDetailPage({ params }: Props) {
       <h1 className="font-['Noto_Sans_JP'] text-[16px] md:text-[20px] font-bold text-[#3f3f3f] pb-4 mb-4 border-b-2 border-[#1390c8]">
         {article.title}
       </h1>
+      {formatArticleDate(article.publishedAt, article.updatedAt) && (
+        <p className="font-['Noto_Sans_JP'] text-xs text-gray-500 mb-3">
+          {formatArticleDate(article.publishedAt, article.updatedAt)}
+        </p>
+      )}
       {article.category.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-4">
           {article.category.map((cat) => (
@@ -246,6 +252,8 @@ export default async function ArticleDetailPage({ params }: Props) {
                 imageUrl={related.thumbnail?.url ?? '/images/default-thumbnail.png'}
                 tags={related.category ?? []}
                 href={`/articles/${category}/${related.slug}`}
+                publishedAt={related.publishedAt}
+                updatedAt={related.updatedAt}
               />
             ))}
           </div>

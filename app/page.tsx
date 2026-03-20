@@ -51,7 +51,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-const articleFields: string[] = ['id', 'title', 'slug', 'description', 'category', 'thumbnail'];
+const articleFields: string[] = ['id', 'title', 'slug', 'description', 'category', 'thumbnail', 'publishedAt', 'updatedAt'];
 
 export default async function Home() {
   const [

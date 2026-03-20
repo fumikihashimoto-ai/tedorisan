@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getArticles } from '@/lib/microcms';
+import { formatArticleDate } from '@/lib/dateFormat';
 import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import { ARTICLE_CATEGORIES, CATEGORY_LABELS, getCategoryLabel } from '@/lib/articleCategories';
@@ -17,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default async function ArticlesPage() {
   const { contents: articles } = await getArticles({
-    fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
+    fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail', 'publishedAt', 'updatedAt'],
     orders: '-publishedAt',
   });
 
@@ -96,6 +97,11 @@ export default async function ArticlesPage() {
                   )}
 
                   <div className="p-3 flex flex-col gap-2">
+                    {formatArticleDate(article.publishedAt, article.updatedAt) && (
+                      <p className="font-['Noto_Sans_JP'] text-xs text-gray-500">
+                        {formatArticleDate(article.publishedAt, article.updatedAt)}
+                      </p>
+                    )}
                     <h3 className="font-['Noto_Sans_JP'] text-[14px] font-bold text-[#3f3f3f] line-clamp-2">
                       {article.title}
                     </h3>

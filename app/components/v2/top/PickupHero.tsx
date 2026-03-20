@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Article } from '@/lib/microcms';
 import { CATEGORY_LABELS } from '@/lib/articleCategories';
+import { formatArticleDate } from '@/lib/dateFormat';
 
 interface PickupHeroProps {
   article: Article;
@@ -52,6 +53,13 @@ export default function PickupHero({ article }: PickupHeroProps) {
                 </span>
               ))}
             </div>
+          )}
+
+          {/* 日付 */}
+          {formatArticleDate(article.publishedAt, article.updatedAt) && (
+            <p className="font-['Noto_Sans_JP'] text-xs text-gray-500 mb-1">
+              {formatArticleDate(article.publishedAt, article.updatedAt)}
+            </p>
           )}
 
           {/* タイトル */}

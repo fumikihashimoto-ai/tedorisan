@@ -4,12 +4,15 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CATEGORY_LABELS } from '@/lib/articleCategories';
+import { formatArticleDate } from '@/lib/dateFormat';
 
 interface ArticleCardProps {
   title: string;
   imageUrl: string;
   tags: string[];
   href: string;
+  publishedAt?: string;
+  updatedAt?: string;
   className?: string;
 }
 
@@ -18,8 +21,12 @@ export default function ArticleCard({
   imageUrl,
   tags,
   href,
+  publishedAt,
+  updatedAt,
   className = '',
 }: ArticleCardProps) {
+  const dateText = formatArticleDate(publishedAt, updatedAt);
+
   return (
     <Link
       href={href}
@@ -35,6 +42,11 @@ export default function ArticleCard({
         />
       </div>
       <div className="p-4">
+        {dateText && (
+          <p className="font-['Noto_Sans_JP'] text-xs text-gray-500 mb-1">
+            {dateText}
+          </p>
+        )}
         <p className="font-['Noto_Sans_JP'] font-bold text-[15px] text-[#3f3f3f] line-clamp-3 mb-2">
           {title}
         </p>

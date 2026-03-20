@@ -161,6 +161,8 @@ export async function getPickupArticles() {
         "thumbnail",
         "isPickup",
         "pickupPriority",
+        "publishedAt",
+        "updatedAt",
       ],
       limit: 10,
     },

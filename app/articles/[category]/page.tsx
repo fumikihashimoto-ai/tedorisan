@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getArticlesByCategory } from '@/lib/microcms';
+import { formatArticleDate } from '@/lib/dateFormat';
 import { createPageMetadata } from '@/app/lib/metadata';
 import PageLayout from '@/app/components/v2/layouts/PageLayout';
 import {
@@ -45,7 +46,7 @@ export default async function CategoryPage({ params }: Props) {
 
   const label = ARTICLE_CATEGORIES[category];
   const { contents: articles } = await getArticlesByCategory(category, {
-    fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail'],
+    fields: ['id', 'title', 'slug', 'description', 'category', 'thumbnail', 'publishedAt', 'updatedAt'],
     orders: '-publishedAt',
   });
 
@@ -95,6 +96,11 @@ export default async function CategoryPage({ params }: Props) {
               )}
 
               <div className="p-3 flex flex-col gap-2">
+                {formatArticleDate(article.publishedAt, article.updatedAt) && (
+                  <p className="font-['Noto_Sans_JP'] text-xs text-gray-500">
+                    {formatArticleDate(article.publishedAt, article.updatedAt)}
+                  </p>
+                )}
                 <h2 className="font-['Noto_Sans_JP'] text-[14px] font-bold text-[#3f3f3f] line-clamp-2">
                   {article.title}
                 </h2>
