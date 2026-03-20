@@ -37,9 +37,9 @@ export default function NavBox({ title, links }: NavBoxProps) {
   if (links.length === 0) return null;
 
   return (
-    <div className="border-[3px] border-[#BF0000] rounded-none bg-white px-5 py-5 my-6 text-center">
+    <div className="border-[3px] border-[#128EC7] rounded-none bg-white px-5 py-5 my-6 text-center">
       {title && (
-        <p className="font-['Noto_Sans_JP'] text-[18px] font-bold text-[#BF0000] mb-4">
+        <p className="font-['Noto_Sans_JP'] text-[18px] font-bold text-[#128EC7] mb-4">
           {title}
         </p>
       )}
@@ -48,7 +48,7 @@ export default function NavBox({ title, links }: NavBoxProps) {
           <Link
             key={link.url}
             href={link.url}
-            className="block px-4 py-3 border-[2px] border-[#BF0000] rounded bg-white text-[#BF0000] text-[14px] font-bold text-center no-underline hover:bg-[#BF0000] hover:text-white transition-colors"
+            className="block px-4 py-3 border-[2px] border-[#128EC7] rounded bg-white text-[#128EC7] text-[14px] font-bold text-center no-underline hover:bg-[#128EC7] hover:text-white transition-colors"
           >
             {link.label}
           </Link>
