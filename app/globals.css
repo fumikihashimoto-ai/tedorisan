@@ -996,3 +996,145 @@ h4 {
   height: 1px !important;
   display: block;
 }
+
+/* ========================================
+   記事リッチテキスト内 装飾クラス
+   microCMSのリッチテキストエディタがインラインstyleを除去するため、
+   CSSクラスベースでスタイルを適用する
+   ======================================== */
+
+/* 黄色ライン強調 */
+.article-rich-text .marker-yellow {
+  font-weight: bold;
+  background: linear-gradient(transparent 60%, #FFF3B0 60%);
+}
+
+/* 導線ボックス（仕事方向・オレンジ） */
+.article-rich-text .cta-box-orange {
+  background: #FFF5E6;
+  border-left: 4px solid #E8800A;
+  padding: 16px 20px;
+  margin: 24px 0;
+  border-radius: 0 8px 8px 0;
+}
+.article-rich-text .cta-box-orange .cta-box-title {
+  margin: 0 0 8px;
+  font-weight: bold;
+  color: #A35A00;
+}
+.article-rich-text .cta-box-orange .cta-box-desc {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6B3D00;
+}
+.article-rich-text .cta-box-orange .cta-button {
+  display: inline-block;
+  background: #E8800A;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+.article-rich-text .cta-box-orange .cta-button:hover {
+  opacity: 0.85;
+}
+
+/* 導線ボックス（資格方向・レッド） */
+.article-rich-text .cta-box-red {
+  background: #FDEEEE;
+  border-left: 4px solid #D14040;
+  padding: 16px 20px;
+  margin: 24px 0;
+  border-radius: 0 8px 8px 0;
+}
+.article-rich-text .cta-box-red .cta-box-title {
+  margin: 0 0 8px;
+  font-weight: bold;
+  color: #A32D2D;
+}
+.article-rich-text .cta-box-red .cta-box-desc {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6B1E1E;
+}
+.article-rich-text .cta-box-red .cta-button {
+  display: inline-block;
+  background: #D14040;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+.article-rich-text .cta-box-red .cta-button:hover {
+  opacity: 0.85;
+}
+
+/* 属性別ナビボックス */
+.article-rich-text .nav-box {
+  background: #FFF8F0;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 8px;
+  border: 1px solid #F0D0A8;
+}
+.article-rich-text .nav-box .nav-box-title {
+  margin: 0 0 16px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #7A4A0A;
+}
+.article-rich-text .nav-box .nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.article-rich-text .nav-box .nav-link {
+  display: block;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid #F0D0A8;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.article-rich-text .nav-box .nav-link:hover {
+  background: #FFF5E6;
+}
+.article-rich-text .nav-box .nav-link strong {
+  color: #C4500A;
+}
+
+/* フッターCTA */
+.article-rich-text .footer-cta {
+  background: #FFF5E6;
+  padding: 16px 20px;
+  margin: 32px 0 0;
+  border-radius: 8px;
+  text-align: center;
+}
+.article-rich-text .footer-cta p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #7A4A0A;
+}
+.article-rich-text .footer-cta .cta-button {
+  display: inline-block;
+  background: #D85A30;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+.article-rich-text .footer-cta .cta-button:hover {
+  opacity: 0.85;
+}
