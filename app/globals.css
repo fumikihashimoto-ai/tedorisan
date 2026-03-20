@@ -271,6 +271,12 @@ h4 {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 #f1f5f9;
+  scroll-padding: 0;
+  scroll-margin: 0;
+  scroll-snap-type: x mandatory;
+}
+.table-scroll-x > table {
+  scroll-snap-align: start;
 }
 .table-scroll-x::-webkit-scrollbar {
   height: 8px;
@@ -898,6 +904,8 @@ h4 {
   .article-rich-text table {
     font-size: 16px;
     line-height: 30px;
+    font-weight: 400;
+    color: rgb(8, 19, 26);
   }
   .article-rich-text p {
     margin-bottom: 1.4em;
@@ -936,6 +944,8 @@ h4 {
 /* リッチテキスト内テーブルの横スクロール対応 */
 .article-rich-text {
   overflow-x: auto;
+  scroll-padding: 0;
+  scroll-margin: 0;
 }
 
 /* 記事リッチテキスト内のリストスタイル（Tailwindリセットの上書き） */
