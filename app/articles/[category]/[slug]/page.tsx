@@ -128,7 +128,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
       {/* 1. ヒーローセクション（thumbnail画像がある場合のみ） */}
       {article.thumbnail && (
-        <section className="w-[calc(100%+32px)] mx-[-16px] overflow-hidden">
+        <section className="mt-6 overflow-hidden rounded-lg">
           <div className="relative w-full aspect-[16/9]">
             <Image
               src={article.thumbnail.url}
