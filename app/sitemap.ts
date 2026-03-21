@@ -23,7 +23,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/faq`, lastModified: lastMod, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
-  // 3. CMS記事ページ（microCMSから動的取得）
+  // 3. プライバシーポリシー
+  const privacyPage: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/privacy`, lastModified: lastMod, changeFrequency: 'yearly', priority: 0.3 },
+  ];
+
+  // 4. CMS記事ページ（microCMSから動的取得）
   let articlePages: MetadataRoute.Sitemap = [];
   try {
     const { contents: articles } = await getArticles({
@@ -46,6 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...topPage,
     ...faqPage,
+    ...privacyPage,
     ...articlePages,
   ];
 }

@@ -303,6 +303,47 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      // 記事スラッグ変更・削除ページ → リダイレクト
+      {
+        source: '/articles/women-side-job/chatlady-app',
+        destination: '/articles/women-side-job/chatlady-app-guide',
+        permanent: true,
+      },
+      {
+        source: '/articles/women-side-job/chatlady-kakuteishinkoku',
+        destination: '/articles/women-side-job/chatlady-tax-guide',
+        permanent: true,
+      },
+      {
+        source: '/articles/women-side-job/chatlady-womens-side-job',
+        destination: '/articles/women-side-job/chatlady-side-job',
+        permanent: true,
+      },
+      {
+        source: '/articles/skill-up/kuippagurenai-shikaku',
+        destination: '/articles/skill-up/kuippa-shikaku-20dai',
+        permanent: true,
+      },
+      {
+        source: '/articles/salary-basics/daigaku-takehome',
+        destination: '/articles',
+        permanent: true,
+      },
+      {
+        source: '/articles/skill-up/zaitaku-shikaku-40dai-women',
+        destination: '/articles',
+        permanent: true,
+      },
+      {
+        source: '/salary',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/about',
+        destination: '/',
+        permanent: true,
+      },
       ...cmsRedirects,
     ];
   },
