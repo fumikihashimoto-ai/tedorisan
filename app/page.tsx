@@ -3,7 +3,6 @@ import { getArticles, getArticlesByCategory, getPickupArticles } from '@/lib/mic
 import { affiliateServices } from '@/lib/comparisonData';
 import { TopPageClient } from '@/app/components/v2/TopPageClient';
 import PickupHero from '@/app/components/v2/top/PickupHero';
-import PickupRecommended from '@/app/components/v2/top/PickupRecommended';
 
 export const revalidate = 60;
 
@@ -70,19 +69,16 @@ export default async function Home() {
     getPickupArticles(),
   ]);
 
-  const { hero: pickupHero, recommended: pickupRecommended } = pickup;
+  const pickupArticles = pickup.hero
+    ? [pickup.hero, ...pickup.recommended]
+    : pickup.recommended;
 
   return (
     <>
-      {/* 1. ヒーローセクション（ピックアップ優先度1位） */}
-      {pickupHero && <PickupHero article={pickupHero} />}
+      {/* 1. ヒーローカルーセル（ピックアップ全記事） */}
+      {pickupArticles.length > 0 && <PickupHero articles={pickupArticles} />}
 
-      {/* 2. おすすめ記事セクション（ピックアップ優先度2位以降） */}
-      {pickupRecommended.length > 0 && (
-        <PickupRecommended articles={pickupRecommended} />
-      )}
-
-      {/* 3〜5. 手取り計算シミュレーター / 新着記事 / カテゴリ別ランキング */}
+      {/* 2. 手取り計算シミュレーター / 新着記事 / カテゴリ別ランキング */}
       <TopPageClient
         latestArticles={latestArticles}
         careerArticles={careerArticles}
